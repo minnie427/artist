@@ -1,0 +1,21 @@
+{
+  "name": "Minnie Park — Interactive Audio-Visual Artist",
+  "short_name": "Minnie Park",
+  "description": "The artist portfolio of Minnie Park, a Korean interactive audio-visual artist working between Seoul and Melbourne.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ff70c0",
+  "theme_color": "#ff70c0",
+  "icons": [
+    {
+      "src": "/favicon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
