@@ -39,8 +39,8 @@ window.MP_SITE = {
       year: "2026",
       entries: [
         {
-          date: "15–18 August",
-          dateKo: "8월 15–18일",
+          date: "August",
+          dateKo: "8월",
           title: "Meta Rose: The Funeral",
           type: "Interactive audio-visual installation",
           typeKo: "인터랙티브 오디오비주얼 설치",
@@ -48,8 +48,8 @@ window.MP_SITE = {
           contextKo: "서울프린지페스티벌 / 미진플로어, 서울 마포구 연남동 / Melbourne Fringe Festival(예정)"
         },
         {
-          date: "18 April",
-          dateKo: "4월 18일",
+          date: "April",
+          dateKo: "4월",
           title: "The Meta Rose: Shared Resonance",
           type: "Group exhibition / Interactive installation",
           typeKo: "그룹전 / 인터랙티브 설치",
@@ -57,8 +57,8 @@ window.MP_SITE = {
           contextKo: "Platform Presents: Hybrid / 118 Greeves Street, Fitzroy, Melbourne"
         },
         {
-          date: "15 April",
-          dateKo: "4월 15일",
+          date: "April",
+          dateKo: "4월",
           title: "Touching Resonance",
           type: "Artist-led participatory workshop",
           typeKo: "아티스트 주도형 참여 워크숍",
@@ -89,8 +89,17 @@ window.MP_SITE = {
           contextKo: "RMIT University, Melbourne"
         },
         {
-          date: "5 July",
-          dateKo: "7월 5일",
+          date: "October",
+          dateKo: "10월",
+          title: "Artists, Machines and the Space Between",
+          type: "Artist-led workshop",
+          typeKo: "아티스트 주도형 워크숍",
+          context: "Science Gallery Melbourne / TouchCollective",
+          contextKo: "Science Gallery Melbourne / TouchCollective"
+        },
+        {
+          date: "July",
+          dateKo: "7월",
           title: "Meta Rose: Mugonggan",
           type: "Solo exhibition",
           typeKo: "개인전",
@@ -105,15 +114,6 @@ window.MP_SITE = {
           typeKo: "커미션 무빙이미지 / 스크린 프레젠테이션",
           context: "PayPal Melbourne Fashion Festival / Melbourne",
           contextKo: "PayPal Melbourne Fashion Festival / Melbourne"
-        },
-        {
-          date: "",
-          dateKo: "",
-          title: "Artists, Machines and the Space Between",
-          type: "Artist-led workshop",
-          typeKo: "아티스트 주도형 워크숍",
-          context: "Science Gallery Melbourne / TouchCollective",
-          contextKo: "Science Gallery Melbourne / TouchCollective"
         }
       ]
     },
