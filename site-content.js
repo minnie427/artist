@@ -39,17 +39,17 @@ window.MP_SITE = {
       year: "2026",
       entries: [
         {
-          date: "2026",
-          dateKo: "2026",
+          date: "15–18 August",
+          dateKo: "8월 15–18일",
           title: "Meta Rose: The Funeral",
           type: "Interactive audio-visual installation",
           typeKo: "인터랙티브 오디오비주얼 설치",
-          context: "Seoul Fringe Festival / Melbourne Fringe Festival (forthcoming)",
-          contextKo: "서울프린지페스티벌 / 멜버른 프린지 페스티벌(예정)"
+          context: "Seoul Fringe Festival / Mijin Floor, Yeonnam-dong, Mapo-gu, Seoul / Melbourne Fringe Festival (forthcoming)",
+          contextKo: "서울프린지페스티벌 / 미진플로어, 서울 마포구 연남동 / Melbourne Fringe Festival(예정)"
         },
         {
-          date: "18 April 2026",
-          dateKo: "2026년 4월 18일",
+          date: "18 April",
+          dateKo: "4월 18일",
           title: "The Meta Rose: Shared Resonance",
           type: "Group exhibition / Interactive installation",
           typeKo: "그룹전 / 인터랙티브 설치",
@@ -57,13 +57,13 @@ window.MP_SITE = {
           contextKo: "Platform Presents: Hybrid / 118 Greeves Street, Fitzroy, Melbourne"
         },
         {
-          date: "2026",
-          dateKo: "2026",
+          date: "15 April",
+          dateKo: "4월 15일",
           title: "Touching Resonance",
           type: "Artist-led participatory workshop",
           typeKo: "아티스트 주도형 참여 워크숍",
-          context: "TouchCollective / Melbourne",
-          contextKo: "TouchCollective / Melbourne"
+          context: "Seventh Gallery / TouchCollective, Melbourne",
+          contextKo: "Seventh Gallery / TouchCollective, Melbourne"
         }
       ]
     },
@@ -71,26 +71,8 @@ window.MP_SITE = {
       year: "2025",
       entries: [
         {
-          date: "2025",
-          dateKo: "2025",
-          title: "The Meta Kibun Project",
-          type: "Honours research exhibition / Two-day presentation",
-          typeKo: "Honours 리서치 전시 / 2일간의 발표",
-          context: "RMIT University, Melbourne",
-          contextKo: "RMIT University, Melbourne"
-        },
-        {
-          date: "March 2025",
-          dateKo: "2025년 3월",
-          title: "Meta Rose / Premium Runways",
-          type: "Commissioned moving image / Screen presentation",
-          typeKo: "커미션 무빙이미지 / 스크린 프레젠테이션",
-          context: "PayPal Melbourne Fashion Festival / Melbourne",
-          contextKo: "PayPal Melbourne Fashion Festival / Melbourne"
-        },
-        {
-          date: "2025",
-          dateKo: "2025",
+          date: "November",
+          dateKo: "11월",
           title: "Bugskin Chapter 2",
           type: "Group exhibition",
           typeKo: "그룹전",
@@ -98,17 +80,35 @@ window.MP_SITE = {
           contextKo: "Norla Dome, Docklands, Melbourne"
         },
         {
-          date: "2025",
-          dateKo: "2025",
+          date: "October",
+          dateKo: "10월",
+          title: "The Meta Kibun Project",
+          type: "Honours research exhibition / Two-day presentation",
+          typeKo: "Honours 리서치 전시 / 2일간의 발표",
+          context: "RMIT University, Melbourne",
+          contextKo: "RMIT University, Melbourne"
+        },
+        {
+          date: "5 July",
+          dateKo: "7월 5일",
           title: "Meta Rose: Mugonggan",
           type: "Solo exhibition",
           typeKo: "개인전",
-          context: "Mugonggan, Korea",
-          contextKo: "무공간, 한국"
+          context: "Mugonggan, Seongnam, Gyeonggi-do, South Korea",
+          contextKo: "무공간, 경기도 성남시"
         },
         {
-          date: "2025",
-          dateKo: "2025",
+          date: "March",
+          dateKo: "3월",
+          title: "Meta Rose / Premium Runways",
+          type: "Commissioned moving image / Screen presentation",
+          typeKo: "커미션 무빙이미지 / 스크린 프레젠테이션",
+          context: "PayPal Melbourne Fashion Festival / Melbourne",
+          contextKo: "PayPal Melbourne Fashion Festival / Melbourne"
+        },
+        {
+          date: "",
+          dateKo: "",
           title: "Artists, Machines and the Space Between",
           type: "Artist-led workshop",
           typeKo: "아티스트 주도형 워크숍",
@@ -121,8 +121,8 @@ window.MP_SITE = {
       year: "2024",
       entries: [
         {
-          date: "June / November 2024",
-          dateKo: "2024년 6월 / 11월",
+          date: "June / November",
+          dateKo: "6월 / 11월",
           title: "Meta Rose: Origin",
           type: "Interactive audio-visual installation",
           typeKo: "인터랙티브 오디오비주얼 설치",
@@ -130,22 +130,22 @@ window.MP_SITE = {
           contextKo: "RMIT University, Melbourne"
         },
         {
-          date: "June 2024",
-          dateKo: "2024년 6월",
+          date: "June / October",
+          dateKo: "6월 / 10월",
+          title: "Median",
+          type: "Live audio-visual performance",
+          typeKo: "라이브 오디오비주얼 퍼포먼스",
+          context: "Miscellania, Melbourne",
+          contextKo: "Miscellania, Melbourne"
+        },
+        {
+          date: "June",
+          dateKo: "6월",
           title: "Meta Rose: Origin",
           type: "Interactive audio-visual installation",
           typeKo: "인터랙티브 오디오비주얼 설치",
           context: "Seventh Gallery, Melbourne",
           contextKo: "Seventh Gallery, Melbourne"
-        },
-        {
-          date: "June / October 2024",
-          dateKo: "2024년 6월 / 10월",
-          title: "Median",
-          type: "Live audio-visual performance",
-          typeKo: "라이브 오디오비주얼 퍼포먼스",
-          context: "Melbourne",
-          contextKo: "Melbourne"
         }
       ]
     },
@@ -153,20 +153,20 @@ window.MP_SITE = {
       year: "2023",
       entries: [
         {
-          date: "November 2023",
-          dateKo: "2023년 11월",
+          date: "November",
+          dateKo: "11월",
           title: "Median",
           type: "Live audio-visual performance",
           typeKo: "라이브 오디오비주얼 퍼포먼스",
-          context: "Melbourne",
-          contextKo: "Melbourne"
+          context: "Miscellania, Melbourne",
+          contextKo: "Miscellania, Melbourne"
         },
         {
-          date: "October 2023",
-          dateKo: "2023년 10월",
+          date: "October",
+          dateKo: "10월",
           title: "Body Morphosis",
-          type: "Moving-image exhibition",
-          typeKo: "무빙이미지 전시",
+          type: "Duo moving-image exhibition",
+          typeKo: "2인 무빙이미지 전시",
           context: "RMIT University, Melbourne",
           contextKo: "RMIT University, Melbourne"
         }
