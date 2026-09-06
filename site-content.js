@@ -15,7 +15,7 @@ window.MP_SITE = {
   },
 
   downloads: {
-    cv: "assets/cv.pdf",
+    cv: "assets/Minnie_Park_Artist_CV_2026.pdf",
     exegesis: "assets/honours-exegesis.pdf"
   },
 

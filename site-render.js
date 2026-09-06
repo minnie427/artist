@@ -139,7 +139,7 @@
         </div>
         <nav aria-label="${tr("Footer navigation", "하단 메뉴")}">
           ${site.nav.map((item) => navLink(item, true)).join("")}
-          <a href="${href(site.downloads.cv)}" download>${tr("CV 2025 ↓", "CV 2025 다운로드 ↓")}</a>
+          <a href="${href(site.downloads.cv)}" download>${tr("CV 2026 ↓", "CV 2026 다운로드 ↓")}</a>
           <a href="${site.external.instagram}" target="_blank" rel="noreferrer">Instagram ↗</a>
         </nav>
         <div class="site-footer__contact">
@@ -527,7 +527,7 @@
         <div class="long-copy">
           <p>${tr("Minnie Park is a Korean interactive audio-visual artist working between Seoul and Melbourne. Her installations combine living roses, tactile interaction, sound, light and moving image to examine affect as embodied, relational and culturally situated. Through Meta Rose—begun in 2024 and including The Meta Kibun Project—she develops distinct participatory systems around emotional ambivalence, culturally shaped feeling, relational touch and memory.", "Minnie Park는 서울과 멜버른을 기반으로 활동하는 한국인 인터랙티브 오디오비주얼 아티스트입니다. 생장미, 촉각적 인터랙션, 사운드, 빛과 무빙이미지를 결합한 설치를 통해 정서를 신체적이고 관계적이며 문화적으로 형성되는 경험으로 살펴봅니다. 2024년에 시작되어 The Meta Kibun Project를 포함하는 Meta Rose를 통해 감정의 양가성, 문화적으로 형성된 감정, 관계적 터치와 기억을 다루는 서로 다른 참여형 시스템을 구축합니다.")}</p>
           ${actions([
-            { label: tr("Download CV 2025 ↓", "CV 2025 다운로드 ↓"), path: site.downloads.cv, download: true },
+            { label: tr("Download CV 2026 ↓", "CV 2026 다운로드 ↓"), path: site.downloads.cv, download: true },
             { label: tr("View Works", "작품 보기"), path: "works/" }
           ])}
         </div>
@@ -827,8 +827,8 @@
         <article>
           <p class="section-kicker">${tr("Artist CV", "아티스트 CV")}</p>
           <h2>${tr("Exhibitions, education, research, public programmes and selected collaborations.", "전시, 교육, 리서치, 공공 프로그램과 주요 협업 기록입니다.")}</h2>
-          <p class="cv-status">${tr("Current PDF: 2025 edition. The 2026 update is in progress.", "현재 PDF는 2025년판이며 2026년 업데이트를 진행 중입니다.")}</p>
-          ${actions([{ label: tr("Download CV 2025 ↓", "CV 2025 다운로드 ↓"), path: site.downloads.cv, download: true }])}
+          <p class="cv-status">${tr("Current PDF: 2026 edition.", "현재 PDF는 2026년판입니다.")}</p>
+          ${actions([{ label: tr("Download CV 2026 ↓", "CV 2026 다운로드 ↓"), path: site.downloads.cv, download: true }])}
         </article>
         <article>
           <p class="section-kicker">${tr("Commercial / Commissioned Work", "상업 / 커미션 작업")}</p>
@@ -844,11 +844,11 @@
     setSeo("Artist CV — Minnie Park", "Download the artist CV of interactive audio-visual artist Minnie Park.");
     app.innerHTML = `
       <section class="cv-hero page-hero" id="top">
-        <p class="eyebrow">${tr("Artist CV / 2025 edition", "아티스트 CV / 2025년판")}</p>
+        <p class="eyebrow">${tr("Artist CV / 2026 edition", "아티스트 CV / 2026년판")}</p>
         <h1>Curriculum<br />Vitae</h1>
         <p class="hero-main">${tr("A record of exhibitions, education, research, public programmes and selected collaborations.", "전시, 교육, 리서치, 공공 프로그램과 주요 협업 기록입니다.")}</p>
-        <p class="cv-status">${tr("The 2026 Artist CV is currently being updated.", "2026년 아티스트 CV를 업데이트하고 있습니다.")}</p>
-        ${actions([{ label: tr("Download CV 2025 ↓", "CV 2025 다운로드 ↓"), path: site.downloads.cv, download: true }])}
+        <p class="cv-status">${tr("The 2026 Artist CV is available to download.", "2026년 아티스트 CV를 다운로드할 수 있습니다.")}</p>
+        ${actions([{ label: tr("Download CV 2026 ↓", "CV 2026 다운로드 ↓"), path: site.downloads.cv, download: true }])}
       </section>
       <section class="cv-summary content-section content-section--compact">
         <div><p class="section-kicker">${tr("Short Bio", "짧은 소개")}</p><h2>Minnie Park / ${tr("Interactive Audio-Visual Artist", "인터랙티브 오디오비주얼 아티스트")}</h2></div>
