@@ -455,16 +455,30 @@
   function renderArtist() {
     setSeo(
       "Artist — Minnie Park",
-      "Minnie Park is a Korean interactive audio-visual artist working with roses, touch, colour, sound and moving image between Seoul and Melbourne."
+      "Minnie Park is a Korean-Australian interactive audio-visual artist working with roses, touch, colour, sound and moving image between Seoul and Melbourne."
     );
     app.innerHTML = `
       <section class="artist-hero" id="top">
         <div>
           <p class="eyebrow">${tr("Artist", "아티스트")}</p>
           <h1>Minnie<br />Park</h1>
-          <p class="hero-main">${tr("A Korean interactive audio-visual artist working between Seoul and Melbourne.", "서울과 멜버른을 기반으로 활동하는 한국인 인터랙티브 오디오비주얼 아티스트입니다.")}</p>
+          <p class="hero-main">${tr("A Korean-Australian interactive audio-visual artist working between Seoul and Melbourne.", "서울과 멜버른을 기반으로 활동하는 한국계 호주 인터랙티브 오디오비주얼 아티스트입니다.")}</p>
         </div>
         <figure>${imageMarkup("images/liveperformance.jpg", "Minnie Park during a live audio-visual performance", true)}</figure>
+      </section>
+
+      <section class="artist-bio content-section content-section--compact">
+        <div>
+          <p class="section-kicker">${tr("Short Bio", "짧은 소개")}</p>
+          <h2>${tr("Interactive audio-visual installation / Research / Moving image", "인터랙티브 오디오비주얼 설치 / 리서치 / 무빙이미지")}</h2>
+        </div>
+        <div class="long-copy">
+          <p>${tr("Minnie Park is a Korean-Australian interactive audio-visual artist working between Seoul and Melbourne. Her installations combine living roses, tactile interaction, sound, light and moving image to examine affect as embodied, relational and culturally situated. Through Meta Rose—begun in 2024 and including The Meta Kibun Project—she develops distinct participatory systems around emotional ambivalence, culturally shaped feeling, relational touch and memory.", "Minnie Park는 서울과 멜버른을 기반으로 활동하는 한국계 호주 인터랙티브 오디오비주얼 아티스트입니다. 생장미, 촉각적 인터랙션, 사운드, 빛과 무빙이미지를 결합한 설치를 통해 정서를 신체적이고 관계적이며 문화적으로 형성되는 경험으로 살펴봅니다. 2024년에 시작되어 The Meta Kibun Project를 포함하는 Meta Rose를 통해 감정의 양가성, 문화적으로 형성된 감정, 관계적 터치와 기억을 다루는 서로 다른 참여형 시스템을 구축합니다.")}</p>
+          ${actions([
+            { label: tr("Download CV 2026 ↓", "CV 2026 다운로드 ↓"), path: site.downloads.cv, download: true },
+            { label: tr("View Works", "작품 보기"), path: "works/" }
+          ])}
+        </div>
       </section>
 
       <section class="artist-statement content-section content-section--compact">
@@ -480,23 +494,11 @@
         </div>
       </section>
 
-      <section class="practice-structure content-section">
-        <div class="section-heading">
-          <p class="section-kicker">${tr("Experience Structure", "경험 구조")}</p>
-          <h2>Beauty → Wonder → Affect</h2>
-        </div>
-        <div class="principle-grid">
-          <article><span>01</span><h3>Beauty</h3><p>${tr("The image draws the body closer.", "이미지는 신체를 가까이 이끕니다.")}</p></article>
-          <article><span>02</span><h3>Wonder</h3><p>${tr("Touch reveals a world in motion.", "터치는 움직이는 세계를 드러냅니다.")}</p></article>
-          <article><span>03</span><h3>Affect</h3><p>${tr("The encounter persists as feeling, memory or question.", "만남은 감정, 기억 혹은 질문으로 남습니다.")}</p></article>
-        </div>
-      </section>
-
       <section class="artist-history content-section" aria-labelledby="artistHistoryTitle">
         <div class="section-heading artist-history__heading">
           <p class="section-kicker">${tr("Exhibitions / Performances / Public Programmes", "전시 / 퍼포먼스 / 공공 프로그램")}</p>
           <h2 id="artistHistoryTitle">${tr("Selected History", "주요 이력")}</h2>
-          <p>${tr("A selected chronology of exhibitions, performances, workshops and public presentations. A fuller record will be included in the forthcoming 2026 CV.", "전시, 퍼포먼스, 워크숍과 공개 프레젠테이션을 시간순으로 정리한 주요 이력입니다. 전체 이력은 업데이트 중인 2026 CV에 수록될 예정입니다.")}</p>
+          <p>${tr("A selected chronology of exhibitions, performances, workshops and public presentations. The full record is available in the 2026 Artist CV.", "전시, 퍼포먼스, 워크숍과 공개 프레젠테이션을 시간순으로 정리한 주요 이력입니다. 전체 기록은 2026 Artist CV에서 확인할 수 있습니다.")}</p>
         </div>
         <div class="artist-history__list">
           ${site.history.map((group) => `
@@ -519,19 +521,6 @@
         </div>
       </section>
 
-      <section class="artist-bio content-section content-section--compact">
-        <div>
-          <p class="section-kicker">${tr("Short Bio", "짧은 소개")}</p>
-          <h2>${tr("Interactive audio-visual installation / Research / Moving image", "인터랙티브 오디오비주얼 설치 / 리서치 / 무빙이미지")}</h2>
-        </div>
-        <div class="long-copy">
-          <p>${tr("Minnie Park is a Korean interactive audio-visual artist working between Seoul and Melbourne. Her installations combine living roses, tactile interaction, sound, light and moving image to examine affect as embodied, relational and culturally situated. Through Meta Rose—begun in 2024 and including The Meta Kibun Project—she develops distinct participatory systems around emotional ambivalence, culturally shaped feeling, relational touch and memory.", "Minnie Park는 서울과 멜버른을 기반으로 활동하는 한국인 인터랙티브 오디오비주얼 아티스트입니다. 생장미, 촉각적 인터랙션, 사운드, 빛과 무빙이미지를 결합한 설치를 통해 정서를 신체적이고 관계적이며 문화적으로 형성되는 경험으로 살펴봅니다. 2024년에 시작되어 The Meta Kibun Project를 포함하는 Meta Rose를 통해 감정의 양가성, 문화적으로 형성된 감정, 관계적 터치와 기억을 다루는 서로 다른 참여형 시스템을 구축합니다.")}</p>
-          ${actions([
-            { label: tr("Download CV 2026 ↓", "CV 2026 다운로드 ↓"), path: site.downloads.cv, download: true },
-            { label: tr("View Works", "작품 보기"), path: "works/" }
-          ])}
-        </div>
-      </section>
       ${renderFooter()}
     `;
   }
@@ -853,7 +842,7 @@
       <section class="cv-summary content-section content-section--compact">
         <div><p class="section-kicker">${tr("Short Bio", "짧은 소개")}</p><h2>Minnie Park / ${tr("Interactive Audio-Visual Artist", "인터랙티브 오디오비주얼 아티스트")}</h2></div>
         <div class="long-copy">
-          <p>${tr("Minnie Park is a Korean interactive audio-visual artist working between Seoul and Melbourne. Through tactile installations combining living roses, touch, colour, sound and moving image, she explores how feeling is shaped by bodies, culture and relation.", "Minnie Park는 서울과 멜버른을 기반으로 활동하는 한국인 인터랙티브 오디오비주얼 아티스트입니다. 생장미, 터치, 색, 사운드와 무빙이미지를 결합한 촉각적 설치를 통해 감정이 신체, 문화와 관계 속에서 어떻게 형성되는지 탐구합니다.")}</p>
+          <p>${tr("Minnie Park is a Korean-Australian interactive audio-visual artist working between Seoul and Melbourne. Through tactile installations combining living roses, touch, colour, sound and moving image, she explores how feeling is shaped by bodies, culture and relation.", "Minnie Park는 서울과 멜버른을 기반으로 활동하는 한국계 호주 인터랙티브 오디오비주얼 아티스트입니다. 생장미, 터치, 색, 사운드와 무빙이미지를 결합한 촉각적 설치를 통해 감정이 신체, 문화와 관계 속에서 어떻게 형성되는지 탐구합니다.")}</p>
           <p>${tr("For a project-specific introduction, exhibition history or high-resolution portfolio package, contact", "프로젝트별 소개, 전시 이력 또는 고해상도 포트폴리오 패키지는")} <a class="inline-link" href="${site.external.email}">minniepark.studio@gmail.com</a>${tr(".", "으로 문의해 주세요.")}</p>
         </div>
       </section>
