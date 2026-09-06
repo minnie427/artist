@@ -22,10 +22,10 @@ let W = 0;
 let H = 0;
 let DPR = 1;
 
-const FPS = prefersReducedMotion ? 8 : isMobile ? 16 : 24;
-const MAX_BLOBS = isMobile ? 8 : 11;
-const TEXT_COUNT = isHomePage ? (isMobile ? 22 : 30) : 0;
-const MAX_CANVAS_PIXELS = isMobile ? 1800000 : 3200000;
+const FPS = prefersReducedMotion ? 6 : isMobile ? 10 : 12;
+const MAX_BLOBS = 0;
+const TEXT_COUNT = isHomePage ? (isMobile ? 19 : 26) : 0;
+const MAX_CANVAS_PIXELS = isMobile ? 900000 : 1800000;
 
 const pointer = {
   x: 0,
@@ -34,51 +34,55 @@ const pointer = {
   down: false
 };
 
-const snippets = [
-  "Minnie Park interactive audio-visual artist",
-  "interactive audio-visual artist",
-  "affect colour touch culturally situated emotion",
-  "immersive digital installations",
-  "roses water sound colour tactile interfaces",
-  "audience participation digital bodies memory",
-  "Korean emotional nuance affective experience",
-  "touch colour sound real-time visual systems",
-  "터치는 신호가 되고 신호는 색이 된다",
-  "색은 정서적 분위기가 됩니다",
-  "interactive installation live performance research-led practice",
-  "The Meta Kibun Project",
-  "The Meta Rose Project",
-  "Touching Resonance Seventh Gallery Melbourne",
-  "PayPal Melbourne Fashion Festival Premium Runway",
-  "Melbourne Fringe Science Gallery TouchCollective",
-  "Bugskin Chapter 2 Norla Dome Docklands",
-  "Median live audio-visual performance",
-  "Quantum Faces What Colour Is Your Voice MEMI",
-  "Touching Resonance participatory AV workshop",
-  "<section class=\"hero-visual\" id=\"heroVisual\">",
-  "<canvas id=\"textCanvas\" aria-hidden=\"true\"></canvas>",
-  "<canvas id=\"blobCanvas\" aria-hidden=\"true\"></canvas>",
-  "<script src=\"./hero-visual.js\"></script>",
-  "const hero = document.getElementById(\"heroVisual\");",
-  "const textCanvas = document.getElementById(\"textCanvas\");",
-  "const blobCanvas = document.getElementById(\"blobCanvas\");",
-  "const textCtx = textCanvas.getContext(\"2d\", { alpha: true });",
-  "const blobCtx = blobCanvas.getContext(\"2d\", { alpha: true });",
-  "const rect = hero.getBoundingClientRect();",
-  "canvas.width = Math.floor(W * DPR);",
-  "ctx.createRadialGradient(px, py, 0, px, py, petalRadius);",
-  "hero.addEventListener(\"pointerdown\", (event) => {",
-  "spawnBlob(pointer.x, pointer.y);",
-  "spawnText(pointer.x, pointer.y);",
-  "playTextNoise(pointer.x / W, pointer.y / H);",
-  "audioContext = new AudioContextClass();",
-  "source.buffer = createTextNoiseBuffer(ctx, seed, duration);",
-  "if (touch) { colour.bloom(); }",
-  "system.output = emotionalAtmosphere;",
-  "audioReactive.visuals.render();",
-  "const feeling = input.map(kibun);",
-  "touch input colour sound atmosphere",
-
+const snippetPairs = [
+  {
+    en: "Minnie Park works with real roses, touch, pink, sound and moving image to create affective experiences felt through the body.",
+    ko: "Minnie Park는 생장미, 터치, 핑크, 사운드와 무빙이미지를 통해 신체로 느껴지는 정서적 경험을 만든다."
+  },
+  {
+    en: "In Meta Rose, the pink rose shifts between living matter, interface, image, body, memorial and data trace.",
+    ko: "Meta Rose 안에서 핑크 장미는 살아 있는 물질, 인터페이스, 이미지, 신체, 기념물과 데이터 흔적 사이를 이동한다."
+  },
+  {
+    en: "Pink operates as emotional material: an atmosphere, a frequency and a force experienced through the body.",
+    ko: "핑크는 표면의 색이 아니라 신체로 경험되는 분위기이자 주파수이며 감정적 힘으로 작동한다."
+  },
+  {
+    en: "Ambivalence unfolds as attraction and resistance, tenderness and friction, felt at once.",
+    ko: "양가성은 끌림과 저항, 다정함과 마찰이 동시에 감각되는 상태로 펼쳐진다."
+  },
+  {
+    en: "Simultaneity holds bloom and decay, life and death, within the same present.",
+    ko: "동시성은 피어남과 소멸, 생과 사가 같은 현재 안에 머물게 한다."
+  },
+  {
+    en: "Each rose carries a contradiction: fragile yet insistent, organic yet mediated.",
+    ko: "각 장미는 연약하지만 끈질기고, 유기적이지만 매개된 존재라는 모순을 품는다."
+  },
+  {
+    en: "The work moves through dualities: pink and grey, softness and friction, intimacy and distance.",
+    ko: "작품은 핑크와 회색, 부드러움과 마찰, 친밀함과 거리감이라는 이중성 사이를 이동한다."
+  },
+  {
+    en: "Living roses bring fragility, scent, texture and material time into contact with responsive digital systems.",
+    ko: "생장미의 연약함, 향, 질감과 물질적 시간은 반응형 디지털 시스템과 접촉한다."
+  },
+  {
+    en: "Interactivity turns touch into a signal connecting the participant’s body with colour, sound and moving image.",
+    ko: "인터랙션은 터치를 참여자의 신체와 색, 사운드, 무빙이미지를 연결하는 신호로 바꾼다."
+  },
+  {
+    en: "Each Meta Rose chapter develops a distinct visual, sonic and spatial system around a new emotional question.",
+    ko: "Meta Rose의 각 장은 새로운 감정적 질문을 중심으로 서로 다른 비주얼, 사운드와 공간 시스템을 구성한다."
+  },
+  {
+    en: "Responsive systems do not explain emotion; they let its tensions be felt in real time.",
+    ko: "반응형 시스템은 감정을 설명하지 않고 그 안의 긴장을 실시간으로 감각하게 한다."
+  },
+  {
+    en: "Emotion is embodied and culturally situated, formed through memory, language, environment and relation.",
+    ko: "감정은 기억, 언어, 환경과 관계 속에서 신체적이고 문화적으로 형성된다."
+  }
 ];
 
 const voiceFragments = [
@@ -100,7 +104,9 @@ const hues = [
 
 const activeHues = isHomePage ? hues : [pageHueMap[pageType] || 142];
 
-if (!isHomePage) {
+if (isHomePage) {
+  textCanvas.style.display = "block";
+} else {
   textCanvas.style.display = "none";
 }
 
@@ -116,9 +122,12 @@ let resizeFrame = 0;
 let layoutRefreshFrame = 0;
 let animationFrame = 0;
 let isVisualInView = true;
+let lastTextDrawAt = 0;
+let visualActiveUntil = performance.now() + 1800;
 let lastBottomSeedAt = 0;
 let lastPageEndSeedKey = "";
 let layoutObserver = null;
+let landingCopyExclusionRects = [];
 
 function rand(min, max) {
   return Math.random() * (max - min) + min;
@@ -129,7 +138,7 @@ function pick(arr) {
 }
 
 function getPageDensity() {
-  return 1;
+  return isHomePage ? 1 : 0;
 }
 
 function getMaxBlobCount() {
@@ -140,7 +149,244 @@ function getTextCount() {
   return Math.round(TEXT_COUNT * getPageDensity());
 }
 
+function getInitialViewportTextCount() {
+  return isHomePage ? (isMobile ? 4 : 5) : 0;
+}
+
+function getInitialAnchoredTextCount() {
+  const viewportTextCount = getInitialViewportTextCount();
+  const currentInitialTotal = getTextCount() + viewportTextCount;
+  const reducedInitialTotal = Math.round(currentInitialTotal * 0.6561);
+
+  return Math.max(0, reducedInitialTotal - viewportTextCount);
+}
+
+function getContentRect(element, includeElementBox = false) {
+  if (includeElementBox) return element.getBoundingClientRect();
+
+  const range = document.createRange();
+  range.selectNodeContents(element);
+  const textRect = range.getBoundingClientRect();
+
+  return textRect.width && textRect.height ? textRect : element.getBoundingClientRect();
+}
+
+function getPaddedGroupRect(selector, padX, padY, boxedSelector = "") {
+  const elements = Array.from(document.querySelectorAll(selector));
+  if (elements.length === 0) return null;
+
+  const rects = elements
+    .map((element) => getContentRect(element, boxedSelector && element.matches(boxedSelector)))
+    .filter((rect) => rect.width && rect.height);
+
+  if (rects.length === 0) return null;
+
+  return {
+    left: Math.max(0, Math.min(...rects.map((rect) => rect.left)) - padX),
+    top: Math.max(0, Math.min(...rects.map((rect) => rect.top)) - padY),
+    right: Math.min(W, Math.max(...rects.map((rect) => rect.right)) + padX),
+    bottom: Math.min(H, Math.max(...rects.map((rect) => rect.bottom)) + padY)
+  };
+}
+
+function refreshLandingCopyExclusions() {
+  if (!isHomePage) {
+    landingCopyExclusionRects = [];
+    return;
+  }
+
+  const topRect = getPaddedGroupRect(
+    ".landing-top h1, .landing-top .eyebrow",
+    isMobile ? 22 : 48,
+    isMobile ? 18 : 34
+  );
+  const bottomRect = getPaddedGroupRect(
+    ".landing-bottom .hero-main, .landing-bottom .hero-note, .landing-bottom .page-actions",
+    isMobile ? 18 : 38,
+    isMobile ? 16 : 30,
+    ".page-actions"
+  );
+
+  landingCopyExclusionRects = [topRect, bottomRect].filter(Boolean);
+}
+
+function getTextBlockBounds(text) {
+  textCtx.save();
+  textCtx.font = `${text.size}px "Courier New", "SFMono-Regular", "Apple SD Gothic Neo", Pretendard, ui-monospace, monospace`;
+
+  let minIndent = 0;
+  let maxLineRight = 0;
+
+  text.lines.forEach((line, index) => {
+    const indent = text.lineStyles[index]?.indent || 0;
+    minIndent = Math.min(minIndent, indent);
+    maxLineRight = Math.max(
+      maxLineRight,
+      indent + textCtx.measureText(line).width * (isMobile ? 1.08 : 1.16)
+    );
+  });
+
+  textCtx.restore();
+
+  const margin = isMobile ? 16 : 24;
+  const lineHeight = text.size * (isMobile ? 1.15 : 1.22);
+
+  return {
+    left: text.x + minIndent - margin,
+    top: text.y - margin,
+    right: text.x + maxLineRight + margin,
+    bottom: text.y + text.rowCount * lineHeight + margin
+  };
+}
+
+function rectanglesOverlap(a, b) {
+  return a.left < b.right && a.right > b.left && a.top < b.bottom && a.bottom > b.top;
+}
+
+function overlapsLandingCopy(rect) {
+  return landingCopyExclusionRects.some((exclusionRect) => rectanglesOverlap(rect, exclusionRect));
+}
+
+function getDefaultTextSafeAnchors() {
+  return isMobile
+    ? [
+        [0.03, 0.3], [0.48, 0.31], [0.16, 0.39], [0.6, 0.42],
+        [0.02, 0.5], [0.42, 0.53], [0.18, 0.61], [0.64, 0.64],
+        [0.04, 0.7], [0.46, 0.72]
+      ]
+    : [
+        [0.5, 0.12], [0.76, 0.17], [0.04, 0.3], [0.34, 0.32],
+        [0.66, 0.34], [0.84, 0.4], [0.08, 0.47], [0.4, 0.49],
+        [0.7, 0.52], [0.02, 0.61], [0.3, 0.64], [0.61, 0.67],
+        [0.82, 0.7], [0.1, 0.76]
+      ];
+}
+
+function placeDefaultTextAwayFromCopy(text, index = 0) {
+  if (text.burst || !overlapsLandingCopy(getTextBlockBounds(text))) return true;
+
+  const safeAnchors = getDefaultTextSafeAnchors();
+  const originalX = text.x;
+  const originalY = text.y;
+
+  for (let attempt = 0; attempt < safeAnchors.length * 2; attempt++) {
+    const anchor = safeAnchors[(index + attempt) % safeAnchors.length];
+    const seed = (index + 1) * 41.7 + attempt * 17.3;
+    text.x = anchor[0] * W + randFrom(seed, isMobile ? -18 : -42, isMobile ? 18 : 42);
+    text.y = anchor[1] * H + randFrom(seed + 9.1, isMobile ? -14 : -30, isMobile ? 14 : 30);
+
+    if (!overlapsLandingCopy(getTextBlockBounds(text))) return true;
+  }
+
+  text.x = originalX;
+  text.y = originalY;
+  return false;
+}
+
+function clearDefaultTextsFromLandingCopy() {
+  if (landingCopyExclusionRects.length === 0) return;
+
+  texts = texts.filter((text, index) => {
+    if (text.burst || !overlapsLandingCopy(getTextBlockBounds(text))) return true;
+    return placeDefaultTextAwayFromCopy(text, index);
+  });
+}
+
+function keepDefaultTextOutsideLandingCopy(text) {
+  if (text.burst || landingCopyExclusionRects.length === 0) return;
+
+  for (let pass = 0; pass < landingCopyExclusionRects.length + 1; pass++) {
+    const bounds = getTextBlockBounds(text);
+    const exclusionRect = landingCopyExclusionRects.find((rect) => rectanglesOverlap(bounds, rect));
+    if (!exclusionRect) return;
+
+    const gap = isMobile ? 10 : 16;
+    const candidates = [
+      { dx: exclusionRect.left - bounds.right - gap, dy: 0, axis: "x" },
+      { dx: exclusionRect.right - bounds.left + gap, dy: 0, axis: "x" },
+      { dx: 0, dy: exclusionRect.top - bounds.bottom - gap, axis: "y" },
+      { dx: 0, dy: exclusionRect.bottom - bounds.top + gap, axis: "y" }
+    ]
+      .map((candidate) => {
+        const moved = {
+          left: bounds.left + candidate.dx,
+          right: bounds.right + candidate.dx,
+          top: bounds.top + candidate.dy,
+          bottom: bounds.bottom + candidate.dy
+        };
+        const outsideAllCopy = !overlapsLandingCopy(moved);
+        const insideVisualField =
+          moved.right > 12 && moved.left < W - 12 && moved.bottom > 12 && moved.top < H - 12;
+
+        return {
+          ...candidate,
+          valid: outsideAllCopy && insideVisualField,
+          distance: Math.abs(candidate.dx) + Math.abs(candidate.dy)
+        };
+      })
+      .filter((candidate) => candidate.valid)
+      .sort((a, b) => a.distance - b.distance);
+
+    const move = candidates[0];
+    if (!move) {
+      if (!placeDefaultTextAwayFromCopy(text, Math.floor(text.phase * 100))) {
+        text.life = 0;
+      }
+      return;
+    }
+
+    text.x += move.dx;
+    text.y += move.dy;
+
+    if (move.axis === "x") text.vx *= -0.72;
+    else text.vy *= -0.72;
+  }
+}
+
+function positionStaticBaseTextsAwayFromCopy() {
+  const spans = Array.from(document.querySelectorAll(".hero-visual__text-base span"));
+  if (spans.length === 0 || landingCopyExclusionRects.length === 0) return;
+
+  const safeAnchors = getDefaultTextSafeAnchors();
+
+  spans.forEach((span, index) => {
+    span.style.visibility = "hidden";
+
+    if (!overlapsLandingCopy(span.getBoundingClientRect())) {
+      span.style.visibility = "";
+      return;
+    }
+
+    span.style.right = "auto";
+    span.style.bottom = "auto";
+    let placed = false;
+
+    for (let attempt = 0; attempt < safeAnchors.length * 2; attempt++) {
+      const anchor = safeAnchors[(index * 2 + attempt) % safeAnchors.length];
+      const seed = (index + 1) * 67.9 + attempt * 13.7;
+      span.style.left = `${anchor[0] * W + randFrom(seed, isMobile ? -14 : -34, isMobile ? 14 : 34)}px`;
+      span.style.top = `${anchor[1] * H + randFrom(seed + 5.3, isMobile ? -12 : -24, isMobile ? 12 : 24)}px`;
+
+      const bounds = span.getBoundingClientRect();
+      const visibleInViewport = bounds.right > 8 && bounds.left < W - 8 && bounds.bottom > 8 && bounds.top < H - 8;
+
+      if (!overlapsLandingCopy(bounds) && visibleInViewport) {
+        placed = true;
+        break;
+      }
+    }
+
+    span.style.visibility = placed ? "" : "hidden";
+  });
+}
+
+function wakeVisual(duration = 1400) {
+  visualActiveUntil = Math.max(visualActiveUntil, performance.now() + duration);
+}
+
 function resize() {
+  wakeVisual(1200);
+
   const previousWidth = W;
   const previousHeight = H;
 
@@ -163,6 +409,9 @@ function resize() {
 
   textCtx.setTransform(DPR, 0, 0, DPR, 0, 0);
   blobCtx.setTransform(DPR, 0, 0, DPR, 0, 0);
+  lastTextDrawAt = 0;
+  refreshLandingCopyExclusions();
+  positionStaticBaseTextsAwayFromCopy();
 
   const shouldResetScene = !sceneInitialized || Math.abs(W - previousWidth) > 12;
 
@@ -174,6 +423,7 @@ function resize() {
 
   lastScrollY = window.scrollY;
   maxSeededScrollBottom = Math.max(maxSeededScrollBottom, window.scrollY + window.innerHeight);
+  clearDefaultTextsFromLandingCopy();
   updateVisualVisibility();
 
   if (Math.abs(H - previousHeight) > 80) {
@@ -200,7 +450,6 @@ class Blob {
     this.opacity = strong ? rand(0.66, 0.86) : rand(0.48, 0.78);
     this.life = 1;
     this.decay = strong ? 0.01 : 0;
-    this.blur = isMobile ? rand(22, 42) : rand(34, 62);
   }
 
   update(dt, t) {
@@ -241,11 +490,11 @@ class Blob {
 
   draw(ctx, t) {
     if (isMobile) {
-      this.drawSoftMobile(ctx, t);
+      this.drawSoft(ctx, t);
       return;
     }
 
-    const points = 36;
+    const points = 28;
     const morph = Math.sin(t * 0.28 + this.phase) * 0.09;
     const animatedRadius = this.baseRadius * (1 + Math.sin(t * 0.17 + this.phase) * 0.06);
 
@@ -254,7 +503,6 @@ class Blob {
     ctx.rotate(this.rot);
     ctx.scale(this.sx + morph, this.sy - morph * 0.5);
     ctx.globalAlpha = Math.max(0, this.opacity * this.life);
-    ctx.filter = `blur(${this.blur}px)`;
 
     ctx.beginPath();
 
@@ -293,11 +541,10 @@ class Blob {
     ctx.fillStyle = gradient;
     ctx.fill();
 
-    ctx.filter = "none";
     ctx.restore();
   }
 
-  drawSoftMobile(ctx, t) {
+  drawSoft(ctx, t) {
     const morph = Math.sin(t * 0.28 + this.phase) * 0.09;
     const animatedRadius = this.baseRadius * (1 + Math.sin(t * 0.17 + this.phase) * 0.06);
     const petalCount = 5;
@@ -335,43 +582,67 @@ class Blob {
 }
 
 class TextBlock {
-  constructor(x, y, burst = false) {
+  constructor(x, y, burst = false, language = "en") {
     this.x = x;
     this.y = y;
     this.vx = rand(-3.4, 3.4);
     this.vy = rand(-2.8, 2.8);
     this.phase = rand(0, Math.PI * 2);
     this.size = burst ? rand(10, 14) : rand(isMobile ? 9 : 10, isMobile ? 12 : 14);
-    this.cols = Math.floor(rand(isMobile ? 8 : 12, isMobile ? 23 : 38));
-    this.rowCount = Math.floor(rand(3, isMobile ? 8 : 11));
-    this.alpha = burst ? 0.74 : rand(0.58, 0.84);
-    this.rot = rand(-0.035, 0.035);
-    this.changeEvery = rand(4.5, 9);
+    this.cols = Math.floor(rand(isMobile ? 18 : 28, isMobile ? 33 : 52));
+    this.rowCount = 1;
+    this.alpha = burst ? 0.82 : rand(0.82, 0.9);
+    this.rot = rand(isMobile ? -0.018 : -0.035, isMobile ? 0.018 : 0.035);
+    this.changeEvery = rand(12, 22);
     this.lastChange = 0;
     this.burst = burst;
+    this.language = language;
     this.life = 1;
-    this.decay = burst ? 0.08 : 0;
+    this.createdAt = performance.now();
+    this.lifetime = burst ? rand(70000, 90000) : rand(95000, 135000);
     this.setText();
   }
 
   setText() {
-    const raw = pick(snippets);
-    const extra = Math.random() > 0.28 ? ` ${pick(snippets)}` : "";
-    const tail = Math.random() > 0.58 ? ` ${pick(snippets)}` : "";
-    const source = Array.from((raw + extra + tail).replace(/\s+/g, " "));
-    const maxChars = this.cols * this.rowCount;
-    const targetChars = Math.floor(maxChars * rand(0.5, 1));
-    const chars = [];
+    const source = pick(snippetPairs)[this.language].replace(/\s+/g, " ").trim();
+    const words = source.split(" ");
+    const lines = [];
+    let line = "";
+    const lineWidthMin = isMobile ? 0.72 : 0.58;
+    const lineWidthMax = isMobile ? 0.98 : 1.1;
+    let lineLimit = Math.max(12, Math.floor(this.cols * rand(lineWidthMin, lineWidthMax)));
 
-    while (chars.length < targetChars) {
-      chars.push(...source, " ");
-    }
+    words.forEach((word) => {
+      const candidate = line ? `${line} ${word}` : word;
+      if (candidate.length <= lineLimit || line.length === 0) {
+        line = candidate;
+        return;
+      }
+      lines.push(line);
+      line = word;
+      lineLimit = Math.max(12, Math.floor(this.cols * rand(lineWidthMin, lineWidthMax)));
+    });
 
-    this.chars = chars.slice(0, targetChars);
+    if (line) lines.push(line);
+
+    this.lines = lines;
+    this.rowCount = lines.length;
     this.rowSeed = rand(0, 1000);
+    const estimatedWidth = this.cols * this.size * 0.58;
+
+    this.lineStyles = lines.map((_, index) => {
+      const seed = this.rowSeed + (index + 1) * 7.31;
+
+      return {
+        indent: randFrom(seed, isMobile ? -0.03 : -0.14, isMobile ? 0.09 : 0.3) * estimatedWidth,
+        lift: randFrom(seed + 1.7, isMobile ? -0.1 : -0.22, isMobile ? 0.1 : 0.22) * this.size,
+        rotation: randFrom(seed + 3.4, isMobile ? -0.008 : -0.024, isMobile ? 0.008 : 0.024),
+        opacity: randFrom(seed + 5.1, isMobile ? 0.92 : 0.9, 1)
+      };
+    });
   }
 
-  update(dt, t) {
+  update(dt, t, now) {
     this.x += this.vx * dt + Math.sin(t * 0.18 + this.phase) * 0.04;
     this.y += this.vy * dt + Math.cos(t * 0.17 + this.phase) * 0.04;
 
@@ -398,59 +669,64 @@ class TextBlock {
     if (this.y > H + margin) this.y = -margin;
 
     if (!isMobile && t - this.lastChange > this.changeEvery) {
-      this.cols = Math.floor(rand(isMobile ? 8 : 12, isMobile ? 23 : 38));
-      this.rowCount = Math.floor(rand(3, isMobile ? 8 : 11));
+      this.cols = Math.floor(rand(28, 52));
       this.setText();
       this.lastChange = t;
     }
 
-    if (this.decay > 0) this.life -= this.decay * dt;
+    const progress = Math.min(1, Math.max(0, (now - this.createdAt) / this.lifetime));
+    this.life = progress < 0.58 ? 1 : 1 - (progress - 0.58) / 0.42;
+    keepDefaultTextOutsideLandingCopy(this);
   }
 
   draw(ctx, t) {
     ctx.save();
     ctx.translate(this.x, this.y);
-    ctx.rotate(this.rot + Math.sin(t * 0.18 + this.phase) * 0.025);
+    ctx.rotate(this.rot + Math.sin(t * 0.18 + this.phase) * (isMobile ? 0.012 : 0.025));
 
-    ctx.font = `${this.size}px "Courier New", "SFMono-Regular", ui-monospace, monospace`;
-    ctx.fillStyle = "rgba(28, 27, 25, 0.78)";
-    ctx.globalAlpha = Math.max(0, this.alpha * this.life);
+    ctx.font = `${this.size}px "Courier New", "SFMono-Regular", "Apple SD Gothic Neo", Pretendard, ui-monospace, monospace`;
+    ctx.fillStyle = "rgba(28, 27, 25, 0.84)";
+    const blockAlpha = Math.max(0, this.alpha * this.life);
+    ctx.globalAlpha = blockAlpha;
     ctx.textBaseline = "top";
 
-    const charW = this.size * 0.66;
-    const charH = this.size * 1.04;
+    const charH = this.size * (isMobile ? 1.15 : 1.22);
+    const spaceWidth = ctx.measureText(" ").width;
 
-    for (let i = 0; i < this.chars.length; i++) {
-      const ch = this.chars[i];
-      const col = i % this.cols;
-      const row = Math.floor(i / this.cols);
-      const rowNoise = Math.sin((row + 1) * 12.9898 + this.rowSeed) * 43758.5453;
-      const edgeNoise = rowNoise - Math.floor(rowNoise);
-      const rowWidth = Math.max(4, Math.floor(this.cols * randFrom(edgeNoise, 0.42, 1)));
-      const rowIndent = Math.floor((this.cols - rowWidth) * randFrom(edgeNoise * 1.7, 0, 0.85));
-      const cellNoise = Math.sin((i + 1) * 78.233 + this.rowSeed) * 43758.5453;
-      const cellValue = cellNoise - Math.floor(cellNoise);
-
-      if (col < rowIndent || col > rowIndent + rowWidth || cellValue < 0.11) {
-        continue;
-      }
-
+    this.lines.forEach((line, row) => {
       const waveX =
         Math.sin(t * 0.28 + row * 0.31 + this.phase) * 1.5 +
-        Math.cos(t * 0.18 + col * 0.21) * 0.8;
+        Math.cos(t * 0.18 + row * 0.21) * 0.8;
 
       const waveY =
-        Math.cos(t * 0.26 + col * 0.28 + this.phase) * 1.1 +
+        Math.cos(t * 0.26 + row * 0.28 + this.phase) * 1.1 +
         Math.sin(t * 0.14 + row * 0.14) * 0.6;
 
-      const chunkShift = Math.sin(row * 4.21 + this.rowSeed) * this.size * 1.8;
-      const x = col * charW + chunkShift + waveX;
-      const y = row * charH + waveY;
+      const style = this.lineStyles[row];
+      const words = line.split(" ");
 
-      if (Math.random() > 0.0015) {
-        ctx.fillText(ch, x, y);
-      }
-    }
+      ctx.save();
+      ctx.translate(style.indent + waveX, row * charH + style.lift + waveY);
+      ctx.rotate(style.rotation);
+
+      let cursorX = 0;
+
+      words.forEach((word, index) => {
+        const seed = this.rowSeed + row * 31.7 + index * 17.3;
+        const offsetX = randFrom(seed + 2.2, isMobile ? -0.03 : -0.1, isMobile ? 0.07 : 0.18) * this.size;
+        const offsetY = randFrom(seed + 4.4, isMobile ? -0.16 : -0.36, isMobile ? 0.16 : 0.36) * this.size;
+        const wordAlpha = randFrom(seed + 6.6, isMobile ? 0.88 : 0.87, 1);
+
+        ctx.globalAlpha = blockAlpha * style.opacity * wordAlpha;
+        ctx.fillText(word, cursorX + offsetX, offsetY);
+
+        cursorX +=
+          ctx.measureText(word).width +
+          spaceWidth * randFrom(seed + 8.8, isMobile ? 0.82 : 0.52, isMobile ? 1.26 : 1.72);
+      });
+
+      ctx.restore();
+    });
 
     ctx.restore();
   }
@@ -461,15 +737,22 @@ function randFrom(seed, min, max) {
   return normalized * (max - min) + min;
 }
 
+function balancedTextLanguage() {
+  const englishCount = texts.reduce((count, text) => count + (text.language === "en" ? 1 : 0), 0);
+  const koreanCount = texts.length - englishCount;
+  return englishCount <= koreanCount ? "en" : "ko";
+}
+
 function initScene() {
   blobs = [];
   texts = [];
+  lastTextDrawAt = 0;
   lastPageEndSeedKey = "";
   lastScrollY = window.scrollY;
   maxSeededScrollBottom = window.scrollY + window.innerHeight;
 
   const density = getPageDensity();
-  const initialBlobCount = Math.round((isMobile ? 8 : 11) * density);
+  const initialBlobCount = Math.round(MAX_BLOBS * density);
   const clusterSpreadX = isMobile ? W * 0.16 : W * 0.18;
   const clusterSpreadY = window.innerHeight * (isMobile ? 0.12 : 0.16);
   const blobAnchors = [
@@ -508,17 +791,20 @@ function initScene() {
     [0.57, 0.44], [0.28, 0.82]
   ];
 
-  for (let i = 0; i < getTextCount(); i++) {
+  for (let i = 0; i < getInitialAnchoredTextCount(); i++) {
     const anchor = textAnchors[i % textAnchors.length];
     texts.push(
       new TextBlock(
         anchor[0] * W + rand(-70, 70),
-        anchor[1] * H + rand(-55, 55)
+        anchor[1] * H + rand(-55, 55),
+        false,
+        balancedTextLanguage()
       )
     );
   }
 
   seedViewport(0, true);
+  clearDefaultTextsFromLandingCopy();
   seedPageEndVisuals();
 
   draw(performance.now() * 0.001);
@@ -527,8 +813,11 @@ function initScene() {
 function seedViewport(scrollY = 0, initial = false) {
   const top = 0;
   const bottom = H;
-  const blobCount = initial ? (isMobile ? 3 : 4) : (isMobile ? 1 : 2);
-  const textCount = initial ? (isMobile ? 6 : 8) : blobCount;
+  const density = getPageDensity();
+  const blobCount = MAX_BLOBS > 0
+    ? Math.max(1, Math.round((initial ? (isMobile ? 2 : 3) : 1) * density))
+    : 0;
+  const textCount = isHomePage ? (initial ? getInitialViewportTextCount() : blobCount) : 0;
   const spawnBottom = bottom - window.innerHeight * 0.08;
 
   for (let i = 0; i < blobCount; i++) {
@@ -554,6 +843,7 @@ function seedPageEndVisuals(force = false) {
 }
 
 function spawnBlob(x, y, scale = 1, strong = true) {
+  if (MAX_BLOBS === 0) return;
   blobs.push(
     new Blob(
       x,
@@ -572,7 +862,11 @@ function spawnBlob(x, y, scale = 1, strong = true) {
 function spawnText(x, y, burst = true) {
   if (!isHomePage) return;
 
-  const text = new TextBlock(x, y, burst);
+  while (texts.length >= getTextCount() + 5) {
+    texts.shift();
+  }
+
+  const text = new TextBlock(x, y, burst, balancedTextLanguage());
   const estimatedWidth = text.cols * text.size * 0.66;
   const estimatedHeight = text.rowCount * text.size * 1.04;
 
@@ -580,19 +874,12 @@ function spawnText(x, y, burst = true) {
   text.y = y - estimatedHeight * rand(0.18, 0.82) + rand(-72, 72);
 
   texts.push(text);
-
-  while (texts.length > getTextCount() + 5) {
-    texts.shift();
-  }
 }
 
 function spawnPointerVisuals(x, y) {
-  const blobX = x + rand(-42, 42);
-  const blobY = y + rand(-42, 42);
   const textX = x + rand(-120, 120);
   const textY = y + rand(-96, 96);
 
-  spawnBlob(blobX, blobY);
   spawnText(textX, textY);
 }
 
@@ -619,29 +906,34 @@ function spawnScrollVisuals() {
   seedViewport(0, false);
 }
 
-function update(dt, t) {
+function update(dt, t, now) {
   for (const blob of blobs) blob.update(dt, t);
-  for (const text of texts) text.update(dt, t);
+  for (const text of texts) text.update(dt, t, now);
 
   blobs = blobs.filter((b) => b.life > 0.03);
   texts = texts.filter((txt) => txt.life > 0.03);
 }
 
 function draw(t) {
-  if (isHomePage) {
-    textCtx.clearRect(0, 0, W, H);
-  }
-  blobCtx.clearRect(0, 0, W, H);
+  const shouldDrawText =
+    isHomePage &&
+    (lastTextDrawAt === 0 || performance.now() - lastTextDrawAt > (prefersReducedMotion ? 1000 : 260));
 
-  if (isHomePage) {
+  if (shouldDrawText) {
+    textCtx.clearRect(0, 0, W, H);
+
     for (const text of texts) {
       text.draw(textCtx, t);
     }
+
+    lastTextDrawAt = performance.now();
   }
 
+  blobCtx.clearRect(0, 0, W, H);
   blobCtx.globalCompositeOperation = "source-over";
+
   for (const blob of blobs) {
-    blob.draw(blobCtx, t);
+    blob.drawSoft(blobCtx, t);
   }
 }
 
@@ -661,15 +953,18 @@ function animate(now) {
     return;
   }
 
+  const isActiveVisual = pointer.down || now < visualActiveUntil;
+  const targetInterval = isActiveVisual ? frameInterval : 1000;
   const delta = now - last;
-  if (delta < frameInterval) return;
+
+  if (delta < targetInterval) return;
 
   const dt = Math.min(delta / 1000, 0.045);
-  last = now - (delta % frameInterval);
+  last = now - (delta % targetInterval);
 
   const t = now * 0.001;
 
-  update(dt, t);
+  update(dt, t, now);
   draw(t);
 }
 
@@ -677,6 +972,7 @@ function updatePointer(event) {
   pointer.x = event.clientX;
   pointer.y = event.clientY;
   pointer.active = true;
+  wakeVisual(900);
 }
 
 let audioContext = null;
@@ -851,6 +1147,7 @@ function playPointerAudio() {
   playTextNoise(W > 0 ? pointer.x / W : 0.5, H > 0 ? pointer.y / H : 0.5);
 }
 
+if (isHomePage) {
 window.addEventListener("pointermove", (event) => {
   updatePointer(event);
 }, { passive: true });
@@ -858,6 +1155,7 @@ window.addEventListener("pointermove", (event) => {
 window.addEventListener("pointerdown", (event) => {
   if (event.pointerType === "touch") return;
 
+  wakeVisual(1800);
   markInteracted();
   updatePointer(event);
   pointer.down = true;
@@ -873,6 +1171,7 @@ window.addEventListener("pointerdown", (event) => {
 }, { passive: true });
 
 window.addEventListener("touchstart", (event) => {
+  wakeVisual(1800);
   markInteracted();
   const touch = event.touches[0];
   if (!touch) return;
@@ -895,6 +1194,11 @@ window.addEventListener("pointerleave", () => {
   pointer.down = false;
 });
 
+window.addEventListener("blur", () => {
+  pointer.active = false;
+  pointer.down = false;
+});
+
 window.addEventListener("resize", scheduleResize);
 window.addEventListener("scroll", handleScroll, { passive: true });
 
@@ -913,6 +1217,7 @@ document.addEventListener("visibilitychange", () => {
     animationFrame = requestAnimationFrame(animate);
   }
 });
+}
 
 function scheduleResize() {
   if (resizeFrame) return;
@@ -944,6 +1249,7 @@ function initLayoutObservers() {
 }
 
 function handleScroll() {
+  wakeVisual(900);
   updateVisualVisibility();
   spawnScrollVisuals();
 }
@@ -1127,13 +1433,6 @@ function initInteractionHint() {
   if (hints.length === 0) return;
 
   hints.forEach(randomizeInteractionHint);
-
-  window.setTimeout(() => {
-    document.body.classList.add("is-hint-dismissed");
-    window.setTimeout(() => {
-      document.body.classList.add("is-hint-gone");
-    }, 1300);
-  }, 5600);
 }
 
 function randomizeInteractionHint(hint) {
@@ -1184,17 +1483,19 @@ function initShowreelControls() {
   });
 }
 
-addClickPulse(".home-mark, .sticky-inquiry");
-initCustomSelects();
-initFormPerformanceMode();
-initInteractionHint();
-initShowreelControls();
-initLayoutObservers();
+if (isHomePage) {
+  addClickPulse(".home-mark, .sticky-inquiry");
+  initCustomSelects();
+  initFormPerformanceMode();
+  initInteractionHint();
+  initShowreelControls();
+  initLayoutObservers();
 
-resize();
+  resize();
 
-if (prefersReducedMotion) {
-  draw(performance.now() * 0.001);
-} else {
-  animationFrame = requestAnimationFrame(animate);
+  if (prefersReducedMotion) {
+    draw(performance.now() * 0.001);
+  } else {
+    animationFrame = requestAnimationFrame(animate);
+  }
 }
