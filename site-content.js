@@ -132,7 +132,7 @@ window.MP_SITE = {
         {
           date: "June / October",
           dateKo: "6월 / 10월",
-          title: "Median",
+          title: "Median 2",
           type: "Live audio-visual performance",
           typeKo: "라이브 오디오비주얼 퍼포먼스",
           context: "Miscellania, Melbourne",
