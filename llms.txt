@@ -8,7 +8,7 @@ This is the canonical artist portfolio for Minnie Park. Meta Rose is her central
 
 - [Artist](https://minniepark.art/artist/): Artist statement, biography and selected history.
 - [Works](https://minniepark.art/works/): Selected installations, collaborations and the Meta Rose body of work.
-- [Visual Index](https://minniepark.art/visual-index/): Chronological visual record of installations, generated images, material studies and participation.
+- [Visual Index](https://minniepark.art/visual-index/): Chronological visual record of installations, real-time visual states, material studies and participation.
 - [Research](https://minniepark.art/research/): The 2025 Honours research and The Meta Kibun Project.
 - [Contact](https://minniepark.art/contact/): Exhibition, curatorial, research, talk and artistic collaboration enquiries.
 - [Artist CV](https://minniepark.art/cv/): Artist CV and downloadable PDF.

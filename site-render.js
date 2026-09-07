@@ -20,7 +20,6 @@
     "Installation view": "설치 전경",
     "Suspended rose interface": "공중에 매단 장미 인터페이스",
     "Runway screen installation": "런웨이 스크린 설치",
-    "Generated visual state": "생성된 비주얼 상태",
     "Digital rose study": "디지털 장미 연구",
     "Collective interaction": "집단적 인터랙션",
     "Runway documentation": "런웨이 기록",
@@ -251,7 +250,7 @@
       <section class="works-opening" aria-labelledby="worksOpeningTitle">
         <div class="works-opening__head">
           <p class="section-kicker" id="worksOpeningTitle">${tr("Selected Images / 2024—2026", "주요 이미지 / 2024—2026")}</p>
-          <p>${tr("Installations, generated images and moments of participation.", "설치, 생성 이미지와 관객 참여의 순간들.")}</p>
+          <p>${tr("Installations, real-time visual states and moments of participation.", "설치, 실시간 비주얼 상태와 관객 참여의 순간들.")}</p>
         </div>
         <div class="works-opening__frame" data-works-opening>
           <button class="works-opening__nav works-opening__nav--prev" type="button" data-works-opening-step="-1" aria-label="${tr("Previous image", "이전 이미지")}">←</button>
@@ -589,7 +588,7 @@
 
     setSeo(
       "Visual Index — Minnie Park",
-      "A visual field of Minnie Park’s installations, generated images, material studies and moments of audience participation."
+      "A visual field of Minnie Park’s installations, real-time visual states, material studies and moments of audience participation."
     );
     app.innerHTML = `
       <section class="visual-index-hero" id="top">
@@ -597,7 +596,7 @@
           <p class="eyebrow">${tr("Visual Index / Ongoing record", "비주얼 인덱스 / 확장되는 기록")}</p>
           <h1>${tr("Visual<br />Index", "비주얼<br />인덱스")}</h1>
         </div>
-        <p>${tr("A growing field of installations, generated images, moving-image stills, material studies and moments of participation. Select any image or clip for its project, year and context.", "설치, 생성 이미지, 무빙이미지 스틸, 재료 연구와 관객 참여의 순간이 쌓이는 비주얼의 장입니다. 이미지나 영상을 선택하면 프로젝트, 연도와 맥락을 확인할 수 있습니다.")}</p>
+        <p>${tr("A growing field of installations, real-time visual states, moving-image stills, material studies and moments of participation. Select any image or clip for its project, year and context.", "설치, 실시간 비주얼 상태, 무빙이미지 스틸, 재료 연구와 관객 참여의 순간이 쌓이는 비주얼의 장입니다. 이미지나 영상을 선택하면 프로젝트, 연도와 맥락을 확인할 수 있습니다.")}</p>
       </section>
 
       <section class="visual-index" aria-label="Visual index">
