@@ -33,6 +33,8 @@
     "Rose interface": "장미 인터페이스",
     "Interaction station": "인터랙션 스테이션",
     "Performance documentation": "퍼포먼스 기록",
+    "Workshop documentation": "워크숍 기록",
+    "Moving-image documentation": "무빙이미지 기록",
     "Moving-image study": "무빙이미지 연구",
     "Conductive rose detail": "전도성 장미 디테일",
     "Installation documentation": "설치 기록",
@@ -67,7 +69,12 @@
     }
     return href(path);
   };
-  const projectUrl = (key) => href(site.projects[key].route);
+  const projectUrl = (key) => {
+    const project = site.projects[key];
+    return project.parent
+      ? `${href(site.projects[project.parent].route)}#${key}`
+      : href(project.route);
+  };
   const activeSection = page === "project" || page === "works" ? "works" : page === "practice" ? "artist" : page;
 
   function setSeo(title, description) {
@@ -235,11 +242,11 @@
   function renderWorks() {
     setSeo(
       "Works — Minnie Park",
-      "Interactive audio-visual installations and moving-image works by Minnie Park, including the evolving Meta Rose and Meta Kibun projects."
+      "Interactive installations, performances, moving-image works and selected commissions by Minnie Park, including the evolving Meta Rose body of work."
     );
     app.innerHTML = `
       <section class="page-hero page-hero--works" id="top">
-        <p class="eyebrow">${tr("Works / 2024—ongoing", "작품 / 2024—현재")}</p>
+        <p class="eyebrow">${tr("Works / 2023—ongoing", "작품 / 2023—현재")}</p>
         <h1>${tr("Works", "작품")}</h1>
         <p class="hero-main">${tr(
           "An evolving body of interactive audio-visual work shaped by roses, touch, colour and audience participation.",
@@ -256,14 +263,18 @@
           <button class="works-opening__nav works-opening__nav--prev" type="button" data-works-opening-step="-1" aria-label="${tr("Previous image", "이전 이미지")}">←</button>
           <div class="works-opening__viewport">
             <div class="works-opening__track">
-              ${site.worksOpeningImages.map((item) => `
-                <a class="works-opening__item" href="${projectUrl(item.project)}">
+              ${site.worksOpeningImages.map((item) => {
+                const linked = Boolean(site.projects[item.project]);
+                const tag = linked ? "a" : "div";
+                return `
+                <${tag} class="works-opening__item"${linked ? ` href="${projectUrl(item.project)}"` : ""}>
                   <figure>
-                    ${imageMarkup(item.src, item.alt)}
-                    <figcaption>${item.title} / ${item.year}</figcaption>
+                    ${galleryMediaMarkup(item)}
+                    ${item.title ? `<figcaption>${item.title}${item.year ? ` / ${item.year}` : ""}</figcaption>` : ""}
                   </figure>
-                </a>
-              `).join("")}
+                </${tag}>
+              `;
+              }).join("")}
             </div>
           </div>
           <button class="works-opening__nav works-opening__nav--next" type="button" data-works-opening-step="1" aria-label="${tr("Next image", "다음 이미지")}">→</button>
@@ -272,7 +283,7 @@
 
       <section class="works-introduction content-section content-section--compact">
         <figure class="works-introduction__media works-introduction__media--rose">
-          ${imageMarkup(site.projects.funeral.image, "Halftone rose representing the ongoing Meta Rose body of work")}
+          ${imageMarkup("assets/rose-halftone.png", "Halftone rose representing the ongoing Meta Rose body of work")}
         </figure>
         <div class="works-introduction__identity">
           <p class="section-kicker">${tr("Meta Rose / Ongoing body of work", "Meta Rose / 연작")}</p>
@@ -297,25 +308,42 @@
           <p>${tr("2024—ongoing", "2024—현재")}</p>
         </div>
         <div class="work-card-grid work-card-grid--primary">
-          ${site.primaryWorksOrder.map((key, index) => workCard(
-            key,
-            index,
-            true,
-            key === "funeral" ? {
-              src: site.projects["meta-rose"].image,
-              alt: site.projects["meta-rose"].imageAlt,
-              placeholder: null
-            } : null
-          )).join("")}
+          ${site.primaryWorksOrder.map((key, index) => workCard(key, index, true)).join("")}
         </div>
       </section>
 
       <section class="content-section selected-context">
         <div class="section-heading">
-          <p class="section-kicker">${tr("Selected Collaborations", "주요 협업")}</p>
+          <p class="section-kicker">${tr("Exhibitions / Public Programmes", "전시 / 공공 프로그램")}</p>
           <h2>${tr(
-            "Selected collaborations carry this visual language into public and cultural contexts while preserving its distinct identity.",
-            "주요 협업은 고유한 정체성을 유지하며 이 비주얼 언어를 공공·문화적 맥락으로 확장합니다."
+            "Installations and artist-led programmes developed through distinct sites, collaborations and forms of participation.",
+            "서로 다른 장소, 협업과 참여 방식 속에서 전개된 설치와 아티스트 주도형 프로그램입니다."
+          )}</h2>
+        </div>
+        <div class="work-card-grid work-card-grid--selected">
+          ${site.exhibitionWorksOrder.map((key, index) => workCard(key, index)).join("")}
+        </div>
+      </section>
+
+      <section class="content-section selected-context">
+        <div class="section-heading">
+          <p class="section-kicker">${tr("Live Performance", "라이브 퍼포먼스")}</p>
+          <h2>${tr(
+            "Live audio-visual performances from 2023–2024.",
+            "2023–2024년에 발표한 라이브 오디오비주얼 퍼포먼스입니다."
+          )}</h2>
+        </div>
+        <div class="work-card-grid work-card-grid--selected">
+          ${site.liveWorksOrder.map((key, index) => workCard(key, index)).join("")}
+        </div>
+      </section>
+
+      <section class="content-section selected-context">
+        <div class="section-heading">
+          <p class="section-kicker">${tr("Selected Commissions", "주요 커미션")}</p>
+          <h2>${tr(
+            "Selected commissioned visual systems developed for cultural and event contexts.",
+            "문화 및 이벤트 맥락을 위해 개발한 주요 커미션 비주얼 시스템입니다."
           )}</h2>
         </div>
         <div class="work-card-grid work-card-grid--selected">
@@ -350,6 +378,40 @@
         viewport.scrollTo({ left: positions[targetIndex], behavior });
       });
     });
+  }
+
+  function renderProjectEntries(project) {
+    if (!project.entries?.length) return "";
+    return `
+      <section class="content-section content-section--compact">
+        <p class="section-kicker">${projectField(project, "entriesLabel")}</p>
+        <div class="page-actions">
+          ${project.entries.map((key) => `<a href="#${key}">${site.projects[key].title} / ${site.projects[key].year}</a>`).join("")}
+        </div>
+      </section>
+      ${project.entries.map((key) => {
+        const entry = site.projects[key];
+        const gallery = [{ src: entry.image, alt: entry.imageAlt }, ...(entry.gallery || [])]
+          .filter((item, index, items) => items.findIndex((other) => other.src === item.src) === index);
+        return `
+          <section class="project-entry" id="${key}" aria-labelledby="${key}-title">
+            <div class="project-introduction content-section content-section--compact">
+              <div>
+                <p class="section-kicker">${entry.year} / ${projectField(entry, "category")}</p>
+                <h2 id="${key}-title">${entry.title}</h2>
+                <div class="project-meta">${projectField(entry, "metadata").map((line) => `<p>${line}</p>`).join("")}</div>
+              </div>
+              <div class="long-copy">
+                ${projectField(entry, "paragraphs").map((paragraph) => `<p>${paragraph}</p>`).join("")}
+              </div>
+            </div>
+            <div class="project-gallery content-section">
+              ${gallery.map((item) => `<figure>${galleryMediaMarkup(item)}</figure>`).join("")}
+            </div>
+          </section>
+        `;
+      }).join("")}
+    `;
   }
 
   function renderProject() {
@@ -412,11 +474,25 @@
           </section>
         ` : ""}
 
+        ${project.community ? `
+          <section class="project-introduction content-section content-section--compact" id="touchcollective" aria-labelledby="touchcollective-title">
+            <div>
+              <p class="section-kicker">${projectField(project.community, "role")}</p>
+              <h2 id="touchcollective-title">${project.community.title}</h2>
+            </div>
+            <div class="long-copy">
+              ${projectField(project.community, "paragraphs").map((paragraph) => `<p>${paragraph}</p>`).join("")}
+            </div>
+          </section>
+        ` : ""}
+
+        ${renderProjectEntries(project)}
+
         ${gallery.length ? `
           <section class="project-gallery content-section" aria-label="${project.title} media gallery">
             ${gallery.map((item) => `<figure>${galleryMediaMarkup(item)}</figure>`).join("")}
           </section>
-        ` : `
+        ` : project.entries?.length ? "" : `
           <section class="documentation-note content-section">
             <p class="section-kicker">${tr("Documentation", "기록")}</p>
             <p>${tr("Project photography and moving-image documentation will be added here.", "프로젝트 사진과 무빙이미지 기록을 이곳에 추가할 예정입니다.")}</p>
@@ -427,6 +503,10 @@
       </article>
       ${renderFooter()}
     `;
+    const targetId = window.location.hash.slice(1);
+    if (project.entries?.includes(targetId) || (project.community && targetId === "touchcollective")) {
+      requestAnimationFrame(() => document.getElementById(targetId)?.scrollIntoView());
+    }
   }
 
   function renderProjectNav(currentKey, isPrimary) {
@@ -463,7 +543,7 @@
           <h1>Minnie<br />Park</h1>
           <p class="hero-main">${tr("A Korean-Australian interactive audio-visual artist working between Seoul and Melbourne.", "서울과 멜버른을 기반으로 활동하는 한국계 호주 인터랙티브 오디오비주얼 아티스트입니다.")}</p>
         </div>
-        <figure>${imageMarkup("images/liveperformance.jpg", "Minnie Park during a live audio-visual performance", true)}</figure>
+        <figure>${imageMarkup(site.artistImage?.src || "images/liveperformance.jpg", site.artistImage?.alt || "Minnie Park during a live audio-visual performance", true)}</figure>
       </section>
 
       <section class="artist-bio content-section content-section--compact">
@@ -504,16 +584,20 @@
             <section class="artist-history__year" aria-labelledby="history-${group.year}">
               <h3 id="history-${group.year}">${group.year}</h3>
               <div>
-                ${group.entries.map((entry) => `
-                  <a class="artist-history__entry" href="${projectUrl(entry.project)}" aria-label="${entry.title} — ${tr("View project", "프로젝트 보기")}">
+                ${group.entries.map((entry) => {
+                  const hasProject = Boolean(site.projects[entry.project]);
+                  const tag = hasProject ? "a" : "article";
+                  return `
+                  <${tag} class="artist-history__entry"${hasProject ? ` href="${projectUrl(entry.project)}" aria-label="${entry.title} — ${tr("View project", "프로젝트 보기")}"` : ""}>
                     <p class="artist-history__date">${tr(entry.date, entry.dateKo)}</p>
                     <div class="artist-history__title">
                       <h4>${entry.title}</h4>
                       <p>${tr(entry.type, entry.typeKo)}</p>
                     </div>
                     <p class="artist-history__context">${tr(entry.context, entry.contextKo)}</p>
-                  </a>
-                `).join("")}
+                  </${tag}>
+                `;
+                }).join("")}
               </div>
             </section>
           `).join("")}

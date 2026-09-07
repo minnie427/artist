@@ -745,7 +745,8 @@ h3 {
   margin: 0;
 }
 
-.works-opening__item img {
+.works-opening__item img,
+.works-opening__item video {
   display: block;
   width: auto;
   max-width: none;
@@ -1047,6 +1048,11 @@ h3 {
   border-bottom: 1px solid var(--line);
 }
 
+.project-entry,
+#touchcollective {
+  scroll-margin-top: 90px;
+}
+
 .project-role {
   padding-top: 16px;
   border-top: 1px solid var(--line);
@@ -1323,7 +1329,7 @@ h3 {
   transition: background-color 180ms ease;
 }
 
-.artist-history__entry::after {
+a.artist-history__entry::after {
   content: "→";
   position: absolute;
   top: 22px;
@@ -1334,17 +1340,17 @@ h3 {
   transition: opacity 180ms ease, transform 180ms ease;
 }
 
-.artist-history__entry:hover {
+a.artist-history__entry:hover {
   background: rgba(21, 14, 19, 0.055);
 }
 
-.artist-history__entry:hover::after,
-.artist-history__entry:focus-visible::after {
+a.artist-history__entry:hover::after,
+a.artist-history__entry:focus-visible::after {
   opacity: 1;
   transform: translateX(4px);
 }
 
-.artist-history__entry:focus-visible {
+a.artist-history__entry:focus-visible {
   outline: 2px solid currentColor;
   outline-offset: -2px;
 }
@@ -1837,7 +1843,8 @@ h3 {
 /* Responsive */
 
 @media (max-width: 1080px) {
-  .works-opening__item img { height: clamp(260px, 48vw, 480px); }
+  .works-opening__item img,
+  .works-opening__item video { height: clamp(260px, 48vw, 480px); }
   .works-opening__nav { display: none; }
   .visual-index { column-count: 2; }
   .chapter-grid { grid-template-columns: 1fr 1fr; }
@@ -2000,7 +2007,8 @@ h3 {
     gap: 5px;
     padding-right: calc(var(--page-pad) + 18vw);
   }
-  .works-opening__item img { height: clamp(230px, 60vw, 320px); }
+  .works-opening__item img,
+  .works-opening__item video { height: clamp(230px, 60vw, 320px); }
   .works-opening__item figcaption { margin-top: 6px; font-size: 9px; }
   .works-introduction__media { aspect-ratio: 4 / 3; }
   .work-card-grid--primary .work-card { margin-bottom: 70px; padding-top: 0 !important; }
@@ -2032,7 +2040,7 @@ h3 {
     gap: 8px;
     padding: 18px 38px 20px 0;
   }
-  .artist-history__entry::after { top: 18px; right: 8px; }
+  a.artist-history__entry::after { top: 18px; right: 8px; }
   .artist-history__context { grid-column: auto; }
   .principle-grid { grid-template-columns: 1fr; }
   .principle-grid article,

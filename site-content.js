@@ -20,8 +20,21 @@ window.MP_SITE = {
   },
 
   primaryWorksOrder: ["funeral", "shared-resonance", "meta-kibun", "origin"],
+  exhibitionWorksOrder: ["artist-workshops", "bugskin-chapter-2", "mugonggan"],
+  liveWorksOrder: ["live-performance"],
   selectedWorksOrder: ["melbourne-fashion-festival", "album-listening-session"],
-  projectSequence: ["funeral", "shared-resonance", "meta-kibun", "origin", "album-listening-session", "melbourne-fashion-festival"],
+  projectSequence: [
+    "funeral",
+    "shared-resonance",
+    "meta-kibun",
+    "origin",
+    "artist-workshops",
+    "bugskin-chapter-2",
+    "mugonggan",
+    "live-performance",
+    "melbourne-fashion-festival",
+    "album-listening-session"
+  ],
 
   worksOpeningImages: [
     { src: "images/tr1.png", alt: "Participants completing a circuit through roses in The Meta Rose: Shared Resonance", title: "The Meta Rose: Shared Resonance", year: "2026", project: "shared-resonance" },
@@ -42,8 +55,8 @@ window.MP_SITE = {
           date: "August",
           dateKo: "8월",
           title: "Meta Rose: The Funeral",
-          type: "Interactive audio-visual installation",
-          typeKo: "인터랙티브 오디오비주얼 설치",
+          type: "Solo exhibition / Interactive audio-visual installation",
+          typeKo: "개인전 / 인터랙티브 오디오비주얼 설치",
           context: "Seoul Fringe Festival / Mijin Floor, Yeonnam-dong, Mapo-gu, Seoul / Melbourne Fringe Festival (forthcoming)",
           contextKo: "서울프린지페스티벌 / 미진플로어, 서울 마포구 연남동 / Melbourne Fringe Festival(예정)",
           project: "funeral"
@@ -64,8 +77,8 @@ window.MP_SITE = {
           title: "Touching Resonance",
           type: "Artist-led participatory workshop",
           typeKo: "아티스트 주도형 참여 워크숍",
-          context: "Seventh Gallery / TouchCollective, Melbourne",
-          contextKo: "Seventh Gallery / TouchCollective, Melbourne",
+          context: "Seventh Gallery, Melbourne / Led by Minnie Park",
+          contextKo: "Seventh Gallery, Melbourne / Minnie Park 진행",
           project: "touching-resonance"
         }
       ]
@@ -86,22 +99,22 @@ window.MP_SITE = {
         {
           date: "October",
           dateKo: "10월",
-          title: "The Meta Kibun Project",
-          type: "Honours research exhibition / Two-day presentation",
-          typeKo: "Honours 리서치 전시 / 2일간의 발표",
-          context: "RMIT University, Melbourne",
-          contextKo: "RMIT University, Melbourne",
-          project: "meta-kibun"
-        },
-        {
-          date: "October",
-          dateKo: "10월",
           title: "Artists, Machines and the Space Between",
           type: "Artist-led workshop",
           typeKo: "아티스트 주도형 워크숍",
           context: "Science Gallery Melbourne / TouchCollective",
           contextKo: "Science Gallery Melbourne / TouchCollective",
           project: "science-gallery"
+        },
+        {
+          date: "September",
+          dateKo: "9월",
+          title: "The Meta Kibun Project",
+          type: "Honours research exhibition / Two-day presentation",
+          typeKo: "Honours 리서치 전시 / 2일간의 발표",
+          context: "RMIT University, Melbourne",
+          contextKo: "RMIT University, Melbourne",
+          project: "meta-kibun"
         },
         {
           date: "July",
@@ -129,11 +142,11 @@ window.MP_SITE = {
       year: "2024",
       entries: [
         {
-          date: "June / November",
-          dateKo: "6월 / 11월",
+          date: "November",
+          dateKo: "11월",
           title: "Meta Rose: Origin",
-          type: "Interactive audio-visual installation",
-          typeKo: "인터랙티브 오디오비주얼 설치",
+          type: "Exhibition / Interactive audio-visual installation",
+          typeKo: "전시 / 인터랙티브 오디오비주얼 설치",
           context: "RMIT University, Melbourne",
           contextKo: "RMIT University, Melbourne",
           project: "origin"
@@ -146,14 +159,24 @@ window.MP_SITE = {
           typeKo: "라이브 오디오비주얼 퍼포먼스",
           context: "Miscellania, Melbourne",
           contextKo: "Miscellania, Melbourne",
-          project: "median"
+          project: "median-2"
         },
         {
           date: "June",
           dateKo: "6월",
           title: "Meta Rose: Origin",
-          type: "Interactive audio-visual installation",
-          typeKo: "인터랙티브 오디오비주얼 설치",
+          type: "Interactive audio-visual exhibition / Rose installation and interactive game",
+          typeKo: "인터랙티브 오디오비주얼 전시 / 장미 설치와 인터랙티브 게임",
+          context: "Blackbox, RMIT University, Melbourne",
+          contextKo: "Blackbox, RMIT University, Melbourne",
+          project: "origin"
+        },
+        {
+          date: "May",
+          dateKo: "5월",
+          title: "Meta Rose: Origin",
+          type: "Exhibition / Rose installation",
+          typeKo: "전시 / 장미 설치",
           context: "Seventh Gallery, Melbourne",
           contextKo: "Seventh Gallery, Melbourne",
           project: "origin"
@@ -180,14 +203,80 @@ window.MP_SITE = {
           type: "Duo moving-image exhibition",
           typeKo: "2인 무빙이미지 전시",
           context: "RMIT University, Melbourne",
-          contextKo: "RMIT University, Melbourne",
-          project: "body-morphosis"
+          contextKo: "RMIT University, Melbourne"
         }
       ]
     }
   ],
 
   projects: {
+    "live-performance": {
+      title: "Live Performance",
+      shortTitle: "Live Performance",
+      year: "2023—2024",
+      route: "works/live-performance/",
+      eyebrow: "Live audio-visual performance / 2023—2024",
+      eyebrowKo: "라이브 오디오비주얼 퍼포먼스 / 2023—2024",
+      category: "Live audio-visual performance",
+      categoryKo: "라이브 오디오비주얼 퍼포먼스",
+      subtitle: "Sound and moving image composed in real time.",
+      subtitleKo: "실시간으로 구성되는 사운드와 무빙이미지.",
+      lead: "A live practice developed through Median and Median 2.",
+      leadKo: "Median과 Median 2를 통해 전개된 라이브 작업입니다.",
+      metadata: ["2023—2024 / Median / Median 2", "Miscellania, Melbourne"],
+      metadataKo: ["2023—2024 / Median / Median 2", "Miscellania, Melbourne"],
+      image: "images/liveperformance.jpg",
+      imageAlt: "Minnie Park during a live audio-visual performance",
+      gallery: [],
+      card: "Original sound and real-time moving image, composed in live performance.",
+      cardKo: "라이브 퍼포먼스 안에서 구성되는 오리지널 사운드와 실시간 무빙이미지입니다.",
+      paragraphs: ["Park’s live performances bring original sound and real-time moving image into a shared composition. Presented through Median in 2023 and Median 2 in 2024, these works explore the relationship between sound, image and the duration of performance."],
+      paragraphsKo: ["Park의 라이브 퍼포먼스는 오리지널 사운드와 실시간 무빙이미지를 하나의 구성 안에 놓습니다. 2023년 Median과 2024년 Median 2를 통해 발표한 이 작업들은 사운드, 이미지와 공연의 시간 사이의 관계를 탐구합니다."],
+      entries: ["median-2", "median"],
+      entriesLabel: "Performances",
+      entriesLabelKo: "공연 기록"
+    },
+
+    "artist-workshops": {
+      title: "Artist Workshops",
+      shortTitle: "Artist Workshops",
+      year: "2025—ongoing",
+      route: "works/artist-workshops/",
+      eyebrow: "Artist workshops / Public programmes",
+      eyebrowKo: "아티스트 워크숍 / 공공 프로그램",
+      category: "Workshops / Community practice",
+      categoryKo: "워크숍 / 커뮤니티 활동",
+      subtitle: "Shared experimentation with touch, sound and real-time image.",
+      subtitleKo: "터치, 사운드와 실시간 이미지를 함께 실험합니다.",
+      lead: "Artist-led workshops connecting creative practice and technical knowledge.",
+      leadKo: "창작 실천과 기술적 지식을 연결하는 아티스트 주도형 워크숍입니다.",
+      metadata: ["2025—ongoing / Workshops and public programmes", "Melbourne"],
+      metadataKo: ["2025—현재 / 워크숍과 공공 프로그램", "멜버른"],
+      image: "images/touching resonance.png",
+      imageAlt: "Participatory audio-visual workshop led by Minnie Park",
+      gallery: [],
+      card: "Artist-led audio-visual workshops, creative technology education and community practice.",
+      cardKo: "아티스트 주도형 오디오비주얼 워크숍, 크리에이티브 테크놀로지 교육과 커뮤니티 활동입니다.",
+      paragraphs: ["Park’s workshops extend her installation practice into shared learning. Participants explore how touch, gesture and real-time systems can become materials for making, through practical exercises and collective experimentation."],
+      paragraphsKo: ["Park의 워크숍은 설치 작업을 함께 배우는 활동으로 확장합니다. 참여자는 실습과 공동 실험을 통해 터치, 제스처와 실시간 시스템을 창작의 재료로 다루는 방법을 탐구합니다."],
+      community: {
+        title: "TouchCollective",
+        role: "Co-founder / Artist-led community",
+        roleKo: "공동 설립자 / 아티스트 커뮤니티",
+        paragraphs: [
+          "Park is a co-founder of TouchCollective, a community centred on TouchDesigner and creative practice. Through workshops and tutorials, the collective provides a setting for artists to exchange technical knowledge, develop interactive work and experiment together.",
+          "Her contribution connects expertise in TouchDesigner with her work in tactile interfaces, sound and real-time image. As the community expands in Melbourne, she continues to develop workshops and regular online tutorials."
+        ],
+        paragraphsKo: [
+          "Park는 TouchDesigner와 창작 실천을 중심으로 활동하는 커뮤니티 TouchCollective의 공동 설립자입니다. 워크숍과 튜토리얼을 통해 아티스트들이 기술적 지식을 공유하고 인터랙티브 작업을 발전시키며 함께 실험할 수 있는 자리를 마련합니다.",
+          "그녀는 TouchDesigner 전문성을 촉각적 인터페이스, 사운드와 실시간 이미지에 관한 작업과 연결합니다. 멜버른에서 커뮤니티 활동을 확장하며 워크숍과 정기 온라인 튜토리얼을 지속적으로 준비하고 있습니다."
+        ]
+      },
+      entries: ["touching-resonance", "science-gallery"],
+      entriesLabel: "Selected workshops",
+      entriesLabelKo: "주요 워크숍"
+    },
+
     funeral: {
       title: "Meta Rose: The Funeral",
       shortTitle: "The Funeral",
@@ -292,12 +381,12 @@ window.MP_SITE = {
       lead: "Feeling is layered, shifting and culturally situated.",
       leadKo: "감정은 층위를 지니고 변화하며 문화적 맥락 속에 존재합니다.",
       metadata: [
-        "2025 / Interactive audio-visual installation and Honours research",
+        "12–13 September 2025 / Interactive audio-visual installation and Honours research",
         "Real roses, water, tactile interaction, colour, sound, light and three-screen real-time moving image",
         "RMIT University, Melbourne"
       ],
       metadataKo: [
-        "2025 / 인터랙티브 오디오비주얼 설치 및 Honours 리서치",
+        "2025년 9월 12–13일 / 인터랙티브 오디오비주얼 설치 및 Honours 리서치",
         "생장미, 물, 촉각적 인터랙션, 색, 사운드, 빛과 3면 실시간 무빙이미지",
         "RMIT University, Melbourne"
       ],
@@ -340,12 +429,16 @@ window.MP_SITE = {
       metadata: [
         "2024 / Interactive audio-visual project and installation",
         "3D moving image, original sound, artist digital twin, multiplayer Unreal Engine environment and tactile rose installation",
-        "RMIT University, June and November 2024 / Seventh Gallery, June 2024 / Melbourne"
+        "November 2024 / RMIT University, Melbourne",
+        "7 June 2024 / Blackbox, RMIT University, Melbourne / Interactive audio-visual exhibition: rose installation and interactive game",
+        "29 May 2024 / Seventh Gallery, Melbourne / Rose installation"
       ],
       metadataKo: [
         "2024 / 인터랙티브 오디오비주얼 프로젝트 및 설치",
         "3D 무빙이미지, 오리지널 사운드, 작가의 디지털 트윈, Unreal Engine 멀티플레이어 환경과 촉각적 장미 설치",
-        "RMIT University, 2024년 6월·11월 / Seventh Gallery, 2024년 6월 / Melbourne"
+        "2024년 11월 / RMIT University, Melbourne",
+        "2024년 6월 7일 / Blackbox, RMIT University, Melbourne / 인터랙티브 오디오비주얼 전시: 장미 설치와 인터랙티브 게임",
+        "2024년 5월 29일 / Seventh Gallery, Melbourne / 장미 설치 전시"
       ],
       image: "images/the meta rose project.png",
       imageAlt: "Meta Rose: Origin installation with projected pink visuals and real roses",
@@ -360,11 +453,13 @@ window.MP_SITE = {
       cardKo: "장미, 핑크, 터치와 감정의 양가성을 확장 가능한 오디오비주얼 언어로 확립한 Meta Rose의 첫 장입니다.",
       paragraphs: [
         "Meta Rose: Origin initiated Minnie Park’s long-term Meta Rose body of work. Bringing together 3D moving image and original sound, an artist digital twin, a multiplayer Unreal Engine environment and a tactile rose installation, it established the rose and the colour pink as more than motifs: both became structures for working through emotion, contradiction and affective energy.",
+        "The 2024 exhibitions presented different configurations of the work. On 29 May, the presentation at Seventh Gallery focused on the rose installation. On 7 June, the exhibition at RMIT University’s Blackbox presented the full work, including the rose installation and interactive game.",
         "A row of living roses was arranged across a table like a tactile keyboard. Each flower triggered a distinct sound and real-time visual response, allowing visitors to compose shifting audio-visual states through touch, duration and combination.",
         "Pink and grey, petals and thorns, pleasure and pain formed a paired system across image and sound. The work approached mixed emotion through coexistence: beauty could contain difficulty without being cancelled by it. Origin established a visual and interactive vocabulary that later chapters would extend into culturally situated, relational and data-informed forms."
       ],
       paragraphsKo: [
         "Meta Rose: Origin은 Minnie Park의 장기 연작 Meta Rose의 시작입니다. 3D 무빙이미지와 오리지널 사운드, 작가의 디지털 트윈, Unreal Engine 멀티플레이어 환경과 촉각적 장미 설치를 함께 구성하며, 장미와 핑크를 단순한 모티프가 아니라 감정, 모순과 정서적 에너지를 다루는 구조로 확립했습니다.",
+        "2024년의 각 전시는 작품을 서로 다른 구성으로 선보였습니다. 5월 29일 Seventh Gallery에서는 장미 설치를 전시했으며, 6월 7일 RMIT University의 Blackbox에서는 장미 설치와 인터랙티브 게임을 포함한 작품의 전체 구성을 선보였습니다.",
         "생장미를 테이블 위에 촉각적 키보드처럼 한 줄로 배치했습니다. 각 꽃은 서로 다른 사운드와 실시간 비주얼 반응을 불러오며, 관객은 터치의 지속시간과 조합을 통해 변화하는 오디오비주얼 상태를 구성할 수 있습니다.",
         "핑크와 회색, 꽃잎과 가시, 쾌락과 고통은 이미지와 사운드 전반에서 서로 짝을 이루는 시스템을 형성합니다. 작품은 복합 감정을 공존의 방식으로 바라봅니다. 아름다움은 어려움을 지우지 않으면서도 그 안에 함께 존재할 수 있습니다. Origin은 이후의 장들이 문화적 맥락, 관계와 데이터 기반의 형태로 확장할 비주얼·인터랙션 어휘를 정립했습니다."
       ],
@@ -496,6 +591,7 @@ window.MP_SITE = {
     },
 
     "touching-resonance": {
+      parent: "artist-workshops",
       title: "Touching Resonance",
       shortTitle: "Touching Resonance",
       year: "2026",
@@ -505,17 +601,17 @@ window.MP_SITE = {
       categoryKo: "참여형 오디오비주얼 워크숍",
       subtitle: "Touch as a shared way of making.",
       subtitleKo: "함께 만드는 방식으로서의 터치.",
-      lead: "A public workshop translating tactile installation research into collective performance.",
-      leadKo: "촉각적 설치 리서치를 집단적 퍼포먼스로 확장한 공공 워크숍입니다.",
-      metadata: ["2026 / Participatory audio-visual workshop", "TouchCollective / Melbourne"],
-      metadataKo: ["2026 / 참여형 오디오비주얼 워크숍", "TouchCollective / Melbourne"],
+      lead: "A participatory audio-visual workshop led by Minnie Park at Seventh Gallery.",
+      leadKo: "Minnie Park가 Seventh Gallery에서 진행한 참여형 오디오비주얼 워크숍입니다.",
+      metadata: ["15 April 2026 / Participatory audio-visual workshop", "Seventh Gallery, Melbourne", "Led by Minnie Park"],
+      metadataKo: ["2026년 4월 15일 / 참여형 오디오비주얼 워크숍", "Seventh Gallery, Melbourne", "진행: Minnie Park"],
       image: "images/touching resonance.png",
       imageAlt: "Participants activating sound and visuals in Touching Resonance",
-      gallery: [{ src: "images/workshop.png", alt: "Artist-led interactive workshop" }],
+      gallery: [],
       card: "A workshop using conductive touch, flowers, sound and real-time visuals to create a collective audio-visual experience.",
       cardKo: "전도성 터치, 꽃, 사운드와 실시간 비주얼을 사용해 집단적 오디오비주얼 경험을 만드는 워크숍입니다.",
-      paragraphs: ["Touching Resonance invited participants to activate sound and real-time visuals collectively through conductive touch mediated by flowers and plants, as well as hand-to-hand contact. The workshop carried Park’s research into affect and participation beyond the exhibition format, testing how a tactile system can support collective making in a workshop setting."],
-      paragraphsKo: ["Touching Resonance는 꽃과 식물을 매개로 한 전도성 터치와 손과 손의 접촉을 통해 참여자들이 사운드와 실시간 비주얼을 함께 활성화하도록 초대했습니다. 워크숍은 Park의 정서와 참여에 관한 리서치를 전시 형식 밖으로 확장하고, 촉각적 시스템이 공동 창작을 어떻게 뒷받침할 수 있는지 워크숍의 조건 안에서 실험했습니다."],
+      paragraphs: ["Led by Minnie Park at Seventh Gallery, Touching Resonance invited participants to activate sound and real-time visuals collectively through conductive touch mediated by flowers and plants, as well as hand-to-hand contact. The workshop carried Park’s research into affect and participation beyond the exhibition format, testing how a tactile system can support collective making in a workshop setting."],
+      paragraphsKo: ["Minnie Park가 Seventh Gallery에서 진행한 Touching Resonance는 꽃과 식물을 매개로 한 전도성 터치와 손과 손의 접촉을 통해 참여자들이 사운드와 실시간 비주얼을 함께 활성화하도록 초대했습니다. 워크숍은 Park의 정서와 참여에 관한 리서치를 전시 형식 밖으로 확장하고, 촉각적 시스템이 공동 창작을 어떻게 뒷받침할 수 있는지 워크숍의 조건 안에서 실험했습니다."],
       korean: "꽃과 식물을 매개로 한 전도성 터치와 손과 손의 연결을 통해 참가자들이 실시간 사운드와 비주얼을 함께 만드는 참여형 워크숍입니다."
     },
 
@@ -568,6 +664,7 @@ window.MP_SITE = {
     },
 
     "science-gallery": {
+      parent: "artist-workshops",
       title: "Artists, Machines and the Space Between",
       shortTitle: "Science Gallery Workshop",
       year: "2025",
@@ -579,8 +676,8 @@ window.MP_SITE = {
       subtitleKo: "제스처와 컴퓨터 비전을 퍼포먼스 도구로 사용합니다.",
       lead: "An artist-led creative technology workshop presented with TouchCollective.",
       leadKo: "TouchCollective와 함께 진행한 아티스트 주도형 크리에이티브 테크놀로지 워크숍입니다.",
-      metadata: ["2025 / Artist-led workshop", "Science Gallery Melbourne / TouchCollective"],
-      metadataKo: ["2025 / 아티스트 주도형 워크숍", "Science Gallery Melbourne / TouchCollective"],
+      metadata: ["October 2025 / Artist-led workshop", "Science Gallery Melbourne / TouchCollective"],
+      metadataKo: ["2025년 10월 / 아티스트 주도형 워크숍", "Science Gallery Melbourne / TouchCollective"],
       image: "images/workshop.png",
       imageAlt: "Artists participating in a creative technology workshop",
       gallery: [],
@@ -591,52 +688,54 @@ window.MP_SITE = {
       korean: "TouchCollective와 함께 제스처 컨트롤, 핸드 트래킹, 오브젝트 디텍션을 퍼포먼스 도구로 탐구한 아티스트 워크숍입니다."
     },
 
-    median: {
-      title: "Median / Live Audio-Visual Performances",
-      shortTitle: "Live AV Performances",
-      year: "2023—2024",
-      route: "works/median/",
-      eyebrow: "Earlier work / 2023—2024",
+    "median-2": {
+      parent: "live-performance",
+      title: "Median 2",
+      shortTitle: "Median 2",
+      year: "2024",
+      route: "works/median-2/",
+      eyebrow: "Live work / 2024",
       category: "Live audio-visual performance",
       categoryKo: "라이브 오디오비주얼 퍼포먼스",
       subtitle: "Sound and moving image composed in real time.",
       subtitleKo: "실시간으로 구성되는 사운드와 무빙이미지.",
-      lead: "Performance studies connecting original sound, real-time image and embodied duration.",
-      leadKo: "오리지널 사운드, 실시간 이미지와 신체가 경험하는 시간을 연결한 퍼포먼스 연구입니다.",
-      metadata: ["2023—2024 / Live audio-visual performance", "November 2023 / June and October 2024"],
-      metadataKo: ["2023—2024 / 라이브 오디오비주얼 퍼포먼스", "2023년 11월 / 2024년 6월·10월"],
+      lead: "A live performance connecting original sound, real-time image and embodied duration.",
+      leadKo: "오리지널 사운드, 실시간 이미지와 신체가 경험하는 시간을 연결한 라이브 퍼포먼스입니다.",
+      metadata: ["June / October 2024 / Live audio-visual performance", "Miscellania, Melbourne"],
+      metadataKo: ["2024년 6월 / 10월 / 라이브 오디오비주얼 퍼포먼스", "Miscellania, Melbourne"],
       image: "images/liveperformance.jpg",
-      imageAlt: "Minnie Park performing live audio-visual work",
+      imageAlt: "Minnie Park performing Median 2",
       gallery: [],
-      card: "Live studies in sound, image and performance.",
-      cardKo: "사운드, 이미지와 퍼포먼스에 관한 라이브 연구입니다.",
-      paragraphs: ["These live works developed Park’s approach to real-time composition, bringing original sound and real-time moving image into direct relation with the duration and atmosphere of performance."],
-      paragraphsKo: ["이 라이브 작업들은 오리지널 사운드와 실시간 무빙이미지를 공연의 시간과 분위기에 직접 연결하며 Park의 실시간 구성 방식을 발전시켰습니다."],
-      korean: "오리지널 사운드와 실시간 비주얼을 공연의 시간성과 연결한 초기 라이브 오디오비주얼 작업입니다."
+      card: "A 2024 live work composing original sound and real-time moving image in performance.",
+      cardKo: "오리지널 사운드와 실시간 무빙이미지를 공연 안에서 구성한 2024년 라이브 작업입니다.",
+      paragraphs: ["Median 2 develops Park’s approach to real-time composition, bringing original sound and moving image into direct relation with the duration, atmosphere and contingencies of live performance."],
+      paragraphsKo: ["Median 2는 오리지널 사운드와 실시간 무빙이미지를 공연의 시간, 분위기와 현장성에 직접 연결하며 Park의 실시간 구성 방식을 발전시킨 작업입니다."],
+      korean: "오리지널 사운드와 실시간 무빙이미지를 공연의 시간성과 연결한 라이브 오디오비주얼 작업입니다."
     },
 
-    "body-morphosis": {
-      title: "Body Morphosis",
-      shortTitle: "Body Morphosis",
+    median: {
+      parent: "live-performance",
+      title: "Median",
+      shortTitle: "Median",
       year: "2023",
-      route: "works/body-morphosis/",
+      route: "works/median/",
       eyebrow: "Earlier work / 2023",
-      category: "Moving image",
-      categoryKo: "무빙이미지",
-      subtitle: "A study of unstable digital bodies.",
-      subtitleKo: "불안정한 디지털 신체에 관한 연구.",
-      lead: "An earlier experiment in embodiment, transformation and moving image.",
-      leadKo: "신체성, 변형과 무빙이미지에 관한 초기 실험입니다.",
-      metadata: ["October 2023 / Moving image exhibition", "RMIT University"],
-      metadataKo: ["2023년 10월 / 무빙이미지 전시", "RMIT University"],
-      image: "images/showreel7.png",
-      imageAlt: "Digital moving-image still from Body Morphosis",
+      category: "Live audio-visual performance",
+      categoryKo: "라이브 오디오비주얼 퍼포먼스",
+      subtitle: "Sound and moving image composed in real time.",
+      subtitleKo: "실시간으로 구성되는 사운드와 무빙이미지.",
+      lead: "An early live study connecting original sound, real-time image and embodied duration.",
+      leadKo: "오리지널 사운드, 실시간 이미지와 신체가 경험하는 시간을 연결한 초기 라이브 연구입니다.",
+      metadata: ["November 2023 / Live audio-visual performance", "Miscellania, Melbourne"],
+      metadataKo: ["2023년 11월 / 라이브 오디오비주얼 퍼포먼스", "Miscellania, Melbourne"],
+      image: "images/liveperformance.jpg",
+      imageAlt: "Minnie Park performing Median",
       gallery: [],
-      card: "An earlier moving-image study of transformation and the digital body.",
-      cardKo: "변형과 디지털 신체에 관한 초기 무빙이미지 연구입니다.",
-      paragraphs: ["Body Morphosis investigates the body as a mutable digital surface, using distortion and transformation to test the boundary between recognition and abstraction."],
-      paragraphsKo: ["Body Morphosis는 신체를 변화 가능한 디지털 표면으로 다루며 왜곡과 변형을 통해 인식과 추상 사이의 경계를 실험합니다."],
-      korean: "신체를 변화 가능한 디지털 표면으로 다룬 초기 무빙이미지 연구입니다."
+      card: "An early live study in sound, image and performance.",
+      cardKo: "사운드, 이미지와 퍼포먼스에 관한 초기 라이브 연구입니다.",
+      paragraphs: ["Median established an early framework for Park’s live practice, placing original sound and real-time moving image in direct relation with the duration and atmosphere of performance."],
+      paragraphsKo: ["Median은 오리지널 사운드와 실시간 무빙이미지를 공연의 시간과 분위기에 직접 연결하며 Park의 초기 라이브 작업 방식을 구축했습니다."],
+      korean: "오리지널 사운드와 실시간 비주얼을 공연의 시간성과 연결한 초기 라이브 오디오비주얼 작업입니다."
     },
 
     "quantum-faces": {
@@ -736,10 +835,9 @@ window.MP_SITE = {
     { src: "images/showreel4.png", title: "Melbourne Fashion Festival", year: "2025", context: "Runway documentation", project: "melbourne-fashion-festival" },
     { src: "images/metarose3.png", title: "Meta Rose: Origin", year: "2024", context: "Interaction station", project: "origin" },
     { src: "images/showreel14.png", title: "Meta Rose", year: "2024—ongoing", context: "Visual study", project: "meta-rose" },
-    { src: "images/liveperformance.jpg", title: "Live Audio-Visual Performance", year: "2023—2024", context: "Performance documentation", project: "median" },
+    { src: "images/liveperformance.jpg", title: "Live Performance", year: "2023—2024", context: "Performance documentation", project: "live-performance" },
     { src: "images/showreel1.png", title: "Melbourne Fashion Festival", year: "2025", context: "Runway documentation", project: "melbourne-fashion-festival" },
     { src: "images/tr.png", title: "The Meta Rose: Shared Resonance", year: "2026", context: "Installation view", project: "shared-resonance" },
-    { src: "images/showreel7.png", title: "Body Morphosis", year: "2023", context: "Moving-image study", project: "body-morphosis" },
     { src: "images/installation2.png", title: "Meta Rose", year: "2024—ongoing", context: "Conductive rose detail", project: "meta-rose" },
     { src: "images/showreel5.png", title: "Melbourne Fashion Festival", year: "2025", context: "Runway documentation", project: "melbourne-fashion-festival" },
     { src: "images/showreel18.png", title: "Meta Rose", year: "2024—ongoing", context: "Installation documentation", project: "meta-rose" },
@@ -747,3 +845,41 @@ window.MP_SITE = {
     { src: "images/showreel15.png", title: "Meta Rose", year: "2024—ongoing", context: "Visual study", project: "meta-rose" }
   ]
 };
+
+(() => {
+  const imported = window.MP_IMPORTED_MEDIA;
+  const site = window.MP_SITE;
+  if (!imported || !site) return;
+
+  if (imported.profile) site.artistImage = imported.profile;
+  if (imported.showreel?.length) site.worksOpeningImages = imported.showreel;
+
+  const importedProjectKeys = new Set(Object.keys(imported.projects || {}));
+  Object.entries(imported.projects || {}).forEach(([key, media]) => {
+    const project = site.projects[key];
+    if (!project) return;
+    const cover = media.hero || media.gallery?.find((item) => /\.(webp|png|jpe?g)$/i.test(item.src));
+    if (cover) {
+      project.image = cover.src;
+      project.imageAlt = cover.alt;
+      project.placeholder = null;
+    }
+    if (media.gallery?.length) project.gallery = media.gallery;
+  });
+
+  Object.entries(site.projects).forEach(([key, project]) => {
+    if (!project.entries || imported.projects?.[key]?.hero) return;
+    const entryHero = project.entries.map((entry) => imported.projects?.[entry]?.hero).find(Boolean);
+    if (entryHero) {
+      project.image = entryHero.src;
+      project.imageAlt = entryHero.alt;
+    }
+  });
+
+  if (imported.visualIndex?.length) {
+    site.visualIndex = [
+      ...imported.visualIndex,
+      ...site.visualIndex.filter((item) => !importedProjectKeys.has(item.project))
+    ];
+  }
+})();
