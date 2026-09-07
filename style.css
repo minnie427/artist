@@ -1315,8 +1315,38 @@ h3 {
   grid-template-columns: minmax(130px, 0.38fr) minmax(210px, 0.72fr) minmax(220px, 0.9fr);
   gap: clamp(14px, 2.6vw, 42px);
   align-items: start;
-  padding: 22px 0 22px clamp(18px, 3vw, 44px);
+  position: relative;
+  padding: 22px clamp(38px, 4vw, 60px) 22px clamp(18px, 3vw, 44px);
   border-bottom: 1px solid var(--line);
+  color: inherit;
+  text-decoration: none;
+  transition: background-color 180ms ease;
+}
+
+.artist-history__entry::after {
+  content: "→";
+  position: absolute;
+  top: 22px;
+  right: clamp(12px, 1.8vw, 28px);
+  font-size: clamp(16px, 1.4vw, 20px);
+  line-height: 1;
+  opacity: 0.34;
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.artist-history__entry:hover {
+  background: rgba(21, 14, 19, 0.055);
+}
+
+.artist-history__entry:hover::after,
+.artist-history__entry:focus-visible::after {
+  opacity: 1;
+  transform: translateX(4px);
+}
+
+.artist-history__entry:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: -2px;
 }
 
 .artist-history__entry:last-child {
@@ -2000,8 +2030,9 @@ h3 {
   .artist-history__entry {
     grid-template-columns: 1fr;
     gap: 8px;
-    padding: 18px 0 20px;
+    padding: 18px 38px 20px 0;
   }
+  .artist-history__entry::after { top: 18px; right: 8px; }
   .artist-history__context { grid-column: auto; }
   .principle-grid { grid-template-columns: 1fr; }
   .principle-grid article,

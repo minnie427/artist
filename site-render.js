@@ -505,14 +505,14 @@
               <h3 id="history-${group.year}">${group.year}</h3>
               <div>
                 ${group.entries.map((entry) => `
-                  <article class="artist-history__entry">
+                  <a class="artist-history__entry" href="${projectUrl(entry.project)}" aria-label="${entry.title} — ${tr("View project", "프로젝트 보기")}">
                     <p class="artist-history__date">${tr(entry.date, entry.dateKo)}</p>
                     <div class="artist-history__title">
                       <h4>${entry.title}</h4>
                       <p>${tr(entry.type, entry.typeKo)}</p>
                     </div>
                     <p class="artist-history__context">${tr(entry.context, entry.contextKo)}</p>
-                  </article>
+                  </a>
                 `).join("")}
               </div>
             </section>

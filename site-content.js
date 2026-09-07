@@ -45,7 +45,8 @@ window.MP_SITE = {
           type: "Interactive audio-visual installation",
           typeKo: "인터랙티브 오디오비주얼 설치",
           context: "Seoul Fringe Festival / Mijin Floor, Yeonnam-dong, Mapo-gu, Seoul / Melbourne Fringe Festival (forthcoming)",
-          contextKo: "서울프린지페스티벌 / 미진플로어, 서울 마포구 연남동 / Melbourne Fringe Festival(예정)"
+          contextKo: "서울프린지페스티벌 / 미진플로어, 서울 마포구 연남동 / Melbourne Fringe Festival(예정)",
+          project: "funeral"
         },
         {
           date: "April",
@@ -54,7 +55,8 @@ window.MP_SITE = {
           type: "Group exhibition / Interactive installation",
           typeKo: "그룹전 / 인터랙티브 설치",
           context: "Platform Presents: Hybrid / 118 Greeves Street, Fitzroy, Melbourne",
-          contextKo: "Platform Presents: Hybrid / 118 Greeves Street, Fitzroy, Melbourne"
+          contextKo: "Platform Presents: Hybrid / 118 Greeves Street, Fitzroy, Melbourne",
+          project: "shared-resonance"
         },
         {
           date: "April",
@@ -63,7 +65,8 @@ window.MP_SITE = {
           type: "Artist-led participatory workshop",
           typeKo: "아티스트 주도형 참여 워크숍",
           context: "Seventh Gallery / TouchCollective, Melbourne",
-          contextKo: "Seventh Gallery / TouchCollective, Melbourne"
+          contextKo: "Seventh Gallery / TouchCollective, Melbourne",
+          project: "touching-resonance"
         }
       ]
     },
@@ -77,7 +80,8 @@ window.MP_SITE = {
           type: "Group exhibition",
           typeKo: "그룹전",
           context: "Norla Dome, Docklands, Melbourne",
-          contextKo: "Norla Dome, Docklands, Melbourne"
+          contextKo: "Norla Dome, Docklands, Melbourne",
+          project: "bugskin-chapter-2"
         },
         {
           date: "October",
@@ -86,7 +90,8 @@ window.MP_SITE = {
           type: "Honours research exhibition / Two-day presentation",
           typeKo: "Honours 리서치 전시 / 2일간의 발표",
           context: "RMIT University, Melbourne",
-          contextKo: "RMIT University, Melbourne"
+          contextKo: "RMIT University, Melbourne",
+          project: "meta-kibun"
         },
         {
           date: "October",
@@ -95,7 +100,8 @@ window.MP_SITE = {
           type: "Artist-led workshop",
           typeKo: "아티스트 주도형 워크숍",
           context: "Science Gallery Melbourne / TouchCollective",
-          contextKo: "Science Gallery Melbourne / TouchCollective"
+          contextKo: "Science Gallery Melbourne / TouchCollective",
+          project: "science-gallery"
         },
         {
           date: "July",
@@ -104,7 +110,8 @@ window.MP_SITE = {
           type: "Solo exhibition",
           typeKo: "개인전",
           context: "Mugonggan, Seongnam, Gyeonggi-do, South Korea",
-          contextKo: "무공간, 경기도 성남시"
+          contextKo: "무공간, 경기도 성남시",
+          project: "mugonggan"
         },
         {
           date: "March",
@@ -113,7 +120,8 @@ window.MP_SITE = {
           type: "Commissioned moving image / Screen presentation",
           typeKo: "커미션 무빙이미지 / 스크린 프레젠테이션",
           context: "PayPal Melbourne Fashion Festival / Melbourne",
-          contextKo: "PayPal Melbourne Fashion Festival / Melbourne"
+          contextKo: "PayPal Melbourne Fashion Festival / Melbourne",
+          project: "melbourne-fashion-festival"
         }
       ]
     },
@@ -127,7 +135,8 @@ window.MP_SITE = {
           type: "Interactive audio-visual installation",
           typeKo: "인터랙티브 오디오비주얼 설치",
           context: "RMIT University, Melbourne",
-          contextKo: "RMIT University, Melbourne"
+          contextKo: "RMIT University, Melbourne",
+          project: "origin"
         },
         {
           date: "June / October",
@@ -136,7 +145,8 @@ window.MP_SITE = {
           type: "Live audio-visual performance",
           typeKo: "라이브 오디오비주얼 퍼포먼스",
           context: "Miscellania, Melbourne",
-          contextKo: "Miscellania, Melbourne"
+          contextKo: "Miscellania, Melbourne",
+          project: "median"
         },
         {
           date: "June",
@@ -145,7 +155,8 @@ window.MP_SITE = {
           type: "Interactive audio-visual installation",
           typeKo: "인터랙티브 오디오비주얼 설치",
           context: "Seventh Gallery, Melbourne",
-          contextKo: "Seventh Gallery, Melbourne"
+          contextKo: "Seventh Gallery, Melbourne",
+          project: "origin"
         }
       ]
     },
@@ -159,7 +170,8 @@ window.MP_SITE = {
           type: "Live audio-visual performance",
           typeKo: "라이브 오디오비주얼 퍼포먼스",
           context: "Miscellania, Melbourne",
-          contextKo: "Miscellania, Melbourne"
+          contextKo: "Miscellania, Melbourne",
+          project: "median"
         },
         {
           date: "October",
@@ -168,7 +180,8 @@ window.MP_SITE = {
           type: "Duo moving-image exhibition",
           typeKo: "2인 무빙이미지 전시",
           context: "RMIT University, Melbourne",
-          contextKo: "RMIT University, Melbourne"
+          contextKo: "RMIT University, Melbourne",
+          project: "body-morphosis"
         }
       ]
     }
