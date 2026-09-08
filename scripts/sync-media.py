@@ -13,6 +13,7 @@ import json
 import re
 import subprocess
 import unicodedata
+from datetime import datetime, timezone
 from pathlib import Path
 
 from PIL import Image, ImageOps
@@ -84,6 +85,80 @@ def image_ratio(path: Path) -> float:
             return width / max(height, 1)
     except Exception:
         return 0.0
+
+
+def parse_media_date(value: object) -> str | None:
+    if not value:
+        return None
+    text = str(value).strip().replace("\x00", "")
+    # EXIF uses YYYY:MM:DD; video metadata normally uses ISO 8601.
+    text = re.sub(r"^(\d{4}):(\d{2}):(\d{2})", r"\1-\2-\3", text)
+    try:
+        date = datetime.fromisoformat(text.replace("Z", "+00:00"))
+        if not 1900 <= date.year <= 2100:
+            return None
+        # A timezone-less camera date is kept consistent across import machines.
+        if date.tzinfo is None:
+            date = date.replace(tzinfo=timezone.utc)
+        return date.isoformat()
+    except ValueError:
+        return None
+
+
+def media_creation_date(source: Path) -> tuple[str, str]:
+    if source.suffix.casefold() in IMAGE_EXTENSIONS:
+        try:
+            with Image.open(source) as image:
+                exif = image.getexif()
+                camera = exif.get_ifd(0x8769) if 0x8769 in exif else {}
+                for tag in (36867, 36868):  # Original / digitised, not edited date.
+                    value = camera.get(tag) or exif.get(tag)
+                    offset_tag = 36881 if tag == 36867 else 36882
+                    offset = camera.get(offset_tag) or exif.get(offset_tag)
+                    if value and offset and re.fullmatch(r"[+-]\d{2}:\d{2}", str(offset)):
+                        value = f"{value}{offset}"
+                    date = parse_media_date(value)
+                    if date:
+                        return date, "camera"
+                for key in ("Creation Time", "CreationTime", "creation_time", "date:create"):
+                    date = parse_media_date(image.info.get(key))
+                    if date:
+                        return date, "embedded"
+        except (OSError, ValueError, TypeError):
+            pass
+    else:
+        result = subprocess.run(
+            ["/opt/homebrew/bin/ffprobe", "-v", "error", "-show_entries",
+             "format_tags=creation_time,com.apple.quicktime.creationdate:stream_tags=creation_time",
+             "-of", "json", str(source)],
+            capture_output=True, text=True, check=False,
+        )
+        if result.returncode == 0:
+            metadata = json.loads(result.stdout)
+            tags = metadata.get("format", {}).get("tags", {})
+            candidates = [tags.get("com.apple.quicktime.creationdate"), tags.get("creation_time")]
+            candidates.extend(stream.get("tags", {}).get("creation_time") for stream in metadata.get("streams", []))
+            for value in candidates:
+                date = parse_media_date(value)
+                if date:
+                    return date, "embedded"
+
+    # macOS screenshots/recordings retain their creation date in the filename.
+    name = unicodedata.normalize("NFKC", source.stem)
+    match = re.search(r"(\d{4}-\d{2}-\d{2})(?: at (\d{1,2})\.(\d{2})\.(\d{2})\s*(AM|PM))?", name, re.I)
+    if match:
+        value = match.group(1)
+        if match.group(2):
+            hour = int(match.group(2)) % 12 + (12 if match.group(5).upper() == "PM" else 0)
+            value += f"T{hour:02d}:{match.group(3)}:{match.group(4)}"
+        date = parse_media_date(value)
+        if date:
+            return date, "filename"
+
+    stat = source.stat()
+    birth = getattr(stat, "st_birthtime", None)
+    timestamp = birth if birth and birth > 0 else stat.st_mtime
+    return datetime.fromtimestamp(timestamp, timezone.utc).isoformat(), "file-created" if birth and birth > 0 else "file-modified"
 
 
 def optimise_image(source: Path, output: Path, max_size: int = 2000) -> None:
@@ -231,6 +306,7 @@ def build_manifest(source_root: Path) -> dict[str, object]:
 
         for source in files:
             src, poster, is_video = process_file(source, source_root, destination)
+            created_at, date_source = media_creation_date(source)
             is_hero = source == hero_source
             context = context_for(source, is_video, is_hero, project_key)
             item = {
@@ -251,6 +327,8 @@ def build_manifest(source_root: Path) -> dict[str, object]:
                 "year": year,
                 "context": context,
                 "project": project_key,
+                "createdAt": created_at,
+                "dateSource": date_source,
             }
             if poster:
                 index_item["poster"] = poster

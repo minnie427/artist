@@ -656,19 +656,38 @@
   }
 
   function renderVisualIndex() {
-    const visualIndexItems = site.visualIndex
-      .map((item, sourceIndex) => {
-        const years = String(item.year).match(/\d{4}/g)?.map(Number) || [];
-        return {
-          item,
-          sourceIndex,
-          sortYear: /ongoing/i.test(String(item.year))
-            ? new Date().getFullYear()
-            : years.length ? Math.max(...years) : Number.NEGATIVE_INFINITY
-        };
-      })
-      .sort((a, b) => (b.sortYear - a.sortYear) || (a.sourceIndex - b.sourceIndex))
-      .map(({ item }) => item);
+    const months = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"];
+    const projectDates = new Map();
+    site.history.forEach((group) => group.entries.forEach((entry) => {
+      if (!entry.project) return;
+      const month = Math.max(0, ...String(entry.date).toLowerCase().split(/\s*\/\s*/).map((name) => months.indexOf(name) + 1));
+      const date = Number(group.year) * 100 + month;
+      projectDates.set(entry.project, Math.max(projectDates.get(entry.project) || 0, date));
+    }));
+    const groups = new Map();
+    site.visualIndex.forEach((item, sourceIndex) => {
+      const key = item.project || "unassigned";
+      if (!groups.has(key)) {
+        const years = String(item.year).match(/\d{4}/g)?.map(Number) || [0];
+        groups.set(key, {
+          key, title: item.title, year: item.year, sourceIndex,
+          // Project chronology stays stable when an old image is newly copied.
+          date: projectDates.get(key) || Math.max(...years) * 100,
+          items: []
+        });
+      }
+      groups.get(key).items.push({ item, sourceIndex });
+    });
+    const visualIndexGroups = [...groups.values()]
+      .sort((a, b) => b.date - a.date || a.sourceIndex - b.sourceIndex);
+    let nextIndex = 0;
+    visualIndexGroups.forEach((group) => {
+      group.items.sort((a, b) =>
+        (Date.parse(b.item.createdAt) || 0) - (Date.parse(a.item.createdAt) || 0) || a.sourceIndex - b.sourceIndex
+      );
+      group.items = group.items.map(({ item }) => ({ ...item, index: nextIndex++ }));
+    });
+    const visualIndexItems = visualIndexGroups.flatMap((group) => group.items);
 
     setSeo(
       "Visual Index — Minnie Park",
@@ -680,13 +699,19 @@
           <p class="eyebrow">${tr("Visual Index / Ongoing record", "비주얼 인덱스 / 확장되는 기록")}</p>
           <h1>${tr("Visual<br />Index", "비주얼<br />인덱스")}</h1>
         </div>
-        <p>${tr("A growing field of installations, real-time visual states, moving-image stills, material studies and moments of participation. Select any image or clip for its project, year and context.", "설치, 실시간 비주얼 상태, 무빙이미지 스틸, 재료 연구와 관객 참여의 순간이 쌓이는 비주얼의 장입니다. 이미지나 영상을 선택하면 프로젝트, 연도와 맥락을 확인할 수 있습니다.")}</p>
+        <p>${tr("Installations, real-time visuals and moments of participation, grouped by project from newest to oldest. Select an image or clip to view it in detail.", "설치, 실시간 비주얼과 관객 참여의 순간을 최근 프로젝트부터 모았습니다. 이미지나 영상을 선택하면 크게 볼 수 있습니다.")}</p>
       </section>
 
-      <section class="visual-index" aria-label="Visual index">
-        ${visualIndexItems.map((item, index) => `
+      ${visualIndexGroups.map((group, groupIndex) => `
+      <section class="visual-index-project" data-visual-project="${group.key}" aria-labelledby="visual-project-${groupIndex}">
+        <header class="visual-index-project__heading">
+          <h2 id="visual-project-${groupIndex}">${site.projects[group.key] ? `<a href="${projectUrl(group.key)}">${group.title}</a>` : group.title}</h2>
+          <p>${group.year}</p>
+        </header>
+        <div class="visual-index">
+        ${group.items.map((item) => `
           <button class="visual-index__item" type="button"
-            data-index="${index}"
+            data-index="${item.index}"
             data-title="${item.title}"
             data-year="${item.year}"
             data-context="${item.context}"
@@ -695,7 +720,9 @@
             ${indexedMediaMarkup(item)}
           </button>
         `).join("")}
+        </div>
       </section>
+      `).join("")}
 
       <dialog class="index-viewer" id="indexViewer" aria-labelledby="indexViewerTitle">
         <button class="index-viewer__close" type="button" data-viewer-close aria-label="${tr("Close media", "미디어 닫기")}">
@@ -891,7 +918,7 @@
         </div>
         <div class="contact-links">
           <a href="${site.external.email}">minniepark.studio@gmail.com</a>
-          <a href="${site.external.instagram}" target="_blank" rel="noreferrer">@minniepark.studio ↗</a>
+          <a class="contact-instagram" href="${site.external.instagram}" target="_blank" rel="noreferrer">@minniepark.studio ↗</a>
         </div>
       </section>
 

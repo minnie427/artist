@@ -1484,10 +1484,45 @@ a.artist-history__entry:focus-visible {
   line-height: 1.5;
 }
 
+.visual-index-project {
+  margin-bottom: clamp(40px, 5vw, 80px);
+}
+
+.visual-index-project__heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 0 18px 20px;
+}
+
+.visual-index-project__heading h2 {
+  margin: 0;
+  font-size: clamp(18px, 1.8vw, 26px);
+  letter-spacing: -0.025em;
+}
+
+.visual-index-project__heading a {
+  text-decoration: none;
+}
+
+.visual-index-project__heading a:hover,
+.visual-index-project__heading a:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.visual-index-project__heading p {
+  margin: 0;
+  flex-shrink: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
 .visual-index {
   width: 100%;
   padding: 0 18px 18px;
-  column-count: 2;
+  column-count: 3;
   column-gap: 18px;
 }
 
@@ -1765,6 +1800,24 @@ a.artist-history__entry:focus-visible {
   letter-spacing: -0.05em;
   line-height: 1.05;
   text-decoration: none;
+}
+
+.contact-links .contact-instagram {
+  padding: 0.12em 0.16em;
+  margin-left: -0.16em;
+  transition: color 180ms ease, background-color 180ms ease;
+}
+
+.contact-links .contact-instagram:hover,
+.contact-links .contact-instagram:focus-visible {
+  background: var(--ink);
+  color: var(--pink);
+  border-bottom-color: var(--ink);
+}
+
+.contact-links .contact-instagram:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
 }
 
 .contact-routes {
@@ -2048,6 +2101,7 @@ a.artist-history__entry:focus-visible {
   .principle-grid span { margin-bottom: 38px; }
   .research-feature { width: 100%; height: 62svh; }
   .visual-index-hero { min-height: 56svh; padding-top: 110px; }
+  .visual-index-project__heading { gap: 12px; padding: 0 10px 16px; }
   .visual-index { column-count: 1; column-gap: 0; padding: 0 10px 10px; }
   .visual-index__item { margin-bottom: 10px; }
   .index-viewer {
