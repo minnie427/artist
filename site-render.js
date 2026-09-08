@@ -694,22 +694,9 @@
       "A visual field of Minnie Park’s installations, real-time visual states, material studies and moments of audience participation."
     );
     app.innerHTML = `
-      <section class="visual-index-hero" id="top">
-        <div>
-          <p class="eyebrow">${tr("Visual Index / Ongoing record", "비주얼 인덱스 / 확장되는 기록")}</p>
-          <h1>${tr("Visual<br />Index", "비주얼<br />인덱스")}</h1>
-        </div>
-        <p>${tr("Installations, real-time visuals and moments of participation, grouped by project from newest to oldest. Select an image or clip to view it in detail.", "설치, 실시간 비주얼과 관객 참여의 순간을 최근 프로젝트부터 모았습니다. 이미지나 영상을 선택하면 크게 볼 수 있습니다.")}</p>
-      </section>
-
-      ${visualIndexGroups.map((group, groupIndex) => `
-      <section class="visual-index-project" data-visual-project="${group.key}" aria-labelledby="visual-project-${groupIndex}">
-        <header class="visual-index-project__heading">
-          <h2 id="visual-project-${groupIndex}">${site.projects[group.key] ? `<a href="${projectUrl(group.key)}">${group.title}</a>` : group.title}</h2>
-          <p>${group.year}</p>
-        </header>
-        <div class="visual-index">
-        ${group.items.map((item) => `
+      <h1 class="sr-only" id="top">${tr("Visual Index", "비주얼 인덱스")}</h1>
+      <section class="visual-index" aria-label="${tr("Visual index gallery", "비주얼 인덱스 갤러리")}">
+        ${visualIndexItems.map((item) => `
           <button class="visual-index__item" type="button"
             data-index="${item.index}"
             data-title="${item.title}"
@@ -720,9 +707,7 @@
             ${indexedMediaMarkup(item)}
           </button>
         `).join("")}
-        </div>
       </section>
-      `).join("")}
 
       <dialog class="index-viewer" id="indexViewer" aria-labelledby="indexViewerTitle">
         <button class="index-viewer__close" type="button" data-viewer-close aria-label="${tr("Close media", "미디어 닫기")}">

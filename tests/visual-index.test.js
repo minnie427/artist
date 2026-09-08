@@ -25,16 +25,22 @@ function render(page, language = "en", override) {
 
 for (const language of ["en", "ko"]) {
   const { html, site } = render("visual-index", language);
-  const sections = [...html.matchAll(/data-visual-project="([^"]+)"[\s\S]*?<\/section>/g)];
-  assert.equal(sections.length, new Set(site.visualIndex.map((item) => item.project)).size);
-  assert.equal(sections[0][1], "funeral");
+  assert.equal((html.match(/<section class="visual-index"/g) || []).length, 1);
+  assert(!html.includes("visual-index-project"));
+  assert(!html.includes("visual-index-hero"));
+  assert.match(html, /<h1 class="sr-only" id="top">/);
+  assert(!html.includes("data-visual-project"));
+  const projects = [...html.matchAll(/data-project="([^"]+)"/g)].map((match) => match[1]);
+  const projectOrder = [...new Set(projects)];
+  assert.equal(projectOrder.length, new Set(site.visualIndex.map((item) => item.project)).size);
+  assert.equal(projectOrder[0], "funeral");
   const indices = [...html.matchAll(/data-index="(\d+)"/g)].map((match) => Number(match[1]));
   assert.deepEqual(indices, Array.from({ length: site.visualIndex.length }, (_, index) => index));
   const actualSources = [...html.matchAll(/class="visual-index__item"[\s\S]*?<(?:img|video) src="\.\.\/([^"]+)"/g)].map((match) => match[1]);
   assert.equal(actualSources.length, site.visualIndex.length);
   let offset = 0;
-  for (const section of sections) {
-    const expected = site.visualIndex.filter((item) => item.project === section[1]);
+  for (const project of projectOrder) {
+    const expected = site.visualIndex.filter((item) => item.project === project);
     expected.sort((a, b) => (Date.parse(b.createdAt) || 0) - (Date.parse(a.createdAt) || 0));
     for (const item of expected) {
       const src = item.src.replace(/^images\/(.+)\.(png|jpe?g)$/i, "images/web/$1.webp");
@@ -63,4 +69,4 @@ assert.match(css, /\.visual-index\s*\{[^}]*column-count:\s*3/);
 assert.match(css.slice(css.indexOf("@media (max-width: 1080px)")), /\.visual-index\s*\{\s*column-count:\s*2/);
 assert.match(css.slice(css.indexOf("@media (max-width: 640px)")), /\.visual-index\s*\{\s*column-count:\s*1/);
 assert.match(css, /\.contact-links \.contact-instagram:focus-visible\s*\{\s*background:\s*var\(--ink\);\s*color:\s*var\(--pink\)/);
-console.log("PASS: project groups, newest-first images, continuous viewer indices, bilingual output, 3/2/1 columns and Instagram-only hover/focus styles.");
+console.log("PASS: one continuous gallery without project headings, preserved image order and viewer indices, bilingual output, 3/2/1 columns and Instagram-only hover/focus styles.");
