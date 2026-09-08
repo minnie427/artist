@@ -176,9 +176,10 @@
   const isVideo = (src = "") => /\.(mp4|webm|ogv)(?:[?#].*)?$/i.test(src);
 
   function indexedMediaMarkup(item) {
-    if (!isVideo(item.src)) return imageMarkup(item.src, `${item.title}, ${item.context}`);
+    const dimensions = item.width > 0 && item.height > 0 ? ` width="${item.width}" height="${item.height}"` : "";
+    if (!isVideo(item.src)) return `<img src="${media(item.src)}"${dimensions} alt="${item.title}, ${item.context}" loading="lazy" decoding="async" />`;
     const poster = item.poster ? ` poster="${media(item.poster)}"` : "";
-    return `<video src="${media(item.src)}"${poster} muted loop playsinline preload="metadata" aria-label="${item.title}, ${item.context}"></video>`;
+    return `<video src="${media(item.src)}"${dimensions}${poster} muted loop playsinline preload="metadata" aria-label="${item.title}, ${item.context}"></video>`;
   }
 
   function galleryMediaMarkup(item) {
@@ -739,9 +740,7 @@
     app.innerHTML = `
       <h1 class="sr-only" id="top">${tr("Visual Index", "비주얼 인덱스")}</h1>
       <section class="visual-index" aria-label="${tr("Visual index gallery", "비주얼 인덱스 갤러리")}">
-        ${visualIndexGroups.map((group) => `
-        <div class="visual-index__group" data-index-project="${group.key}" role="group" aria-label="${group.title}, ${group.year}">
-        ${group.items.map((item) => `
+        ${visualIndexItems.map((item) => `
           <button class="visual-index__item" type="button"
             data-index="${item.index}"
             data-title="${item.title}"
@@ -751,8 +750,6 @@
             aria-label="${item.title}, ${item.year}, ${tr(item.context, item.contextKo || contextKo[item.context] || item.context)}">
             ${indexedMediaMarkup(item)}
           </button>
-        `).join("")}
-        </div>
         `).join("")}
       </section>
 
@@ -786,6 +783,7 @@
       </dialog>
       ${renderFooter()}
     `;
+    window.MPVisualIndexLayout?.mount(document.querySelector(".visual-index"));
     initVisualIndex(visualIndexItems);
   }
 

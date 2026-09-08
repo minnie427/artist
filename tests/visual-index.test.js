@@ -34,14 +34,13 @@ for (const language of ["en", "ko"]) {
   const projectOrder = [...new Set(projects)];
   assert.equal(projectOrder.length, new Set(site.visualIndex.map((item) => item.project)).size);
   assert.equal(projectOrder[0], "funeral");
-  const groups = [...html.matchAll(/<div class="visual-index__group" data-index-project="([^"]+)"[^>]*>([\s\S]*?)<\/div>/g)];
-  assert.deepEqual(groups.map((group) => group[1]), projectOrder);
-  for (const [, project, contents] of groups) {
-    const items = [...contents.matchAll(/data-project="([^"]+)"/g)].map((match) => match[1]);
-    assert.equal(items.length, site.visualIndex.filter((item) => item.project === project).length);
-    assert(items.every((key) => key === project), `Mixed project columns: ${project}`);
-    assert(!/<h[1-6]\b|<header\b/.test(contents), "Project wrappers must have no visible headings");
-  }
+  assert(!html.includes("visual-index__group"), "Project wrappers must not interrupt the continuous layout");
+  assert.deepEqual(projects, projectOrder.flatMap(project =>
+    site.visualIndex.filter(item => item.project === project).map(() => project)
+  ));
+  const dimensions = [...html.matchAll(/<(?:img|video) src="\.\.\/[^\"]+" width="(\d+)" height="(\d+)"/g)];
+  assert.equal(dimensions.length, site.visualIndex.length, "Reserve every media ratio before loading");
+  assert(dimensions.every(([, width, height]) => Number(width) > 0 && Number(height) > 0));
   const indices = [...html.matchAll(/data-index="(\d+)"/g)].map((match) => Number(match[1]));
   assert.deepEqual(indices, Array.from({ length: site.visualIndex.length }, (_, index) => index));
   const actualSources = [...html.matchAll(/class="visual-index__item"[\s\S]*?<(?:img|video) src="\.\.\/([^"]+)"/g)].map((match) => match[1]);
@@ -74,8 +73,11 @@ assert(sample.indexOf("undated.webp") < sample.indexOf("old-project-new-copy.web
 
 const css = read("style.css");
 assert(!/\.visual-index\s*\{[^}]*column-count:/.test(css), "The whole gallery must not be balanced across columns");
-assert.match(css, /\.visual-index__group\s*\{[^}]*display:\s*flow-root;[^}]*column-count:\s*3/);
-assert.match(css.slice(css.indexOf("@media (max-width: 1080px)")), /\.visual-index__group\s*\{\s*column-count:\s*2/);
-assert.match(css.slice(css.indexOf("@media (max-width: 640px)")), /\.visual-index__group\s*\{\s*column-count:\s*1/);
+assert.match(css, /\.visual-index\s*\{\s*--index-columns:\s*3/);
+assert.match(css.slice(css.indexOf("@media (max-width: 1080px)")), /\.visual-index\s*\{\s*--index-columns:\s*2/);
+assert.match(css.slice(css.indexOf("@media (max-width: 640px)")), /\.visual-index\s*\{\s*--index-columns:\s*1/);
+assert(!css.includes(".visual-index__group"));
+assert.match(css, /\.visual-index__item:hover :is\(img, video\),\s*\.visual-index__item:focus-visible :is\(img, video\)\s*\{\s*transform: scale\(1\.025\)/);
+assert(read("visual-index/index.html").indexOf("visual-index-layout.js") < read("visual-index/index.html").indexOf("site-render.js"));
 assert.match(css, /\.contact-links \.contact-instagram:focus-visible\s*\{\s*background:\s*var\(--ink\);\s*color:\s*var\(--pink\)/);
-console.log("PASS: title-free project blocks finish before the next project; preserved chronology and viewer indices; bilingual output; per-project 3/2/1 columns; Contact styles intact.");
+console.log("PASS: continuous title-free gallery; preserved project chronology and viewer indices; reserved media dimensions; 3/2/1 columns; hover and Contact styles intact.");

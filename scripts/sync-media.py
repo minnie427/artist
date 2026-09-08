@@ -330,6 +330,9 @@ def build_manifest(source_root: Path) -> dict[str, object]:
                 "createdAt": created_at,
                 "dateSource": date_source,
             }
+            # Reserve the natural ratio before lazy images or video metadata load.
+            with Image.open(SITE_ROOT / (poster or src)) as image:
+                index_item["width"], index_item["height"] = image.size
             if poster:
                 index_item["poster"] = poster
             manifest["visualIndex"].append(index_item)

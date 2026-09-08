@@ -1475,24 +1475,36 @@ body[data-page="visual-index"] .site-shell {
 }
 
 .visual-index {
+  --index-columns: 3;
+  --index-gap: 18px;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(var(--index-columns), minmax(0, 1fr));
+  align-items: start;
+  gap: var(--index-gap);
   width: 100%;
   padding: 0 18px 18px;
 }
 
-/* Finish every column of one project before the next project can begin. */
-.visual-index__group {
-  display: flow-root;
-  width: 100%;
-  column-count: 3;
-  column-gap: 18px;
+/* One continuous field. The chronological DOM/viewer order stays unchanged. */
+.visual-index[data-masonry] {
+  display: block;
+}
+
+.visual-index[data-masonry] .visual-index__item {
+  position: absolute;
+}
+
+.visual-index[data-masonry] .visual-index__item :is(img, video) {
+  height: 100%;
+  object-fit: contain;
 }
 
 .visual-index__item {
   position: relative;
   display: block;
   width: 100%;
-  margin: 0 0 18px;
-  break-inside: avoid;
+  margin: 0;
   border: 0;
   padding: 0;
   overflow: hidden;
@@ -1930,7 +1942,7 @@ body[data-page="contact"] .site-footer {
   .works-opening__item img,
   .works-opening__item video { height: clamp(260px, 48vw, 480px); }
   .works-opening__nav { display: none; }
-  .visual-index__group { column-count: 2; }
+  .visual-index { --index-columns: 2; }
   .chapter-grid { grid-template-columns: 1fr 1fr; }
   .chapter-grid article:nth-child(2) { border-right: 0; }
   .chapter-grid article:nth-child(-n + 2) { border-bottom: 1px solid var(--line); }
@@ -1990,7 +2002,6 @@ body[data-page="contact"] .site-footer {
   .research-study figure { max-width: 640px; width: 100%; margin: 0 auto; }
   .research-study--time figure { order: -1; }
   body[data-page="visual-index"] .site-shell { padding-top: 82px; }
-  .visual-index__group { column-count: 2; }
   .index-viewer {
     padding: 12px;
   }
@@ -2133,9 +2144,7 @@ body[data-page="contact"] .site-footer {
   .principle-grid span { margin-bottom: 38px; }
   .research-feature { width: calc(100% - var(--page-pad) * 2); }
   body[data-page="visual-index"] .site-shell { padding-top: 74px; }
-  .visual-index { padding: 0 10px 10px; }
-  .visual-index__group { column-count: 1; column-gap: 0; }
-  .visual-index__item { margin-bottom: 10px; }
+  .visual-index { --index-columns: 1; --index-gap: 10px; padding: 0 10px 10px; }
   .index-viewer {
     padding: 8px;
   }
