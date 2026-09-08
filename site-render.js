@@ -724,14 +724,26 @@
     });
     const visualIndexGroups = [...groups.values()]
       .sort((a, b) => b.date - a.date || a.sourceIndex - b.sourceIndex);
-    let nextIndex = 0;
     visualIndexGroups.forEach((group) => {
       group.items.sort((a, b) =>
         (Date.parse(b.item.createdAt) || 0) - (Date.parse(a.item.createdAt) || 0) || a.sourceIndex - b.sourceIndex
       );
-      group.items = group.items.map(({ item }) => ({ ...item, index: nextIndex++ }));
+      group.items = group.items.map(({ item }) => item);
     });
-    const visualIndexItems = visualIndexGroups.flatMap((group) => group.items);
+    // Deduplicate this view only, after sorting, so the first chronological
+    // occurrence keeps its project label. Project galleries remain untouched.
+    const filenames = new Set();
+    const sourceHashes = new Set();
+    const visualIndexItems = visualIndexGroups.flatMap((group) => group.items)
+      .filter((item) => {
+        const basename = item.originalFilename || decodeURIComponent(item.src.split(/[?#]/)[0].split("/").pop());
+        const filename = basename.normalize("NFC").toLowerCase();
+        if (filenames.has(filename) || (item.sourceHash && sourceHashes.has(item.sourceHash))) return false;
+        filenames.add(filename);
+        if (item.sourceHash) sourceHashes.add(item.sourceHash);
+        return true;
+      })
+      .map((item, index) => ({ ...item, index }));
 
     setSeo(
       "Visual Index — Minnie Park",

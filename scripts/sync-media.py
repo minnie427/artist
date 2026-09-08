@@ -321,8 +321,11 @@ def build_manifest(source_root: Path) -> dict[str, object]:
             else:
                 project_data["gallery"].append(item)
 
+            digest = content_digest(source)
             index_item = {
                 "src": src,
+                "originalFilename": source.name,
+                "sourceHash": digest,
                 "title": title,
                 "year": year,
                 "context": context,
@@ -336,7 +339,7 @@ def build_manifest(source_root: Path) -> dict[str, object]:
             if poster:
                 index_item["poster"] = poster
             manifest["visualIndex"].append(index_item)
-            identities.setdefault(content_digest(source), {})[project_key] = (project_key, title, year, context)
+            identities.setdefault(digest, {})[project_key] = (project_key, title, year, context)
 
     selected_files = media_files(source_root / "artist/selected") + media_files(source_root / "artist/showreel")
     selected_digests: set[str] = set()

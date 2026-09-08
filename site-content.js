@@ -836,7 +836,7 @@ window.MP_SITE = {
     { src: "images/showreel4.png", width: 1800, height: 1200, title: "Melbourne Fashion Festival", year: "2025", context: "Runway documentation", project: "melbourne-fashion-festival" },
     { src: "images/metarose3.png", width: 1350, height: 1800, title: "Meta Rose: Origin", year: "2024", context: "Interaction station", project: "origin" },
     { src: "images/showreel14.png", width: 1800, height: 1006, title: "Meta Rose", year: "2024—ongoing", context: "Visual study", project: "meta-rose" },
-    { src: "images/liveperformance.jpg", width: 720, height: 958, title: "Live Performance", year: "2023—2024", context: "Performance documentation", project: "live-performance" },
+    { src: "images/liveperformance.jpg", originalFilename: "liveperformance.jpg", sourceHash: "50f4e16a166881ac0b88617bba47c1582def3a8d1e25bb22272873a7f43890bb", width: 720, height: 958, title: "Live Performance", year: "2023—2024", context: "Performance documentation", project: "live-performance" },
     { src: "images/showreel1.png", width: 1800, height: 1200, title: "Melbourne Fashion Festival", year: "2025", context: "Runway documentation", project: "melbourne-fashion-festival" },
     { src: "images/tr.png", width: 1350, height: 1800, title: "The Meta Rose: Shared Resonance", year: "2026", context: "Installation view", project: "shared-resonance" },
     { src: "images/installation2.png", width: 1350, height: 1800, title: "Meta Rose", year: "2024—ongoing", context: "Conductive rose detail", project: "meta-rose" },
