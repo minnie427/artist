@@ -287,7 +287,7 @@
         </figure>
         <div class="works-introduction__identity">
           <p class="section-kicker">${tr("Meta Rose / Ongoing body of work", "Meta Rose / 연작")}</p>
-          <h2>${tr("A recurring grammar, recomposed through every chapter.", "되풀이되는 조형 언어를 매 장마다 새롭게 구성합니다.")}</h2>
+          <h2>${tr("Living roses, touch and emotional ambivalence.", "생장미, 터치와 감정의 양가성.")}</h2>
         </div>
         <div class="long-copy">
           <p>${tr(
@@ -353,7 +353,7 @@
 
       <section class="index-invitation content-section">
         <p class="section-kicker">${tr("Visual Index", "비주얼 인덱스")}</p>
-        <a href="${href("visual-index/")}">${tr("Enter the growing field of images →", "확장되는 이미지의 장으로 들어가기 →")}</a>
+        <a href="${href("visual-index/")}">${tr("Explore the Visual Index →", "비주얼 인덱스 보기 →")}</a>
       </section>
       ${renderFooter()}
     `;
@@ -459,7 +459,7 @@
         ${project.chapters ? `
           <section class="content-section project-chapters">
             <div class="section-heading">
-              <p class="section-kicker">${tr("Four works / One passage", "네 작품 / 하나의 통과")}</p>
+              <p class="section-kicker">${tr("Four parts", "네 구성")}</p>
               <h2>${tr("Naming / Intervention / Witness / Record", "명명 / 개입 / 목격 / 기록")}</h2>
             </div>
             <div class="chapter-grid">
@@ -563,13 +563,13 @@
       <section class="artist-statement content-section content-section--compact">
         <div>
           <p class="section-kicker">${tr("Artist Statement", "작가 노트")}</p>
-          <h2>${tr("Feeling takes form through bodies, materials and live systems.", "감정은 신체, 재료와 살아 움직이는 시스템을 통해 형태를 얻습니다.")}</h2>
+          <h2>${tr("Living materials and participatory systems.", "살아 있는 재료와 참여형 시스템.")}</h2>
         </div>
         <div class="long-copy long-copy--large">
-          <p>${tr("Park develops responsive installations in which living roses, colour, sound, light and moving image organise encounters with feelings that resist a single name. Touch changes an audio-visual composition; bodies complete a circuit; audience choices become conditions of the work rather than inputs added after it is made.", "Park는 생장미, 색, 사운드, 빛과 무빙이미지가 하나의 이름으로 고정되지 않는 감정과의 만남을 구성하는 반응형 설치를 만듭니다. 터치는 오디오비주얼 구성을 바꾸고, 신체는 회로를 완성하며, 관객의 선택은 완성된 작품에 덧붙는 입력이 아니라 작업을 성립시키는 조건이 됩니다.")}</p>
-          <p>${tr("Colour operates as emotional material rather than surface treatment: atmosphere, frequency and force experienced through the body. Pink recurs as a carrier of vitality, emotional energy and contradiction. Living roses bring scent, fragility, texture and biological time into contact with computational systems.", "색은 표면적 장식이 아니라 신체를 통해 경험되는 분위기, 주파수와 힘인 감정적 재료로 작동합니다. 핑크는 생명력, 정서적 에너지와 모순을 운반하는 색으로 반복됩니다. 생장미는 향, 연약함, 질감과 생물학적 시간을 컴퓨테이셔널 시스템과 접촉시킵니다.")}</p>
-          <p>${tr("At the centre of her practice is Meta Rose, begun in 2024. Living roses, pink, touch and opposing states form a distinct grammar; each chapter begins with a different emotional question and rebuilds that grammar through a new installation, audio-visual logic and participatory relationship.", "작업의 중심에는 2024년에 시작된 Meta Rose가 있습니다. 생장미, 핑크, 터치와 대립하는 상태들은 고유한 조형 언어를 이룹니다. 각 장은 서로 다른 감정적 질문에서 출발해 새로운 설치, 오디오비주얼 논리와 참여 관계를 통해 이 언어를 다시 구축합니다.")}</p>
-          <p>${tr("Her practice-based research treats feeling as embodied, relational and culturally situated. It asks how interactive art can make room for nuanced, mixed and difficult-to-articulate states without assigning universal meanings to colour or emotion.", "그녀의 창작 실천 기반 리서치는 감정을 신체적이고 관계적이며 문화적으로 형성되는 경험으로 다룹니다. 색이나 감정에 보편적 의미를 부여하지 않으면서, 인터랙티브 아트가 미묘하고 혼합되어 말로 규정하기 어려운 상태를 어떻게 담을 수 있는지 묻습니다.")}</p>
+          <p>${tr("Park works with living roses as tactile interfaces. A participant’s touch changes sound and moving image, while shared contact can complete a circuit between bodies. Participation is part of the work’s composition: its form depends on who engages with it, for how long and alongside whom.", "Park는 생장미를 촉각적 인터페이스로 사용합니다. 참여자의 터치는 사운드와 무빙이미지를 변화시키며, 함께하는 접촉은 신체 사이의 회로를 완성하기도 합니다. 참여는 작품 구성의 일부입니다. 누가, 얼마나 오래, 누구와 함께 관여하는지에 따라 작품의 형태가 달라집니다.")}</p>
+          <p>${tr("Pink carries emotional intensity within her practice. Paired with grey, black, distortion and contrasting sonic textures, it allows attraction and discomfort to remain present together. The rose brings this ambivalence into material form through petals and thorns, fragility and resistance.", "그녀의 작업에서 핑크는 감정적 강도를 지닌 색입니다. 회색, 검정, 왜곡과 상반된 사운드 질감과 짝을 이루며 매혹과 불편함을 동시에 드러냅니다. 장미의 꽃잎과 가시, 연약함과 저항은 이러한 양가성을 물질의 형태로 보여줍니다.")}</p>
+          <p>${tr("The installations also unfold through the changing condition of their materials. Roses are handled, begin to dry and remain after an exhibition has ended. Park retains and photographs these flowers, extending her inquiry from the live encounter to the traces that remain.", "설치는 재료의 상태가 달라지는 시간 속에서도 전개됩니다. 장미는 관객의 손을 거치고 마르기 시작하며, 전시가 끝난 뒤에도 남습니다. Park는 이 꽃들을 보관하고 촬영하며 현장의 경험에서 그 이후에 남는 흔적으로 탐구를 이어갑니다.")}</p>
+          <a class="inline-link" href="${href("research/")}">${tr("Research →", "리서치 →")}</a>
         </div>
       </section>
 
@@ -611,45 +611,88 @@
   function renderResearch() {
     setSeo(
       "Research — Minnie Park",
-      "Practice-based research by Minnie Park on tactile interaction, colour, Korean emotional language and culturally situated affect."
+      "Minnie Park’s ongoing research through Meta Rose: emotional ambivalence, tactile participation, the time of living materials, and the relationship between experience and its records."
     );
     app.innerHTML = `
       <section class="research-hero page-hero" id="top">
         <p class="eyebrow">${tr("Research / Practice-based", "리서치 / 실천 기반")}</p>
-        <h1>${tr("Feeling is<br />situated.", "감정은<br />맥락 속에 있습니다.")}</h1>
-        <p class="hero-main">${tr("How can an interactive artwork hold emotional complexity without reducing it to a fixed label?", "인터랙티브 작품은 감정의 복잡함을 하나의 고정된 이름으로 축소하지 않고 어떻게 담아낼 수 있을까요?")}</p>
+        <h1>${tr("Affect, touch<br />and time.", "정서, 접촉,<br />그리고 시간.")}</h1>
+        <p class="hero-main">${tr("An ongoing inquiry through Meta Rose into conflicting feelings, material change and the conditions of participation.", "Meta Rose를 통해 상충하는 감정, 재료의 변화와 참여의 조건을 탐구하는 지속적인 연구입니다.")}</p>
       </section>
 
-      <figure class="research-feature">${imageMarkup("images/the meta kibun project.png", "The Meta Kibun Project research exhibition", true)}</figure>
+      <figure class="research-feature">
+        ${imageMarkup("media/mugonggan/img-5898-4ee3afc5.webp", tr("Pink roses with thorn-bearing stems and electrical contacts arranged on glass blocks", "유리 블록 위에 놓인 핑크 장미, 가시가 있는 줄기와 전기 접점"), true)}
+        <figcaption>${tr("Roses, thorns and electrical contacts. Meta Rose: Mugonggan, 2025.", "장미, 가시와 전기 접점. Meta Rose: Mugonggan, 2025.")}</figcaption>
+      </figure>
 
       <section class="research-body content-section content-section--compact">
         <div>
-          <p class="section-kicker">The Meta Kibun Project</p>
-          <h2>${tr("Touch, colour and language as conditions for emotional reflection.", "터치, 색과 언어를 감정적 성찰의 조건으로 구성합니다.")}</h2>
+          <p class="section-kicker">${tr("Meta Rose / Ongoing inquiry", "Meta Rose / 지속적인 탐구")}</p>
+          <h2>${tr("Contradiction as a condition of feeling.", "감정의 조건으로서의 모순.")}</h2>
         </div>
         <div class="long-copy">
-          <p>${tr("Park’s 2025 Honours research asks how interactivity centred on tactile elements and Korean emotive colour terms influences audiences’ affective experience in a digital exhibition. It treats feeling as embodied and situated—shaped by personal, social and cultural position—rather than as a universal signal waiting to be decoded.", "Park의 2025년 Honours 리서치는 촉각적 요소와 한국어의 정서적 색채어를 중심으로 한 인터랙션이 디지털 전시에서 관객의 정서적 경험에 어떤 영향을 미치는지 묻습니다. 감정을 해독을 기다리는 보편적 신호가 아니라 개인적·사회적·문화적 위치에 의해 형성되는 신체적이고 상황적인 경험으로 다룹니다.")}</p>
-          <p>${tr("The Meta Kibun Project formed the creative practice component of the study. Drawing on kibun (기분)—a Korean term encompassing mood, feeling and atmosphere—participants composed a colour term using one of the project’s Korean emotive suffixes—or invented one in a language of their choice. They then encountered the same audio-visual material first as a non-interactive video and then through a tactile installation of living roses and water.", "The Meta Kibun Project는 이 연구의 창작 실천 작업입니다. 기분, 감정 상태와 분위기를 포괄하는 한국어 ‘기분’에서 출발해, 참여자는 프로젝트에서 제시한 한국어 정서적 접미어를 선택하거나 원하는 언어로 직접 접미어를 만들어 색과 결합했습니다. 이후 동일한 오디오비주얼 재료를 비인터랙티브 영상으로 먼저 보고, 생장미와 물을 사용하는 촉각적 설치로 다시 경험했습니다.")}</p>
-          <p>${tr("Across the two-day exhibition, the study conducted fifteen semi-structured interviews and collected sixteen survey responses. Participants commonly described touch as deepening bodily and personal engagement. Colour choice and emotive language prompted reflection on feelings that were layered, changing and difficult to articulate; the interactive installation was generally described as more personally meaningful than the video presentation.", "이틀간의 전시에서 반구조화 인터뷰 15건을 진행하고 설문 응답 16건을 수집했습니다. 참여자들은 터치가 신체적이고 개인적인 몰입을 깊게 했다고 공통적으로 서술했습니다. 색의 선택과 정서적 언어는 층위가 있고 변화하며 말로 규정하기 어려운 감정을 성찰하게 했으며, 인터랙티브 설치는 대체로 영상 프레젠테이션보다 개인적으로 더 의미 있는 경험으로 서술되었습니다.")}</p>
-          <p>${tr("The study deliberately avoids establishing universal associations between colour and emotion. Participant accounts are treated as situated evidence—meaningful within the conditions of the exhibition, yet resistant to generalisation. Rather than decoding emotion, the research examines how touch, colour and language can create conditions for reflection.", "이 연구는 색과 감정 사이의 보편적 연관성을 확립하지 않습니다. 참여자의 서사는 전시의 조건 안에서 의미를 갖지만 일반화될 수 없는 상황적 근거로 다뤄집니다. 감정을 해독하기보다 터치, 색과 언어가 성찰의 조건을 어떻게 만들 수 있는지 살펴봅니다.")}</p>
+          <p>${tr("Minnie Park’s research develops through making, exhibiting and revisiting the works of Meta Rose. Each installation tests a different relationship between living materials, an audio-visual system and the people who activate it. The recurring question is how an artwork can make conflicting feelings available to sensory experience without requiring them to resolve into a single emotion.", "Minnie Park의 연구는 Meta Rose의 작품을 제작하고 전시하며 다시 살펴보는 과정에서 전개됩니다. 각 설치는 살아 있는 재료, 오디오비주얼 시스템과 이를 활성화하는 사람들 사이의 관계를 서로 다른 방식으로 탐구합니다. 상충하는 감정을 하나로 정리하지 않으면서 어떻게 감각적으로 경험하게 할 수 있는지가 작업을 관통하는 질문입니다.")}</p>
+          <p>${tr("The rose gives this inquiry a material form. Petals and thorns hold attraction and the possibility of pain in the same object; a flower can retain its colour as it begins to wilt. Park approaches ambivalence through this simultaneity. Pink, grey and black are paired with contrasting sonic textures to work with vitality, friction and loss—not as universal codes for how a viewer should feel.", "장미는 이 질문에 물질적 형태를 부여합니다. 꽃잎과 가시는 하나의 대상 안에 매혹과 고통의 가능성을 함께 지니며, 꽃은 시들기 시작하면서도 색을 유지합니다. Park는 이러한 동시성을 통해 양가성을 다룹니다. 핑크, 회색과 검정은 상반된 사운드 질감과 짝을 이루며 생명력과 마찰, 상실을 다룹니다. 이는 관객이 느껴야 할 감정을 지시하는 보편적 코드는 아닙니다.")}</p>
+          <a class="inline-link" href="${projectUrl("meta-rose")}">${tr("The Meta Rose body of work →", "Meta Rose 연작 →")}</a>
         </div>
       </section>
 
-      <section class="research-record content-section">
-        <div class="section-heading">
-          <p class="section-kicker">${tr("Research Record", "리서치 기록")}</p>
-          <h2>The Meta Kibun Project: Exploring Interactivity, Audience, and Affective Experience in Digital Interactive Art Exhibitions</h2>
-          <p>RMIT University / Bachelor of Media and Communication (Honours) / 2025</p>
+      <section class="research-study content-section" aria-labelledby="research-touch">
+        <figure>
+          ${imageMarkup("media/meta-kibun/img-8620-11ca27fe.webp", tr("A participant’s hand touching a suspended rose among cables and projected pink light", "케이블과 핑크색 투사광 사이에 매달린 장미를 만지는 참여자의 손"))}
+          <figcaption>${tr("Touching a rose within The Meta Kibun Project, 2025.", "The Meta Kibun Project에서 장미를 만지는 장면, 2025.")}</figcaption>
+        </figure>
+        <div class="long-copy">
+          <p class="section-kicker">${tr("Touch / Participation", "접촉 / 참여")}</p>
+          <h2 id="research-touch">${tr("The encounter is part of the work.", "만남은 작품의 일부가 됩니다.")}</h2>
+          <p>${tr("Touch connects a participant’s body to changes in sound, colour and moving image. The choice of a rose, the duration of contact and the presence of other people affect how a composition unfolds. The exhibition is therefore a research setting in which audience, material, space and artist all contribute to what can be experienced.", "터치는 참여자의 신체를 사운드, 색과 무빙이미지의 변화에 연결합니다. 어떤 장미를 선택하는지, 접촉을 얼마나 지속하는지, 다른 사람이 함께 있는지가 구성의 전개에 영향을 줍니다. 전시는 관객, 재료, 공간과 작가가 경험의 형성에 함께 관여하는 연구의 현장이 됩니다.")}</p>
+          <p>${tr("The Meta Kibun Project examined personal reflection through touch, colour and Korean emotive language. Shared Resonance extends this inquiry into interdependence: two or more participants must connect to activate the work. These different arrangements ask how agency and emotional attention change between an individual encounter and a shared one.", "The Meta Kibun Project는 터치, 색과 한국어의 정서적 언어를 통해 개인의 성찰을 살펴봤습니다. Shared Resonance는 두 명 이상의 참여자가 연결되어야 작품이 활성화되도록 구성하며 이 질문을 상호의존의 관계로 확장합니다. 서로 다른 참여 구조를 통해 개인적 경험과 공동의 경험 사이에서 행위의 주도권과 감정에 대한 주의가 어떻게 달라지는지 묻습니다.")}</p>
+          <p>${tr("Beauty → Wonder → Affect describes an intention for the encounter: visual attraction invites attention, a responsive material invites investigation, and participation can open a space for emotional reflection. This sequence guides the design while leaving each participant’s response open.", "Beauty → Wonder → Affect는 작품 경험을 구성하는 방향입니다. 시각적 매력이 주의를 이끌고, 반응하는 재료가 탐색을 유도하며, 참여가 감정을 성찰할 계기를 마련하도록 합니다. 이 흐름은 작품의 구성을 이끌되, 각 참여자의 반응은 열어 둡니다.")}</p>
+          <a class="inline-link" href="${projectUrl("shared-resonance")}">${tr("Shared Resonance →", "Shared Resonance →")}</a>
         </div>
-        <div class="research-grid">
-          <article><span>02</span><h3>${tr("Exhibition days", "전시 일수")}</h3><p>${tr("A comparative interactive and non-interactive presentation.", "인터랙티브 설치와 비인터랙티브 영상을 비교한 전시입니다.")}</p></article>
-          <article><span>15</span><h3>${tr("Interviews", "인터뷰")}</h3><p>${tr("Semi-structured, one-to-one accounts of situated experience.", "상황적 경험을 다룬 반구조화 일대일 인터뷰입니다.")}</p></article>
-          <article><span>16</span><h3>${tr("Survey responses", "설문 응답")}</h3><p>${tr("Open-ended and rating-scale responses on touch, colour, participation and affect.", "터치, 색, 참여와 정서적 경험을 다룬 개방형·평정형 응답입니다.")}</p></article>
+      </section>
+
+      <section class="research-study research-study--time content-section" aria-labelledby="research-time">
+        <div class="long-copy">
+          <p class="section-kicker">${tr("Time / Material memory", "시간 / 재료의 기억")}</p>
+          <h2 id="research-time">${tr("The rose continues to change after the encounter.", "만남이 끝난 뒤에도 장미는 변합니다.")}</h2>
+          <p>${tr("Living roses introduce a duration that differs from the repeatable time of a digital system. Over an exhibition, many people touch the flowers while petals lose moisture, leaves curl and stems dry. Contact and natural change take place together. In Park’s practice, the flower’s remaining vitality and its deterioration make life and death perceptible as overlapping conditions rather than a simple before and after.", "생장미는 반복 가능한 디지털 시스템의 시간과 다른 지속을 작품에 들여옵니다. 전시가 이어지는 동안 여러 사람이 꽃을 만지고, 꽃잎은 수분을 잃으며 잎은 말리고 줄기는 마릅니다. 접촉과 자연적인 변화가 함께 일어납니다. Park의 작업에서 꽃에 남아 있는 생명력과 쇠퇴는 삶과 죽음을 단순한 이전과 이후가 아닌 중첩된 상태로 드러냅니다.")}</p>
+          <p>${tr("After each exhibition, Park keeps and dries the roses, photographing their changing condition. The photograph cannot restore the living flower or repeat the encounter. It retains a visible record of a material state that can no longer be returned to, bringing the flower’s absence into relation with its continuing image.", "Park는 전시가 끝날 때마다 장미를 보관해 말리고, 변화한 상태를 사진으로 기록합니다. 사진은 살아 있던 꽃을 되돌리거나 그 만남을 재현할 수 없습니다. 대신 다시 돌아갈 수 없는 재료의 상태를 시각적 기록으로 남기며, 꽃의 부재와 지속되는 이미지 사이의 관계를 드러냅니다.")}</p>
+          <p>${tr("Read across successive exhibitions and years, these photographs offer another way to study Meta Rose: through the materials that remain after participation has ended. This developing photographic inquiry asks what an image can retain of touch, duration and loss, and what remains outside its frame.", "여러 전시와 해에 걸쳐 이 사진들을 함께 보는 것은 참여가 끝난 뒤 남은 재료를 통해 Meta Rose를 살펴보는 또 하나의 방식입니다. 이 사진 연구는 이미지가 접촉, 지속과 상실의 무엇을 간직할 수 있으며, 무엇이 프레임 밖에 남는지 묻습니다.")}</p>
         </div>
-        ${actions([
-          { label: tr("Read The Meta Kibun Project", "The Meta Kibun Project 보기"), path: "works/meta-kibun/" },
-          { label: tr("Read the Honours Exegesis ↓", "Honours 논문 읽기 ↓"), path: site.downloads.exegesis, download: true }
-        ])}
+        <figure>
+          ${imageMarkup("media/funeral/img-8592-544825ad.webp", tr("Wilted pale roses and curled leaves attached to the skeleton model in Meta Rose: The Funeral", "Meta Rose: The Funeral의 해골 모형에 연결된 시든 연한 장미와 말린 잎"))}
+          <figcaption>${tr("Wilting roses within Meta Rose: The Funeral, 2026. Installation detail.", "Meta Rose: The Funeral 안에서 시들어가는 장미, 2026. 설치 세부.")}</figcaption>
+        </figure>
+      </section>
+
+      <section class="research-body content-section content-section--compact" id="research-data">
+        <div>
+          <p class="section-kicker">${tr("Data / Open questions", "데이터 / 이어지는 질문")}</p>
+          <h2>${tr("What can a record of interaction tell us about feeling?", "인터랙션의 기록은 감정에 대해 무엇을 말할 수 있을까요?")}</h2>
+        </div>
+        <div class="long-copy">
+          <p>${tr("The Funeral brings emotional naming, intervention, witness and record into a four-part installation. It extends the inquiry towards the relationship between a participant’s account of feeling and the digital traces of participation. A touch event or a duration records an action; interpreting its emotional significance requires the participant’s account and the circumstances of the encounter.", "The Funeral은 명명, 개입, 목격과 기록을 네 부분으로 구성된 설치에 담습니다. 참여자가 자신의 감정을 설명하는 언어와 참여 과정의 디지털 흔적 사이의 관계로 탐구를 확장합니다. 터치나 지속시간의 데이터는 행위를 기록하지만, 그 정서적 의미를 해석하려면 참여자의 서술과 만남의 맥락을 함께 살펴야 합니다.")}</p>
+          <p>${tr("A longer-term question is whether relationships between touch, duration, colour and self-described feeling can be expressed mathematically without erasing the context that gives them meaning. Park approaches this as an artistic research question still in development, alongside the material and photographic records of the roses.", "장기적으로는 터치, 지속시간, 색과 스스로 서술한 감정 사이의 관계를, 그 의미를 형성하는 맥락을 지우지 않으면서 수학적으로 표현할 수 있는지 묻습니다. Park는 이를 장미의 물질적·사진적 기록과 함께 발전시켜 나갈 예술 연구의 질문으로 다룹니다.")}</p>
+          <a class="inline-link" href="${projectUrl("funeral")}">${tr("Meta Rose: The Funeral →", "Meta Rose: The Funeral →")}</a>
+        </div>
+      </section>
+
+      <section class="research-record content-section content-section--compact" aria-labelledby="research-evidence">
+        <div>
+          <p class="section-kicker">${tr("Research foundation / 2025", "연구의 근거 / 2025")}</p>
+          <h2 id="research-evidence">The Meta Kibun Project</h2>
+          <p class="research-record__meta">${tr("Practice-based Honours research<br />RMIT University, Melbourne", "창작 실천 기반 Honours 연구<br />RMIT University, Melbourne")}</p>
+        </div>
+        <div class="long-copy">
+          <p>${tr("The 2025 study examined how tactile interactivity and Korean emotive colour terms shaped audiences’ affective experience. Drawing on kibun (기분)—mood, feeling and atmosphere—it invited participants to compose a colour term using a Korean emotive suffix or an expression in a language of their choice. The exhibition compared a non-interactive video with a tactile installation using the same audio-visual material.", "2025년 연구는 촉각적 인터랙션과 한국어의 정서적 색채어가 관객의 정서적 경험을 어떻게 형성하는지 살펴봤습니다. 감정 상태와 분위기를 아우르는 ‘기분’에서 출발해, 참여자가 한국어의 정서적 접미어나 원하는 언어의 표현을 색과 결합해 자신만의 색채어를 구성하도록 했습니다. 전시에서는 동일한 오디오비주얼 재료를 사용한 비인터랙티브 영상과 촉각적 설치를 비교했습니다.")}</p>
+          <p>${tr("Fifteen semi-structured interviews and sixteen survey responses were collected over 12–13 September 2025. Participants frequently described tactile participation as more personally engaging than watching the video. Colour choice and emotive language supported reflection on feelings that were mixed, changing or difficult to articulate. These accounts provide evidence within this exhibition, rather than a universal correspondence between colour and emotion or a prediction of every audience’s response.", "2025년 9월 12–13일에 반구조화 인터뷰 15건과 설문 응답 16건을 수집했습니다. 참여자들은 영상 관람보다 촉각적 참여에서 개인적인 몰입을 더 깊게 경험했다고 자주 서술했습니다. 색의 선택과 정서적 언어는 혼합되거나 변화하며 말로 설명하기 어려운 감정의 성찰을 도왔습니다. 이 응답은 해당 전시 안에서의 근거이며, 색과 감정의 보편적 대응 관계나 모든 관객의 반응을 예측하는 결과는 아닙니다.")}</p>
+          <p class="research-record__citation"><cite>The Meta Kibun Project: Exploring Interactivity, Audience, and Affective Experience in Digital Interactive Art Exhibitions</cite><br />Minnie Park / Bachelor of Media and Communication (Honours) / 2025</p>
+          ${actions([
+            { label: tr("View the project", "프로젝트 보기"), path: "works/meta-kibun/" },
+            { label: tr("Read the Honours Exegesis ↓", "Honours 논문 읽기 ↓"), path: site.downloads.exegesis, download: true }
+          ])}
+        </div>
       </section>
       ${renderFooter()}
     `;
@@ -696,7 +739,9 @@
     app.innerHTML = `
       <h1 class="sr-only" id="top">${tr("Visual Index", "비주얼 인덱스")}</h1>
       <section class="visual-index" aria-label="${tr("Visual index gallery", "비주얼 인덱스 갤러리")}">
-        ${visualIndexItems.map((item) => `
+        ${visualIndexGroups.map((group) => `
+        <div class="visual-index__group" data-index-project="${group.key}" role="group" aria-label="${group.title}, ${group.year}">
+        ${group.items.map((item) => `
           <button class="visual-index__item" type="button"
             data-index="${item.index}"
             data-title="${item.title}"
@@ -706,6 +751,8 @@
             aria-label="${item.title}, ${item.year}, ${tr(item.context, item.contextKo || contextKo[item.context] || item.context)}">
             ${indexedMediaMarkup(item)}
           </button>
+        `).join("")}
+        </div>
         `).join("")}
       </section>
 
@@ -957,7 +1004,7 @@
   else if (page === "cv") renderCv();
 
   const interactionScript = document.createElement("script");
-  interactionScript.src = href("site-interaction.js?v=20260905-rose-cursor-23");
+  interactionScript.src = href("site-interaction.js?v=20260908-research-51");
   interactionScript.async = true;
   document.body.appendChild(interactionScript);
 })();

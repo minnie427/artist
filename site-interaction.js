@@ -85,7 +85,7 @@
     )) return "dark";
 
     if (element.closest(
-      ".work-card figure, .project-hero__media, .project-gallery figure, .artist-hero figure, .research-feature, .visual-index__item, .index-viewer"
+      ".work-card figure, .project-hero__media, .project-gallery figure, .artist-hero figure, .research-feature img, .research-study figure img, .visual-index__item, .index-viewer"
     )) return "pink";
 
     return "";

@@ -110,8 +110,8 @@ window.MP_SITE = {
           date: "September",
           dateKo: "9월",
           title: "The Meta Kibun Project",
-          type: "Honours research exhibition / Two-day presentation",
-          typeKo: "Honours 리서치 전시 / 2일간의 발표",
+          type: "Exhibition / Practice-based Honours research",
+          typeKo: "전시 / 창작 실천 기반 Honours 리서치",
           context: "RMIT University, Melbourne",
           contextKo: "RMIT University, Melbourne",
           project: "meta-kibun"
@@ -290,30 +290,31 @@ window.MP_SITE = {
       lead: "What becomes of the parts of ourselves we repeatedly try to remove?",
       leadKo: "우리 자신에게서 반복해서 지우려 했던 부분은 무엇이 되는가?",
       metadata: [
-        "2026 / Interactive audio-visual installation",
+        "15–18 August 2026 / Solo exhibition / Seoul Fringe Festival",
         "Real roses, sculptural skeleton, touch, sound, light, real-time moving image, camera interaction and participatory web interface",
-        "Seoul Fringe Festival, 2026 / Forthcoming: Melbourne Fringe Festival, 2026"
+        "Mijin Floor, Yeonnam-dong, Mapo-gu, Seoul",
+        "Forthcoming: Melbourne Fringe Festival, 2026"
       ],
       metadataKo: [
-        "2026 / 인터랙티브 오디오비주얼 설치",
+        "2026년 8월 15–18일 / 개인전 / 서울프린지페스티벌",
         "생장미, 조형 해골, 터치, 사운드, 빛, 실시간 무빙이미지, 카메라 인터랙션과 참여형 웹 인터페이스",
-        "서울프린지페스티벌, 2026 / 멜버른 프린지 페스티벌, 2026 예정"
+        "미진플로어, 서울 마포구 연남동",
+        "2026년 멜버른 프린지 페스티벌 예정"
       ],
-      image: "assets/rose-halftone.png",
-      imageAlt: "Halftone rose used as a temporary image for Meta Rose: The Funeral",
-      placeholder: "Temporary image — replace with f01",
+      image: "media/funeral/img-8821-340c5ad7.webp",
+      imageAlt: "Roses, a skeletal form and projected moving image in Meta Rose: The Funeral",
       gallery: [],
-      card: "A four-part participatory funeral for the selves we suppress, moving through Naming, Intervention, Witness and Record.",
-      cardKo: "억눌러 온 자아를 위한 참여형 장례식으로, 명명·개입·목격·기록의 네 작품으로 구성됩니다.",
+      card: "A participatory funeral for the selves we suppress, comprising Naming, Intervention, Witness and Record.",
+      cardKo: "억눌러 온 자아를 위한 참여형 장례식으로, 명명·개입·목격·기록의 네 부분으로 구성됩니다.",
       paragraphs: [
-        "Meta Rose: The Funeral expands the Meta Rose world into a sequence of four works: Naming, Intervention, Witness and Record. Through living roses set into a skeletal form, touch-responsive sound and light, moving image, camera-based interaction and a connected phone hub, the installation considers the selves we suppress in pursuit of a more acceptable image.",
-        "Visitors do not arrive at a single emotional conclusion. Touch, duration, colour and the route taken through the works accumulate as a temporary digital rose—a specimen of one encounter rather than a fixed portrait of its participant. Life and death, care and damage, bloom and decay remain visible at once.",
-        "Drawing on the visual language of vanitas, the work turns still-life symbols into responsive bodies. A living rose carries the time of touch; a skeleton reaches back; images deepen, fracture and return. The funeral becomes a space for witnessing contradiction and finding a new name for what remains."
+        "Meta Rose: The Funeral considers the parts of the self that are suppressed in pursuit of an acceptable image. Its four parts—Naming, Intervention, Witness and Record—bring living roses and a skeletal form into an installation of touch-responsive sound, light and moving image, camera-based interaction and a connected phone interface.",
+        "Participants shape the installation through touch, duration and gesture. Selected images and written responses can be retained as records of an encounter. These records document participation without claiming to provide a complete account of a person’s feelings.",
+        "Living roses and skeletal imagery place vitality and mortality within the same visual field. Care and damage, beauty and discomfort are held together, continuing Meta Rose’s inquiry into emotional ambivalence."
       ],
       paragraphsKo: [
-        "Meta Rose: The Funeral은 Meta Rose의 세계를 명명·개입·목격·기록의 네 작품으로 확장합니다. 해골 구조에 꽂힌 생장미, 터치 반응형 사운드와 빛, 무빙이미지, 카메라 인터랙션과 연결된 폰 허브를 통해 더 받아들여질 만한 모습이 되기 위해 억눌러 온 자아를 바라봅니다.",
-        "관객은 하나의 감정적 결론에 도달하지 않습니다. 터치, 지속시간, 색과 작품을 통과한 경로는 일시적인 디지털 장미로 축적됩니다. 그것은 참여자의 고정된 초상이 아니라 한 번의 만남이 남긴 표본입니다. 삶과 죽음, 돌봄과 훼손, 생장과 소멸은 동시에 존재합니다.",
-        "바니타스의 시각 언어에서 출발한 이 작업은 정물의 상징을 반응하는 신체로 전환합니다. 살아 있는 장미는 터치의 시간을 품고, 해골은 관객의 움직임에 응답하며, 이미지는 깊어지고 부서졌다가 돌아옵니다. 장례식은 모순을 목격하고 남겨진 것에 새로운 이름을 붙이는 공간이 됩니다."
+        "Meta Rose: The Funeral은 받아들여질 만한 모습을 갖추기 위해 억눌러 온 자아의 여러 면을 바라봅니다. 명명·개입·목격·기록의 네 부분으로 구성된 설치는 생장미와 해골 형상, 터치에 반응하는 사운드·빛·무빙이미지, 카메라 인터랙션과 연결된 폰 인터페이스를 결합합니다.",
+        "참여자는 터치, 지속시간과 제스처를 통해 설치의 반응을 구성합니다. 선택한 이미지와 작성한 응답은 한 번의 만남을 기록하는 자료로 남길 수 있습니다. 이 기록은 참여의 과정을 담되, 한 사람의 감정을 완전하게 설명한다고 전제하지 않습니다.",
+        "생장미와 해골 이미지는 생명력과 죽음을 하나의 시각적 장에 놓습니다. 돌봄과 훼손, 아름다움과 불편함을 함께 드러내며 감정의 양가성에 관한 Meta Rose의 탐구를 이어갑니다."
       ],
       chapters: [
         { number: "01", title: "Naming", korean: "명명", text: "Holding the skeleton’s hand, visitors touch living roses. Each flower releases a distinct layer of sound, light and image; duration and combinations deepen the response. A chosen balance can be recorded and later given a name.", textKo: "관객은 해골의 손을 잡고 생장미를 터치합니다. 각 꽃은 서로 다른 사운드, 빛과 이미지 층위를 불러오며, 터치의 지속시간과 조합에 따라 반응이 깊어집니다. 선택한 균형은 기록한 뒤 이름을 붙일 수 있습니다." },
@@ -321,7 +322,7 @@ window.MP_SITE = {
         { number: "03", title: "Witness", korean: "목격", text: "A rose first appears blurred and distorted. Three acts of proximity slow the passing image, allowing its other face to emerge within a world that continues to move.", textKo: "장미는 처음에 흐리고 왜곡된 모습으로 나타납니다. 세 번의 가까워지는 행위가 흘러가는 이미지를 늦추고, 계속 움직이는 세계 안에서 장미의 다른 얼굴이 드러나게 합니다." },
         { number: "04", title: "Record", korean: "기록", text: "A silent, looping film returns attention to the making: hands, failed tests, cuts, connections and repeated labour that disappear behind the completed surface.", textKo: "소리 없이 반복되는 영상은 완성된 표면 뒤로 사라지는 제작 과정으로 시선을 되돌립니다. 손, 실패한 테스트, 상처, 연결과 반복된 노동이 기록으로 남습니다." }
       ],
-      korean: "억눌러 온 자아를 위한 참여형 장례식으로, 명명·개입·목격·기록의 네 작품을 통해 삶과 죽음, 돌봄과 훼손, 생장과 소멸이 동시에 존재하는 감정의 상태를 마주하게 합니다."
+      korean: "억눌러 온 자아를 위한 참여형 장례식으로, 명명·개입·목격·기록을 통해 삶과 죽음, 돌봄과 훼손, 생장과 소멸이 동시에 존재하는 감정의 상태를 마주하게 합니다."
     },
 
     "shared-resonance": {
@@ -334,8 +335,8 @@ window.MP_SITE = {
       categoryKo: "집단적 인터랙티브 설치",
       subtitle: "A circuit completed between bodies.",
       subtitleKo: "신체와 신체 사이에서 완성되는 회로.",
-      lead: "How can a feeling move between bodies without becoming the same feeling?",
-      leadKo: "감정은 서로 같은 감정이 되지 않으면서 어떻게 신체 사이를 이동할 수 있는가?",
+      lead: "An installation activated through connection between two or more participants.",
+      leadKo: "두 명 이상의 참여자가 서로 연결될 때 활성화되는 설치입니다.",
       metadata: [
         "2026 / Interactive audio-visual installation",
         "Real roses, water, conductive touch, sound, light and real-time moving image",
@@ -353,8 +354,8 @@ window.MP_SITE = {
         { src: "images/tr2.png", alt: "A real-time visual state from Shared Resonance" },
         { src: "images/touching resonance.png", alt: "Conductive floor interface and roses" }
       ],
-      card: "A collective installation in which connection between bodies activates new relations across roses, sound, image and light.",
-      cardKo: "신체와 신체의 연결이 장미, 사운드, 이미지와 빛 사이의 새로운 관계를 활성화하는 집단적 설치입니다.",
+      card: "An interactive installation in which participants complete a circuit through living roses and hand-to-hand contact, collectively activating sound, moving image and light.",
+      cardKo: "참여자들이 생장미와 손의 접촉을 통해 회로를 완성하고 사운드, 무빙이미지와 빛을 함께 활성화하는 인터랙티브 설치입니다.",
       paragraphs: [
         "The Meta Rose: Shared Resonance asks what becomes possible when an artwork cannot be completed alone. Suspended real roses operate as haptic interfaces within an open circuit. When two or more participants connect through water, hand-to-hand contact and the roses, they collectively activate sound, moving image and light.",
         "The work shifts attention from individual feeling to relation: how affect circulates, intensifies or changes when shared. Each encounter produces a temporary composition that belongs to no single participant. Mixed and ambivalent states remain present through simultaneous signals rather than resolving into one clear emotional label.",
@@ -401,13 +402,13 @@ window.MP_SITE = {
       cardKo: "장미, 물, 색과 참여자가 구성한 언어를 통해 감정이 층위적이며 문화적으로 형성되는 경험임을 살펴본 리서치 기반 설치입니다.",
       paragraphs: [
         "The Meta Kibun Project extends Meta Rose through kibun (기분), a Korean term encompassing mood, feeling and atmosphere. Rather than choosing from a fixed list of emotions, participants begin by attending to how they feel that day.",
-        "Participants compose a colour term using one of the project’s Korean emotive suffixes—or invent one in a language of their choice—before entering a tactile installation of living roses, water, sound and three-screen moving image. Touching the roses activates sixteen layered audio-visual responses, while interaction with water alters colour and image.",
+        "Participants compose a colour term using one of the project’s Korean emotive suffixes, or invent a suffix in a language of their choice. They then enter an installation of living roses, water, sound and three-screen moving image. Different roses activate responses drawn from sixteen layered audio-visual effects; touching the water changes colour and image.",
         "Developed as Park’s 2025 creative practice-based Honours research at RMIT University, the study conducted fifteen semi-structured, one-to-one interviews and collected sixteen survey responses across a two-day exhibition. Within this exhibition, participants commonly described touch as deepening bodily and personal engagement, while colour choice and emotive language prompted reflection on feelings that were layered, shifting and difficult to articulate.",
         "The research does not establish universal correspondences between colour and emotion. It treats each account as situated evidence, meaningful within the conditions of an encounter but resistant to generalisation."
       ],
       paragraphsKo: [
         "The Meta Kibun Project는 기분, 감정 상태와 분위기를 포괄하는 한국어 ‘기분’에서 출발해 Meta Rose를 확장합니다. 참여자는 정해진 감정 목록에서 하나를 고르는 대신 그날 자신이 어떻게 느끼는지 먼저 살펴봅니다.",
-        "참여자는 제시된 한국어 정서적 접미어를 선택하거나 원하는 언어로 직접 접미어를 만들어 색과 결합하고, 하나의 색채어를 구성합니다. 이후 생장미, 물, 사운드와 3면 무빙이미지로 이루어진 촉각적 설치에 들어갑니다. 장미를 터치하면 16개의 층위화된 오디오비주얼 반응이 활성화되고, 물과의 상호작용은 색과 이미지를 변화시킵니다.",
+        "참여자는 제시된 한국어 정서적 접미어를 선택하거나 원하는 언어로 직접 접미어를 만들어 색과 결합합니다. 이후 생장미, 물, 사운드와 3면 무빙이미지로 이루어진 설치에 들어갑니다. 서로 다른 장미의 터치는 16개의 오디오비주얼 효과로 구성된 시스템에서 각기 다른 반응을 불러오며, 물을 만지는 행위는 색과 이미지를 변화시킵니다.",
         "Park는 이 작업을 RMIT University에서 2025년 창작 실천 기반 Honours 연구로 진행했습니다. 이틀간의 전시에서 반구조화 일대일 인터뷰 15건을 진행하고 설문 응답 16건을 수집했습니다. 참여자들은 터치가 신체적이고 개인적인 몰입을 깊게 했으며, 색의 선택과 정서적 언어가 층위가 있고 변화하며 말로 규정하기 어려운 감정을 성찰하게 했다고 공통적으로 서술했습니다.",
         "이 연구는 색과 감정 사이의 보편적 대응 관계를 확립하지 않습니다. 각 응답은 만남의 조건 안에서 의미를 갖지만 일반화할 수 없는 상황적 근거로 다뤄집니다."
       ],
@@ -476,8 +477,8 @@ window.MP_SITE = {
       categoryKo: "오디오 반응형 비주얼 시스템",
       subtitle: "A continuous visual environment composed for listening.",
       subtitleKo: "듣는 시간을 위해 구성한 연속적인 비주얼 환경.",
-      lead: "How can moving image accompany an album-length encounter without overtaking the act of listening?",
-      leadKo: "무빙이미지는 듣는 행위를 압도하지 않으면서 앨범 전체의 시간을 어떻게 함께할 수 있는가?",
+      lead: "A 30-minute audio-reactive work commissioned for an album listening session.",
+      leadKo: "앨범 청음회를 위해 제작한 30분 길이의 오디오 반응형 작업입니다.",
       metadata: [
         "2026 / Audio-reactive visual system",
         "30-minute full-length event visual content",
@@ -518,8 +519,8 @@ window.MP_SITE = {
       categoryKo: "커미션 무빙이미지",
       subtitle: "Meta Rose in a runway-scale screen context.",
       subtitleKo: "런웨이 규모의 스크린으로 확장된 Meta Rose.",
-      lead: "An artist-led visual world translated for a public cultural stage.",
-      leadKo: "작가 중심의 비주얼 세계를 공공 문화 무대로 확장합니다.",
+      lead: "Moving-image sequences from Meta Rose, adapted for festival runway screens.",
+      leadKo: "Meta Rose의 무빙이미지 시퀀스를 페스티벌 런웨이 스크린에 맞게 구성했습니다.",
       metadata: [
         "March 2025 / Commissioned moving image",
         "Premium Runway screen content / Opening Night Runway and Glam Up Runway",
@@ -623,10 +624,10 @@ window.MP_SITE = {
       eyebrow: "Expanded presentation / 2025",
       category: "Group exhibition",
       categoryKo: "그룹전",
-      subtitle: "Meta Rose reconfigured as a suspended spatial encounter.",
-      subtitleKo: "공중에 매달린 공간적 만남으로 재구성된 Meta Rose.",
-      lead: "A new installation arrangement for an expanded architectural setting.",
-      leadKo: "확장된 건축적 환경을 위한 새로운 설치 구성입니다.",
+      subtitle: "A suspended rose installation at Norla Dome.",
+      subtitleKo: "Norla Dome에서 선보인 공중에 매단 장미 설치.",
+      lead: "Meta Rose presented in the Bugskin Chapter 2 group exhibition.",
+      leadKo: "Bugskin Chapter 2 그룹전에서 선보인 Meta Rose입니다.",
       metadata: ["2025 / Group exhibition", "Norla Dome, Docklands, Melbourne"],
       metadataKo: ["2025 / 그룹전", "Norla Dome, Docklands, Melbourne"],
       image: "images/bugskin2.png",
@@ -634,8 +635,8 @@ window.MP_SITE = {
       gallery: [],
       card: "An expanded spatial presentation of Meta Rose using suspended living roses.",
       cardKo: "공중에 매단 생장미를 사용해 Meta Rose를 공간적으로 확장한 전시입니다.",
-      paragraphs: ["Presented at Bugskin Chapter 2, this iteration reorganised the material language of Meta Rose through suspended roses and a larger spatial field. The installation foregrounded the physical weight, fragility and movement of living material within an audio-visual environment."],
-      paragraphsKo: ["Bugskin Chapter 2에서 선보인 이 작업은 공중에 매단 장미와 더 넓은 공간을 통해 Meta Rose의 물질적 언어를 다시 구성했습니다. 오디오비주얼 환경 안에서 살아 있는 재료의 무게, 연약함과 움직임을 전면에 드러냈습니다."],
+      paragraphs: ["Presented at Norla Dome in Melbourne, the Bugskin Chapter 2 installation used suspended living roses within Meta Rose’s interactive audio-visual environment. This presentation adapted the rose interfaces and their arrangement to the group exhibition setting."],
+      paragraphsKo: ["멜버른 Norla Dome에서 열린 Bugskin Chapter 2에서는 공중에 매단 생장미를 Meta Rose의 인터랙티브 오디오비주얼 환경 안에 설치했습니다. 그룹전의 공간에 맞춰 장미 인터페이스와 그 배치를 구성한 전시입니다."],
       korean: "공중에 매단 장미를 통해 Meta Rose의 물질성과 공간적 경험을 확장한 그룹전 설치입니다."
     },
 
@@ -647,19 +648,19 @@ window.MP_SITE = {
       eyebrow: "Expanded presentation / 2025",
       category: "Solo exhibition",
       categoryKo: "개인전",
-      subtitle: "Meta Rose re-situated through architecture, light and material.",
-      subtitleKo: "건축, 빛과 재료를 통해 새로운 장소에 놓인 Meta Rose.",
-      lead: "A site-responsive expansion presented in Korea.",
-      leadKo: "한국에서 선보인 장소 반응형 확장입니다.",
-      metadata: ["2025 / Solo exhibition", "Mugonggan, Korea"],
-      metadataKo: ["2025 / 개인전", "Mugonggan, Korea"],
+      subtitle: "Living roses, glass blocks and tactile interaction.",
+      subtitleKo: "생장미, 유리 블록과 촉각적 인터랙션.",
+      lead: "A solo presentation of Meta Rose at Mugonggan in Seongnam.",
+      leadKo: "성남 무공간에서 선보인 Meta Rose 개인전입니다.",
+      metadata: ["5 July 2025 / Solo exhibition", "Mugonggan, Seongnam, Gyeonggi-do, South Korea"],
+      metadataKo: ["2025년 7월 5일 / 개인전", "무공간, 경기도 성남시"],
       image: "images/metarose0.png",
       imageAlt: "Pink visual from the Mugonggan presentation of Meta Rose",
       gallery: [],
-      card: "A site-responsive expansion of Meta Rose in Korea.",
-      cardKo: "한국의 새로운 공간 조건에 반응해 Meta Rose를 확장한 전시입니다.",
-      paragraphs: ["At Mugonggan, Meta Rose was adapted to a new architectural context. Pink glass blocks, rose imagery and audio-visual material shifted the work’s scale and spatial rhythm while preserving its tactile and affective language."],
-      paragraphsKo: ["무공간에서 Meta Rose는 새로운 건축적·공간적 맥락에 맞게 변화했습니다. 핑크 유리 블록, 장미 이미지와 오디오비주얼 재료는 촉각적이고 정서적인 언어를 유지하면서 작품의 규모와 공간적 리듬을 바꾸었습니다."],
+      card: "A solo exhibition in Seongnam, arranging living rose interfaces on glass blocks within an audio-visual installation.",
+      cardKo: "유리 블록 위에 생장미 인터페이스를 배치한 오디오비주얼 설치로, 성남에서 선보인 개인전입니다.",
+      paragraphs: ["At Mugonggan, living rose interfaces were arranged on glass blocks within an installation of sound and moving image. The presentation brought Meta Rose’s pink visual language and touch-responsive system into the Seongnam exhibition space, with a material arrangement distinct from the suspended rose installations."],
+      paragraphsKo: ["무공간에서는 사운드와 무빙이미지로 이루어진 설치 안에 유리 블록과 생장미 인터페이스를 배치했습니다. Meta Rose의 핑크색 비주얼 언어와 터치 반응형 시스템을 성남의 전시 공간에 구성했으며, 공중에 장미를 매단 설치들과는 다른 재료의 배치를 선보였습니다."],
       korean: "핑크 유리 블록과 장미 비주얼, 오디오비주얼 재료를 새로운 공간 조건에 맞춰 재구성한 한국 전시입니다."
     },
 
@@ -748,17 +749,17 @@ window.MP_SITE = {
       categoryKo: "인터랙티브 미디어 연구",
       subtitle: "Identity held between multiple possible images.",
       subtitleKo: "여러 가능성의 이미지 사이에 놓인 정체성.",
-      lead: "An early study in responsive portraiture and unstable identity.",
-      leadKo: "반응형 초상과 불안정한 정체성에 관한 초기 연구입니다.",
-      metadata: ["2023 / Interactive media study"],
-      metadataKo: ["2023 / 인터랙티브 미디어 연구"],
+      lead: "AR face filters and interactive facial forms.",
+      leadKo: "AR 얼굴 필터와 인터랙티브 얼굴 형상.",
+      metadata: ["2023 / Interactive media study", "AR face filters, TouchDesigner and 3D facial forms"],
+      metadataKo: ["2023 / 인터랙티브 미디어 연구", "AR 얼굴 필터, TouchDesigner와 3D 얼굴 형상"],
       image: "images/listening-session.png",
       imageAlt: "Point-cloud portrait from an earlier digital study",
       gallery: [],
       card: "An earlier investigation of responsive portraiture and multiple states of identity.",
       cardKo: "반응하는 초상과 정체성의 여러 상태를 탐구한 초기 작업입니다.",
-      paragraphs: ["Quantum Faces treats the portrait as a field of changing possibilities. The work examines how a digital face can fragment, reorganise and resist a single stable reading."],
-      paragraphsKo: ["Quantum Faces는 초상을 변화하는 가능성의 장으로 다룹니다. 디지털 얼굴이 어떻게 분해되고 다시 구성되며 하나의 안정된 해석에 저항할 수 있는지 살펴봅니다."],
+      paragraphs: ["Quantum Faces brings together AR face filters, digital sculptural forms and interactive visuals to explore self-image and emotional influence. The work asks how one person’s expression may affect another’s experience."],
+      paragraphsKo: ["Quantum Faces는 AR 얼굴 필터, 디지털 조형과 인터랙티브 비주얼을 결합해 자기 이미지와 감정적 영향을 탐구합니다. 한 사람의 표현이 다른 사람의 경험에 어떤 영향을 미칠 수 있는지 묻습니다."],
       korean: "디지털 초상을 하나의 고정된 정체성이 아니라 변화하는 가능성의 장으로 다룬 초기 연구입니다."
     },
 
@@ -781,8 +782,8 @@ window.MP_SITE = {
       gallery: [],
       card: "An audio-visual experiment translating voice into colour and movement.",
       cardKo: "목소리를 색과 움직임으로 번역한 오디오비주얼 실험입니다.",
-      paragraphs: ["What Colour Is Your Voice? explores how sound might be experienced as a shifting visual atmosphere rather than a fixed representation."],
-      paragraphsKo: ["What Colour Is Your Voice?는 사운드를 고정된 재현이 아니라 변화하는 비주얼 분위기로 경험할 가능성을 탐구합니다."],
+      paragraphs: ["What Colour Is Your Voice? uses vocal input to change colour and moving image in real time. Speaking or singing activates a TouchDesigner-based visual system, bringing voice, emotion and self-expression into an interactive audio-visual work."],
+      paragraphsKo: ["What Colour Is Your Voice?는 목소리를 입력으로 받아 색과 무빙이미지를 실시간으로 변화시킵니다. 말하거나 노래하는 행위가 TouchDesigner 기반의 비주얼 시스템을 활성화하며, 목소리와 감정, 자기표현을 인터랙티브 오디오비주얼 작업으로 연결합니다."],
       korean: "목소리를 고정된 도형이 아니라 변화하는 색과 움직임의 분위기로 번역한 초기 작업입니다."
     },
 
@@ -792,22 +793,22 @@ window.MP_SITE = {
       year: "2023",
       route: "works/memi/",
       eyebrow: "Earlier work / 2023",
-      category: "Digital media study",
-      categoryKo: "디지털 미디어 연구",
-      subtitle: "Memory reorganised through digital image.",
-      subtitleKo: "디지털 이미지를 통해 다시 구성되는 기억.",
-      lead: "An early work exploring memory, image and repetition.",
-      leadKo: "기억, 이미지와 반복을 탐구한 초기 작업입니다.",
-      metadata: ["2023 / Digital media study"],
-      metadataKo: ["2023 / 디지털 미디어 연구"],
+      category: "Interactive web-based work",
+      categoryKo: "웹 기반 인터랙티브 작업",
+      subtitle: "Music, Emotion, Memory, Identity.",
+      subtitleKo: "음악, 감정, 기억, 정체성.",
+      lead: "An interactive web environment exploring music, emotion, memory and identity.",
+      leadKo: "음악, 감정, 기억과 정체성을 탐구하는 인터랙티브 웹 환경입니다.",
+      metadata: ["2023 / Interactive web-based work", "HTML, CSS, JavaScript and Three.js"],
+      metadataKo: ["2023 / 웹 기반 인터랙티브 작업", "HTML, CSS, JavaScript와 Three.js"],
       image: "images/showreel14.png",
       imageAlt: "Digital visual study from MEMI",
       gallery: [],
-      card: "An early digital study of memory and repetition.",
-      cardKo: "기억과 반복에 관한 초기 디지털 연구입니다.",
-      paragraphs: ["MEMI approaches memory as an unstable image—repeated, altered and re-formed through digital processes."],
-      paragraphsKo: ["MEMI는 기억을 디지털 과정을 통해 반복되고 변형되며 다시 만들어지는 불안정한 이미지로 접근합니다."],
-      korean: "기억을 반복되고 변형되는 디지털 이미지로 탐구한 초기 작업입니다."
+      card: "A web-based interactive project connecting music, emotion, memory and identity.",
+      cardKo: "음악, 감정, 기억과 정체성을 연결하는 웹 기반 인터랙티브 프로젝트입니다.",
+      paragraphs: ["MEMI brings Music, Emotion, Memory and Identity into a web-based interactive environment. Built with Three.js, the project forms part of Park’s early exploration of emotional experience through digital space."],
+      paragraphsKo: ["MEMI는 Music, Emotion, Memory, Identity를 웹 기반 인터랙티브 환경에 연결합니다. Three.js로 구현한 이 작업은 디지털 공간을 통한 정서적 경험에 관한 Park의 초기 탐구입니다."],
+      korean: "음악, 감정, 기억과 정체성을 연결하는 웹 기반 인터랙티브 작업입니다."
     }
   },
 

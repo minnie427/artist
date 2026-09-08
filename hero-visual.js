@@ -44,8 +44,8 @@ const snippetPairs = [
     ko: "Meta Rose 안에서 핑크 장미는 살아 있는 물질, 인터페이스, 이미지, 신체, 기념물과 데이터 흔적 사이를 이동한다."
   },
   {
-    en: "Pink operates as emotional material: an atmosphere, a frequency and a force experienced through the body.",
-    ko: "핑크는 표면의 색이 아니라 신체로 경험되는 분위기이자 주파수이며 감정적 힘으로 작동한다."
+    en: "For Park, pink is emotional material: colour experienced as atmosphere, frequency and intensity.",
+    ko: "Park에게 핑크는 감정적 재료다. 색은 분위기와 주파수, 강도로 경험된다."
   },
   {
     en: "Ambivalence unfolds as attraction and resistance, tenderness and friction, felt at once.",

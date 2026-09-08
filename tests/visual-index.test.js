@@ -34,6 +34,14 @@ for (const language of ["en", "ko"]) {
   const projectOrder = [...new Set(projects)];
   assert.equal(projectOrder.length, new Set(site.visualIndex.map((item) => item.project)).size);
   assert.equal(projectOrder[0], "funeral");
+  const groups = [...html.matchAll(/<div class="visual-index__group" data-index-project="([^"]+)"[^>]*>([\s\S]*?)<\/div>/g)];
+  assert.deepEqual(groups.map((group) => group[1]), projectOrder);
+  for (const [, project, contents] of groups) {
+    const items = [...contents.matchAll(/data-project="([^"]+)"/g)].map((match) => match[1]);
+    assert.equal(items.length, site.visualIndex.filter((item) => item.project === project).length);
+    assert(items.every((key) => key === project), `Mixed project columns: ${project}`);
+    assert(!/<h[1-6]\b|<header\b/.test(contents), "Project wrappers must have no visible headings");
+  }
   const indices = [...html.matchAll(/data-index="(\d+)"/g)].map((match) => Number(match[1]));
   assert.deepEqual(indices, Array.from({ length: site.visualIndex.length }, (_, index) => index));
   const actualSources = [...html.matchAll(/class="visual-index__item"[\s\S]*?<(?:img|video) src="\.\.\/([^"]+)"/g)].map((match) => match[1]);
@@ -65,8 +73,9 @@ assert(sample.indexOf("older.webp") < sample.indexOf("undated.webp"));
 assert(sample.indexOf("undated.webp") < sample.indexOf("old-project-new-copy.webp"));
 
 const css = read("style.css");
-assert.match(css, /\.visual-index\s*\{[^}]*column-count:\s*3/);
-assert.match(css.slice(css.indexOf("@media (max-width: 1080px)")), /\.visual-index\s*\{\s*column-count:\s*2/);
-assert.match(css.slice(css.indexOf("@media (max-width: 640px)")), /\.visual-index\s*\{\s*column-count:\s*1/);
+assert(!/\.visual-index\s*\{[^}]*column-count:/.test(css), "The whole gallery must not be balanced across columns");
+assert.match(css, /\.visual-index__group\s*\{[^}]*display:\s*flow-root;[^}]*column-count:\s*3/);
+assert.match(css.slice(css.indexOf("@media (max-width: 1080px)")), /\.visual-index__group\s*\{\s*column-count:\s*2/);
+assert.match(css.slice(css.indexOf("@media (max-width: 640px)")), /\.visual-index__group\s*\{\s*column-count:\s*1/);
 assert.match(css, /\.contact-links \.contact-instagram:focus-visible\s*\{\s*background:\s*var\(--ink\);\s*color:\s*var\(--pink\)/);
-console.log("PASS: one continuous gallery without project headings, preserved image order and viewer indices, bilingual output, 3/2/1 columns and Instagram-only hover/focus styles.");
+console.log("PASS: title-free project blocks finish before the next project; preserved chronology and viewer indices; bilingual output; per-project 3/2/1 columns; Contact styles intact.");
