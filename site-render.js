@@ -13,6 +13,8 @@
   } catch (_) {
     language = "en";
   }
+  // A crawlable language URL takes precedence over a device preference.
+  if (["en", "ko"].includes(document.body.dataset.locale)) language = document.body.dataset.locale;
   document.documentElement.lang = language;
 
   const tr = (english, korean) => language === "ko" ? korean : english;
@@ -52,11 +54,15 @@
     } catch (_) {
       // Continue with the current browser's normal reload behavior.
     }
-    window.location.reload();
+    if (document.body.dataset.locale) {
+      const route = document.body.dataset.route || "";
+      window.location.assign(`${root}${nextLanguage === "ko" ? "ko/" : ""}${route}${window.location.protocol === "file:" ? "index.html" : ""}`);
+    } else window.location.reload();
   }
 
   const isFilePreview = window.location.protocol === "file:";
   const href = (path = "") => {
+    if (document.body.dataset.locale === "ko" && (path === "" || path.endsWith("/"))) path = `ko/${path}`;
     const url = `${root}${path}`;
     if (!isFilePreview) return url;
     if (path === "") return `${root}index.html`;
@@ -78,6 +84,7 @@
   const activeSection = page === "project" || page === "works" ? "works" : page === "practice" ? "artist" : page;
 
   function setSeo(title, description) {
+    if (document.body.dataset.seoStatic === "true") return;
     document.title = title;
     let tag = document.querySelector('meta[name="description"]');
     if (!tag) {
@@ -98,7 +105,8 @@
   }
 
   function renderChrome() {
-    const header = document.createElement("header");
+    const existingHeader = document.querySelector("header.global-header");
+    const header = existingHeader || document.createElement("header");
     header.className = "global-header";
     header.innerHTML = `
       <nav class="global-nav" aria-label="${tr("Primary navigation", "주요 메뉴")}">
@@ -111,7 +119,7 @@
         </div>
       </nav>
     `;
-    document.body.insertBefore(header, app);
+    if (!existingHeader) document.body.insertBefore(header, app);
 
     if (page === "home") {
       const languageButton = document.createElement("button");

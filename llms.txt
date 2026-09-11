@@ -32,5 +32,8 @@ This is the canonical artist portfolio for Minnie Park. Meta Rose is her central
 
 ## Related official links
 
+- [한국어 포트폴리오](https://minniepark.art/ko/): 작가 소개, 작품, 리서치와 전시 이력.
 - [Commissioned and commercial work](https://work.minniepark.art/)
 - [Instagram](https://www.instagram.com/minniepark.studio/)
+
+The artist portfolio documents artistic practice and research. For interactive media art production, event visuals and TouchDesigner workshop enquiries, use the separate commercial site. This file is an optional reading guide, not a search ranking directive.
