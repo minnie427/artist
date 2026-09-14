@@ -6,6 +6,7 @@ After changing `site-content.js`, `site-media.js`, `site-render.js`, or importin
 
 ```sh
 node scripts/build-search-pages.js
+node tests/search-schema.test.js
 node tests/content-review.test.js
 node tests/visual-index.test.js
 node tests/visual-index-layout.test.js
@@ -19,3 +20,5 @@ Canonical artist host remains `https://minniepark.art/`, matching the existing C
 Search Console, Naver Search Advisor and Bing Webmaster verification require owner access. No verification tokens or analytics identifiers have been invented. Neither a sitemap nor crawler access guarantees indexing or ranking. `llms.txt` is an optional reading guide, not a supported Google ranking feature.
 
 Existing crawler permissions are preserved. OAI-SearchBot concerns ChatGPT search, whereas GPTBot concerns training; these are different decisions. Google-Extended also covers grounding in Gemini Apps, so do not change that policy without reviewing its scope with the owner.
+
+ProfilePage data must identify a Person or Organization with a name on the same page. An ID pointing to a different page is not enough. `scripts/search-schema.js` maintains complete identity data, a single localized page entity, and stable artwork identity. Optional profile creation/modification dates are omitted because no authoritative edit timestamp is recorded; do not substitute the build time or an invented midnight value. If real timestamps are added later, use full ISO 8601 DateTime with timezone. Run Google's Rich Results Test on public Artist and CV URLs in both languages after deployment, then request validation in Search Console. The local schema test checks this site's known schema types; it is not Google's validator and does not promise rankings or complete Search Console validation.

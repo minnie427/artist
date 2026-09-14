@@ -2,11 +2,20 @@
 const fs = require("node:fs");
 const path = require("node:path");
 const vm = require("node:vm");
+const { parseSchemas, structuredData } = require("./search-schema.js");
 const root = path.resolve(__dirname, "..");
 const origin = "https://minniepark.art/";
 const stamp = "20260911-seo-54";
 const esc = value => String(value).replaceAll("&", "&amp;").replaceAll('"', "&quot;").replaceAll("<", "&lt;");
 const read = name => fs.readFileSync(path.join(root, name), "utf8");
+// The public homepage is the identity source; reuse it without inventing facts.
+const homeIdentity = parseSchemas(read("index.html"));
+// On subsequent builds the shared identity is in the generated graph.
+const sharedGraph = read("index.html").match(/<script type="application\/ld\+json" data-search-page>([\s\S]*?)<\/script>/);
+if (sharedGraph) homeIdentity.push(...(JSON.parse(sharedGraph[1])["@graph"] || []));
+const person = homeIdentity.find(entity => entity["@type"] === "Person");
+const website = homeIdentity.find(entity => entity["@type"] === "WebSite");
+if (!person || !website) throw new Error("Homepage Person and WebSite identity are required.");
 const routes = [...read("sitemap.xml").matchAll(/<loc>https:\/\/minniepark\.art\/([^<]*)<\/loc>/g)]
   .map(match => match[1]).filter(route => !route.startsWith("ko/"));
 const enDescriptions = {
@@ -81,11 +90,7 @@ function render(template, route, locale) {
       .replace('Each tap introduces another rose.</span>', '터치할 때마다 또 하나의 장미가 나타납니다.</span>');
   }
   html = html.replace(/((?:site-render|site-media|site-content)\.js)\?v=[^"\s]+/g, `$1?v=${stamp}`);
-  const entity = { "@context": "https://schema.org", "@type": "WebPage", "@id": `${canonical}#localized-page`, url: canonical,
-    name: title, description: summary, inLanguage: locale,
-    isPartOf: { "@id": `${origin}#website` }, about: { "@id": `${origin}#artist` } };
-  html = html.replace(/\s*<script type="application\/ld\+json" data-search-page>[\s\S]*?<\/script>/g, "")
-    .replace('</head>', `  <script type="application/ld+json" data-search-page>${JSON.stringify(entity).replaceAll("<", "\\u003c")}</script>\n</head>`);
+  html = structuredData(html, { canonical, title, description: summary, locale, person, website });
   const destination = path.join(root, locale === "ko" ? "ko" : "", route, "index.html");
   fs.mkdirSync(path.dirname(destination), { recursive: true });
   fs.writeFileSync(destination, html.replace(/[\t ]+$/gm, ""));
