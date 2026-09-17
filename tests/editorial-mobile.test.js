@@ -193,7 +193,7 @@ function cascade(node, width, extra = {}) {
   });
   return resolved;
 }
-const widths = [320, 375, 390, 640, 768, 880, 1024, 1100, 1101, 1440];
+const widths = [320, 375, 390, 640, 641, 768, 879, 880, 881, 1024, 1100, 1101, 1440, 1920];
 for (const width of widths) {
   for (const page of ["home", "artist", "works", "research", "contact", "editions", "project", "visual-index"]) {
     for (const opened of [false, true]) {
@@ -225,6 +225,31 @@ for (const width of widths) {
   assert.equal(cascade(element("div", "", artistHero), width)["min-height"], "0");
   const portrait = element("img", "", element("figure", "", artistHero));
   assert.equal(cascade(portrait, width).filter, "grayscale(1) contrast(1.05)", `${width}: Artist portrait retains the approved black-and-white treatment`);
+  // Cross-section alignment must be shared, not merely responsive in isolation.
+  for (const page of ["artist", "practice"]) {
+    const f = fixture(page);
+    const hero = element("section", "artist-hero", f.app);
+    const bio = element("section", "artist-bio content-section content-section--compact", f.app);
+    const statement = element("section", "artist-statement content-section content-section--compact", f.app);
+    const photo = element("figure", "", hero);
+    const grid = cascade(hero, width);
+    assert.equal(grid["grid-template-columns"], width <= 880 ? "1fr" : "minmax(0, .72fr) minmax(0, 1.28fr)", `${page}/${width}: one shared Artist breakpoint`);
+    assert.equal(grid["column-gap"], width <= 880 ? "25px" : "64px");
+    for (const node of [bio, statement]) {
+      const layout = cascade(node, width);
+      for (const property of ["width", "margin", "grid-template-columns", "column-gap"]) {
+        assert.equal(layout[property], grid[property], `${page}/${width}: photo and prose share ${property}`);
+      }
+    }
+    assert.equal(cascade(photo, width)["justify-self"], "start", `${page}/${width}: photo begins at the same column edge as prose`);
+    assert.equal(cascade(photo, width)["max-width"], "440px", `${page}/${width}: retain portrait size cap`);
+    assert.equal(cascade(photo, width).height, "auto", `${page}/${width}: no forced portrait height`);
+    const imageStyle = cascade(element("img", "", photo), width);
+    assert.equal(imageStyle.width, "100%");
+    assert.equal(imageStyle.height, "auto");
+    assert.equal(imageStyle.filter, "grayscale(1) contrast(1.05)");
+    assert.equal(cascade(element("img", "", photo), width)["object-fit"], "contain", `${page}/${width}: retain the uncropped portrait`);
+  }
   const history = element("article", "artist-history__entry", element("div", "", artist.app));
   assert.equal(cascade(history, width)["grid-template-columns"], width <= 640 ? "1fr" : width <= 1100 ? "84px minmax(0, 1fr)" : "95px minmax(0, 1.15fr) minmax(0, 1fr)", `${width}: history never retains excessive fixed column minimums`);
   const project = fixture("project"), detail = element("article", "project-detail", project.app);

@@ -6,6 +6,7 @@ const { parseSchemas, structuredData } = require("./search-schema.js");
 const root = path.resolve(__dirname, "..");
 const origin = "https://minniepark.art/";
 const stamp = "20260917-editorial-55";
+const editorialStyleStamp = "20260917-artist-57";
 const esc = value => String(value).replaceAll("&", "&amp;").replaceAll('"', "&quot;").replaceAll("<", "&lt;");
 const read = name => fs.readFileSync(path.join(root, name), "utf8");
 // The public homepage is the identity source; reuse it without inventing facts.
@@ -97,7 +98,7 @@ function render(template, route, locale) {
       .replace('Each tap introduces another rose.</span>', '터치할 때마다 또 하나의 장미가 나타납니다.</span>');
   }
   html = html.replace(/\s*<link\b[^>]*href="[^"]*editorial\.css[^"\s]*"[^>]*>/g, "")
-    .replace('</head>', `  <link rel="stylesheet" href="${relative}editorial.css?v=${stamp}" />\n</head>`);
+    .replace('</head>', `  <link rel="stylesheet" href="${relative}editorial.css?v=${editorialStyleStamp}" />\n</head>`);
   html = html.replace(/\s*<script\b[^>]*src="[^"]*(?:project-details|site-editorial|edition-render)\.js[^"\s]*"[^>]*><\/script>/g, "");
   if (!html.includes('site-media.js?')) html = html.replace(/(<script\b[^>]*src="[^"]*site-content\.js[^"\s]*"[^>]*><\/script>)/, `<script src="${relative}site-media.js?v=${stamp}"></script>\n  $1`);
   html = html.replace(/(<script\b[^>]*src="[^"]*site-render\.js[^"\s]*"[^>]*><\/script>)/,
