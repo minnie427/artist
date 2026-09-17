@@ -223,6 +223,8 @@ for (const width of widths) {
   const artist = fixture("artist"), artistHero = element("section", "artist-hero", artist.app);
   assert.equal(cascade(artistHero, width)["min-height"], "0", `${width}: no forced artist viewport height`);
   assert.equal(cascade(element("div", "", artistHero), width)["min-height"], "0");
+  const portrait = element("img", "", element("figure", "", artistHero));
+  assert.equal(cascade(portrait, width).filter, "grayscale(1) contrast(1.05)", `${width}: Artist portrait retains the approved black-and-white treatment`);
   const history = element("article", "artist-history__entry", element("div", "", artist.app));
   assert.equal(cascade(history, width)["grid-template-columns"], width <= 640 ? "1fr" : width <= 1100 ? "84px minmax(0, 1fr)" : "95px minmax(0, 1.15fr) minmax(0, 1fr)", `${width}: history never retains excessive fixed column minimums`);
   const project = fixture("project"), detail = element("article", "project-detail", project.app);
@@ -240,10 +242,14 @@ for (const width of widths) {
   assert.equal(cascade(square, width)["aspect-ratio"], "1");
   assert.equal(cascade(square, width)["object-fit"], "cover");
   assert.equal(cascade(square, width)["object-position"], "50% 50%");
+  assert.equal(cascade(square, width).filter, "none", `${width}: edition image retains its original colours`);
   assert.equal(cascade(card, width)["grid-template-columns"], width <= 880 ? "1fr" : "minmax(0, 1fr) minmax(0, 1fr)");
   const workImage = element("img", "", element("a", "editorial-work__media", project.app));
   assert.equal(cascade(workImage, width)["object-fit"], "contain");
+  assert.equal(cascade(workImage, width).filter, "none", `${width}: Works image retains its original colours`);
   const index = fixture("visual-index"), viewer = element("dialog", "index-viewer", index.app);
+  const indexImage = element("img", "", element("button", "visual-index__item", index.app));
+  assert.equal(cascade(indexImage, width).filter, "none", `${width}: Visual Index image retains its original colours`);
   const stage = element("div", "index-viewer__stage", viewer), image = element("figure", "", stage);
   const prev = element("button", "index-viewer__nav index-viewer__nav--prev", stage);
   assert.equal(cascade(prev, width).width, "44px");
