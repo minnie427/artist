@@ -9,7 +9,7 @@ for (const [,url] of fs.readFileSync(path.join(root,"sitemap.xml"),"utf8").match
   profiles += validateSearchSchema(html,url).profiles;
   count++;
 }
-assert.equal(count,42);
+assert.equal(count,46); // Two Editions routes, each available in English and Korean.
 assert.equal(profiles,4);
 const url = "https://example.com/profile/";
 const person = { "@type":"Person", "@id":"https://example.com/#person", name:"Test Person" };
@@ -22,4 +22,4 @@ assert.throws(()=>validateSearchSchema(html({...page,url:"https://example.com/ot
 assert.throws(()=>validateSearchSchema(html({...page,inLanguage:"ko"}),url), /language/);
 assert.doesNotThrow(()=>validateSearchSchema(html({...page,dateModified:"2026-09-06T12:00:00+09:00"}),url));
 assert.doesNotThrow(()=>validateSearchSchema(html({"@context":"https://schema.org","@graph":[{...page,mainEntity:{"@id":person["@id"]}},person]}),url));
-console.log("PASS: 42 artist pages, 4 ProfilePages, page-local identity, localized metadata and negative regression fixtures.");
+console.log("PASS: 46 artist pages, 4 ProfilePages, page-local identity, localized metadata and negative regression fixtures.");

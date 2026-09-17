@@ -56,7 +56,7 @@
     }
     if (document.body.dataset.locale) {
       const route = document.body.dataset.route || "";
-      window.location.assign(`${root}${nextLanguage === "ko" ? "ko/" : ""}${route}${window.location.protocol === "file:" ? "index.html" : ""}`);
+      window.location.assign(`${root}${nextLanguage === "ko" ? "ko/" : ""}${route}${window.location.protocol === "file:" ? "index.html" : ""}${window.location.hash}`);
     } else window.location.reload();
   }
 
@@ -81,7 +81,7 @@
       ? `${href(site.projects[project.parent].route)}#${key}`
       : href(project.route);
   };
-  const activeSection = page === "project" || page === "works" ? "works" : page === "practice" ? "artist" : page;
+  const activeSection = page === "project" || page === "works" ? "works" : page === "practice" ? "artist" : page === "edition" ? "editions" : page;
 
   function setSeo(title, description) {
     if (document.body.dataset.seoStatic === "true") return;
@@ -117,26 +117,35 @@
         <div class="global-nav__links" id="primaryLinks">
           ${site.nav.map((item) => navLink(item)).join("")}
         </div>
+        <button class="site-language-toggle" type="button" aria-label="${tr("View this site in Korean", "영문 사이트 보기")}">${tr("한국어", "English")}</button>
       </nav>
     `;
     if (!existingHeader) document.body.insertBefore(header, app);
 
-    if (page === "home") {
-      const languageButton = document.createElement("button");
-      languageButton.className = "home-language-toggle";
-      languageButton.type = "button";
-      languageButton.setAttribute("aria-label", tr("View this site in Korean", "영문 사이트 보기"));
-      languageButton.textContent = tr("한국어 ↗", "English ↗");
-      languageButton.addEventListener("click", switchLanguage);
-      document.body.insertBefore(languageButton, app);
-    }
+    header.querySelector(".site-language-toggle")?.addEventListener("click", switchLanguage);
 
     const toggle = header.querySelector(".global-nav__toggle");
-    toggle?.addEventListener("click", () => {
-      const open = document.body.classList.toggle("is-menu-open");
-      toggle.setAttribute("aria-expanded", String(open));
-      toggle.querySelector("span").textContent = open ? tr("Close", "닫기") : tr("Menu", "메뉴");
+    const setMenu = open => {
+      document.body.classList.toggle("is-menu-open", open);
+      app.inert = open;
+      toggle?.setAttribute("aria-expanded", String(open));
+      const label = toggle?.querySelector("span");
+      if (label) label.textContent = open ? tr("Close", "닫기") : tr("Menu", "메뉴");
+    };
+    toggle?.addEventListener("click", () => setMenu(toggle.getAttribute("aria-expanded") !== "true"));
+    header.addEventListener?.("click", event => { if (event.target.closest?.(".global-nav__links a")) setMenu(false); });
+    document.addEventListener?.("keydown", event => {
+      if (toggle?.getAttribute("aria-expanded") !== "true") return;
+      if (event.key === "Escape") {setMenu(false);toggle.focus();}
+      if (event.key === "Tab") {
+        const controls = [...header.querySelectorAll("a, button")].filter(node => node.getClientRects().length);
+        const first = controls[0], last = controls[controls.length - 1];
+        if (event.shiftKey && document.activeElement === first) {event.preventDefault();last.focus();}
+        else if (!event.shiftKey && document.activeElement === last) {event.preventDefault();first.focus();}
+      }
     });
+    document.addEventListener?.("click", event => {if (!header.contains(event.target)) setMenu(false);});
+    window.matchMedia?.("(min-width: 1101px)").addEventListener?.("change", event => {if (event.matches) setMenu(false);});
 
     const desktopHint = document.querySelector(".interaction-hint--desktop .interaction-hint__copy");
     const mobileHint = document.querySelector(".interaction-hint--mobile .interaction-hint__copy");
@@ -196,6 +205,10 @@
     return `<video src="${media(item.src)}"${poster} controls playsinline preload="metadata" aria-label="${item.alt}"></video>`;
   }
 
+  function editorialContext() {
+    return { site, details: window.MP_PROJECT_DETAILS, language, tr, href, media, imageMarkup, galleryMediaMarkup, renderFooter, renderProjectNav };
+  }
+
   function workCard(key, index, feature = false, imageOverride = null) {
     const project = site.projects[key];
     const displayImage = imageOverride || {
@@ -253,6 +266,10 @@
       "Works — Minnie Park",
       "Interactive installations, performances, moving-image works and selected commissions by Minnie Park, including the evolving Meta Rose body of work."
     );
+    if (window.MP_EDITORIAL && window.MP_PROJECT_DETAILS) {
+      app.innerHTML = window.MP_EDITORIAL.works(editorialContext());
+      return;
+    }
     app.innerHTML = `
       <section class="page-hero page-hero--works" id="top">
         <p class="eyebrow">${tr("Works / 2023—ongoing", "작품 / 2023—현재")}</p>
@@ -435,6 +452,14 @@
     }
 
     setSeo(`${project.title} — Minnie Park`, project.card);
+    if (window.MP_EDITORIAL && window.MP_PROJECT_DETAILS?.[projectKey]) {
+      app.innerHTML = window.MP_EDITORIAL.project(editorialContext(), projectKey);
+      const targetId = window.location.hash.slice(1);
+      if (window.MP_PROJECT_DETAILS[projectKey].sections.some(section => section.id === targetId)) {
+        requestAnimationFrame(() => document.getElementById(targetId)?.scrollIntoView());
+      }
+      return;
+    }
     const isPrimary = site.primaryWorksOrder.includes(projectKey);
     const gallery = project.gallery || [];
     const metadata = projectField(project, "metadata") || project.metadata;
@@ -633,6 +658,11 @@
         ${imageMarkup("media/mugonggan/img-5898-4ee3afc5.webp", tr("Pink roses with thorn-bearing stems and electrical contacts arranged on glass blocks", "유리 블록 위에 놓인 핑크 장미, 가시가 있는 줄기와 전기 접점"), true)}
         <figcaption>${tr("Roses, thorns and electrical contacts. Meta Rose: Mugonggan, 2025.", "장미, 가시와 전기 접점. Meta Rose: Mugonggan, 2025.")}</figcaption>
       </figure>
+
+      <section class="editorial-research-framework research-body content-section content-section--compact" id="meta-rose">
+        <div><p class="section-kicker">${tr("Meta Rose / Ongoing body of work", "Meta Rose / 연작")}</p><h2>${tr("Living roses, touch and emotional ambivalence.", "생장미, 터치와 감정의 양가성.")}</h2></div>
+        <div class="long-copy"><p>${tr("Meta Rose is Minnie Park’s central, long-term body of work. Begun in 2024, it treats the rose, pink and touch as a recurring artistic grammar. Each chapter begins with a new emotional question and recomposes that grammar as a distinct installation, with its own spatial arrangement, audio-visual system and conditions of participation.", "Meta Rose는 Minnie Park 작업의 중심을 이루는 장기 연작입니다. 2024년에 시작된 이 연작은 장미, 핑크와 터치를 반복되는 조형 언어로 다룹니다. 각 장은 새로운 감정적 질문에서 출발하며, 고유한 공간 구성, 오디오비주얼 시스템과 참여 조건을 지닌 서로 다른 설치로 이 언어를 다시 구성합니다.")}</p><p>${tr("Across the series, living roses move between interface, image, body, memorial and data trace. Opposing states—bloom and decay, tenderness and friction, life and death—remain in tension rather than resolving into a single emotional reading.", "연작에서 생장미는 인터페이스, 이미지, 신체, 기념물과 데이터 흔적 사이를 이동합니다. 개화와 소멸, 부드러움과 마찰, 삶과 죽음 같은 대립하는 상태는 하나의 감정적 해석으로 정리되지 않은 채 긴장 속에 함께 존재합니다.")}</p></div>
+      </section>
 
       <section class="research-body content-section content-section--compact">
         <div>
@@ -1020,9 +1050,17 @@
   else if (page === "visual-index") renderVisualIndex();
   else if (page === "contact") renderContact();
   else if (page === "cv") renderCv();
+  else if (page === "editions" && window.MP_EDITIONS) {
+    setSeo("Editions — Minnie Park", "Explore artwork acquisition across Minnie Park’s Meta Rose projects. Discuss software editions, installation requirements and presentation with the artist.");
+    app.innerHTML = window.MP_EDITIONS.renderIndex(editorialContext());
+  }
+  else if (page === "edition" && window.MP_EDITIONS) {
+    setSeo("RE:INTERVENTION — Minnie Park", "An interactive audio-visual software work developed within Meta Rose: The Funeral. Artwork acquisition, installation and conservation enquiries.");
+    app.innerHTML = window.MP_EDITIONS.renderWork(editorialContext());
+  }
 
   const interactionScript = document.createElement("script");
-  interactionScript.src = href("site-interaction.js?v=20260908-research-51");
+  interactionScript.src = href("site-interaction.js?v=20260917-editorial-55");
   interactionScript.async = true;
   document.body.appendChild(interactionScript);
 })();

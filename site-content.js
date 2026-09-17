@@ -4,6 +4,7 @@ window.MP_SITE = {
     { id: "works", label: "Works", labelKo: "작품", path: "works/" },
     { id: "visual-index", label: "Visual Index", labelKo: "비주얼 인덱스", path: "visual-index/" },
     { id: "research", label: "Research", labelKo: "리서치", path: "research/" },
+    { id: "editions", label: "Editions", labelKo: "에디션", path: "editions/" },
     { id: "contact", label: "Contact", labelKo: "연락", path: "contact/" },
     { id: "commissions", label: "Commissions ↗", labelKo: "커미션 ↗", path: "https://work.minniepark.art", external: true }
   ],

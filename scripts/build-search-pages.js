@@ -5,7 +5,7 @@ const vm = require("node:vm");
 const { parseSchemas, structuredData } = require("./search-schema.js");
 const root = path.resolve(__dirname, "..");
 const origin = "https://minniepark.art/";
-const stamp = "20260911-seo-54";
+const stamp = "20260917-editorial-55";
 const esc = value => String(value).replaceAll("&", "&amp;").replaceAll('"', "&quot;").replaceAll("<", "&lt;");
 const read = name => fs.readFileSync(path.join(root, name), "utf8");
 // The public homepage is the identity source; reuse it without inventing facts.
@@ -16,12 +16,15 @@ if (sharedGraph) homeIdentity.push(...(JSON.parse(sharedGraph[1])["@graph"] || [
 const person = homeIdentity.find(entity => entity["@type"] === "Person");
 const website = homeIdentity.find(entity => entity["@type"] === "WebSite");
 if (!person || !website) throw new Error("Homepage Person and WebSite identity are required.");
-const routes = [...read("sitemap.xml").matchAll(/<loc>https:\/\/minniepark\.art\/([^<]*)<\/loc>/g)]
-  .map(match => match[1]).filter(route => !route.startsWith("ko/"));
+const routes = [...new Set([...read("sitemap.xml").matchAll(/<loc>https:\/\/minniepark\.art\/([^<]*)<\/loc>/g)]
+  .map(match => match[1]).filter(route => !route.startsWith("ko/")))];
+for (const route of ["editions/", "editions/reintervention/"]) if (!routes.includes(route)) routes.push(route);
 const enDescriptions = {
   home: "Minnie Park is an interactive audio-visual artist based in Seoul and Melbourne. Explore Meta Rose, living-rose installations and research into touch, colour, affect and audience participation.",
   artist: "Minnie Park’s biography, artistic practice, exhibition and workshop history, and artist CV. Interactive media art shaped by living roses, touch, colour and affect.",
-  research: "Minnie Park’s ongoing research through Meta Rose: emotional ambivalence, touch, living roses, material time and photographic records, supported by the 2025 Honours study."
+  research: "Minnie Park’s ongoing research through Meta Rose: emotional ambivalence, touch, living roses, material time and photographic records, supported by the 2025 Honours study.",
+  editions: "Explore acquisition enquiries for Minnie Park’s software-based audio-visual works and Meta Rose installations. Edition formats, display requirements and licences are discussed individually.",
+  edition: "RE:INTERVENTION, an interactive audio-visual work from Meta Rose: The Funeral. Software-edition enquiries, display requirements and acquisition information."
 };
 const koTitles = {
   home: "Minnie Park | 인터랙티브 미디어아트 작가 · 서울·멜버른",
@@ -29,7 +32,8 @@ const koTitles = {
   works: "작품 | Meta Rose · Minnie Park",
   "visual-index": "비주얼 인덱스 | Minnie Park",
   research: "리서치 | 감정·장미·터치 · Minnie Park",
-  contact: "전시·리서치·협업 문의 | Minnie Park", cv: "아티스트 CV | Minnie Park"
+  contact: "전시·리서치·협업 문의 | Minnie Park", cv: "아티스트 CV | Minnie Park",
+  editions: "에디션·작품 소장 문의 | Minnie Park", edition: "RE:INTERVENTION | 에디션 · Minnie Park"
 };
 const koDescriptions = {
   home: "서울과 멜버른을 기반으로 활동하는 인터랙티브 미디어아트 작가 Minnie Park. 생장미, 터치, 색, 사운드와 관객 참여를 통해 감정과 양가성을 탐구하는 Meta Rose 작품을 소개합니다.",
@@ -38,7 +42,9 @@ const koDescriptions = {
   "visual-index": "Minnie Park의 인터랙티브 설치, 실시간 비주얼, 생장미와 관객 참여를 사진과 영상으로 살펴보는 비주얼 인덱스입니다.",
   research: "Meta Rose를 통해 양가적 감정, 촉각적 참여, 장미의 시간성과 사진 기록을 탐구하는 Minnie Park의 리서치. 2025년 Honours 논문을 작업의 근거로 소개합니다.",
   contact: "Minnie Park에게 전시, 큐레토리얼 협업, 연구, 토크와 예술 협업을 문의하세요. 아티스트 CV 다운로드와 별도 커미션 사이트 안내.",
-  cv: "Minnie Park의 아티스트 CV. 전시, 학력, 연구, 워크숍과 주요 협업 이력을 확인하고 2026년 PDF를 다운로드할 수 있습니다."
+  cv: "Minnie Park의 아티스트 CV. 전시, 학력, 연구, 워크숍과 주요 협업 이력을 확인하고 2026년 PDF를 다운로드할 수 있습니다.",
+  editions: "Minnie Park의 소프트웨어 기반 오디오비주얼 작품과 Meta Rose 설치 작품 소장 문의. 에디션 형식, 전시 환경과 라이선스 조건은 개별 협의합니다.",
+  edition: "Meta Rose: The Funeral의 인터랙티브 오디오비주얼 작품 RE:INTERVENTION. 소프트웨어 에디션의 소장 문의, 실행 환경과 전달 범위를 소개합니다."
 };
 
 function render(template, route, locale) {
@@ -55,7 +61,7 @@ function render(template, route, locale) {
       querySelector: selector => selector === 'meta[name="description"]' ? description : null }
   };
   vm.createContext(context);
-  for (const file of ["site-media.js", "site-content.js", "site-render.js"]) vm.runInContext(read(file), context);
+  for (const file of ["site-media.js", "site-content.js", "project-details.js", "site-editorial.js", "edition-render.js", "site-render.js"]) vm.runInContext(read(file), context);
   const projectData = context.window.MP_SITE.projects[project];
   const title = locale === "en" ? context.document.title : koTitles[page] || `${projectData?.title || "작품"} | Minnie Park`;
   const summary = locale === "en" ? enDescriptions[page] || description.content : koDescriptions[page] || projectData?.cardKo || projectData?.paragraphsKo?.[0] || `${projectData?.title} — Minnie Park의 인터랙티브 오디오비주얼 작업. 작품 설명과 전시 기록을 살펴보세요.`;
@@ -80,23 +86,32 @@ function render(template, route, locale) {
   }
   html = html.replace('<main class="site-shell" id="app">', `<header class="global-header" data-search-chrome>${chrome}</header>\n  <main class="site-shell" id="app">`);
   html = html.replace('</head>', `  <link rel="alternate" hreflang="en" href="${origin + route}" />\n  <link rel="alternate" hreflang="ko" href="${origin}ko/${route}" />\n  <link rel="alternate" hreflang="x-default" href="${origin + route}" />\n</head>`);
+  // Rebase template assets for both languages, including newly created routes.
+  html = html.replace(/(<(?:script|link)\b[^>]*(?:src|href)=")(\.\/|(?:\.\.\/)+)([^"#]+)(")/g,
+    (_, before, oldRoot, file, after) => `${before}${relative}${file}${after}`);
+  const localePrefix = locale === "ko" ? "ko/" : "";
+  html = html.replace(/(<a class="home-mark" href=")[^"]+/, `$1${relative}${localePrefix}`)
+    .replace(/(<a class="sticky-inquiry is-hidden" href=")[^"]+/, `$1${relative}${localePrefix}contact/`);
   if (locale === "ko") {
-    // Only template-level scripts/styles need rebasing; generated content already uses relative.
-    html = html.replace(/(<(?:script|link)\b[^>]*(?:src|href)=")(\.\/|(?:\.\.\/)+)([^"#]+)(")/g,
-      (_, before, oldRoot, file, after) => `${before}${relative}${file}${after}`);
-    html = html.replace(/(<a class="home-mark" href=")[^"]+/, `$1${relative}ko/`)
-      .replace(/(<a class="sticky-inquiry is-hidden" href=")[^"]+/, `$1${relative}ko/contact/`);
     html = html.replace('Each click introduces another rose.</span>', '클릭할 때마다 또 하나의 장미가 나타납니다.</span>')
       .replace('Each tap introduces another rose.</span>', '터치할 때마다 또 하나의 장미가 나타납니다.</span>');
   }
-  html = html.replace(/((?:site-render|site-media|site-content)\.js)\?v=[^"\s]+/g, `$1?v=${stamp}`);
+  html = html.replace(/\s*<link\b[^>]*href="[^"]*editorial\.css[^"\s]*"[^>]*>/g, "")
+    .replace('</head>', `  <link rel="stylesheet" href="${relative}editorial.css?v=${stamp}" />\n</head>`);
+  html = html.replace(/\s*<script\b[^>]*src="[^"]*(?:project-details|site-editorial|edition-render)\.js[^"\s]*"[^>]*><\/script>/g, "");
+  if (!html.includes('site-media.js?')) html = html.replace(/(<script\b[^>]*src="[^"]*site-content\.js[^"\s]*"[^>]*><\/script>)/, `<script src="${relative}site-media.js?v=${stamp}"></script>\n  $1`);
+  html = html.replace(/(<script\b[^>]*src="[^"]*site-render\.js[^"\s]*"[^>]*><\/script>)/,
+    ["project-details.js", "site-editorial.js", "edition-render.js"].map(file => `<script src="${relative}${file}?v=${stamp}"></script>`).join("\n  ") + "\n  $1");
+  html = html.replace(/((?:site-render|site-media|site-content|project-details|site-editorial|edition-render)\.js|style\.css)\?v=[^"\s]+/g, `$1?v=${stamp}`);
   html = structuredData(html, { canonical, title, description: summary, locale, person, website });
   const destination = path.join(root, locale === "ko" ? "ko" : "", route, "index.html");
   fs.mkdirSync(path.dirname(destination), { recursive: true });
   fs.writeFileSync(destination, html.replace(/[\t ]+$/gm, ""));
 }
 for (const route of routes) {
-  const template = read(`${route}index.html`);
+  const template = fs.existsSync(path.join(root, route, "index.html")) ? read(`${route}index.html`)
+    : read("contact/index.html").replace('data-page="contact"', `data-page="${route === "editions/" ? "editions" : "edition"}"`)
+      .replace(/\s*<script\b[^>]*type="application\/ld\+json"[^>]*>[\s\S]*?<\/script>/g, "");
   render(template, route, "en");
   render(template, route, "ko");
 }
