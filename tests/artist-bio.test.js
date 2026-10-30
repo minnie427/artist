@@ -16,10 +16,10 @@ const expected = {
     "2025년 RMIT University의 Honours 연구에서는 The Meta Kibun Project의 인터랙티브 전시와 인터뷰·설문을 통해 관객의 경험 서술을 살펴봤습니다. TouchDesigner를 중심으로 활동하는 아티스트 주도 커뮤니티 TouchCollective의 공동 설립자이기도 하며, 창작 실천과 신체적 참여, 기술적 실험을 연결하는 워크숍을 발전시키고 있습니다."
   ]
 };
-// Normalised text snapshots taken before the single-paragraph biography addition.
+// The biography and history remain unchanged. Statement replacement approved 2026-10-31.
 const preserved = {
-  en: { statement: "6378adcd7fec2ace83e852df12506fd76fe6c6215d26ff1b0c08c9a2f35b2221", history: "d8349cb673aa44bd25808310eb0ab75bc6c6b278096c4ef90bb2f4da4c9ef54c" },
-  ko: { statement: "5ad22a7e82c7c388ebbfd732beeae819585240e34713f2cd849b3c4c93662e34", history: "60d1294292cd750cc8dbbd69163bc03d2e9157f4b376e7968c1a5e1854e87e77" }
+  en: { statement: "f9f8fdd14e140752afc371501da547ee4707a89764dfd61e57bc325b898532d3", history: "d8349cb673aa44bd25808310eb0ab75bc6c6b278096c4ef90bb2f4da4c9ef54c" },
+  ko: { statement: "c47ab5d27afc2049320915ad95f50c9f0261a2a9b6cc17e3fc0eabee494a4a6b", history: "60d1294292cd750cc8dbbd69163bc03d2e9157f4b376e7968c1a5e1854e87e77" }
 };
 const normalise = value => value.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
 const hash = value => crypto.createHash("sha256").update(normalise(value)).digest("hex");
@@ -59,7 +59,7 @@ function check(html, language, label) {
     assert(words(paragraphs.join(" ")) >= 100, label + ": complete biography is at least 100 words");
   }
   const statement = html.match(/<section class="artist-statement[^>]*>([\s\S]*?)<\/section>/)[1];
-  assert.equal(hash(statement), preserved[language].statement, label + ": Artist Statement text is unchanged");
+  assert.equal(hash(statement), preserved[language].statement, label + ": exact approved narrative and artwork caption");
   const historyStart = html.indexOf('<section class="artist-history');
   const historyEnd = html.indexOf("<footer", historyStart);
   assert(historyStart >= 0 && historyEnd > historyStart, label + ": selected history retained");
@@ -79,7 +79,7 @@ for (const language of ["en", "ko"]) {
   const route = (language === "ko" ? "ko/" : "") + "artist/index.html";
   const staticHtml = read(route);
   check(staticHtml, language, route + "/static");
-  assert(staticHtml.includes("site-render.js?v=20261031-artwork-record-62"), route + ": refreshed renderer cache version");
+  assert(staticHtml.includes("site-render.js?v=20261031-artist-narrative-63"), route + ": refreshed renderer cache version");
   for (const protocol of ["https:", "file:"]) check(render(language, protocol), language, language + "/" + protocol);
 }
-console.log("PASS: Artist biography " + words(expected.en.join(" ")) + " English words (" + words(expected.en[0]) + " original + " + words(expected.en[1]) + " added); exact EN/KO copy in static and HTTP/file runtime renders; original statement, history and actions retained.");
+console.log("PASS: Artist biography " + words(expected.en.join(" ")) + " English words (" + words(expected.en[0]) + " original + " + words(expected.en[1]) + " added); exact EN/KO biography and approved narrative in static and HTTP/file runtime renders; history and actions retained.");

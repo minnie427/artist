@@ -367,6 +367,10 @@ body[data-page="project"] .project-hero h1 { overflow-wrap: anywhere; }
 .artist-hero img { display: block; width: 100%; height: auto; object-fit: contain; filter: grayscale(1) contrast(1.05); }
 .artist-hero .hero-main { max-width: 36ch; margin-top: 6px; }
 .artist-bio h2, .artist-statement h2 { max-width: 25ch; font-size: clamp(23px, 2.3vw, 30px) !important; line-height: 1.2 !important; }
+.artist-statement { scroll-margin-top: calc(var(--header-height) + 24px); }
+.artist-statement__image { margin: 26px 0 0; width: 100%; max-width: 440px; }
+.artist-statement__image img { display: block; width: 100%; height: auto; object-fit: contain; filter: none; }
+.artist-statement__image figcaption { margin-top: 10px; font-size: 11px; line-height: 1.6; color: var(--muted); }
 .artist-history__year { grid-template-columns: 90px minmax(0, 1fr); gap: 24px; }
 .artist-history__year > div { border-left: 0; }
 .artist-history__year > h3 { font-size: 24px !important; padding: 22px 0; }

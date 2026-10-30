@@ -20,6 +20,22 @@ window.MP_SITE = {
     exegesis: "assets/honours-exegesis.pdf"
   },
 
+  artistNarrative: {
+    en: "I painted The Pinkbird in 2021 without realising that the bird had no legs. Looking at it later, I saw myself: unable to fly freely, yet unable to find anywhere to settle. I had been painting in oils at home through Melbourne’s lockdowns, repeatedly reaching for pink. It felt like me, and reminded me that I had not let go of art. The colour made me feel alive. During a deeply painful period in my life, I found myself struggling with feelings I could neither explain nor reconcile. I wanted to understand how emotions could contradict one another and yet feel equally real. Meta Rose began from that need. I found in the rose an embodiment of the ambivalence I was trying to understand: its beauty, scent and softness coexist with thorns, inseparable within the same living form. To me, it can hold sadness and joy at once, without ceasing to be beautiful. This coexistence became the visual and material language of the work. Over time, my relationship with it has changed. I am learning to attend to difficult feelings without allowing them to obscure everything else, to recognise the thorns while embracing the flower more fully. Interactivity is essential to my audio-visual practice because I believe participation can deepen affective experience, bringing people into a more personal encounter with the work and opening questions about their own feelings. Through this practice, I pursue a lifelong ambition to express human emotion through computational language, data and equations, working towards a form through which subjective experiences might become more understandable and shareable. Meta Rose is where I continue searching for my own equation for human emotion. I hope these encounters offer others some of the comfort and strength that pink and art have given me, and the space to find a pink of their own.",
+    ko: "2021년 The Pinkbird를 그릴 때, 나는 새에게 다리가 없다는 사실을 알아차리지 못했다. 나중에 그림을 다시 보며 그 안에서 나 자신을 발견했다. 자유롭게 날지도, 어디에도 내려앉지도 못하는 모습이었다. 멜버른의 록다운 동안 집에서 유화를 그리며 나는 자꾸 핑크에 손이 갔다. 그 색은 나다웠고, 내가 예술을 놓지 않았음을 떠올리게 했다. 핑크는 내가 살아 있다는 감각을 주었다. 삶에서 깊은 고통을 겪던 시기에, 나는 설명할 수도, 서로 조화시킬 수도 없는 감정들 앞에서 혼란스러웠다. 서로 모순되는 감정들이 어떻게 동시에 모두 진실하게 느껴질 수 있는지 이해하고 싶었다. Meta Rose는 그 마음에서 시작됐다. 장미에서 나는 이해하고자 했던 양가성을 발견했다. 아름다움과 향기, 부드러움이 가시와 함께 하나의 살아 있는 존재 안에 분리되지 않은 채 공존하고 있었다. 내게 장미는 아름다움을 잃지 않으면서도 슬픔과 기쁨을 동시에 품을 수 있는 존재다. 이 공존은 작업의 시각적·물질적 언어가 되었다. 시간이 흐르며 내가 이 공존을 바라보는 방식도 달라졌다. 나는 어려운 감정을 찬찬히 바라보되 그것이 다른 모든 것을 가리지 않도록, 가시를 알아보면서도 꽃을 더 온전히 받아들이는 법을 배우고 있다. 인터랙션은 내 오디오비주얼 작업에서 빼놓을 수 없다. 참여가 정서적 경험을 깊게 하고, 관객이 작품을 더 개인적으로 경험하며 자신의 감정에 질문을 던질 계기를 열 수 있다고 믿기 때문이다. 이 작업을 통해 나는 인간의 감정을 컴퓨터 언어와 데이터, 방정식으로 표현한다는 평생의 목표를 좇는다. 주관적인 경험을 서로 더 이해하고 나눌 수 있는 형태로 옮겨보고자 한다. Meta Rose는 인간의 감정에 대한 나만의 방정식을 계속 찾아가는 자리다. 이 만남들이 핑크와 예술이 내게 주었던 위안과 힘을 다른 이들에게도 전하고, 각자가 자기만의 핑크를 발견할 여지를 열어주기를 바란다.",
+    image: {
+      src: "images/artist/the-pinkbird-2021.webp",
+      width: 1200,
+      height: 1441,
+      title: "The Pinkbird",
+      year: "2021",
+      medium: "Oil on canvas",
+      mediumKo: "캔버스에 유채",
+      alt: "The Pinkbird, 2021, an oil painting of a pink-breasted bird with a dark blue head against a green background",
+      altKo: "The Pinkbird, 2021, 초록색 배경 앞에 짙은 파란 머리와 핑크색 몸통을 지닌 새를 그린 유화"
+    }
+  },
+
   primaryWorksOrder: ["funeral", "shared-resonance", "meta-kibun", "origin"],
   exhibitionWorksOrder: ["artist-workshops", "bugskin-chapter-2", "mugonggan"],
   liveWorksOrder: ["live-performance"],

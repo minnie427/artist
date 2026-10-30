@@ -601,15 +601,14 @@
         </div>
       </section>
 
-      <section class="artist-statement content-section content-section--compact">
+      <section class="artist-statement content-section content-section--compact" id="artist-statement" aria-labelledby="artist-statement-title">
         <div>
           <p class="section-kicker">${tr("Artist Statement", "작가 노트")}</p>
-          <h2>${tr("Living materials and participatory systems.", "살아 있는 재료와 참여형 시스템.")}</h2>
+          <h2 id="artist-statement-title">${tr("From The Pinkbird to Meta Rose", "The Pinkbird에서 Meta Rose로")}</h2>
+          <figure class="artist-statement__image"><img src="${media(site.artistNarrative.image.src)}" width="${site.artistNarrative.image.width}" height="${site.artistNarrative.image.height}" alt="${tr(site.artistNarrative.image.alt, site.artistNarrative.image.altKo)}" loading="lazy" decoding="async" /><figcaption><cite>${site.artistNarrative.image.title}</cite>, ${site.artistNarrative.image.year}<br />${tr(site.artistNarrative.image.medium, site.artistNarrative.image.mediumKo)}</figcaption></figure>
         </div>
         <div class="long-copy long-copy--large">
-          <p>${tr("Park works with living roses as tactile interfaces. A participant’s touch changes sound and moving image, while shared contact can complete a circuit between bodies. Participation is part of the work’s composition: its form depends on who engages with it, for how long and alongside whom.", "Park는 생장미를 촉각적 인터페이스로 사용합니다. 참여자의 터치는 사운드와 무빙이미지를 변화시키며, 함께하는 접촉은 신체 사이의 회로를 완성하기도 합니다. 참여는 작품 구성의 일부입니다. 누가, 얼마나 오래, 누구와 함께 관여하는지에 따라 작품의 형태가 달라집니다.")}</p>
-          <p>${tr("Pink carries emotional intensity within her practice. Paired with grey, black, distortion and contrasting sonic textures, it allows attraction and discomfort to remain present together. The rose brings this ambivalence into material form through petals and thorns, fragility and resistance.", "그녀의 작업에서 핑크는 감정적 강도를 지닌 색입니다. 회색, 검정, 왜곡과 상반된 사운드 질감과 짝을 이루며 매혹과 불편함을 동시에 드러냅니다. 장미의 꽃잎과 가시, 연약함과 저항은 이러한 양가성을 물질의 형태로 보여줍니다.")}</p>
-          <p>${tr("The installations also unfold through the changing condition of their materials. Roses are handled, begin to dry and remain after an exhibition has ended. Park retains and photographs these flowers, extending her inquiry from the live encounter to the traces that remain.", "설치는 재료의 상태가 달라지는 시간 속에서도 전개됩니다. 장미는 관객의 손을 거치고 마르기 시작하며, 전시가 끝난 뒤에도 남습니다. Park는 이 꽃들을 보관하고 촬영하며 현장의 경험에서 그 이후에 남는 흔적으로 탐구를 이어갑니다.")}</p>
+          <p>${tr(site.artistNarrative.en, site.artistNarrative.ko)}</p>
           <a class="inline-link" href="${href("research/")}">${tr("Research →", "리서치 →")}</a>
         </div>
       </section>

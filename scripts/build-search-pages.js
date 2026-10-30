@@ -6,10 +6,10 @@ const { parseSchemas, structuredData } = require("./search-schema.js");
 const root = path.resolve(__dirname, "..");
 const origin = "https://minniepark.art/";
 const stamp = "20260917-editorial-55";
-const editorialStyleStamp = "20261031-artwork-record-62";
+const editorialStyleStamp = "20261031-artist-narrative-63";
 const editionStamp = "20261031-artwork-record-62";
-const rendererStamp = "20261031-artwork-record-62";
-const contentStamp = "20261031-artwork-record-62";
+const rendererStamp = "20261031-artist-narrative-63";
+const contentStamp = "20261031-artist-narrative-63";
 const esc = value => String(value).replaceAll("&", "&amp;").replaceAll('"', "&quot;").replaceAll("<", "&lt;");
 const read = name => fs.readFileSync(path.join(root, name), "utf8");
 // The public homepage is the identity source; reuse it without inventing facts.
