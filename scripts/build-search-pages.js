@@ -8,7 +8,7 @@ const origin = "https://minniepark.art/";
 const stamp = "20260917-editorial-55";
 const editorialStyleStamp = "20261029-enquiry-58";
 const editionStamp = "20261029-enquiry-58";
-const rendererStamp = "20261029-fringe-60";
+const rendererStamp = "20261030-rose-field-61";
 const contentStamp = "20261029-fringe-60";
 const esc = value => String(value).replaceAll("&", "&amp;").replaceAll('"', "&quot;").replaceAll("<", "&lt;");
 const read = name => fs.readFileSync(path.join(root, name), "utf8");
@@ -65,7 +65,7 @@ function render(template, route, locale) {
       querySelector: selector => selector === 'meta[name="description"]' ? description : null }
   };
   vm.createContext(context);
-  for (const file of ["site-media.js", "site-content.js", "project-details.js", "site-editorial.js", "edition-render.js", "site-render.js"]) vm.runInContext(read(file), context);
+  for (const file of ["site-media.js", "site-content.js", "project-details.js", "site-editorial.js", "edition-render.js", "rose-home-template.js", "site-render.js"]) vm.runInContext(read(file), context);
   const projectData = context.window.MP_SITE.projects[project];
   const title = locale === "en" ? context.document.title : koTitles[page] || `${projectData?.title || "작품"} | Minnie Park`;
   const summary = locale === "en" ? enDescriptions[page] || description.content : koDescriptions[page] || projectData?.cardKo || projectData?.paragraphsKo?.[0] || `${projectData?.title} — Minnie Park의 인터랙티브 오디오비주얼 작업. 작품 설명과 전시 기록을 살펴보세요.`;
@@ -110,6 +110,22 @@ function render(template, route, locale) {
   html = html.replace(/(edition-render|site-editorial)\.js\?v=[^"\s]+/g, `$1.js?v=${editionStamp}`);
   html = html.replace(/site-render\.js\?v=[^"\s]+/g, `site-render.js?v=${rendererStamp}`);
   html = html.replace(/(site-content|project-details)\.js\?v=[^"\s]+/g, `$1.js?v=${contentStamp}`);
+  if (page === "home") {
+    // Remove the previous ambient artwork only on the replacement home.
+    html = html.replace(/\s*<section class="hero-visual"[\s\S]*?<\/section>/, "")
+      .replace(/\s*<a class="home-mark"[\s\S]*?<\/a>/, "")
+      .replace(/\s*<a class="sticky-inquiry is-hidden"[\s\S]*?<\/a>/, "")
+      .replace(/\s*<div class="interaction-hint[^"]*"[\s\S]*?<\/div>/g, "")
+      .replace(/\s*<script[^>]*src="[^"]*(?:hero-visual|rose-sprites)\.js[^"]*"[^>]*><\/script>/g, "")
+      .replace(/\s*<link[^>]*href="[^"]*rose-home\.css[^"]*"[^>]*>/g, "")
+      .replace(/\s*<script[^>]*src="[^"]*rose-home(?:-template)?\.js[^"]*"[^>]*><\/script>/g, "");
+    html = html.replace('</head>', '<link rel="stylesheet" href="'+relative+'rose-home.css?v=20261030-rose-field-61" />\n</head>')
+      .replace(/(<script[^>]*src="[^"]*site-render\.js[^"]*"[^>]*><\/script>)/, '<script src="'+relative+'rose-home-template.js?v=20261030-rose-field-61"></script>\n  $1')
+      .replace('</body>', '<script defer src="'+relative+'rose-home.js?v=20261030-rose-field-61"></script>\n</body>');
+    const noScriptCopy = locale === "ko" ? "인터랙션에는 JavaScript가 필요합니다. 작품과 리서치는 그대로 읽을 수 있습니다." : "JavaScript is needed for this interaction. You can still explore the works and research.";
+    const localPath = relative + (locale === "ko" ? "ko/" : "");
+    html = html.replace('</body>', `<noscript><style>.rose-home .effect-controls,.rose-home .words,.rose-home .field-controls,.rose-home .record,.rose-home .privacy,.rose-home .scene-label,.rose-home .scene-note{display:none}.rose-home #scene{height:min(70vw,600px);min-height:300px}.rose-home .rose-fallback{display:block}body>noscript{display:block;padding:20px var(--page-pad);font-size:14px}body>noscript a{text-decoration:underline}</style><p>${noScriptCopy} <a href="${localPath}works/">${locale === "ko" ? "작품" : "Works"}</a> · <a href="${localPath}research/">${locale === "ko" ? "리서치" : "Research"}</a></p></noscript>\n</body>`);
+  }
   html = structuredData(html, { canonical, title, description: summary, locale, person, website });
   const destination = path.join(root, locale === "ko" ? "ko" : "", route, "index.html");
   fs.mkdirSync(path.dirname(destination), { recursive: true });

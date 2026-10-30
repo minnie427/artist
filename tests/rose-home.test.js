@@ -1,0 +1,30 @@
+const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),assert=require('node:assert/strict'),crypto=require('node:crypto'),cp=require('node:child_process');
+const root=path.resolve(__dirname,'..'),read=file=>fs.readFileSync(path.join(root,file),'utf8');
+for(const route of ['','ko/']){
+ const html=read(route+'index.html');
+ assert(html.includes('data-experience="rose-field-10"'));
+ assert.equal((html.match(/<h1\b/g)||[]).length,1);
+ assert(!/heroVisual|textCanvas|blobCanvas|interaction-hint|hero-visual\.js|rose-sprites\.js|Private interaction study|noindex/.test(html));
+ assert.equal((html.match(/src="[^\"]*rose-home-template\.js/g)||[]).length,1);
+ assert.equal((html.match(/src="[^\"]*rose-home\.js/g)||[]).length,1);
+ assert(html.indexOf('rose-home-template.js')<html.indexOf('src="'+(route?'../':'./')+'site-render.js'));
+ assert(html.includes('name="robots" content="index, follow, max-image-preview:large"'));
+ assert(html.includes('href="https://minniepark.art/'+route+'"'));
+ assert(html.includes('aria-controls="primaryLinks"'));
+ assert(html.includes('<noscript>')&&html.includes('id="roseFallback"')&&html.includes('src="'+(route?'../':'./')+'assets/rose-halftone.png"'));
+ assert(html.includes(route?'동작':'Choose an effect')||html.includes('효과를 고른 뒤'));
+ const ids=[...html.matchAll(/\bid="([^\"]+)"/g)].map(m=>m[1]);assert.equal(new Set(ids).size,ids.length);
+ for(const [,src]of html.matchAll(/(?:src|href)="((?:\.\/|\.\.\/)[^\"]+\.(?:js|css|png)(?:\?[^\"]*)?)"/g))assert(fs.existsSync(path.resolve(root,route,src.split('?')[0])),src);
+}
+assert(!read('rose-home.js').includes("$('language').addEventListener"));
+assert(!read('rose-home.js').includes('Start Preview.command'));
+assert(read('rose-home.js').includes("lang:document.documentElement.lang==='ko'?'ko':'en'"));
+assert(read('rose-home.js').includes('audio: false'));
+assert(read('rose-home.js').includes('if(!event.persisted)S.renderer?.dispose()'));
+assert(read('rose-home.js').includes("window.addEventListener('pageshow',event=>"));
+assert(read('rose-home.js').includes("$('camera').addEventListener('click',async()=>"));
+assert(read('rose-home.css').includes('body[data-page="home"]{height:auto'));
+for(const route of ['artist/','works/','research/','editions/','contact/','ko/artist/'])assert(!/rose-home\.(?:js|css)/.test(read(route+'index.html')),'Homepage assets must remain home-only');
+const hash=()=>crypto.createHash('sha256').update(['index.html','ko/index.html'].map(read).join('\n')).digest('hex');
+const before=hash();cp.execFileSync(process.execPath,['scripts/build-search-pages.js'],{cwd:root});assert.equal(hash(),before,'Generated homes must be idempotent');
+console.log('PASS: bilingual integrated home, shared navigation, SEO, media paths, camera consent boundary, scoped styles, no preview chrome/legacy canvases, idempotent generation.');

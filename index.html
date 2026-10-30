@@ -34,41 +34,10 @@
   <link rel="alternate" hreflang="ko" href="https://minniepark.art/ko/" />
   <link rel="alternate" hreflang="x-default" href="https://minniepark.art/" />
   <link rel="stylesheet" href="./editorial.css?v=20261029-enquiry-58" />
+<link rel="stylesheet" href="./rose-home.css?v=20261030-rose-field-61" />
   <script type="application/ld+json" data-search-page>{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://minniepark.art/#website","url":"https://minniepark.art/","name":"Minnie Park","alternateName":"Minnie Park — Interactive Audio-Visual Artist","inLanguage":["en","ko"],"publisher":{"@id":"https://minniepark.art/#artist"}},{"@type":"Person","@id":"https://minniepark.art/#artist","name":"Minnie Park","url":"https://minniepark.art/","jobTitle":"Interactive Audio-Visual Artist","description":"Korean-Australian interactive audio-visual artist working between Seoul and Melbourne whose research-led practice uses living roses, touch, colour, sound, moving image and audience participation.","sameAs":["https://www.instagram.com/minniepark.studio/"],"knowsAbout":["Interactive art","Audio-visual installation","Affect","Colour","Touch","Audience participation","Culturally situated emotion"]},{"@type":"WebPage","@id":"https://minniepark.art/#page","url":"https://minniepark.art/","name":"Minnie Park — Interactive Audio-Visual Artist","description":"Minnie Park is an interactive audio-visual artist based in Seoul and Melbourne. Explore Meta Rose, living-rose installations and research into touch, colour, affect and audience participation.","inLanguage":"en","isPartOf":{"@id":"https://minniepark.art/#website"},"about":{"@id":"https://minniepark.art/#artist"}}]}</script>
 </head>
 <body data-page="home" data-root="./" data-locale="en" data-route="" data-seo-static="true">
-  <section class="hero-visual" id="heroVisual" aria-hidden="true">
-    <div class="hero-visual__text-base">
-      <span>The rose moves between image, interface, body, memorial and trace.</span>
-      <span>Pink operates as emotional material: atmosphere, frequency and force.</span>
-      <span>Ambivalent feeling holds tenderness and friction, bloom and decay, at once.</span>
-      <span>장미는 이미지이자 인터페이스, 신체, 기억과 흔적이 된다.</span>
-      <span>Beauty → Wonder → Affect describes the structure of the encounter.</span>
-      <span>Living roses bring fragility, texture, scent and time into digital systems.</span>
-      <span>핑크는 감정의 재료이자 분위기, 주파수와 힘으로 작동한다.</span>
-      <span>Touch connects colour, sound and moving image while life and death remain present at once.</span>
-    </div>
-    <canvas id="textCanvas"></canvas>
-    <canvas id="blobCanvas"></canvas>
-    <div class="rose-sprite-layer" data-rose-layer></div>
-  </section>
-
-  <a class="home-mark" href="./" aria-label="홈으로 이동">
-    <span aria-hidden="true"></span>
-  </a>
-
-  <a class="sticky-inquiry is-hidden" href="./contact/" aria-hidden="true" tabindex="-1">
-    <span>Contact</span>
-  </a>
-
-  <div class="interaction-hint interaction-hint--desktop" aria-live="polite">
-    <span class="interaction-hint__icon material-symbols-outlined" aria-hidden="true"></span>
-    <span class="interaction-hint__copy">Each click introduces another rose.</span>
-  </div>
-  <div class="interaction-hint interaction-hint--mobile" aria-live="polite">
-    <span class="interaction-hint__icon material-symbols-outlined" aria-hidden="true"></span>
-    <span class="interaction-hint__copy">Each tap introduces another rose.</span>
-  </div>
   <header class="global-header" data-search-chrome>
       <nav class="global-nav" aria-label="Primary navigation">
         <a class="global-nav__brand" href="./" aria-label="Minnie Park — Home">Minnie Park</a>
@@ -81,31 +50,34 @@
         <button class="site-language-toggle" type="button" aria-label="View this site in Korean">한국어</button>
       </nav>
     </header>
-  <main class="site-shell" id="app">
-      <section class="landing" id="top" aria-labelledby="heroTitle">
-        <div class="landing-top">
-          <h1 id="heroTitle">Minnie Park</h1>
-          <p class="eyebrow">Interactive Audio-Visual Artist<br />Seoul / Melbourne</p>
-        </div>
-        <div class="landing-bottom">
-          <p class="hero-main">Exploring affect, colour, touch, and culturally situated emotional experience through immersive digital installations.</p>
-          <p class="hero-note">Through roses, water, sound and moving image, touch becomes a way of entering complex feeling.</p>
-
-      <div class="page-actions">
-        <a href="./works/">Works</a>
-      </div>
-
-        </div>
-      </section>
-    </main>
+  <main class="site-shell" id="app"><div class="rose-home" id="top" data-experience="rose-field-10"><div class="heading"><div><h1 id="heroTitle">Minnie Park</h1><p data-en="INTERACTIVE AUDIO-VISUAL ARTIST&lt;br&gt;SEOUL / MELBOURNE" data-ko="인터랙티브 오디오비주얼 아티스트&lt;br&gt;서울 / 멜버른">INTERACTIVE AUDIO-VISUAL ARTIST<br>SEOUL / MELBOURNE</p></div></div>
+<div class="effect-controls"><div class="effect-tabs" role="group" aria-label="Compare rose effects"><button type="button" data-effect="offspring" aria-pressed="true">01 Offspring · 증식</button><button type="button" data-effect="separation" aria-pressed="false">02 Separation · 분리</button><button type="button" data-effect="glitch" aria-pressed="false">03 Glitch · 글리치</button><button type="button" data-effect="thorn" aria-pressed="false">04 Thorn · 가시</button><button type="button" data-effect="erosion" aria-pressed="false">05 Erosion · 침식</button></div><p id="effectCaption" class="effect-caption"></p><p class="effect-help" data-en="Choose an effect, then select words to build it gradually. Changing effects starts again from the original rose." data-ko="효과를 고른 뒤 단어를 누르면 변화가 쌓입니다. 효과를 바꾸면 원래 장미에서 다시 시작합니다.">Choose an effect, then select words to build it gradually. Changing effects starts again from the original rose.</p></div>
+<section class="experience" aria-label="Interactive rose study">
+<div class="scene" id="scene" data-selections="0"><canvas id="portrait" role="img" aria-label="An image-derived rose relief with five effect studies, sampled region data, and ephemeral irregular text blobs."></canvas>
+<img id="roseFallback" class="rose-fallback" alt="The original halftone rose; image relief is unavailable." src="./assets/rose-halftone.png"><canvas id="textLinks" aria-hidden="true"></canvas><div id="textField" class="text-field" aria-hidden="true"></div>
+<div id="words" class="words" role="group" aria-label="Hold and select an emotion">
+<div class="emotion-node"><button class="word" data-slot="0" type="button"></button><div class="node-data" aria-hidden="true"><p class="position-data"></p><p class="motion-data"></p></div></div>
+<div class="emotion-node"><button class="word" data-slot="1" type="button"></button><div class="node-data" aria-hidden="true"><p class="position-data"></p><p class="motion-data"></p></div></div>
+<div class="emotion-node"><button class="word" data-slot="2" type="button"></button><div class="node-data" aria-hidden="true"><p class="position-data"></p><p class="motion-data"></p></div></div>
+<div class="emotion-node"><button class="word" data-slot="3" type="button"></button><div class="node-data" aria-hidden="true"><p class="position-data"></p><p class="motion-data"></p></div></div>
+<div class="emotion-node"><button class="word" data-slot="4" type="button"></button><div class="node-data" aria-hidden="true"><p class="position-data"></p><p class="motion-data"></p></div></div>
+<div class="emotion-node"><button class="word" data-slot="5" type="button"></button><div class="node-data" aria-hidden="true"><p class="position-data"></p><p class="motion-data"></p></div></div>
+<div class="emotion-node"><button class="word" data-slot="6" type="button"></button><div class="node-data" aria-hidden="true"><p class="position-data"></p><p class="motion-data"></p></div></div>
+</div><div id="handIndicator" class="hand-indicator" hidden aria-hidden="true"><svg viewBox="0 0 44 44"><circle cx="22" cy="22" r="19" class="ring"/><circle cx="22" cy="22" r="19" class="progress"/></svg><i></i></div>
+<span class="scene-label" id="modeLabel">POINTER / FIELD_01</span><span class="scene-note" data-en="Image-based relief · sampled region position / velocity" data-ko="이미지 기반 릴리프 · 표본 영역 위치 / 속도">Image-based relief · sampled region position / velocity</span></div>
+<div class="field-controls"><div class="control-copy"><p id="instruction">Hold a word. Leave a trace.</p><p id="status" role="status" aria-live="polite">Words cycle continuously. Hover to hold; click to leave a trace.</p></div><div class="controls"><button id="camera" class="pill primary" type="button" aria-pressed="false">Enable camera</button><button id="handMode" type="button" class="text-button">Hand: hold</button><button id="reset" class="text-button" type="button">Reset</button></div></div>
+<p id="renderStats" class="render-stats" aria-live="off"></p><div class="record"><span id="layerCount">00 TRACES / 0+ · 0−</span><p id="layerHistory">—</p></div><p id="error" class="error" role="alert" hidden></p>
+<details class="privacy"><summary data-en="Camera & privacy" data-ko="카메라와 개인정보">Camera & privacy</summary><p data-en="Camera is optional. Face position moves the rose; your palm holds and selects a word. Your face and room stay hidden. Video is processed in this browser without recording or uploading, and no microphone is requested. Tracking files download only when you enable the camera. Camera stops when you leave this tab. Words are chosen by you, not inferred from your face. Effects are compositional responses, not an emotional assessment. Text depth is a simulated field; rose-region positions and velocities are projected from sampled image geometry. This is an image-derived relief with limited rotation, not a complete 360-degree rose model." data-ko="카메라는 선택사항입니다. 얼굴 위치에 장미가 반응하며 손바닥으로 단어를 멈추고 선택합니다. 실제 얼굴이나 방 안 영상은 표시하지 않습니다. 브라우저 안에서 처리하며 녹화·업로드·마이크 요청은 없습니다. 카메라를 켤 때만 인식 파일을 내려받고, 다른 탭으로 이동하면 카메라를 중지합니다. 단어는 직접 선택하며 얼굴에서 감정을 판독하지 않습니다. 각 효과는 시각적 반응이지 감정에 대한 평가가 아닙니다. 텍스트 깊이는 가상 공간이며, 장미 영역의 위치와 속도는 이미지에서 표본화한 형상으로부터 계산합니다. 회전 범위를 제한한 이미지 기반 릴리프이며, 완전한 360도 장미 모델이 아닙니다.">Camera is optional. Face position moves the rose; your palm holds and selects a word. Your face and room stay hidden. Video is processed in this browser without recording or uploading, and no microphone is requested. Tracking files download only when you enable the camera. Camera stops when you leave this tab. Words are chosen by you, not inferred from your face. Effects are compositional responses, not an emotional assessment. Text depth is a simulated field; rose-region positions and velocities are projected from sampled image geometry. This is an image-derived relief with limited rotation, not a complete 360-degree rose model.</p></details>
+</section><footer><div class="home-copy"><p data-en="Exploring affect, colour, touch, and culturally situated emotional experience through immersive digital installations." data-ko="몰입형 디지털 설치를 통해 정서, 색, 터치와 문화적 맥락 속의 감정적 경험을 탐구합니다.">Exploring affect, colour, touch, and culturally situated emotional experience through immersive digital installations.</p><p class="hero-note" data-en="Through roses, water, sound and moving image, touch becomes a way of entering complex feeling." data-ko="장미, 물, 사운드와 무빙이미지를 통해 터치는 복합적인 감정으로 들어가는 방식이 됩니다.">Through roses, water, sound and moving image, touch becomes a way of entering complex feeling.</p></div><a class="pill" href="./works/" data-en="Works ↗" data-ko="작품 ↗">Works ↗</a></footer><img id="thornSource" src="./assets/thorn-link-v1.png" alt="" hidden><img id="roseSource" src="./assets/rose-halftone.png" alt="" hidden></div></main>
 
   <script src="./site-media.js?v=20260917-editorial-55"></script>
   <script src="./site-content.js?v=20261029-fringe-60"></script>
   <script src="./project-details.js?v=20261029-fringe-60"></script>
   <script src="./site-editorial.js?v=20261029-enquiry-58"></script>
   <script src="./edition-render.js?v=20261029-enquiry-58"></script>
-  <script src="./site-render.js?v=20261029-fringe-60"></script>
-  <script src="./hero-visual.js?v=20260908-copy-51"></script>
-  <script src="./rose-sprites.js?v=20260905-balance-27"></script>
+  <script src="./rose-home-template.js?v=20261030-rose-field-61"></script>
+  <script src="./site-render.js?v=20261030-rose-field-61"></script>
+<script defer src="./rose-home.js?v=20261030-rose-field-61"></script>
+<noscript><style>.rose-home .effect-controls,.rose-home .words,.rose-home .field-controls,.rose-home .record,.rose-home .privacy,.rose-home .scene-label,.rose-home .scene-note{display:none}.rose-home #scene{height:min(70vw,600px);min-height:300px}.rose-home .rose-fallback{display:block}body>noscript{display:block;padding:20px var(--page-pad);font-size:14px}body>noscript a{text-decoration:underline}</style><p>JavaScript is needed for this interaction. You can still explore the works and research. <a href="./works/">Works</a> · <a href="./research/">Research</a></p></noscript>
 </body>
 </html>

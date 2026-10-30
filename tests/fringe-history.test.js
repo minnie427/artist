@@ -49,7 +49,8 @@ for (const locale of ["", "ko/"]) {
   assert.match(page, /id="melbourne-fringe"/);
   assert(page.includes(official));
   for (const script of ["site-content", "project-details", "site-render"]) {
-    assert(page.includes(`${script}.js?v=20261029-fringe-60`), "Static and runtime cache versions agree");
+    const version = script === "site-render" ? "20261030-rose-field-61" : "20261029-fringe-60";
+    assert(page.includes(`${script}.js?v=${version}`), "Static and runtime cache versions agree");
   }
 }
 assert.match(read("site-render.js"), /The April 2026 presentation of Shared Resonance/);

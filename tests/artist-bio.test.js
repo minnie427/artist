@@ -79,7 +79,7 @@ for (const language of ["en", "ko"]) {
   const route = (language === "ko" ? "ko/" : "") + "artist/index.html";
   const staticHtml = read(route);
   check(staticHtml, language, route + "/static");
-  assert(staticHtml.includes("site-render.js?v=20261029-fringe-60"), route + ": refreshed renderer cache version");
+  assert(staticHtml.includes("site-render.js?v=20261030-rose-field-61"), route + ": refreshed renderer cache version");
   for (const protocol of ["https:", "file:"]) check(render(language, protocol), language, language + "/" + protocol);
 }
 console.log("PASS: Artist biography " + words(expected.en.join(" ")) + " English words (" + words(expected.en[0]) + " original + " + words(expected.en[1]) + " added); exact EN/KO copy in static and HTTP/file runtime renders; original statement, history and actions retained.");

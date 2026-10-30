@@ -234,6 +234,12 @@
   }
 
   function renderHome() {
+    if (window.MP_ROSE_HOME) {
+      setSeo("Minnie Park — Interactive Audio-Visual Artist", "Minnie Park explores emotional ambivalence through interactive audio-visual work, living roses, touch, colour and audience participation.");
+      app.innerHTML = window.MP_ROSE_HOME.render(language, href, root)
+        .replace(/(<img id="roseFallback"[^>]*?) hidden>/, '$1 src="'+root+'assets/rose-halftone.png">');
+      return;
+    }
     setSeo(
       "Minnie Park — Interactive Audio-Visual Artist",
       "Minnie Park creates tactile, interactive worlds where roses, colour, sound and moving image give form to feelings that resist a single name."
