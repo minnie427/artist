@@ -6,7 +6,10 @@ const { parseSchemas, structuredData } = require("./search-schema.js");
 const root = path.resolve(__dirname, "..");
 const origin = "https://minniepark.art/";
 const stamp = "20260917-editorial-55";
-const editorialStyleStamp = "20260917-artist-57";
+const editorialStyleStamp = "20261029-enquiry-58";
+const editionStamp = "20261029-enquiry-58";
+const rendererStamp = "20261029-fringe-60";
+const contentStamp = "20261029-fringe-60";
 const esc = value => String(value).replaceAll("&", "&amp;").replaceAll('"', "&quot;").replaceAll("<", "&lt;");
 const read = name => fs.readFileSync(path.join(root, name), "utf8");
 // The public homepage is the identity source; reuse it without inventing facts.
@@ -104,6 +107,9 @@ function render(template, route, locale) {
   html = html.replace(/(<script\b[^>]*src="[^"]*site-render\.js[^"\s]*"[^>]*><\/script>)/,
     ["project-details.js", "site-editorial.js", "edition-render.js"].map(file => `<script src="${relative}${file}?v=${stamp}"></script>`).join("\n  ") + "\n  $1");
   html = html.replace(/((?:site-render|site-media|site-content|project-details|site-editorial|edition-render)\.js|style\.css)\?v=[^"\s]+/g, `$1?v=${stamp}`);
+  html = html.replace(/(edition-render|site-editorial)\.js\?v=[^"\s]+/g, `$1.js?v=${editionStamp}`);
+  html = html.replace(/site-render\.js\?v=[^"\s]+/g, `site-render.js?v=${rendererStamp}`);
+  html = html.replace(/(site-content|project-details)\.js\?v=[^"\s]+/g, `$1.js?v=${contentStamp}`);
   html = structuredData(html, { canonical, title, description: summary, locale, person, website });
   const destination = path.join(root, locale === "ko" ? "ko" : "", route, "index.html");
   fs.mkdirSync(path.dirname(destination), { recursive: true });
