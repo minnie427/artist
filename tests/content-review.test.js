@@ -49,13 +49,13 @@ for (const language of ["en", "ko"]) {
   assert(language === "en" ? research.includes("fifteen") || research.includes("Fifteen") : research.includes("15건"));
   for (const page of ["home", "artist", "works", "contact", "cv"]) checkMarkup(render(page, language).html, `${page}/${language}`);
   for (const key of Object.keys(site.projects)) checkMarkup(render("project", language, key).html, `${key}/${language}`);
-  assert(site.projects.funeral.metadata.some(s => s.includes("15–18 August 2026")));
+  assert(site.projects.funeral.metadata.some(s => s.includes("15-18 August 2026")));
   assert(site.projects.funeral.metadata.some(s => s.includes("Mijin Floor")));
   assert(site.projects.mugonggan.metadata.some(s => s.includes("5 July 2025")));
   assert(site.projects.mugonggan.metadata.some(s => s.includes("Seongnam")));
   assert(site.projects["touching-resonance"].metadata.includes("Led by Minnie Park"));
   assert(!site.projects["touching-resonance"].paragraphs.join(" ").includes("TouchCollective"));
-  assert(site.projects["meta-kibun"].metadata[0].startsWith("12–13 September 2025 /"));
+  assert(site.projects["meta-kibun"].metadata[0].startsWith("12-13 September 2025 /"));
   assert(!site.projects.funeral.placeholder);
 }
 

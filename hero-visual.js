@@ -1343,7 +1343,7 @@ async function submitContactForm(form) {
   const submitButton = form.querySelector("button[type='submit']");
   const formData = new FormData(form);
 
-  formData.set("_subject", `Minnie Park artist inquiry — ${formData.get("name") || "new inquiry"}`);
+  formData.set("_subject", `Minnie Park artist inquiry, ${formData.get("name") || "new inquiry"}`);
 
   if (status) {
     status.textContent = "문의 내용을 전송하는 중입니다.";

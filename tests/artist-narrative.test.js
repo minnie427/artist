@@ -11,8 +11,8 @@ vm.createContext(context);
 vm.runInContext(read('site-content.js'), context);
 const story = context.window.MP_SITE.artistNarrative;
 const approved = {
-  en: 'a8136774c6948a70f59fb453641297a5d3c7289ecaed6428e018f6192392f86b',
-  ko: 'fd7ab2348422f459b91ad02a83a443586f053f320baec747d9236f9974a7be0c'
+  en: 'b7127bee3f7b7f80d0a248ef64f665f0fc86e4b663fe4c830e261ab983f2da3e',
+  ko: '5e663cbeea5508a8a345c4bf4487bf02842beda851eb10f8e0db3ac9d559a3d8'
 };
 for (const locale of ['en', 'ko']) {
   assert.equal(crypto.createHash('sha256').update(story[locale].replace(/\s+/g, ' ')).digest('hex'), approved[locale], 'Approved wording preserved across paragraph breaks');
@@ -26,7 +26,7 @@ for (const locale of ['en', 'ko']) {
   assert.equal((statement.match(/<figure\b/g) || []).length, 1, 'Only the selected painting, no guessed rose image');
   assert(statement.includes(story.image.src));
   assert(statement.includes('width="1200" height="1441"'));
-  assert(statement.includes('<cite>The Pinkbird</cite>, 2021'));
+  assert(statement.includes('<cite>The Pink Bird</cite>, 2021'));
   assert(statement.includes(locale === 'ko' ? '캔버스에 유채' : 'Oil on canvas'));
   assert(statement.includes('research/'));
   assert(!/placeholder|UPDATE_AFTER_BUILD/.test(statement));
@@ -50,5 +50,5 @@ for (let offset=12; offset+8<=image.length;) {
 }
 const css=read('editorial.css');
 assert(css.includes('.artist-statement__image img { display: block; width: 100%; height: auto; object-fit: contain; filter: none; }'));
-assert(css.includes('.artist-hero img { display: block; width: 100%; height: auto; object-fit: contain; filter: grayscale(1) contrast(1.05); }'));
-console.log('PASS: exact EN/KO narrative, comma punctuation, first-person voice, selected 2021 painting with intrinsic ratio and original colour, no embedded source metadata, unchanged grayscale portrait and no rose placeholder.');
+assert(css.includes('.artist-hero img { display: block; width: 100%; height: auto; object-fit: contain; filter: none; }'));
+console.log('PASS: exact EN/KO narrative, comma punctuation, first-person voice, selected 2021 painting with intrinsic ratio and original colour, no embedded source metadata, approved colour portrait and no rose placeholder.');

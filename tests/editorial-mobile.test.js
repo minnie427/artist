@@ -224,7 +224,7 @@ for (const width of widths) {
   assert.equal(cascade(artistHero, width)["min-height"], "0", `${width}: no forced artist viewport height`);
   assert.equal(cascade(element("div", "", artistHero), width)["min-height"], "0");
   const portrait = element("img", "", element("figure", "", artistHero));
-  assert.equal(cascade(portrait, width).filter, "grayscale(1) contrast(1.05)", `${width}: Artist portrait retains the approved black-and-white treatment`);
+  assert.equal(cascade(portrait, width).filter, "none", `${width}: Artist portrait retains the approved colour treatment`);
   // Cross-section alignment must be shared, not merely responsive in isolation.
   for (const page of ["artist", "practice"]) {
     const f = fixture(page);
@@ -242,12 +242,12 @@ for (const width of widths) {
       }
     }
     assert.equal(cascade(photo, width)["justify-self"], "start", `${page}/${width}: photo begins at the same column edge as prose`);
-    assert.equal(cascade(photo, width)["max-width"], "440px", `${page}/${width}: retain portrait size cap`);
+    assert.equal(cascade(photo, width)["max-width"], width <= 640 ? "440px" : "600px", `${page}/${width}: larger approved portrait with mobile constraint`);
     assert.equal(cascade(photo, width).height, "auto", `${page}/${width}: no forced portrait height`);
     const imageStyle = cascade(element("img", "", photo), width);
     assert.equal(imageStyle.width, "100%");
     assert.equal(imageStyle.height, "auto");
-    assert.equal(imageStyle.filter, "grayscale(1) contrast(1.05)");
+    assert.equal(imageStyle.filter, "none");
     assert.equal(cascade(element("img", "", photo), width)["object-fit"], "contain", `${page}/${width}: retain the uncropped portrait`);
   }
   const history = element("article", "artist-history__entry", element("div", "", artist.app));

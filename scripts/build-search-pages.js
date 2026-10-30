@@ -5,11 +5,11 @@ const vm = require("node:vm");
 const { parseSchemas, structuredData } = require("./search-schema.js");
 const root = path.resolve(__dirname, "..");
 const origin = "https://minniepark.art/";
-const stamp = "20260917-editorial-55";
-const editorialStyleStamp = "20261031-artist-reading-64";
-const editionStamp = "20261031-artwork-record-62";
-const rendererStamp = "20261031-artist-reading-64";
-const contentStamp = "20261031-artist-reading-64";
+const stamp = "20261031-review-round1-68";
+const editorialStyleStamp = stamp;
+const editionStamp = stamp;
+const rendererStamp = stamp;
+const contentStamp = stamp;
 const esc = value => String(value).replaceAll("&", "&amp;").replaceAll('"', "&quot;").replaceAll("<", "&lt;");
 const read = name => fs.readFileSync(path.join(root, name), "utf8");
 // The public homepage is the identity source; reuse it without inventing facts.
@@ -68,7 +68,7 @@ function render(template, route, locale) {
   for (const file of ["site-media.js", "site-content.js", "project-details.js", "site-editorial.js", "edition-render.js", "rose-home-template.js", "site-render.js"]) vm.runInContext(read(file), context);
   const projectData = context.window.MP_SITE.projects[project];
   const title = locale === "en" ? context.document.title : koTitles[page] || `${projectData?.title || "작품"} | Minnie Park`;
-  const summary = locale === "en" ? enDescriptions[page] || description.content : koDescriptions[page] || projectData?.cardKo || projectData?.paragraphsKo?.[0] || `${projectData?.title} — Minnie Park의 인터랙티브 오디오비주얼 작업. 작품 설명과 전시 기록을 살펴보세요.`;
+  const summary = locale === "en" ? enDescriptions[page] || description.content : koDescriptions[page] || projectData?.cardKo || projectData?.paragraphsKo?.[0] || `${projectData?.title}, Minnie Park의 인터랙티브 오디오비주얼 작업. 작품 설명과 전시 기록을 살펴보세요.`;
   let html = template.replace(/<html lang="[^"]+">/, `<html lang="${locale}">`)
     .replace(/\s*<header class="global-header" data-search-chrome>[\s\S]*?<\/header>/g, "")
     .replace(/<main class="site-shell" id="app">[\s\S]*?<\/main>/, `<main class="site-shell" id="app">${app.innerHTML}</main>`)
@@ -110,6 +110,8 @@ function render(template, route, locale) {
   html = html.replace(/(edition-render|site-editorial)\.js\?v=[^"\s]+/g, `$1.js?v=${editionStamp}`);
   html = html.replace(/site-render\.js\?v=[^"\s]+/g, `site-render.js?v=${rendererStamp}`);
   html = html.replace(/(site-content|project-details)\.js\?v=[^"\s]+/g, `$1.js?v=${contentStamp}`);
+  html = html.replace(/hero-visual\.js\?v=[^"\s]+/g, `hero-visual.js?v=${stamp}`)
+    .replace(/style\.css\?v=[^"\s]+/g, "style.css?v=20260917-editorial-55");
   if (page === "home") {
     // Remove the previous ambient artwork only on the replacement home.
     html = html.replace(/\s*<section class="hero-visual"[\s\S]*?<\/section>/, "")
@@ -119,9 +121,9 @@ function render(template, route, locale) {
       .replace(/\s*<script[^>]*src="[^"]*(?:hero-visual|rose-sprites)\.js[^"]*"[^>]*><\/script>/g, "")
       .replace(/\s*<link[^>]*href="[^"]*rose-home\.css[^"]*"[^>]*>/g, "")
       .replace(/\s*<script[^>]*src="[^"]*rose-home(?:-template)?\.js[^"]*"[^>]*><\/script>/g, "");
-    html = html.replace('</head>', '<link rel="stylesheet" href="'+relative+'rose-home.css?v=20261030-rose-field-61" />\n</head>')
-      .replace(/(<script[^>]*src="[^"]*site-render\.js[^"]*"[^>]*><\/script>)/, '<script src="'+relative+'rose-home-template.js?v=20261030-rose-field-61"></script>\n  $1')
-      .replace('</body>', '<script defer src="'+relative+'rose-home.js?v=20261030-rose-field-61"></script>\n</body>');
+    html = html.replace('</head>', '<link rel="stylesheet" href="'+relative+'rose-home.css?v=20261031-review-round1-68" />\n</head>')
+      .replace(/(<script[^>]*src="[^"]*site-render\.js[^"]*"[^>]*><\/script>)/, '<script src="'+relative+'rose-home-template.js?v='+stamp+'"></script>\n  $1')
+      .replace('</body>', '<script defer src="'+relative+'rose-home.js?v='+stamp+'"></script>\n</body>');
     const noScriptCopy = locale === "ko" ? "인터랙션에는 JavaScript가 필요합니다. 작품과 리서치는 그대로 읽을 수 있습니다." : "JavaScript is needed for this interaction. You can still explore the works and research.";
     const localPath = relative + (locale === "ko" ? "ko/" : "");
     html = html.replace('</body>', `<noscript><style>.rose-home .effect-controls,.rose-home .words,.rose-home .field-controls,.rose-home .record,.rose-home .privacy,.rose-home .scene-label,.rose-home .scene-note{display:none}.rose-home #scene{height:min(70vw,600px);min-height:300px}.rose-home .rose-fallback{display:block}body>noscript{display:block;padding:20px var(--page-pad);font-size:14px}body>noscript a{text-decoration:underline}</style><p>${noScriptCopy} <a href="${localPath}works/">${locale === "ko" ? "작품" : "Works"}</a> · <a href="${localPath}research/">${locale === "ko" ? "리서치" : "Research"}</a></p></noscript>\n</body>`);

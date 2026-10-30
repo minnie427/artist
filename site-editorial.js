@@ -9,11 +9,11 @@
     const text = (en, ko) => esc(ctx.tr(en, ko));
     const email = /^mailto:[^?\s]+@[^?\s]+$/.test(ctx.site.external.email || "")
       ? ctx.site.external.email : "mailto:minniepark.studio@gmail.com";
-    const subject = `Artwork acquisition enquiry — ${title}`;
+    const subject = `Artwork acquisition enquiry, ${title}`;
     return `<details class="acquisition-enquiry">
       <summary class="inline-link">${text(...label)}</summary>
       <div class="acquisition-enquiry__panel">
-        <p>${text("Email the address below with the artwork title and your enquiry.", "아래 주소로 작품명과 문의 내용을 보내주세요.")}</p>
+        <p>${text("Tell me which work interests you and where you would like to present it.", "관심 작품과 설치하려는 공간을 알려주세요.")}</p>
         <dl>
           <dt>${text("Email", "이메일")}</dt>
           <dd class="acquisition-enquiry__select">${esc(email.slice(7))}</dd>
@@ -21,7 +21,7 @@
           <dd class="acquisition-enquiry__select">${esc(subject)}</dd>
         </dl>
         <a href="${esc(`${email}?subject=${encodeURIComponent(subject)}`)}">${text("Open email app →", "메일 앱에서 작성 →")}</a>
-        <p>${text("If no email app opens, copy the address and subject into your preferred email service. Nothing is sent from this page.", "메일 앱이 열리지 않으면 주소와 제목을 복사해 사용하는 이메일 서비스에서 작성해 주세요. 이 페이지에서는 메일이 발송되지 않습니다.")}</p>
+        <p>${text("Or copy the address into your email service.", "주소를 복사해 사용하는 이메일 서비스에서 작성해도 됩니다.")}</p>
       </div>
     </details>`;
   };
@@ -32,7 +32,7 @@
       "shared-resonance": ["media/shared-resonance/img-1603-763eb4f5.webp", "media/shared-resonance/img-1773-c9a5bfa0.webp"],
       "meta-kibun": ["media/meta-kibun/installation-07d43c32.webp", "media/meta-kibun/img-8620-11ca27fe.webp"]
     };
-    return `<section class="page-hero page-hero--works" id="top"><p class="eyebrow">${tr("Selected Works / 2024—2026", "주요 작품 / 2024—2026")}</p><h1>${tr("Works", "작품")}</h1><p class="hero-main">${tr("Interactive installations, moving image and participatory systems.", "인터랙티브 설치, 무빙이미지와 관객 참여 시스템.")}</p></section>
+    return `<section class="page-hero page-hero--works" id="top"><p class="eyebrow">${tr("Selected Works / 2024-2026", "주요 작품 / 2024-2026")}</p><h1>${tr("Works", "작품")}</h1><p class="hero-main">${tr("Interactive installations, moving image and participatory systems.", "인터랙티브 설치, 무빙이미지와 관객 참여 시스템.")}</p></section>
       <section class="editorial-works-intro content-section content-section--compact"><p>${tr("Meta Rose is Minnie Park’s ongoing body of work, developed through distinct installations. Roses, pink and touch connect an inquiry into emotional ambivalence, participation and time.", "Meta Rose는 서로 다른 설치로 이어지는 Minnie Park의 지속적인 작업입니다. 장미, 핑크, 터치를 통해 감정의 양가성, 참여와 시간을 탐구합니다.")}</p><a class="inline-link" href="${href("research/")}">${tr("Read the research →", "작업의 배경 읽기 →")}</a></section>
       <section class="editorial-works content-section" aria-label="${tr("Selected artworks", "주요 작품")}">
       ${site.primaryWorksOrder.map((key, index) => {
@@ -43,7 +43,7 @@
       }).join("")}</section>
       <section class="content-section editorial-further"><div class="section-heading section-heading--row"><h2>${tr("Further practice", "작업의 확장")}</h2><a class="inline-link" href="${href("artist/")}#artistHistoryTitle">${tr("Exhibition history →", "전시·활동 이력 →")}</a></div>
       ${further.map(key => { const p = details[key]; return `<article class="editorial-index-row"><span>${esc(site.projects[key].year)}</span><div><h3><a href="${href(site.projects[key].route)}">${esc(p.title)}</a></h3><p>${esc(local(p.lead, language))}</p></div><a class="inline-link" href="${href(site.projects[key].route)}">${tr("View work →", "작품 보기 →")}</a></article>`; }).join("")}</section>
-      <section class="index-invitation content-section"><p class="section-kicker">Visual Index</p><a href="${href("visual-index/")}">${tr("Explore the Visual Index →", "비주얼 인덱스 보기 →")}</a><p>${tr("Installation views, visual studies and traces of participation.", "설치 전경, 비주얼 스터디와 참여의 흔적.")}</p></section>${renderFooter()}`;
+      <section class="index-invitation content-section"><a href="${href("visual-index/")}">${tr("Visual Index →", "비주얼 인덱스 →")}</a><p>${tr("Installation views, visual studies and traces of participation.", "설치 전경, 비주얼 스터디와 참여의 흔적.")}</p></section>${renderFooter()}`;
   }
 
   function project(ctx, key) {
@@ -68,7 +68,7 @@
       }).join("")}
       ${key === "funeral" ? `<section class="edition-enquiry project-detail__section"><div><p class="section-kicker">${tr("Software edition", "소프트웨어 에디션")}</p><h2>RE:INTERVENTION</h2></div><div class="long-copy"><p>${tr("A software work developed within The Funeral. Explore acquisition possibilities and the conditions for presenting the work.", "The Funeral에서 전개된 소프트웨어 작품입니다. 소장 가능성과 작품 구현 조건을 살펴볼 수 있습니다.")}</p><a class="inline-link" href="${href("editions/reintervention/")}">${tr("Acquisition details →", "소장 안내 →")}</a></div></section>` : ""}
       ${p.sources.length ? `<details class="project-detail__sources"><summary>${tr("Project documentation", "프로젝트 자료")}</summary>${p.sources.map(source => `<a href="${esc(source.url)}" target="_blank" rel="noreferrer">${esc(source.label)} ↗</a>`).join("")}</details>` : ""}
-      ${gallery.length ? `<section class="project-gallery" aria-label="${esc(p.title)} — ${tr("documentation", "기록")}">${gallery.map(item => `<figure>${galleryMediaMarkup(item)}</figure>`).join("")}</section>` : ""}
+      ${gallery.length ? `<section class="project-gallery" aria-label="${esc(p.title)}, ${tr("documentation", "기록")}">${gallery.map(item => `<figure>${galleryMediaMarkup(item)}</figure>`).join("")}</section>` : ""}
       <div class="editorial-work__actions"><a class="inline-link" href="${href("visual-index/")}">Visual Index →</a>${p.acquisition ? enquiryAction(ctx, p.title, ["Acquisition enquiry →", "작품 소장 문의 →"]) : ""}</div>
       ${renderProjectNav(key, site.primaryWorksOrder.includes(key))}</article>${renderFooter()}`;
   }

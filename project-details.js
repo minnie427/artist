@@ -5,7 +5,7 @@ window.MP_PROJECT_DETAILS = {
     "title": "Meta Rose: The Funeral",
     "technical": [{
       "label": { "en": "Seoul Fringe Festival / 2026", "ko": "서울프린지페스티벌 / 2026" },
-      "credit": { "en": "Minnie Park — concept, exhibition planning and production.", "ko": "Minnie Park — 작품 구상, 전시 기획 및 제작." },
+      "credit": { "en": "Minnie Park, concept, exhibition planning and production.", "ko": "Minnie Park, 작품 구상, 전시 기획 및 제작." },
       "dimensions": { "en": "Variable according to venue and installation configuration.", "ko": "장소와 설치 구성에 따라 가변." },
       "medium": { "en": "Interactive audio-visual installation in four parts: Naming, Intervention, Witness and Record.", "ko": "명명, 개입, 목격, 기록의 네 부분으로 구성된 인터랙티브 오디오비주얼 설치." },
       "materials": { "en": "Living roses, skeletal model, conductive contacts, sound, light and moving image.", "ko": "생장미, 해골 모형, 전도성 접점, 사운드, 빛과 무빙이미지." },
@@ -13,11 +13,11 @@ window.MP_PROJECT_DETAILS = {
     }],
     "meta": {
       "en": [
-        "15–18 August 2026 · Solo exhibition · Seoul Fringe Festival",
+        "15-18 August 2026 · Solo exhibition · Seoul Fringe Festival",
         "Mijin Floor, Yeonnam-dong, Mapo-gu, Seoul"
       ],
       "ko": [
-        "2026년 8월 15–18일 · 개인전 · 서울프린지페스티벌",
+        "2026년 8월 15-18일 · 개인전 · 서울프린지페스티벌",
         "미진플로어, 서울 마포구 연남동"
       ]
     },
@@ -37,7 +37,7 @@ window.MP_PROJECT_DETAILS = {
             "ko": "Meta Rose: The Funeral은 받아들여질 만한 모습을 갖추기 위해 억눌러 온 자아의 여러 면을 바라봅니다. 장례식은 배제하거나 바꾸고 남겨둔 자신을 다시 마주하는 자리가 됩니다. 해골 형상에 꽂힌 생장미는 생명력과 죽음을 하나의 물리적 구조 안에 놓으며, 터치에 반응하는 사운드, 빛과 무빙이미지는 설치를 참여자의 행동과 연결합니다."
           },
           {
-            "en": "The exhibition comprises four parts: Naming, Intervention, Witness and Record. Each establishes a different relationship between a body and an image—through touch, gesture, proximity or observation. The four parts are conceived as distinct encounters rather than a prescribed sequence. Together, the works place care beside damage and beauty beside discomfort, approaching ambivalence as the coexistence of conflicting states.",
+            "en": "The exhibition comprises four parts: Naming, Intervention, Witness and Record. Each establishes a different relationship between a body and an image through touch, gesture, proximity or observation. The four parts are conceived as distinct encounters rather than a prescribed sequence. Together, the works place care beside damage and beauty beside discomfort, approaching ambivalence as the coexistence of conflicting states.",
             "ko": "전시는 명명, 개입, 목격, 기록의 네 부분으로 구성됩니다. 터치, 제스처, 가까워짐과 관찰을 통해 각각 신체와 이미지 사이에 서로 다른 관계를 만듭니다. 정해진 순서로 완료하는 과정이 아니라 서로 구별되는 만남으로 구상한 네 작업은 돌봄과 훼손, 아름다움과 불편함을 나란히 놓고, 상충하는 상태가 함께 존재하는 양가성을 다룹니다."
           }
         ]
@@ -122,7 +122,7 @@ window.MP_PROJECT_DETAILS = {
         "paragraphs": [
           {
             "en": "Presented as a solo exhibition at Mijin Floor, Yeonnam-dong, Seoul, from 15 to 18 August 2026, as part of Seoul Fringe Festival.",
-            "ko": "2026년 8월 15–18일 서울 연남동 미진플로어에서 서울프린지페스티벌의 개인전으로 선보였습니다."
+            "ko": "2026년 8월 15-18일 서울 연남동 미진플로어에서 서울프린지페스티벌의 개인전으로 선보였습니다."
           }
         ]
       }
@@ -167,15 +167,15 @@ window.MP_PROJECT_DETAILS = {
     "title": "The Meta Kibun Project",
     "technical": [{
       "label": { "en": "RMIT University / 2025", "ko": "RMIT University / 2025" },
-      "credit": { "en": "Minnie Park — concept, exhibition planning and production.", "ko": "Minnie Park — 작품 구상, 전시 기획 및 제작." },
+      "credit": { "en": "Minnie Park, concept, exhibition planning and production.", "ko": "Minnie Park, 작품 구상, 전시 기획 및 제작." },
       "dimensions": { "en": "Variable according to venue and installation configuration.", "ko": "장소와 설치 구성에 따라 가변." },
       "medium": { "en": "Interactive audio-visual installation and non-interactive video, presented within practice-based research.", "ko": "창작 실천 기반 연구에서 함께 제시한 인터랙티브 오디오비주얼 설치와 비인터랙티브 영상." },
       "materials": { "en": "Living roses, water, coloured slime, sound, light and three-screen moving image.", "ko": "생장미, 물, 컬러 슬라임, 사운드, 빛과 3면 무빙이미지." },
       "tools": { "en": "TouchDesigner (primary software); tactile interfaces controlling sixteen layered audio-visual effects.", "ko": "TouchDesigner(주 소프트웨어), 16개 오디오비주얼 효과의 층위를 제어하는 촉각 인터페이스." }
     }],
     "meta": {
-      "en": "2025 · Interactive audio-visual installation · RMIT University, Melbourne · 12–13 September 2025",
-      "ko": "2025 · 인터랙티브 오디오비주얼 설치 · RMIT University, Melbourne · 2025년 9월 12–13일"
+      "en": "2025 · Solo exhibition · Interactive audio-visual installation · RMIT University, Melbourne · 12-13 September 2025",
+      "ko": "2025 · 개인전 · 인터랙티브 오디오비주얼 설치 · RMIT University, Melbourne · 2025년 9월 12-13일"
     },
     "lead": {
       "en": "Living roses, water, colour and participant-composed language form an installation through which audiences explore how feeling takes shape through touch, personal experience and cultural context.",
@@ -229,7 +229,7 @@ window.MP_PROJECT_DETAILS = {
             "ko": "이틀간의 전시에서 반구조화 일대일 인터뷰 15건과 설문 응답 16건을 수집했습니다. 참여자들은 촉각적 경험이 신체적이고 개인적인 관여를 이끌었다고 서술했으며, 일부는 색의 선택과 익숙하지 않은 정서적 언어가 쉽게 표현하지 못했던 감정을 알아차리는 도구가 됐다고 설명했습니다. 녹화된 영상을 관람한 경험과 비교할 때 인터랙티브 작품에 관한 응답에서는 주도권과 개인적인 연결감이 자주 언급됐습니다."
           },
           {
-            "en": "These responses are treated as situated accounts rather than measurements of an objectively readable emotional state. The research does not establish a universal colour–emotion code or claim that cultural differences were comprehensively tested. Its contribution lies in examining how material sensation, expressive choice and audience participation can support nuanced reflection within a particular exhibition encounter.",
+            "en": "These responses are treated as situated accounts rather than measurements of an objectively readable emotional state. The research does not establish a universal colour-emotion code or claim that cultural differences were comprehensively tested. Its contribution lies in examining how material sensation, expressive choice and audience participation can support nuanced reflection within a particular exhibition encounter.",
             "ko": "이 응답들은 객관적으로 판독할 수 있는 감정 상태의 측정값이 아니라 특정한 맥락에서 형성된 경험의 서술로 다뤄집니다. 연구는 색과 감정의 보편적 대응 관계를 확립하거나 문화적 차이를 포괄적으로 검증했다고 주장하지 않습니다. 재료의 감각, 표현의 선택과 관객 참여가 특정 전시의 만남 안에서 어떻게 미묘한 감정의 성찰을 뒷받침하는지 살펴보는 데 의미가 있습니다."
           }
         ]
@@ -241,8 +241,8 @@ window.MP_PROJECT_DETAILS = {
         },
         "paragraphs": [
           {
-            "en": "Presented at RMIT University, Melbourne, on 12–13 September 2025. The exhibition brought together living roses, water, tactile materials, sound, light and three-screen moving image. The accompanying Honours exegesis documents the conceptual framework, installation, research methods and audience accounts, providing the foundation for subsequent work on affect, participation and culturally situated experience within Meta Rose.",
-            "ko": "2025년 9월 12–13일 멜버른 RMIT University에서 전시했습니다. 생장미, 물, 촉각적 재료, 사운드, 빛과 3면 무빙이미지를 함께 구성했습니다. 동반 Honours 논문에는 개념적 틀, 설치, 연구 방법과 관객의 경험이 기록돼 있으며, 이후 Meta Rose에서 이어지는 정서, 참여와 문화적 맥락 속의 경험에 관한 작업의 기반이 됩니다."
+            "en": "Presented at RMIT University, Melbourne, on 12-13 September 2025. The exhibition brought together living roses, water, tactile materials, sound, light and three-screen moving image. The accompanying Honours exegesis documents the conceptual framework, installation, research methods and audience accounts, providing the foundation for subsequent work on affect, participation and culturally situated experience within Meta Rose.",
+            "ko": "2025년 9월 12-13일 멜버른 RMIT University에서 전시했습니다. 생장미, 물, 촉각적 재료, 사운드, 빛과 3면 무빙이미지를 함께 구성했습니다. 동반 Honours 논문에는 개념적 틀, 설치, 연구 방법과 관객의 경험이 기록돼 있으며, 이후 Meta Rose에서 이어지는 정서, 참여와 문화적 맥락 속의 경험에 관한 작업의 기반이 됩니다."
           }
         ]
       }
@@ -276,7 +276,7 @@ window.MP_PROJECT_DETAILS = {
     "title": "Meta Rose: Origin",
     "technical": [{
       "label": { "en": "Visual album and installation / 2024", "ko": "비주얼 앨범과 설치 / 2024" },
-      "credit": { "en": "Minnie Park — concept, exhibition planning and production.", "ko": "Minnie Park — 작품 구상, 전시 기획 및 제작." },
+      "credit": { "en": "Minnie Park, concept, exhibition planning and production.", "ko": "Minnie Park, 작품 구상, 전시 기획 및 제작." },
       "dimensions": { "en": "Installation dimensions variable according to venue and configuration.", "ko": "설치 크기는 장소와 구성에 따라 가변." },
       "medium": { "en": "Interactive visual album combining a tactile installation, moving image, original soundtracks and a multiplayer game.", "ko": "촉각적 설치, 무빙이미지, 오리지널 사운드트랙과 멀티플레이어 게임을 결합한 인터랙티브 비주얼 앨범." },
       "materials": { "en": "Living roses arranged as a tactile keyboard across a table, 3D-rendered imagery, sound and digital character Mintie.", "ko": "테이블 위에서 촉각 키보드를 구성하는 생장미, 3D 렌더 이미지, 사운드와 디지털 캐릭터 Mintie." },
@@ -330,8 +330,8 @@ window.MP_PROJECT_DETAILS = {
         },
         "paragraphs": [
           {
-            "en": "The project took different forms across its 2024 exhibitions. At Seventh Gallery, Melbourne, on 29 May, Park presented the rose installation. On 7 June at RMIT University’s Blackbox, the exhibition brought the rose installation and interactive game together within the fuller project. The work was also presented at RMIT University in November 2024.",
-            "ko": "프로젝트는 2024년의 각 전시에서 서로 다른 구성으로 선보였습니다. 5월 29일 멜버른 Seventh Gallery에서는 장미 설치를 전시했습니다. 6월 7일 RMIT University의 Blackbox에서는 장미 설치와 인터랙티브 게임을 포함한 전체 프로젝트를 선보였으며, 같은 해 11월에도 RMIT University에서 전시했습니다."
+            "en": "The project took different forms across its 2024 exhibitions. At Seventh Gallery, Melbourne, on 29 May, Park presented the rose installation within a group exhibition. A solo exhibition on 7 June at RMIT University’s Blackbox brought the rose installation and interactive game together within the fuller project. A further solo exhibition followed at RMIT University in November 2024.",
+            "ko": "프로젝트는 2024년의 각 전시에서 서로 다른 구성으로 선보였습니다. 5월 29일 멜버른 Seventh Gallery의 그룹전에서는 장미 설치를 전시했습니다. 6월 7일 RMIT University의 Blackbox 개인전에서는 장미 설치와 인터랙티브 게임을 포함한 전체 프로젝트를 선보였으며, 같은 해 11월에도 RMIT University에서 개인전을 열었습니다."
           },
           {
             "en": "Origin established living roses, pink, contrasting audio-visual responses and touch as a connected artistic language. These elements provide the foundation for subsequent Meta Rose chapters, each developing a different question, interaction system and spatial form.",
@@ -342,7 +342,7 @@ window.MP_PROJECT_DETAILS = {
     ],
     "sources": [
       {
-        "label": "The Meta Rose Project — artist’s 2024 project archive",
+        "label": "The Meta Rose Project, artist’s 2024 project archive",
         "url": "https://minnie427.github.io/TheMetaRoseProject_blog/"
       }
     ],
@@ -360,22 +360,22 @@ window.MP_PROJECT_DETAILS = {
     "title": "The Meta Rose: Shared Resonance",
     "technical": [{
       "label": { "en": "Platform Presents: Hybrid / April 2026", "ko": "Platform Presents: Hybrid / 2026년 4월" },
-      "credit": { "en": "Minnie Park — concept, exhibition planning and production.", "ko": "Minnie Park — 작품 구상, 전시 기획 및 제작." },
+      "credit": { "en": "Minnie Park, concept, exhibition planning and production.", "ko": "Minnie Park, 작품 구상, 전시 기획 및 제작." },
       "dimensions": { "en": "Variable according to venue and installation configuration.", "ko": "장소와 설치 구성에 따라 가변." },
       "medium": { "en": "Participatory audio-visual installation activated by two or more people.", "ko": "두 명 이상의 참여자가 활성화하는 관객 참여형 오디오비주얼 설치." },
       "materials": { "en": "Suspended living roses, water, conductive contacts, sound, light and moving image.", "ko": "매달린 생장미, 물, 전도성 접점, 사운드, 빛과 무빙이미지." },
       "tools": { "en": "TouchDesigner; an open conductive circuit completed through hand-to-hand contact and touch-responsive audio-visual layers.", "ko": "TouchDesigner, 손과 손의 접촉으로 완성하는 열린 전도성 회로와 터치에 반응하는 오디오비주얼 층위." }
     }, {
-      "label": { "en": "Melbourne Fringe Festival / September–October 2026", "ko": "Melbourne Fringe Festival / 2026년 9–10월" },
-      "credit": { "en": "Minnie Park — concept, exhibition planning and production.", "ko": "Minnie Park — 작품 구상, 전시 기획 및 제작." },
+      "label": { "en": "Melbourne Fringe Festival / September-October 2026", "ko": "Melbourne Fringe Festival / 2026년 9-10월" },
+      "credit": { "en": "Minnie Park, concept, exhibition planning and production.", "ko": "Minnie Park, 작품 구상, 전시 기획 및 제작." },
       "dimensions": { "en": "Variable according to venue and installation configuration.", "ko": "장소와 설치 구성에 따라 가변." },
       "medium": { "en": "Interactive installation allowing individual interaction, collective activation or observation without touching.", "ko": "개인의 인터랙션, 공동 활성화 또는 접촉 없이 관찰하는 방식을 허용하는 인터랙티브 설치." },
       "materials": { "en": "Living roses, layered moving image and an original soundscape incorporating natural textures and artist-recorded samples.", "ko": "생장미, 다층 무빙이미지, 자연적 질감과 작가가 녹음한 샘플을 포함한 오리지널 사운드스케이프." },
       "tools": { "en": "TouchDesigner (primary software); touch-responsive audio-visual system. This presentation has a different participation structure from the April installation.", "ko": "TouchDesigner(주 소프트웨어), 터치 반응형 오디오비주얼 시스템. 4월 설치와 구별되는 참여 구조로 구성한 발표." }
     }],
     "meta": {
-      "en": ["2026 · Interactive audio-visual installation · Melbourne", "Platform Presents: Hybrid · 18 April / Melbourne Fringe Festival · 30 September–4 October"],
-      "ko": ["2026 · 인터랙티브 오디오비주얼 설치 · 멜버른", "Platform Presents: Hybrid · 4월 18일 / Melbourne Fringe Festival · 9월 30일–10월 4일"]
+      "en": ["2026 · Interactive audio-visual installation · Melbourne", "Platform Presents: Hybrid · 18 April / Melbourne Fringe Festival · 30 September to 4 October"],
+      "ko": ["2026 · 인터랙티브 오디오비주얼 설치 · 멜버른", "Platform Presents: Hybrid · 4월 18일 / Melbourne Fringe Festival · 9월 30일~10월 4일"]
     },
     "lead": {
       "en": "Living roses connect touch and shared presence to real-time sound and moving image. The work was presented at Platform Presents: Hybrid and Melbourne Fringe Festival in 2026.",
@@ -409,7 +409,7 @@ window.MP_PROJECT_DETAILS = {
             "ko": "4월 설치에서는 공중에 매달린 장미가 열린 회로의 일부를 구성합니다. 두 명 이상의 참여자가 장미, 물과 손을 맞잡는 접촉을 통해 연결되면 설치가 활성화됩니다. 신체 간의 연결은 오디오비주얼 반응을 가능하게 하는 전도성 관계를 실제로 형성합니다. 참여는 개인의 명령을 차례로 입력하는 과정이 아니라, 함께 수행하는 신체적 행위가 됩니다."
           },
           {
-            "en": "The resulting sound, visuals and light belong to the encounter as a whole. This relational structure gives form to the project’s interest in 양가감정: mixed feeling is approached through a sensory situation in which difference and connection can remain present together. The work foregrounds the conditions of participation—who is connected, and how—within the experience itself.",
+            "en": "The resulting sound, visuals and light belong to the encounter as a whole. This relational structure gives form to the project’s interest in 양가감정: mixed feeling is approached through a sensory situation in which difference and connection can remain present together. The work foregrounds the conditions of participation, who is connected and how, within the experience itself.",
             "ko": "그 결과로 나타나는 사운드, 비주얼과 빛은 만남 전체를 통해 구성됩니다. 이러한 관계적 구조는 양가감정에 대한 작품의 관심을 구체화합니다. 서로 다른 감각과 연결이 함께 존재하는 상황을 통해 복합적인 감정을 다루며, 누가 어떻게 연결되어 있는지라는 참여의 조건 자체를 경험 안에 드러냅니다."
           }
         ]
@@ -446,11 +446,11 @@ window.MP_PROJECT_DETAILS = {
     ],
     "sources": [
       {
-        "label": "Shared Resonance — April 2026 project documentation",
+        "label": "Shared Resonance, April 2026 project documentation",
         "url": "https://minnie427.github.io/metarose2604/"
       },
       {
-        "label": "Melbourne Fringe Festival — official 2026 event",
+        "label": "Melbourne Fringe Festival, official 2026 event",
         "url": "https://www.melbournefringe.com.au/whats-on/events/the-meta-rose-shared-resonance"
       }
     ],
@@ -482,11 +482,11 @@ window.MP_PROJECT_DETAILS = {
     },
     "meta": {
       "en": [
-        "2025–ongoing / Artist-led workshops and public programmes",
+        "2025 onwards / Artist-led workshops and public programmes",
         "Melbourne / In-person workshops / Online tutorials in development"
       ],
       "ko": [
-        "2025–현재 / 아티스트 주도형 워크숍과 공공 프로그램",
+        "2025년부터 현재 / 아티스트 주도형 워크숍과 공공 프로그램",
         "멜버른 / 대면 워크숍 / 온라인 튜토리얼 준비 중"
       ]
     },
@@ -504,6 +504,23 @@ window.MP_PROJECT_DETAILS = {
           {
             "en": "Park’s workshops extend her installation practice into shared learning. Participants explore how touch, gesture and real-time systems can become materials for making, through practical exercises and collective experimentation. The programmes connect the sensory and participatory questions of her art with hands-on approaches to creative technology.",
             "ko": "Park의 워크숍은 설치 작업을 함께 배우는 활동으로 확장합니다. 참여자는 실습과 공동 실험을 통해 터치, 제스처와 실시간 시스템을 창작의 재료로 다루는 방법을 탐구합니다. 작품에서 다루는 감각과 참여에 관한 질문을 크리에이티브 테크놀로지의 실질적인 사용 방법과 연결하는 프로그램입니다."
+          }
+        ]
+      },
+      {
+        "id": "flower-your-face",
+        "title": {
+          "en": "Flower your Face",
+          "ko": "Flower your Face"
+        },
+        "paragraphs": [
+          {
+            "en": "2 October 2026, 6:30-8:30 pm. The Mission to Seafarers Victoria, Docklands, Melbourne. Presented by TouchCollective and Platform Presents, this beginner-friendly TouchDesigner workshop was led by Minnie Park. The event was co-hosted by Park and Jessica Dang, with a capacity of 40 participants.",
+            "ko": "2026년 10월 2일 오후 6시 30분부터 8시 30분까지, 멜버른 Docklands의 The Mission to Seafarers Victoria에서 진행했습니다. TouchCollective와 Platform Presents가 함께 선보인 입문자를 위한 TouchDesigner 워크숍으로, Minnie Park가 단독으로 진행했습니다. 행사는 Park와 Jessica Dang이 공동 호스트를 맡았으며 정원은 40명이었습니다."
+          },
+          {
+            "en": "An introduction and demonstration were followed by hands-on work with MediaPipe finger and face tracking. Participants used tracking data to control real-time visuals and customise effects with their own images, developing a starting point for independent interactive projects. The session concluded with time to connect with other artists and creatives. No coding experience was required.",
+            "ko": "소개와 시연에 이어 MediaPipe를 활용한 손가락·얼굴 트래킹을 실습했습니다. 참여자는 트래킹 데이터로 실시간 비주얼을 제어하고 자신의 이미지로 효과를 구성하며 독립적인 인터랙티브 프로젝트를 위한 기초를 익혔습니다. 마지막에는 다른 아티스트·창작자들과 교류하는 시간을 마련했습니다. 코딩 경험 없이 참여할 수 있는 프로그램이었습니다."
           }
         ]
       },
@@ -699,12 +716,12 @@ window.MP_PROJECT_DETAILS = {
     },
     "meta": {
       "en": [
-        "2023–2024 / Live audio-visual performance",
+        "2023-2024 / Live audio-visual performance",
         "Median / Median 2",
         "Miscellania, Melbourne"
       ],
       "ko": [
-        "2023–2024 / 라이브 오디오비주얼 퍼포먼스",
+        "2023-2024 / 라이브 오디오비주얼 퍼포먼스",
         "Median / Median 2",
         "Miscellania, 멜버른"
       ]

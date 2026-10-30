@@ -30,8 +30,8 @@ IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".webp", ".tif", ".tiff"}
 VIDEO_EXTENSIONS = {".mov", ".mp4", ".m4v"}
 
 PROJECT_SOURCES = [
-    ("artist/live-performance", "live-performance", "live-performance", "Live Performance", "2023—2024"),
-    ("artist/artist-workshops", "artist-workshops", "artist-workshops", "Artist Workshops", "2025—ongoing"),
+    ("artist/live-performance", "live-performance", "live-performance", "Live Performance", "2023-2024"),
+    ("artist/artist-workshops", "artist-workshops", "artist-workshops", "Artist Workshops", "2025 onwards"),
     ("artist/2026_funeral", "funeral", "funeral", "Meta Rose: The Funeral", "2026"),
     ("artist/2026_shared-resonance", "shared-resonance", "shared-resonance", "The Meta Rose: Shared Resonance", "2026"),
     ("artist/2026_touching-resonance", "touching-resonance", "touching-resonance", "Touching Resonance", "2026"),
@@ -285,11 +285,11 @@ def build_manifest(source_root: Path) -> dict[str, object]:
 
     profile_files = media_files(source_root / "artist/profile")
     if profile_files:
-        source = profile_files[0]
+        source = next((item for item in profile_files if item.stem.casefold() == "artist2"), profile_files[0])
         src, _, _ = process_file(source, source_root, MEDIA_ROOT / "profile")
         manifest["profile"] = {
             "src": src,
-            "alt": "Minnie Park with Meta Rose: The Funeral",
+            "alt": "Minnie Park within an interactive installation",
         }
 
     for relative, project_key, destination_name, title, year in PROJECT_SOURCES:
@@ -311,7 +311,7 @@ def build_manifest(source_root: Path) -> dict[str, object]:
             context = context_for(source, is_video, is_hero, project_key)
             item = {
                 "src": src,
-                "alt": f"{title} — {context}",
+                "alt": f"{title}, {context}",
             }
             if poster:
                 item["poster"] = poster
@@ -359,7 +359,7 @@ def build_manifest(source_root: Path) -> dict[str, object]:
         src, poster, _ = process_file(source, source_root, MEDIA_ROOT / "showreel")
         item = {
             "src": src,
-            "alt": f"{title} — {context}" if title else context,
+            "alt": f"{title}, {context}" if title else context,
             "title": title,
             "year": year,
             "project": project,

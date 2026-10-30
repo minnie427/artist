@@ -23,7 +23,7 @@ const projectKeys = [
   "artist-workshops", "live-performance", "melbourne-fashion-festival", "album-listening-session"
 ];
 assert.deepEqual(Object.keys(details).sort(), [...projectKeys].sort(), "All ten approved projects must be retained");
-assert.equal(Object.values(details).reduce((count, project) => count + project.sections.reduce((n, section) => n + section.paragraphs.length, 0), 0), 54, "Retain 52 existing bilingual paragraphs and two confirmed Melbourne Fringe paragraphs");
+assert.equal(Object.values(details).reduce((count, project) => count + project.sections.reduce((n, section) => n + section.paragraphs.length, 0), 0), 56, "Retain existing bilingual accounts, confirmed Fringe presentation and two Flower your Face paragraphs");
 assert(!/\/Users\/|cautions|heroLocal/.test(read("project-details.js")), "Do not publish private source paths or notes");
 
 const knownRoutes = new Set([
@@ -75,7 +75,7 @@ function checkMarkup(html, label, language) {
     if (href.startsWith("mailto:")) {
       const mail = new URL(href.replaceAll("&amp;", "&"));
       assert.equal(mail.pathname, "minniepark.studio@gmail.com", `${label}: enquiry recipient`);
-      assert.match(mail.searchParams.get("subject") || "", /^Artwork acquisition enquiry — .+/, `${label}: subject identifies the artwork`);
+      assert.match(mail.searchParams.get("subject") || "", /^Artwork acquisition enquiry, .+/, `${label}: subject identifies the artwork`);
       continue;
     }
     assert(href.startsWith(prefix), `${label}: link preserves ${language} route: ${href}`);
@@ -93,10 +93,9 @@ function checkAcquisitionFallback(html, titles, label, language) {
     assert(panel.includes('class="acquisition-enquiry__select">minniepark.studio@gmail.com</dd>'), `${label}: recipient is visible and selectable`);
     const mail = new URL(panel.match(/href="(mailto:[^"]+)"/)[1].replaceAll("&amp;", "&"));
     assert.equal(mail.pathname, "minniepark.studio@gmail.com", `${label}: correct recipient`);
-    assert.equal(mail.searchParams.get("subject"), `Artwork acquisition enquiry — ${titles[index]}`, `${label}: exact artwork-specific subject`);
+    assert.equal(mail.searchParams.get("subject"), `Artwork acquisition enquiry, ${titles[index]}`, `${label}: exact artwork-specific subject`);
     assert(panel.includes(projectEscape(mail.searchParams.get("subject"))), `${label}: visible subject matches email draft subject`);
-    assert(panel.includes(language === "ko" ? "메일 앱이 열리지 않으면" : "If no email app opens"), `${label}: localised manual-email fallback`);
-    assert(panel.includes(language === "ko" ? "이 페이지에서는 메일이 발송되지 않습니다." : "Nothing is sent from this page."), `${label}: no-send explanation`);
+    assert(panel.includes(language === "ko" ? "주소를 복사해" : "copy the address"), `${label}: localised manual-email fallback`);
     assert(!/<form|<input|\bon(?:click|submit)=|\b(?:fetch|XMLHttpRequest|WebSocket)\s*\(/i.test(panel), `${label}: no form, interception or hidden enquiry transmission`);
   });
 }
@@ -166,7 +165,7 @@ for (const language of ["en", "ko"]) {
     assert(!/\b(?:fetch|XMLHttpRequest|WebSocket)\s*\(/.test(html), "No hidden enquiry transmission");
   }
 }
-assert.equal(checkedParagraphs, 108, "All 54 paragraphs checked in both languages");
+assert.equal(checkedParagraphs, 112, "All 56 paragraphs checked in both languages");
 
 // Guard the edition module against accidental raw text or attribute insertion.
 const hostile = context("en");
@@ -179,4 +178,4 @@ for (const html of [editorial.works(hostile), editorial.project(hostile, "funera
   assert(html.includes('class="acquisition-enquiry__select">minniepark.studio@gmail.com</dd>'), "Editorial enquiries retain the safe recipient fallback");
 }
 
-console.log("PASS: 26 EN/KO renders (10 projects + Works + 2 Editions pages per language), all 54 bilingual paragraphs, metadata, media, real routes, history anchors, native acquisition fallback with exact artwork subjects, common card structure, and no unapproved acquisition terms. Static checks only; browser/mobile visual QA remains separate.");
+console.log("PASS: 26 EN/KO renders (10 projects + Works + 2 Editions pages per language), all 56 bilingual paragraphs, metadata, media, real routes, history anchors, native acquisition fallback with exact artwork subjects, common card structure, and no unapproved acquisition terms. Static checks only; browser/mobile visual QA remains separate.");

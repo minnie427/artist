@@ -8,7 +8,7 @@ const root = path.resolve(__dirname, "..");
 const read = name => fs.readFileSync(path.join(root, name), "utf8");
 const expected = {
   "en": [
-    "Minnie Park is a Korean-Australian interactive audio-visual artist working between Seoul and Melbourne. Her installations combine living roses, tactile interaction, sound, light and moving image to examine affect as embodied, relational and culturally situated. Through Meta Rose—begun in 2024 and including The Meta Kibun Project—she develops distinct participatory systems around emotional ambivalence, culturally shaped feeling, relational touch and memory.",
+    "Minnie Park is a Korean-Australian interactive audio-visual artist working between Seoul and Melbourne. Her installations combine living roses, tactile interaction, sound, light and moving image to examine affect as embodied, relational and culturally situated. Through Meta Rose, begun in 2024 and including The Meta Kibun Project, she develops distinct participatory systems around emotional ambivalence, culturally shaped feeling, relational touch and memory.",
     "Her 2025 Honours research at RMIT University examined audience accounts through The Meta Kibun Project, using interviews and surveys alongside an interactive exhibition. Park is also a co-founder of TouchCollective, an artist-led community centred on TouchDesigner, and develops workshops connecting creative practice, embodied participation and technical experimentation."
   ],
   "ko": [
@@ -16,10 +16,10 @@ const expected = {
     "2025년 RMIT University의 Honours 연구에서는 The Meta Kibun Project의 인터랙티브 전시와 인터뷰·설문을 통해 관객의 경험 서술을 살펴봤습니다. TouchDesigner를 중심으로 활동하는 아티스트 주도 커뮤니티 TouchCollective의 공동 설립자이기도 하며, 창작 실천과 신체적 참여, 기술적 실험을 연결하는 워크숍을 발전시키고 있습니다."
   ]
 };
-// The biography and history remain unchanged. Statement replacement approved 2026-10-31.
+// Preserve the approved biography, statement and earlier history. Only requested punctuation and the two verified October entries change.
 const preserved = {
-  en: { statement: "f9f8fdd14e140752afc371501da547ee4707a89764dfd61e57bc325b898532d3", history: "d8349cb673aa44bd25808310eb0ab75bc6c6b278096c4ef90bb2f4da4c9ef54c" },
-  ko: { statement: "de722a0a7ec8ce5cec7023f9e106758576d4e0474c17f787a189c396f096680c", history: "60d1294292cd750cc8dbbd69163bc03d2e9157f4b376e7968c1a5e1854e87e77" }
+  en: { statement: "cf56520d5cbea5abcb4f3f8c674bea3cf56ba866155167091b4af639821670f5", history: "f66cbb159a43502892586eee6c0b5e0859735adfa5382e6557d36251c8c82bac" },
+  ko: { statement: "3cbd0b0f75e95f5856dc22a3aff218ba0d3a5e4edc0177253b5862b2aad959a8", history: "e26df5af24f857f9d4e132d3627b968c96077403585ccf404a949fe532e911a5" }
 };
 const normalise = value => value.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
 const hash = value => crypto.createHash("sha256").update(normalise(value)).digest("hex");
@@ -55,7 +55,7 @@ function check(html, language, label) {
   assert(/download(?:\s|>|=)/.test(copy), label + ": CV download retained");
   assert(copy.includes(language === "ko" ? "작품 보기" : "View Works"), label + ": Works action retained");
   if (language === "en") {
-    assert.equal(words(paragraphs[0]), 59, label + ": existing 59-word first paragraph preserved");
+    assert.equal(words(paragraphs[0]), 61, label + ": approved first paragraph preserved with comma punctuation");
     assert(words(paragraphs.join(" ")) >= 100, label + ": complete biography is at least 100 words");
   }
   const statement = html.match(/<section class="artist-statement[^>]*>([\s\S]*?)<\/section>/)[1];
@@ -63,23 +63,16 @@ function check(html, language, label) {
   const historyStart = html.indexOf('<section class="artist-history');
   const historyEnd = html.indexOf("<footer", historyStart);
   assert(historyStart >= 0 && historyEnd > historyStart, label + ": selected history retained");
-  // Undo only the confirmed Fringe correction before comparing the original
-  // history snapshot. Dedicated fringe-history tests assert the new facts.
-  const priorHistory = html.slice(historyStart, historyEnd)
-    .replace(/<a class="artist-history__entry"[^>]*>[\s\S]*?<\/a>/g, row => {
-      if (row.includes("Celia Little Room")) return "";
-      if (!row.includes("Meta Rose: The Funeral")) return row;
-      const suffix = language === "ko" ? " / Melbourne Fringe Festival(예정)" : " / Melbourne Fringe Festival (forthcoming)";
-      return row.replace(/(<p class="artist-history__context">[^<]+)(<\/p>)/, `$1${suffix}$2`);
-    });
-  assert.equal(hash(priorHistory), preserved[language].history, label + ": unrelated selected history text is unchanged");
+  // Exact current history approved with October presentations, workshop,
+  // solo classifications and the Body Morphosis medium correction.
+  assert.equal(hash(html.slice(historyStart, historyEnd)), preserved[language].history, label + ": exact approved history and roles retained");
 }
 
 for (const language of ["en", "ko"]) {
   const route = (language === "ko" ? "ko/" : "") + "artist/index.html";
   const staticHtml = read(route);
   check(staticHtml, language, route + "/static");
-  assert(staticHtml.includes("site-render.js?v=20261031-artist-reading-64"), route + ": refreshed renderer cache version");
+  assert(staticHtml.includes("site-render.js?v=20261031-review-round1-68"), route + ": refreshed renderer cache version");
   for (const protocol of ["https:", "file:"]) check(render(language, protocol), language, language + "/" + protocol);
 }
 console.log("PASS: Artist biography " + words(expected.en.join(" ")) + " English words (" + words(expected.en[0]) + " original + " + words(expected.en[1]) + " added); exact EN/KO biography and approved narrative in static and HTTP/file runtime renders; history and actions retained.");

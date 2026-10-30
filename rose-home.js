@@ -47,6 +47,15 @@
     affection:'positive',restlessness:'negative',ambivalence:'negative'
   });
   function polarityOf(id) { return polarityMap[id] || 'positive'; }
+  // Word-to-response assignments are a compositional choice for this artwork.
+  // They do not classify the viewer or infer an emotional state.
+  const responseMap = Object.freeze({
+    distance:'separation',alienation:'separation',hesitation:'separation',
+    unease:'glitch',doubt:'glitch',restlessness:'glitch',ambivalence:'glitch',
+    aversion:'thorn',resistance:'thorn',fear:'thorn',anger:'thorn',
+    grief:'erosion',sorrow:'erosion',loss:'erosion'
+  });
+  function effectOf(id) { return polarityOf(id) === 'positive' ? 'offspring' : responseMap[id] || 'glitch'; }
   const banks=[[0,1,2,3,4],[5,6,7,8,9],[10,11,12,13,14]];
   function effects(layers){
     const result=[0,0,0,0];
@@ -94,7 +103,7 @@
       return false;
     }
   }
-  root.RoseMath={clamp,words,banks,effects,wordPositions,targetFace,nearestWord,PinchGate,polarityOf,polarityMap};
+  root.RoseMath={clamp,words,banks,effects,wordPositions,targetFace,nearestWord,PinchGate,polarityOf,polarityMap,effectOf,responseMap};
 })(globalThis);
 
 ;
@@ -1138,6 +1147,18 @@
   }
 
   function planEffects(events, mode) {
+    if (mode === 'emotion') {
+      events = Array.isArray(events) ? events : [];
+      const grouped = MODES.map(key => planEffects(events.filter(event => (event.effect || root.RoseMath.effectOf(event.word)) === key), key));
+      const combined = planEffects(events, 'offspring');
+      const [offspring,separation,glitch,thorn,erosion] = grouped;
+      return {...combined,mode:'emotion',children:offspring.children,echoes:[],
+        regionOffsets:separation.regionOffsets,regionUniforms:separation.regionUniforms,
+        separation:separation.separation,erosion:erosion.erosion,thornLinks:thorn.thornLinks,thornCount:thorn.thornCount,
+        glitch:glitch.glitch,glitchShards:glitch.glitchShards,
+        effectExtent:Math.max(...grouped.map(plan => plan.effectExtent)),sceneCount:1+offspring.children.length,
+        effectCounts:Object.fromEntries(MODES.map((key,i) => [key,grouped[i].count]))};
+    }
     mode = MODES.includes(mode) ? mode : 'offspring';
     events = Array.isArray(events) ? events : [];
     let positive = 0, negative = 0, hash = 2166136261;
@@ -1390,7 +1411,7 @@
         gl.disable(gl.SCISSOR_TEST);
         gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);gl.enable(gl.DEPTH_TEST);gl.depthMask(true);bindMesh();
         gl.uniform4fv(locations.mesh.uProtected,protectedUniforms(protectedRects,width,height));
-        const rough=effect.mode==='separation'&&effect.negative&&effect.count ? Math.min(.045,effect.negative*.004):0;
+        const rough=effect.separation&&effect.negative&&effect.count ? Math.min(.045,effect.negative*.004):0;
         const instances=[...effect.echoes.map(o=>({...o,split:o.negative?.035:0,seed:effect.seed})),
           {regions:effect.regionUniforms,glitch:effect.glitch,erosion:effect.erosion,seed:effect.seed,rough},
           ...effect.children.map(o=>({...o,alpha:.86,split:o.negative?.15:0,rough:o.negative?.045:0,seed:o.seed}))];
@@ -1401,7 +1422,7 @@
         drawThorns(effect);
         drawGlitchShards(effect);
       }else fallback(effect,protectedRects);
-      const rough=effect.mode==='separation'&&effect.negative&&effect.count ? Math.min(.045,effect.negative*.004):0;
+      const rough=effect.separation&&effect.negative&&effect.count ? Math.min(.045,effect.negative*.004):0;
       let headMinX=Infinity,headMinY=Infinity,headMaxX=-Infinity,headMaxY=-Infinity;
       const anchors=mesh.regions.map((reg,i)=>{
         let px=0,py=0,pz=0,weight=0,minX=Infinity,minY=Infinity,maxX=-Infinity,maxY=-Infinity;
@@ -1432,16 +1453,16 @@
 
 
 ;
-/* Each comparison begins clean. Only an explicit word selection adds a trace. */
+/* Only explicit selections add responses; emotion-led selections accumulate together. */
 (function(root){
   'use strict';
   const modes=Object.freeze(['offspring','separation','glitch','thorn','erosion']);
   function create(options={}){
-    let mode=modes.includes(options.mode)?options.mode:'offspring',events=[];
+    let mode=modes.includes(options.mode)?options.mode:'emotion',events=[];
     function snapshot(){const positive=events.filter(e=>e.polarity==='positive').length;return{mode,events:events.slice(),layers:events.map(e=>e.word),total:events.length,positive,negative:events.length-positive};}
     function reset(){events=[];return snapshot();}
     function setMode(next){if(!modes.includes(next))return snapshot();mode=next;return reset();}
-    function select(word,polarity){if(typeof word!=='string'||!word.trim())return snapshot();events.push({id:events.length+1,word,polarity:polarity==='negative'?'negative':'positive'});return snapshot();}
+    function select(word,polarity){if(typeof word!=='string'||!word.trim())return snapshot();events.push({id:events.length+1,word,polarity:polarity==='negative'?'negative':'positive',effect:mode==='emotion'?root.RoseMath.effectOf(word):mode});return snapshot();}
     return Object.freeze({snapshot,reset,setMode,select});
   }
   root.RoseEffectSession=Object.freeze({create,modes});
@@ -1458,16 +1479,9 @@
   const effectSession=RoseEffectSession.create();
   const slots=RoseEmotionSlots.create({count:7,wordCount:words.length}),textSpace=RoseTextSpace.create({count:20}),textStream=RoseTextStream.create();
   const linkCanvas=$('textLinks'),linkContext=linkCanvas.getContext('2d');
-  const S={w:0,h:0,lang:document.documentElement.lang==='ko'?'ko':'en',phase:'off',face:null,hand:null,handState:null,pointer:{x:.5,y:.5},hasPointer:false,layers:[],events:[],mode:'offspring',total:0,positive:0,negative:0,lastEvent:null,lastSelect:-Infinity,clock:0,visualTime:0,hoverSlot:-1,freezeUntil:Array(7).fill(0),feedbackUntil:Array(7).fill(0),points:[],labelPoints:[],meta:null,renderer:null,raf:0,lastRender:0,lastTime:0,textAge:0,textRound:0,dataAge:0,textTelemetryAge:0,textPoints:[],textNodes:[],textSizes:[],initialised:false,slotWords:Array.from({length:7},(_,i)=>i),slotRevision:0,textSnapshot:[],textPlanKey:'',textFrameAge:0,handDisplay:null,frameRate:60,protectedRects:[]};
+  const S={w:0,h:0,lang:document.documentElement.lang==='ko'?'ko':'en',phase:'off',face:null,hand:null,handState:null,pointer:{x:.5,y:.5},hasPointer:false,layers:[],events:[],mode:'emotion',total:0,positive:0,negative:0,lastEvent:null,lastSelect:-Infinity,clock:0,visualTime:0,hoverSlot:-1,freezeUntil:Array(7).fill(0),feedbackUntil:Array(7).fill(0),points:[],labelPoints:[],meta:null,renderer:null,raf:0,lastRender:0,lastTime:0,textAge:0,textRound:0,dataAge:0,textTelemetryAge:0,textPoints:[],textNodes:[],textSizes:[],initialised:false,slotWords:Array.from({length:7},(_,i)=>i),slotRevision:0,textSnapshot:[],textPlanKey:'',textFrameAge:0,handDisplay:null,frameRate:60,protectedRects:[]};
   const tr=(en,ko)=>S.lang==='ko'?ko:en,label=w=>S.lang==='ko'?w.ko:w.id,wordAt=i=>words[S.slotWords[i]];
 
-  const effectDefinitions={
-    offspring:{title:'Offspring',en:'Small roses emerge at different depths; accumulation can become both intimacy and intrusion.',ko:'작은 장미가 서로 다른 깊이에 생기고, 쌓일수록 원래 장미를 감싸거나 침범합니다.'},
-    separation:{title:'Separation',en:'Uneven petal layers shift in different directions with each selection.',ko:'선택할 때마다 꽃잎의 층이 서로 다른 방향과 깊이로 어긋납니다.'},
-    glitch:{title:'Glitch',en:'Fine horizontal and vertical slices shift, interrupt and accumulate across the rose.',ko:'미세한 가로·세로 조각이 어긋나고 겹치며 장미 표면에 쌓입니다.'},
-    thorn:{title:'Thorn',en:'Linked thorns grow around the rose, gradually enclosing or crossing its surface.',ko:'이어진 가시덩굴이 장미 주변으로 자라며 경계를 감싸거나 표면을 가로지릅니다.'},
-    erosion:{title:'Erosion',en:'Small gaps spread through the halftone surface, making presence and loss visible together.',ko:'작은 빈틈이 하프톤 표면으로 퍼지며 형태와 유실이 함께 드러납니다.'}
-  };
   function syncEffects(next){S.mode=next.mode;S.events=next.events;S.layers=next.layers;S.total=next.total;S.positive=next.positive;S.negative=next.negative;}
   function clearEffects(nextMode,resetWords=false){
     syncEffects(nextMode?effectSession.setMode(nextMode):effectSession.reset());
@@ -1476,21 +1490,19 @@
     containers.forEach(c=>c.classList.remove('is-committed','hand-hover','hand-locked'));
     delete scene.dataset.lastWord;delete scene.dataset.lastPolarity;refresh();announce(S.phase==='running'?(target.mode==='dwell'?'running':'pinch'):'off');wake();
   }
-  document.querySelectorAll('[data-effect]').forEach(b=>b.addEventListener('click',()=>clearEffects(b.dataset.effect)));
 
-  const responseName=polarity=>({offspring:['APPEAR','INTRUDE'],separation:['OVERLAP','PART'],glitch:['SHIFT','DISRUPT'],thorn:['BOUNDARY','PIERCE'],erosion:['COHERE','ERODE']})[S.mode][polarity==='positive'?0:1];
   const copies={off:['Words cycle continuously. Hover to hold; click to leave a trace.','단어가 계속 바뀝니다. 가리키면 멈추고 클릭하면 흔적이 쌓입니다.'],requesting:['Allow the camera, or cancel to keep clicking.','카메라를 허용하거나 취소하고 클릭으로 체험하세요.'],loading:['Preparing position tracking… The blocks still work by click.','위치 인식을 준비 중입니다. 감정 블록은 클릭으로도 선택할 수 있어요.'],running:['Move your palm over a word. Hold it still to select.','손바닥으로 단어를 가리키면 멈춥니다. 잠시 머무르면 선택됩니다.'],pinch:['Hold a word with your palm, then pinch to select.','손바닥으로 단어를 멈추고 엄지와 검지를 모아 선택하세요.'],stopped:['Camera stopped. Your traces remain.','카메라를 껐습니다. 흔적은 그대로 남습니다.']};
   function announce(key){const text=(copies[key]||copies.off)[S.lang==='ko'?1:0];if(status.textContent!==text)status.textContent=text;}
   function measure(){S.widths=containers.map(b=>b.offsetWidth);S.heights=containers.map(b=>b.offsetHeight);S.buttonHeights=buttons.map(b=>b.offsetHeight);}
-  function refreshWords(){buttons.forEach((b,i)=>{const w=wordAt(i);b.dataset.word=w.id;b.dataset.polarity=polarityOf(w.id);b.querySelector('.word-label').textContent=label(w);b.setAttribute('aria-label',`${label(w)} — ${tr('leave a trace','흔적 추가')}`);});}
+  function refreshWords(){buttons.forEach((b,i)=>{const w=wordAt(i);b.dataset.word=w.id;b.dataset.polarity=polarityOf(w.id);b.querySelector('.word-label').textContent=label(w);b.setAttribute('aria-label',`${label(w)}, ${tr('select feeling','감정 선택')}`);});}
   function refresh(){
-    document.querySelectorAll('[data-effect]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.effect===S.mode)));$('effectCaption').textContent=effectDefinitions[S.mode][S.lang];scene.dataset.mode=S.mode;
+    scene.dataset.mode=S.mode;$('interactionCue').hidden=S.total>0;$('reset').hidden=S.total===0;
     const running=S.phase==='running',pending=['requesting','loading'].includes(S.phase);
     $('camera').textContent=pending?tr('Cancel camera','카메라 취소'):running?tr('Turn camera off','카메라 끄기'):tr('Enable camera','카메라 켜기');$('camera').setAttribute('aria-pressed',String(running));
     $('handMode').textContent=target.mode==='dwell'?tr('Hand: hold','손 선택: 머무르기'):tr('Hand: pinch','손 선택: 핀치');$('reset').textContent=tr('Reset','초기화');
     $('instruction').textContent=tr('Hold a word. Leave a trace.','단어를 멈추고, 흔적을 남기세요.');
     $('layerCount').textContent=`${String(S.total).padStart(2,'0')} ${tr('TRACES','개의 흔적')} / ${S.positive}+ · ${S.negative}−`;
-    $('layerHistory').textContent=S.layers.length?S.layers.slice(-8).map(id=>label(words.find(w=>w.id===id))).join(' · '):'—';
+    $('layerHistory').textContent=S.layers.length?S.layers.slice(-8).map(id=>label(words.find(w=>w.id===id))).join(' · '):'';
     scene.dataset.selections=String(S.total);scene.dataset.positive=String(S.positive);scene.dataset.negative=String(S.negative);scene.dataset.retained=String(S.layers.length);scene.dataset.handMode=target.mode;refreshWords();
   }
   function frozenSlots(){const f=new Set();if(S.hoverSlot>=0)f.add(`node-${S.hoverSlot}`);buttons.forEach((b,i)=>{const p=S.points[i],near=S.hasPointer&&p&&Math.abs(S.pointer.x*S.w-p.x)<(S.widths[i]||154)/2+40&&Math.abs(S.pointer.y*S.h-p.y)<(S.heights[i]||68)/2+30;if(near||b.matches(':focus-visible')||S.clock<S.freezeUntil[i])f.add(`node-${i}`);});if(S.handState?.hoverId)f.add(S.handState.hoverId);if(S.handState?.lockedId)f.add(S.handState.lockedId);return f;}
@@ -1499,8 +1511,8 @@
     S.lastEvent={slot:i,word:w.id,polarity,version:S.total};scene.dataset.lastWord=w.id;scene.dataset.lastPolarity=polarity;
     containers[i].classList.add('is-committed');
     scene.dataset.lastClickNode=String(i);scene.dataset.lastClickX=String(S.points[i]?.x??0);scene.dataset.lastClickY=String(S.points[i]?.y??0);
-    containers[i].querySelector('.selection-feedback').textContent=`+${String(S.total).padStart(2,'0')} ${responseName(polarity)}`;
-    refresh();status.textContent=tr(`${w.id} · ${responseName(polarity).toLowerCase()} · trace ${S.total}`,`${w.ko} · ${responseName(polarity)} · ${S.total}번째 흔적`);wake();
+    containers[i].querySelector('.selection-feedback').textContent=`+${String(S.total).padStart(2,'0')} ${tr('SELECTED','선택됨')}`;
+    refresh();status.textContent=tr(`${w.id}, trace ${S.total}`,`${w.ko}, ${S.total}번째 흔적`);wake();
   }
   buttons.forEach((b,i)=>{
     b.innerHTML=`<span class="node-id" aria-hidden="true">${String(i+1).padStart(2,'0')} <span class="slot-state">SCAN</span></span><span class="word-label"></span><span class="node-cross" aria-hidden="true">+</span><span class="selection-feedback" aria-hidden="true"></span>`;
@@ -1510,7 +1522,7 @@
   });
   $('reset').addEventListener('click',()=>clearEffects(null,true));
   $('handMode').addEventListener('click',()=>{target.setMode(target.mode==='dwell'?'pinch':'dwell');S.handState=null;refresh();announce(S.phase==='running'?(target.mode==='dwell'?'running':'pinch'):'off');wake();});
-  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&['running','loading','requesting'].includes(S.phase))RoseTracker.stop();});
+  document.addEventListener('keydown',e=>{if(e.key!=='Escape')return;if(['running','loading','requesting'].includes(S.phase))RoseTracker.stop();$('interactionHelp').open=false;});
   function handNodes(){return S.labelPoints.map((p,i)=>({id:p.id,x:p.x/S.w,y:p.y/S.h,rx:Math.max(38,(S.widths[i]||130)/2+10)/S.w,ry:Math.max(30,(S.buttonHeights[i]||40)/2+8)/S.h}));}
   function frame(f){S.face=f.face;S.hand=f.hand;S.handState=target.update({hand:f.hand,now:performance.now(),nodes:handNodes()});const h=S.handState;
     // Pinch keeps its last eligible target for 240ms. Preserve that word for
@@ -1581,7 +1593,7 @@
     drawNetwork();
   }
   function updateData(){
-    const anchors=S.meta?.anchors||[];containers.forEach((c,i)=>{const a=anchors[i];if(!a)return;if(a.visible===false){c.querySelector('.position-data').textContent=a.id+' / '+tr('outside art frame','프레임 바깥');c.querySelector('.motion-data').textContent='—';return;}const x=Number.isFinite(a.x)?a.x:0,y=Number.isFinite(a.y)?a.y:0,vx=Number.isFinite(a.vx)?a.vx:0,vy=Number.isFinite(a.vy)?a.vy:0;
+    const anchors=S.meta?.anchors||[];containers.forEach((c,i)=>{const a=anchors[i];if(!a)return;if(a.visible===false){c.querySelector('.position-data').textContent=a.id+' / '+tr('outside art frame','프레임 바깥');c.querySelector('.motion-data').textContent='-';return;}const x=Number.isFinite(a.x)?a.x:0,y=Number.isFinite(a.y)?a.y:0,vx=Number.isFinite(a.vx)?a.vx:0,vy=Number.isFinite(a.vy)?a.vy:0;
       c.querySelector('.position-data').textContent=`${a.id} / x ${x.toFixed(1)} · y ${y.toFixed(1)}`;
       c.querySelector('.motion-data').textContent=`vx ${vx.toFixed(1)} · vy ${vy.toFixed(1)} px/s`;
       c.dataset.region=a.id;c.dataset.x=x.toFixed(1);c.dataset.y=y.toFixed(1);c.dataset.vx=vx.toFixed(1);c.dataset.vy=vy.toFixed(1);

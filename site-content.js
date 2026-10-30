@@ -21,18 +21,18 @@ window.MP_SITE = {
   },
 
   artistNarrative: {
-    en: "I painted The Pinkbird in 2021 without realising that the bird had no legs. Looking at it later, I saw myself: unable to fly freely, yet unable to find anywhere to settle. I had been painting in oils at home through Melbourne’s lockdowns, repeatedly reaching for pink. It felt like me, and reminded me that I had not let go of art. The colour made me feel alive. During a deeply painful period in my life, I found myself struggling with feelings I could neither explain nor reconcile. I wanted to understand how emotions could contradict one another and yet feel equally real. Meta Rose began from that need.\n\nI found in the rose an embodiment of the ambivalence I was trying to understand: its beauty, scent and softness coexist with thorns, inseparable within the same living form. To me, it can hold sadness and joy at once, without ceasing to be beautiful. This coexistence became the visual and material language of the work. Over time, my relationship with it has changed. I am learning to attend to difficult feelings without allowing them to obscure everything else, to recognise the thorns while embracing the flower more fully.\n\nInteractivity is essential to my audio-visual practice because I believe participation can deepen affective experience, bringing people into a more personal encounter with the work and opening questions about their own feelings. Through this practice, I pursue a lifelong ambition to express human emotion through computational language, data and equations, working towards a form through which subjective experiences might become more understandable and shareable. Meta Rose is where I continue searching for my own equation for human emotion. I hope these encounters offer others some of the comfort and strength that pink and art have given me, and the space to find a pink of their own.",
-    ko: "2021년 The Pinkbird를 그릴 때, 나는 새에게 다리가 없다는 사실을 알아차리지 못했다. 나중에 그림을 다시 보며 그 안에서 나 자신을 발견했다. 자유롭게 날지도, 어디에도 내려앉지도 못하는 모습이었다. 멜버른의 록다운 동안 집에서 유화를 그리며 나는 자꾸 핑크에 손이 갔다. 그 색은 나다웠고, 내가 예술을 놓지 않았음을 떠올리게 했다. 핑크는 내가 살아 있다는 감각을 주었다. 삶에서 깊은 고통을 겪던 시기에, 나는 설명할 수도, 서로 조화시킬 수도 없는 감정들 앞에서 혼란스러웠다. 서로 모순되는 감정들이 어떻게 동시에 모두 진실하게 느껴질 수 있는지 이해하고 싶었다. Meta Rose는 그 마음에서 시작됐다.\n\n장미에서 나는 이해하고자 했던 양가성을 발견했다. 아름다움과 향기, 부드러움이 가시와 함께 하나의 살아 있는 존재 안에 분리되지 않은 채 공존하고 있었다. 내게 장미는 아름다움을 잃지 않으면서도 슬픔과 기쁨을 동시에 품을 수 있는 존재다. 이 공존은 작업의 시각적·물질적 언어가 되었다. 시간이 흐르며 내가 이 공존을 바라보는 방식도 달라졌다. 나는 어려운 감정을 찬찬히 바라보되 그것이 다른 모든 것을 가리지 않도록, 가시를 알아보면서도 꽃을 더 온전히 받아들이는 법을 배우고 있다.\n\n인터랙션은 내 오디오비주얼 작업에서 빼놓을 수 없다. 참여가 정서적 경험을 깊게 하고, 관객이 작품을 더 개인적으로 경험하며 자신의 감정에 질문을 던질 계기를 열 수 있다고 믿기 때문이다. 이 작업을 통해 나는 인간의 감정을 컴퓨터 언어와 데이터, 방정식으로 표현하는 것을 평생의 목표로 삼고 있다. 주관적인 경험을 서로 더 이해하고 나눌 수 있는 형태로 옮겨보고자 한다. Meta Rose는 인간의 감정에 대한 나만의 방정식을 계속 찾아가는 자리다. 이 만남들이 핑크와 예술이 내게 주었던 위안과 힘을 다른 이들에게도 전하고, 각자가 자기만의 핑크를 발견할 여지를 열어주기를 바란다.",
+    en: "I painted The Pink Bird in 2021 without realising that the bird had no legs. Looking at it later, I saw myself: unable to fly freely, yet unable to find anywhere to settle. I had been painting in oils at home through Melbourne’s lockdowns, repeatedly reaching for pink. It felt like me, and reminded me that I had not let go of art. The colour made me feel alive. During a deeply painful period in my life, I found myself struggling with feelings I could neither explain nor reconcile. I wanted to understand how emotions could contradict one another and yet feel equally real. Meta Rose began from that need.\n\nI found in the rose an embodiment of the ambivalence I was trying to understand: its beauty, scent and softness coexist with thorns, inseparable within the same living form. To me, it can hold sadness and joy at once, without ceasing to be beautiful. This coexistence became the visual and material language of the work. Over time, my relationship with it has changed. I am learning to attend to difficult feelings without allowing them to obscure everything else, to recognise the thorns while embracing the flower more fully.\n\nInteractivity is essential to my audio-visual practice because I believe participation can deepen affective experience, bringing people into a more personal encounter with the work and opening questions about their own feelings. Through this practice, I pursue a lifelong ambition to express human emotion through computational language, data and equations, working towards a form through which subjective experiences might become more understandable and shareable. Meta Rose is where I continue searching for my own equation for human emotion. I hope these encounters offer others some of the comfort and strength that pink and art have given me, and the space to find a pink of their own.",
+    ko: "2021년 The Pink Bird를 그릴 때, 나는 새에게 다리가 없다는 사실을 알아차리지 못했다. 나중에 그림을 다시 보며 그 안에서 나 자신을 발견했다. 자유롭게 날지도, 어디에도 내려앉지도 못하는 모습이었다. 멜버른의 록다운 동안 집에서 유화를 그리며 나는 자꾸 핑크에 손이 갔다. 그 색은 나다웠고, 내가 예술을 놓지 않았음을 떠올리게 했다. 핑크는 내가 살아 있다는 감각을 주었다. 삶에서 깊은 고통을 겪던 시기에, 나는 설명할 수도, 서로 조화시킬 수도 없는 감정들 앞에서 혼란스러웠다. 서로 모순되는 감정들이 어떻게 동시에 모두 진실하게 느껴질 수 있는지 이해하고 싶었다. Meta Rose는 그 마음에서 시작됐다.\n\n장미에서 나는 이해하고자 했던 양가성을 발견했다. 아름다움과 향기, 부드러움이 가시와 함께 하나의 살아 있는 존재 안에 분리되지 않은 채 공존하고 있었다. 내게 장미는 아름다움을 잃지 않으면서도 슬픔과 기쁨을 동시에 품을 수 있는 존재다. 이 공존은 작업의 시각적·물질적 언어가 되었다. 시간이 흐르며 내가 이 공존을 바라보는 방식도 달라졌다. 나는 어려운 감정을 찬찬히 바라보되 그것이 다른 모든 것을 가리지 않도록, 가시를 알아보면서도 꽃을 더 온전히 받아들이는 법을 배우고 있다.\n\n인터랙션은 내 오디오비주얼 작업에서 빼놓을 수 없다. 참여가 정서적 경험을 깊게 하고, 관객이 작품을 더 개인적으로 경험하며 자신의 감정에 질문을 던질 계기를 열 수 있다고 믿기 때문이다. 이 작업을 통해 나는 인간의 감정을 컴퓨터 언어와 데이터, 방정식으로 표현하는 것을 평생의 목표로 삼고 있다. 주관적인 경험을 서로 더 이해하고 나눌 수 있는 형태로 옮겨보고자 한다. Meta Rose는 인간의 감정에 대한 나만의 방정식을 계속 찾아가는 자리다. 이 만남들이 핑크와 예술이 내게 주었던 위안과 힘을 다른 이들에게도 전하고, 각자가 자기만의 핑크를 발견할 여지를 열어주기를 바란다.",
     image: {
       src: "images/artist/the-pinkbird-2021.webp",
       width: 1200,
       height: 1441,
-      title: "The Pinkbird",
+      title: "The Pink Bird",
       year: "2021",
       medium: "Oil on canvas",
       mediumKo: "캔버스에 유채",
-      alt: "The Pinkbird, 2021, an oil painting of a pink-breasted bird with a dark blue head against a green background",
-      altKo: "The Pinkbird, 2021, 초록색 배경 앞에 짙은 파란 머리와 핑크색 몸통을 지닌 새를 그린 유화"
+      alt: "The Pink Bird, 2021, an oil painting of a pink-breasted bird with a dark blue head against a green background",
+      altKo: "The Pink Bird, 2021, 초록색 배경 앞에 짙은 파란 머리와 핑크색 몸통을 지닌 새를 그린 유화"
     }
   },
 
@@ -61,7 +61,7 @@ window.MP_SITE = {
     { src: "images/metakibun2.jpg", alt: "Suspended living roses in The Meta Kibun Project", title: "The Meta Kibun Project", year: "2025", project: "meta-kibun" },
     { src: "images/Installation.png", alt: "The original row of living rose interfaces in Meta Rose: Origin", title: "Meta Rose: Origin", year: "2024", project: "origin" },
     { src: "images/fashionrunway.png", alt: "Meta Rose moving image presented on a runway-scale screen", title: "Melbourne Fashion Festival", year: "2025", project: "melbourne-fashion-festival" },
-    { src: "images/metarose0.png", alt: "A layered real-time visual state from the Meta Rose system", title: "Meta Rose", year: "2024—ongoing", project: "meta-rose" }
+    { src: "images/metarose0.png", alt: "A layered real-time visual state from the Meta Rose system", title: "Meta Rose", year: "2024 onwards", project: "meta-rose" }
   ],
 
   history: [
@@ -69,16 +69,45 @@ window.MP_SITE = {
       year: "2026",
       entries: [
         {
+          date: "October",
+          dateKo: "10월",
+          title: "RE:INTERVENTION",
+          type: "Group exhibition / Interactive installation",
+          typeKo: "그룹전 / 인터랙티브 설치",
+          context: "LUCKY777 / Platform Presents, Abbotsford Convent, Melbourne",
+          contextKo: "LUCKY777 / Platform Presents, Abbotsford Convent, 멜버른"
+        },
+        {
+          date: "October",
+          dateKo: "10월",
+          title: "Respite III",
+          type: "Group audio-visual exhibition / Interactive rose installation",
+          typeKo: "그룹 오디오비주얼 전시 / 인터랙티브 장미 설치",
+          context: "XFLOS, Collingwood Yards, Melbourne",
+          contextKo: "XFLOS, Collingwood Yards, 멜버른"
+        },
+        {
           date: "September / October",
           dateKo: "9월 / 10월",
           title: "The Meta Rose: Shared Resonance",
           type: "Exhibition / Interactive audio-visual installation",
           typeKo: "전시 / 인터랙티브 오디오비주얼 설치",
-          context: "Melbourne Fringe Festival / The Mission to Seafarers Victoria — Celia Little Room, Docklands, Melbourne",
-          contextKo: "Melbourne Fringe Festival / The Mission to Seafarers Victoria — Celia Little Room, Docklands, 멜버른",
+          context: "Melbourne Fringe Festival / The Mission to Seafarers Victoria, Celia Little Room, Docklands, Melbourne",
+          contextKo: "Melbourne Fringe Festival / The Mission to Seafarers Victoria, Celia Little Room, Docklands, 멜버른",
           // No Melbourne Fringe media has been selected for the index yet.
           indexMediaAvailable: false,
           project: "shared-resonance"
+        },
+        {
+          date: "October",
+          dateKo: "10월",
+          title: "Flower your Face",
+          type: "Artist-led TouchDesigner workshop",
+          typeKo: "아티스트 주도형 TouchDesigner 워크숍",
+          context: "TouchCollective / Platform Presents, The Mission to Seafarers Victoria, Melbourne / Led by Minnie Park",
+          contextKo: "TouchCollective / Platform Presents, The Mission to Seafarers Victoria, 멜버른 / Minnie Park 진행",
+          project: "artist-workshops",
+          anchor: "flower-your-face"
         },
         {
           date: "August",
@@ -139,8 +168,8 @@ window.MP_SITE = {
           date: "September",
           dateKo: "9월",
           title: "The Meta Kibun Project",
-          type: "Exhibition / Practice-based Honours research",
-          typeKo: "전시 / 창작 실천 기반 Honours 리서치",
+          type: "Solo exhibition / Practice-based Honours research",
+          typeKo: "개인전 / 창작 실천 기반 Honours 리서치",
           context: "RMIT University, Melbourne",
           contextKo: "RMIT University, Melbourne",
           project: "meta-kibun"
@@ -174,8 +203,8 @@ window.MP_SITE = {
           date: "November",
           dateKo: "11월",
           title: "Meta Rose: Origin",
-          type: "Exhibition / Interactive audio-visual installation",
-          typeKo: "전시 / 인터랙티브 오디오비주얼 설치",
+          type: "Solo exhibition / Interactive audio-visual installation",
+          typeKo: "개인전 / 인터랙티브 오디오비주얼 설치",
           context: "RMIT University, Melbourne",
           contextKo: "RMIT University, Melbourne",
           project: "origin"
@@ -194,8 +223,8 @@ window.MP_SITE = {
           date: "June",
           dateKo: "6월",
           title: "Meta Rose: Origin",
-          type: "Interactive audio-visual exhibition / Rose installation and interactive game",
-          typeKo: "인터랙티브 오디오비주얼 전시 / 장미 설치와 인터랙티브 게임",
+          type: "Solo exhibition / Rose installation and interactive game",
+          typeKo: "개인전 / 장미 설치와 인터랙티브 게임",
           context: "Blackbox, RMIT University, Melbourne",
           contextKo: "Blackbox, RMIT University, Melbourne",
           project: "origin"
@@ -204,8 +233,8 @@ window.MP_SITE = {
           date: "May",
           dateKo: "5월",
           title: "Meta Rose: Origin",
-          type: "Exhibition / Rose installation",
-          typeKo: "전시 / 장미 설치",
+          type: "Group exhibition / Rose installation",
+          typeKo: "그룹전 / 장미 설치",
           context: "Seventh Gallery, Melbourne",
           contextKo: "Seventh Gallery, Melbourne",
           project: "origin"
@@ -229,8 +258,8 @@ window.MP_SITE = {
           date: "October",
           dateKo: "10월",
           title: "Body Morphosis",
-          type: "Duo moving-image exhibition",
-          typeKo: "2인 무빙이미지 전시",
+          type: "Duo exhibition / Interactive audio-visual artworks",
+          typeKo: "2인전 / 인터랙티브 오디오비주얼 작품",
           context: "RMIT University, Melbourne",
           contextKo: "RMIT University, Melbourne"
         }
@@ -242,18 +271,18 @@ window.MP_SITE = {
     "live-performance": {
       title: "Live Performance",
       shortTitle: "Live Performance",
-      year: "2023—2024",
+      year: "2023-2024",
       route: "works/live-performance/",
-      eyebrow: "Live audio-visual performance / 2023—2024",
-      eyebrowKo: "라이브 오디오비주얼 퍼포먼스 / 2023—2024",
+      eyebrow: "Live audio-visual performance / 2023-2024",
+      eyebrowKo: "라이브 오디오비주얼 퍼포먼스 / 2023-2024",
       category: "Live audio-visual performance",
       categoryKo: "라이브 오디오비주얼 퍼포먼스",
       subtitle: "Sound and moving image composed in real time.",
       subtitleKo: "실시간으로 구성되는 사운드와 무빙이미지.",
       lead: "A live practice developed through Median and Median 2.",
       leadKo: "Median과 Median 2를 통해 전개된 라이브 작업입니다.",
-      metadata: ["2023—2024 / Median / Median 2", "Miscellania, Melbourne"],
-      metadataKo: ["2023—2024 / Median / Median 2", "Miscellania, Melbourne"],
+      metadata: ["2023-2024 / Median / Median 2", "Miscellania, Melbourne"],
+      metadataKo: ["2023-2024 / Median / Median 2", "Miscellania, Melbourne"],
       image: "images/liveperformance.jpg",
       imageAlt: "Minnie Park during a live audio-visual performance",
       gallery: [],
@@ -269,7 +298,7 @@ window.MP_SITE = {
     "artist-workshops": {
       title: "Artist Workshops",
       shortTitle: "Artist Workshops",
-      year: "2025—ongoing",
+      year: "2025 onwards",
       route: "works/artist-workshops/",
       eyebrow: "Artist workshops / Public programmes",
       eyebrowKo: "아티스트 워크숍 / 공공 프로그램",
@@ -279,8 +308,8 @@ window.MP_SITE = {
       subtitleKo: "터치, 사운드와 실시간 이미지를 함께 실험합니다.",
       lead: "Artist-led workshops connecting creative practice and technical knowledge.",
       leadKo: "창작 실천과 기술적 지식을 연결하는 아티스트 주도형 워크숍입니다.",
-      metadata: ["2025—ongoing / Workshops and public programmes", "Melbourne"],
-      metadataKo: ["2025—현재 / 워크숍과 공공 프로그램", "멜버른"],
+      metadata: ["2025 onwards / Workshops and public programmes", "Melbourne"],
+      metadataKo: ["2025년부터 현재 / 워크숍과 공공 프로그램", "멜버른"],
       image: "images/touching resonance.png",
       imageAlt: "Participatory audio-visual workshop led by Minnie Park",
       gallery: [],
@@ -319,12 +348,12 @@ window.MP_SITE = {
       lead: "What becomes of the parts of ourselves we repeatedly try to remove?",
       leadKo: "우리 자신에게서 반복해서 지우려 했던 부분은 무엇이 되는가?",
       metadata: [
-        "15–18 August 2026 / Solo exhibition / Seoul Fringe Festival",
+        "15-18 August 2026 / Solo exhibition / Seoul Fringe Festival",
         "Real roses, sculptural skeleton, touch, sound, light, real-time moving image, camera interaction and participatory web interface",
         "Mijin Floor, Yeonnam-dong, Mapo-gu, Seoul"
       ],
       metadataKo: [
-        "2026년 8월 15–18일 / 개인전 / 서울프린지페스티벌",
+        "2026년 8월 15-18일 / 개인전 / 서울프린지페스티벌",
         "생장미, 조형 해골, 터치, 사운드, 빛, 실시간 무빙이미지, 카메라 인터랙션과 참여형 웹 인터페이스",
         "미진플로어, 서울 마포구 연남동"
       ],
@@ -334,7 +363,7 @@ window.MP_SITE = {
       card: "A participatory funeral for the selves we suppress, comprising Naming, Intervention, Witness and Record.",
       cardKo: "억눌러 온 자아를 위한 참여형 장례식으로, 명명·개입·목격·기록의 네 부분으로 구성됩니다.",
       paragraphs: [
-        "Meta Rose: The Funeral considers the parts of the self that are suppressed in pursuit of an acceptable image. Its four parts—Naming, Intervention, Witness and Record—bring living roses and a skeletal form into an installation of touch-responsive sound, light and moving image, camera-based interaction and a connected phone interface.",
+        "Meta Rose: The Funeral considers the parts of the self that are suppressed in pursuit of an acceptable image. Its four parts, Naming, Intervention, Witness and Record, bring living roses and a skeletal form into an installation of touch-responsive sound, light and moving image, camera-based interaction and a connected phone interface.",
         "Participants shape the installation through touch, duration and gesture. Selected images and written responses can be retained as records of an encounter. These records document participation without claiming to provide a complete account of a person’s feelings.",
         "Living roses and skeletal imagery place vitality and mortality within the same visual field. Care and damage, beauty and discomfort are held together, continuing Meta Rose’s inquiry into emotional ambivalence."
       ],
@@ -368,13 +397,13 @@ window.MP_SITE = {
         "2026 / Interactive audio-visual installation",
         "April presentation: real roses, water, conductive touch, sound, light and real-time moving image",
         "Platform Presents: Hybrid / 118 Greeves Street, Fitzroy, Melbourne / 18 April 2026",
-        "Melbourne Fringe Festival / The Mission to Seafarers Victoria — Celia Little Room, Docklands, Melbourne / 30 September–4 October 2026"
+        "Melbourne Fringe Festival / The Mission to Seafarers Victoria, Celia Little Room, Docklands, Melbourne / 30 September to 4 October 2026"
       ],
       metadataKo: [
         "2026 / 인터랙티브 오디오비주얼 설치",
         "4월 발표: 생장미, 물, 전도성 터치, 사운드, 빛과 실시간 무빙이미지",
         "Platform Presents: Hybrid / 118 Greeves Street, Fitzroy, Melbourne / 2026년 4월 18일",
-        "Melbourne Fringe Festival / The Mission to Seafarers Victoria — Celia Little Room, Docklands, 멜버른 / 2026년 9월 30일–10월 4일"
+        "Melbourne Fringe Festival / The Mission to Seafarers Victoria, Celia Little Room, Docklands, 멜버른 / 2026년 9월 30일~10월 4일"
       ],
       image: "images/tr1.png",
       imageAlt: "Participants connecting through roses in The Meta Rose: Shared Resonance",
@@ -411,12 +440,12 @@ window.MP_SITE = {
       lead: "Feeling is layered, shifting and culturally situated.",
       leadKo: "감정은 층위를 지니고 변화하며 문화적 맥락 속에 존재합니다.",
       metadata: [
-        "12–13 September 2025 / Interactive audio-visual installation and Honours research",
+        "12-13 September 2025 / Interactive audio-visual installation and Honours research",
         "Real roses, water, tactile interaction, colour, sound, light and three-screen real-time moving image",
         "RMIT University, Melbourne"
       ],
       metadataKo: [
-        "2025년 9월 12–13일 / 인터랙티브 오디오비주얼 설치 및 Honours 리서치",
+        "2025년 9월 12-13일 / 인터랙티브 오디오비주얼 설치 및 Honours 리서치",
         "생장미, 물, 촉각적 인터랙션, 색, 사운드, 빛과 3면 실시간 무빙이미지",
         "RMIT University, Melbourne"
       ],
@@ -587,17 +616,17 @@ window.MP_SITE = {
     "meta-rose": {
       title: "Meta Rose",
       shortTitle: "Meta Rose",
-      year: "2024—ongoing",
+      year: "2024 onwards",
       route: "works/meta-rose/",
-      eyebrow: "Ongoing body of work / 2024—",
+      eyebrow: "Ongoing body of work / 2024 onwards",
       category: "Ongoing body of work / Evolving framework",
       categoryKo: "장기 연작 / 확장되는 프레임워크",
       subtitle: "An evolving world of roses, touch, colour, sound and moving image.",
       subtitleKo: "장미, 터치, 색, 사운드와 무빙이미지로 확장되는 세계.",
       lead: "Each chapter begins with a new emotional question and becomes a newly composed encounter.",
       leadKo: "각 장은 새로운 감정적 질문에서 시작해 새롭게 구성된 만남이 됩니다.",
-      metadata: ["2024—ongoing", "Interactive audio-visual installations, moving image and participatory systems"],
-      metadataKo: ["2024—현재", "인터랙티브 오디오비주얼 설치, 무빙이미지와 참여형 시스템"],
+      metadata: ["2024 onwards", "Interactive audio-visual installations, moving image and participatory systems"],
+      metadataKo: ["2024년부터 현재", "인터랙티브 오디오비주얼 설치, 무빙이미지와 참여형 시스템"],
       image: "images/the meta rose project.png",
       imageAlt: "The evolving visual world of Meta Rose",
       gallery: [
@@ -610,7 +639,7 @@ window.MP_SITE = {
       paragraphs: [
         "Meta Rose is the central framework of Minnie Park’s practice. Since 2024, it has unfolded through distinct chapters, each beginning with a new emotional question and taking form through a newly composed visual, sonic and spatial system.",
         "Real roses, pink and touch return as a signature language, alongside opposing states: bloom and decay, tenderness and friction, life and death. Across every chapter, their roles and relationships change. The rose can become interface, image, body, memorial or data trace.",
-        "The chapters create their own encounters while extending a larger artistic world—from emotional duality in Origin, to culturally situated feeling in Meta Kibun, relational touch in Shared Resonance and the rituals of Naming, Intervention, Witness and Record in The Funeral."
+        "The chapters create their own encounters while extending a larger artistic world, from emotional duality in Origin, to culturally situated feeling in Meta Kibun, relational touch in Shared Resonance and the rituals of Naming, Intervention, Witness and Record in The Funeral."
       ],
       paragraphsKo: [
         "Meta Rose는 Minnie Park 작업의 중심 프레임워크입니다. 2024년부터 서로 다른 장으로 전개되어 왔으며, 각 장은 새로운 감정적 질문에서 시작해 새롭게 구성된 비주얼, 사운드와 공간 시스템으로 형태를 얻습니다.",
@@ -845,14 +874,14 @@ window.MP_SITE = {
     { src: "images/the meta rose project.png", width: 1800, height: 1350, title: "Meta Rose: Origin", year: "2024", context: "Installation view", project: "origin" },
     { src: "images/metakibun2.jpg", width: 1350, height: 1800, title: "The Meta Kibun Project", year: "2025", context: "Suspended rose interface", project: "meta-kibun" },
     { src: "images/fashionrunway.png", width: 1800, height: 1200, title: "Melbourne Fashion Festival", year: "2025", context: "Runway screen installation", project: "melbourne-fashion-festival" },
-    { src: "images/metarose0.png", width: 1134, height: 1129, title: "Meta Rose", year: "2024—ongoing", context: "Real-time visual state", project: "meta-rose" },
+    { src: "images/metarose0.png", width: 1134, height: 1129, title: "Meta Rose", year: "2024 onwards", context: "Real-time visual state", project: "meta-rose" },
     { src: "images/metarose1.png", width: 1800, height: 1013, title: "Meta Rose: Origin", year: "2024", context: "Digital rose study", project: "origin" },
     { src: "images/tr1.png", width: 1350, height: 1800, title: "The Meta Rose: Shared Resonance", year: "2026", context: "Collective interaction", project: "shared-resonance" },
     { src: "images/showreel3.png", width: 1800, height: 1200, title: "Melbourne Fashion Festival", year: "2025", context: "Runway documentation", project: "melbourne-fashion-festival" },
     { src: "images/the meta kibun project.png", width: 1350, height: 1800, title: "The Meta Kibun Project", year: "2025", context: "Installation view", project: "meta-kibun" },
     { src: "images/metarose2.png", width: 1800, height: 1028, title: "Meta Rose: Origin", year: "2024", context: "Real-time visual state", project: "origin" },
-    { src: "images/showreel16.png", width: 1708, height: 1710, title: "Meta Rose", year: "2024—ongoing", context: "Visual study", project: "meta-rose" },
-    { src: "images/showreel8.png", width: 1800, height: 1026, title: "Meta Rose", year: "2024—ongoing", context: "Visual study", project: "meta-rose" },
+    { src: "images/showreel16.png", width: 1708, height: 1710, title: "Meta Rose", year: "2024 onwards", context: "Visual study", project: "meta-rose" },
+    { src: "images/showreel8.png", width: 1800, height: 1026, title: "Meta Rose", year: "2024 onwards", context: "Visual study", project: "meta-rose" },
     { src: "images/bugskin2.png", width: 1350, height: 1800, title: "Bugskin Chapter 2", year: "2025", context: "Suspended rose installation", project: "bugskin-chapter-2" },
     { src: "images/workshop.png", width: 1800, height: 1200, title: "Artists, Machines and the Space Between", year: "2025", context: "Artist-led workshop", project: "science-gallery" },
     { src: "images/touching resonance.png", width: 1350, height: 1800, title: "Touching Resonance", year: "2026", context: "Participatory interface", project: "touching-resonance" },
@@ -864,15 +893,15 @@ window.MP_SITE = {
     { src: "images/metakibun1.png", width: 1350, height: 1800, title: "The Meta Kibun Project", year: "2025", context: "Rose interface", project: "meta-kibun" },
     { src: "images/showreel4.png", width: 1800, height: 1200, title: "Melbourne Fashion Festival", year: "2025", context: "Runway documentation", project: "melbourne-fashion-festival" },
     { src: "images/metarose3.png", width: 1350, height: 1800, title: "Meta Rose: Origin", year: "2024", context: "Interaction station", project: "origin" },
-    { src: "images/showreel14.png", width: 1800, height: 1006, title: "Meta Rose", year: "2024—ongoing", context: "Visual study", project: "meta-rose" },
-    { src: "images/liveperformance.jpg", originalFilename: "liveperformance.jpg", sourceHash: "50f4e16a166881ac0b88617bba47c1582def3a8d1e25bb22272873a7f43890bb", width: 720, height: 958, title: "Live Performance", year: "2023—2024", context: "Performance documentation", project: "live-performance" },
+    { src: "images/showreel14.png", width: 1800, height: 1006, title: "Meta Rose", year: "2024 onwards", context: "Visual study", project: "meta-rose" },
+    { src: "images/liveperformance.jpg", originalFilename: "liveperformance.jpg", sourceHash: "50f4e16a166881ac0b88617bba47c1582def3a8d1e25bb22272873a7f43890bb", width: 720, height: 958, title: "Live Performance", year: "2023-2024", context: "Performance documentation", project: "live-performance" },
     { src: "images/showreel1.png", width: 1800, height: 1200, title: "Melbourne Fashion Festival", year: "2025", context: "Runway documentation", project: "melbourne-fashion-festival" },
     { src: "images/tr.png", width: 1350, height: 1800, title: "The Meta Rose: Shared Resonance", year: "2026", context: "Installation view", project: "shared-resonance" },
-    { src: "images/installation2.png", width: 1350, height: 1800, title: "Meta Rose", year: "2024—ongoing", context: "Conductive rose detail", project: "meta-rose" },
+    { src: "images/installation2.png", width: 1350, height: 1800, title: "Meta Rose", year: "2024 onwards", context: "Conductive rose detail", project: "meta-rose" },
     { src: "images/showreel5.png", width: 1800, height: 1200, title: "Melbourne Fashion Festival", year: "2025", context: "Runway documentation", project: "melbourne-fashion-festival" },
-    { src: "images/showreel18.png", width: 1350, height: 1800, title: "Meta Rose", year: "2024—ongoing", context: "Installation documentation", project: "meta-rose" },
-    { src: "images/showreel9.png", width: 1800, height: 1022, title: "Meta Rose", year: "2024—ongoing", context: "Visual study", project: "meta-rose" },
-    { src: "images/showreel15.png", width: 1800, height: 1009, title: "Meta Rose", year: "2024—ongoing", context: "Visual study", project: "meta-rose" }
+    { src: "images/showreel18.png", width: 1350, height: 1800, title: "Meta Rose", year: "2024 onwards", context: "Installation documentation", project: "meta-rose" },
+    { src: "images/showreel9.png", width: 1800, height: 1022, title: "Meta Rose", year: "2024 onwards", context: "Visual study", project: "meta-rose" },
+    { src: "images/showreel15.png", width: 1800, height: 1009, title: "Meta Rose", year: "2024 onwards", context: "Visual study", project: "meta-rose" }
   ]
 };
 

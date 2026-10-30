@@ -110,7 +110,7 @@
     header.className = "global-header";
     header.innerHTML = `
       <nav class="global-nav" aria-label="${tr("Primary navigation", "주요 메뉴")}">
-        <a class="global-nav__brand" href="${href("")}" aria-label="Minnie Park — ${tr("Home", "홈")}">Minnie Park</a>
+        <a class="global-nav__brand" href="${href("")}" aria-label="Minnie Park, ${tr("Home", "홈")}">Minnie Park</a>
         <button class="global-nav__toggle" type="button" aria-expanded="false" aria-controls="primaryLinks">
           <span>${tr("Menu", "메뉴")}</span>
         </button>
@@ -221,7 +221,7 @@
       <a class="work-card${feature ? " work-card--feature" : ""}${placeholder}" href="${projectUrl(key)}">
         <figure>
           ${imageMarkup(displayImage.src, displayImage.alt)}
-          ${displayImage.placeholder ? `<figcaption>${tr(displayImage.placeholder, "임시 이미지 — f01로 교체 예정")}</figcaption>` : ""}
+          ${displayImage.placeholder ? `<figcaption>${tr(displayImage.placeholder, "임시 이미지, f01로 교체 예정")}</figcaption>` : ""}
         </figure>
         <div class="work-card__copy">
           <p class="work-index">${String(index + 1).padStart(2, "0")} / ${project.year} / ${projectField(project, "category")}</p>
@@ -235,13 +235,13 @@
 
   function renderHome() {
     if (window.MP_ROSE_HOME) {
-      setSeo("Minnie Park — Interactive Audio-Visual Artist", "Minnie Park explores emotional ambivalence through interactive audio-visual work, living roses, touch, colour and audience participation.");
+      setSeo("Minnie Park, Interactive Audio-Visual Artist", "Minnie Park explores emotional ambivalence through interactive audio-visual work, living roses, touch, colour and audience participation.");
       app.innerHTML = window.MP_ROSE_HOME.render(language, href, root)
         .replace(/(<img id="roseFallback"[^>]*?) hidden>/, '$1 src="'+root+'assets/rose-halftone.png">');
       return;
     }
     setSeo(
-      "Minnie Park — Interactive Audio-Visual Artist",
+      "Minnie Park, Interactive Audio-Visual Artist",
       "Minnie Park creates tactile, interactive worlds where roses, colour, sound and moving image give form to feelings that resist a single name."
     );
     app.innerHTML = `
@@ -269,7 +269,7 @@
 
   function renderWorks() {
     setSeo(
-      "Works — Minnie Park",
+      "Works, Minnie Park",
       "Interactive installations, performances, moving-image works and selected commissions by Minnie Park, including the evolving Meta Rose body of work."
     );
     if (window.MP_EDITORIAL && window.MP_PROJECT_DETAILS) {
@@ -278,7 +278,7 @@
     }
     app.innerHTML = `
       <section class="page-hero page-hero--works" id="top">
-        <p class="eyebrow">${tr("Works / 2023—ongoing", "작품 / 2023—현재")}</p>
+        <p class="eyebrow">${tr("Works / 2023 onwards", "작품 / 2023년부터 현재")}</p>
         <h1>${tr("Works", "작품")}</h1>
         <p class="hero-main">${tr(
           "An evolving body of interactive audio-visual work shaped by roses, touch, colour and audience participation.",
@@ -288,7 +288,7 @@
 
       <section class="works-opening" aria-labelledby="worksOpeningTitle">
         <div class="works-opening__head">
-          <p class="section-kicker" id="worksOpeningTitle">${tr("Selected Images / 2024—2026", "주요 이미지 / 2024—2026")}</p>
+          <p class="section-kicker" id="worksOpeningTitle">${tr("Selected Images / 2024-2026", "주요 이미지 / 2024-2026")}</p>
           <p>${tr("Installations, real-time visual states and moments of participation.", "설치, 실시간 비주얼 상태와 관객 참여의 순간들.")}</p>
         </div>
         <div class="works-opening__frame" data-works-opening>
@@ -327,7 +327,7 @@
             "Meta Rose는 Minnie Park 작업의 중심을 이루는 장기 연작입니다. 2024년에 시작된 이 연작은 장미, 핑크와 터치를 반복되는 조형 언어로 다룹니다. 각 장은 새로운 감정적 질문에서 출발하며, 고유한 공간 구성, 오디오비주얼 시스템과 참여 조건을 지닌 서로 다른 설치로 이 언어를 다시 구성합니다."
           )}</p>
           <p>${tr(
-            "Across the series, living roses move between interface, image, body, memorial and data trace. Opposing states—bloom and decay, tenderness and friction, life and death—remain in tension rather than resolving into a single emotional reading.",
+            "Across the series, living roses move between interface, image, body, memorial and data trace. Opposing states, including bloom and decay, tenderness and friction, life and death, remain in tension rather than resolving into a single emotional reading.",
             "연작에서 생장미는 인터페이스, 이미지, 신체, 기념물과 데이터 흔적 사이를 이동합니다. 개화와 소멸, 부드러움과 마찰, 삶과 죽음 같은 대립하는 상태는 하나의 감정적 해석으로 정리되지 않은 채 긴장 속에 함께 존재합니다."
           )}</p>
           <a class="inline-link" href="${projectUrl("meta-rose")}">${tr("About Meta Rose →", "Meta Rose 소개 →")}</a>
@@ -337,7 +337,7 @@
       <section class="work-catalogue content-section">
         <div class="section-heading section-heading--row">
           <p class="section-kicker">${tr("Meta Rose / Chapters", "Meta Rose / 장")}</p>
-          <p>${tr("2024—ongoing", "2024—현재")}</p>
+          <p>${tr("2024 onwards", "2024년부터 현재")}</p>
         </div>
         <div class="work-card-grid work-card-grid--primary">
           ${site.primaryWorksOrder.map((key, index) => workCard(key, index, true)).join("")}
@@ -361,8 +361,8 @@
         <div class="section-heading">
           <p class="section-kicker">${tr("Live Performance", "라이브 퍼포먼스")}</p>
           <h2>${tr(
-            "Live audio-visual performances from 2023–2024.",
-            "2023–2024년에 발표한 라이브 오디오비주얼 퍼포먼스입니다."
+            "Live audio-visual performances from 2023-2024.",
+            "2023-2024년에 발표한 라이브 오디오비주얼 퍼포먼스입니다."
           )}</h2>
         </div>
         <div class="work-card-grid work-card-grid--selected">
@@ -449,7 +449,7 @@
   function renderProject() {
     const project = site.projects[projectKey];
     if (!project) {
-      setSeo("Project — Minnie Park", "Project page by Minnie Park.");
+      setSeo("Project, Minnie Park", "Project page by Minnie Park.");
       app.innerHTML = `
         <section class="page-hero"><p class="eyebrow">Minnie Park</p><h1>Project not found.</h1>${actions([{ label: "Return to Works", path: "works/" }])}</section>
         ${renderFooter()}
@@ -457,7 +457,7 @@
       return;
     }
 
-    setSeo(`${project.title} — Minnie Park`, project.card);
+    setSeo(`${project.title}, Minnie Park`, project.card);
     if (window.MP_EDITORIAL && window.MP_PROJECT_DETAILS?.[projectKey]) {
       app.innerHTML = window.MP_EDITORIAL.project(editorialContext(), projectKey);
       const targetId = window.location.hash.slice(1);
@@ -481,7 +481,7 @@
           </div>
           <figure class="project-hero__media${project.placeholder ? " is-placeholder" : ""}">
             ${imageMarkup(project.image, project.imageAlt, true)}
-            ${project.placeholder ? `<figcaption>${tr(project.placeholder, "임시 이미지 — f01로 교체 예정")}</figcaption>` : ""}
+            ${project.placeholder ? `<figcaption>${tr(project.placeholder, "임시 이미지, f01로 교체 예정")}</figcaption>` : ""}
           </figure>
         </section>
 
@@ -573,7 +573,7 @@
 
   function renderArtist() {
     setSeo(
-      "Artist — Minnie Park",
+      "Artist, Minnie Park",
       "Minnie Park is a Korean-Australian interactive audio-visual artist working with roses, touch, colour, sound and moving image between Seoul and Melbourne."
     );
     app.innerHTML = `
@@ -588,11 +588,10 @@
 
       <section class="artist-bio content-section content-section--compact">
         <div>
-          <p class="section-kicker">${tr("Short Bio", "짧은 소개")}</p>
-          <h2>${tr("Interactive audio-visual installation / Research / Moving image", "인터랙티브 오디오비주얼 설치 / 리서치 / 무빙이미지")}</h2>
+          <h2>${tr("Interactive audio-visual installation artist / Creative technologist", "인터랙티브 오디오비주얼 설치 작가 / 크리에이티브 테크놀로지스트")}</h2>
         </div>
         <div class="long-copy">
-          <p>${tr("Minnie Park is a Korean-Australian interactive audio-visual artist working between Seoul and Melbourne. Her installations combine living roses, tactile interaction, sound, light and moving image to examine affect as embodied, relational and culturally situated. Through Meta Rose—begun in 2024 and including The Meta Kibun Project—she develops distinct participatory systems around emotional ambivalence, culturally shaped feeling, relational touch and memory.", "Minnie Park는 서울과 멜버른을 기반으로 활동하는 한국계 호주 인터랙티브 오디오비주얼 아티스트입니다. 생장미, 촉각적 인터랙션, 사운드, 빛과 무빙이미지를 결합한 설치를 통해 정서를 신체적이고 관계적이며 문화적으로 형성되는 경험으로 살펴봅니다. 2024년에 시작되어 The Meta Kibun Project를 포함하는 Meta Rose를 통해 감정의 양가성, 문화적으로 형성된 감정, 관계적 터치와 기억을 다루는 서로 다른 참여형 시스템을 구축합니다.")}</p>
+          <p>${tr("Minnie Park is a Korean-Australian interactive audio-visual artist working between Seoul and Melbourne. Her installations combine living roses, tactile interaction, sound, light and moving image to examine affect as embodied, relational and culturally situated. Through Meta Rose, begun in 2024 and including The Meta Kibun Project, she develops distinct participatory systems around emotional ambivalence, culturally shaped feeling, relational touch and memory.", "Minnie Park는 서울과 멜버른을 기반으로 활동하는 한국계 호주 인터랙티브 오디오비주얼 아티스트입니다. 생장미, 촉각적 인터랙션, 사운드, 빛과 무빙이미지를 결합한 설치를 통해 정서를 신체적이고 관계적이며 문화적으로 형성되는 경험으로 살펴봅니다. 2024년에 시작되어 The Meta Kibun Project를 포함하는 Meta Rose를 통해 감정의 양가성, 문화적으로 형성된 감정, 관계적 터치와 기억을 다루는 서로 다른 참여형 시스템을 구축합니다.")}</p>
           <p>${tr("Her 2025 Honours research at RMIT University examined audience accounts through The Meta Kibun Project, using interviews and surveys alongside an interactive exhibition. Park is also a co-founder of TouchCollective, an artist-led community centred on TouchDesigner, and develops workshops connecting creative practice, embodied participation and technical experimentation.", "2025년 RMIT University의 Honours 연구에서는 The Meta Kibun Project의 인터랙티브 전시와 인터뷰·설문을 통해 관객의 경험 서술을 살펴봤습니다. TouchDesigner를 중심으로 활동하는 아티스트 주도 커뮤니티 TouchCollective의 공동 설립자이기도 하며, 창작 실천과 신체적 참여, 기술적 실험을 연결하는 워크숍을 발전시키고 있습니다.")}</p>
           ${actions([
             { label: tr("Download CV 2026 ↓", "CV 2026 다운로드 ↓"), path: site.downloads.cv, download: true },
@@ -604,7 +603,7 @@
       <section class="artist-statement content-section content-section--compact" id="artist-statement" aria-labelledby="artist-statement-title">
         <div class="artist-statement__heading">
           <p class="section-kicker">${tr("Artist Statement", "작가 노트")}</p>
-          <h2 id="artist-statement-title">${tr("From The Pinkbird to Meta Rose", "The Pinkbird에서 Meta Rose로")}</h2>
+          <h2 id="artist-statement-title">${tr("From The Pink Bird to Meta Rose", "The Pink Bird에서 Meta Rose로")}</h2>
         </div>
         <figure class="artist-statement__image"><img src="${media(site.artistNarrative.image.src)}" width="${site.artistNarrative.image.width}" height="${site.artistNarrative.image.height}" alt="${tr(site.artistNarrative.image.alt, site.artistNarrative.image.altKo)}" loading="lazy" decoding="async" /><figcaption><cite>${site.artistNarrative.image.title}</cite>, ${site.artistNarrative.image.year}<br />${tr(site.artistNarrative.image.medium, site.artistNarrative.image.mediumKo)}</figcaption></figure>
         <div class="artist-statement__copy long-copy long-copy--large">
@@ -628,7 +627,7 @@
                   const hasProject = Boolean(site.projects[entry.project]);
                   const tag = hasProject ? "a" : "article";
                   return `
-                  <${tag} class="artist-history__entry"${hasProject ? ` href="${projectUrl(entry.project)}" aria-label="${entry.title} — ${tr("View project", "프로젝트 보기")}"` : ""}>
+                  <${tag} class="artist-history__entry"${hasProject ? ` href="${projectUrl(entry.project)}${entry.anchor ? `#${entry.anchor}` : ""}" aria-label="${entry.title}, ${tr("View project", "프로젝트 보기")}"` : ""}>
                     <p class="artist-history__date">${tr(entry.date, entry.dateKo)}</p>
                     <div class="artist-history__title">
                       <h4>${entry.title}</h4>
@@ -650,7 +649,7 @@
 
   function renderResearch() {
     setSeo(
-      "Research — Minnie Park",
+      "Research, Minnie Park",
       "Minnie Park’s ongoing research through Meta Rose: emotional ambivalence, tactile participation, the time of living materials, and the relationship between experience and its records."
     );
     app.innerHTML = `
@@ -668,7 +667,7 @@
 
       <section class="editorial-research-framework research-body content-section content-section--compact" id="meta-rose">
         <div><p class="section-kicker">${tr("Meta Rose / Ongoing body of work", "Meta Rose / 연작")}</p><h2>${tr("Living roses, touch and emotional ambivalence.", "생장미, 터치와 감정의 양가성.")}</h2></div>
-        <div class="long-copy"><p>${tr("Meta Rose is Minnie Park’s central, long-term body of work. Begun in 2024, it treats the rose, pink and touch as a recurring artistic grammar. Each chapter begins with a new emotional question and recomposes that grammar as a distinct installation, with its own spatial arrangement, audio-visual system and conditions of participation.", "Meta Rose는 Minnie Park 작업의 중심을 이루는 장기 연작입니다. 2024년에 시작된 이 연작은 장미, 핑크와 터치를 반복되는 조형 언어로 다룹니다. 각 장은 새로운 감정적 질문에서 출발하며, 고유한 공간 구성, 오디오비주얼 시스템과 참여 조건을 지닌 서로 다른 설치로 이 언어를 다시 구성합니다.")}</p><p>${tr("Across the series, living roses move between interface, image, body, memorial and data trace. Opposing states—bloom and decay, tenderness and friction, life and death—remain in tension rather than resolving into a single emotional reading.", "연작에서 생장미는 인터페이스, 이미지, 신체, 기념물과 데이터 흔적 사이를 이동합니다. 개화와 소멸, 부드러움과 마찰, 삶과 죽음 같은 대립하는 상태는 하나의 감정적 해석으로 정리되지 않은 채 긴장 속에 함께 존재합니다.")}</p></div>
+        <div class="long-copy"><p>${tr("Meta Rose is Minnie Park’s central, long-term body of work. Begun in 2024, it treats the rose, pink and touch as a recurring artistic grammar. Each chapter begins with a new emotional question and recomposes that grammar as a distinct installation, with its own spatial arrangement, audio-visual system and conditions of participation.", "Meta Rose는 Minnie Park 작업의 중심을 이루는 장기 연작입니다. 2024년에 시작된 이 연작은 장미, 핑크와 터치를 반복되는 조형 언어로 다룹니다. 각 장은 새로운 감정적 질문에서 출발하며, 고유한 공간 구성, 오디오비주얼 시스템과 참여 조건을 지닌 서로 다른 설치로 이 언어를 다시 구성합니다.")}</p><p>${tr("Across the series, living roses move between interface, image, body, memorial and data trace. Opposing states, including bloom and decay, tenderness and friction, life and death, remain in tension rather than resolving into a single emotional reading.", "연작에서 생장미는 인터페이스, 이미지, 신체, 기념물과 데이터 흔적 사이를 이동합니다. 개화와 소멸, 부드러움과 마찰, 삶과 죽음 같은 대립하는 상태는 하나의 감정적 해석으로 정리되지 않은 채 긴장 속에 함께 존재합니다.")}</p></div>
       </section>
 
       <section class="research-body content-section content-section--compact">
@@ -678,7 +677,7 @@
         </div>
         <div class="long-copy">
           <p>${tr("Minnie Park’s research develops through making, exhibiting and revisiting the works of Meta Rose. Each installation tests a different relationship between living materials, an audio-visual system and the people who activate it. The recurring question is how an artwork can make conflicting feelings available to sensory experience without requiring them to resolve into a single emotion.", "Minnie Park의 연구는 Meta Rose의 작품을 제작하고 전시하며 다시 살펴보는 과정에서 전개됩니다. 각 설치는 살아 있는 재료, 오디오비주얼 시스템과 이를 활성화하는 사람들 사이의 관계를 서로 다른 방식으로 탐구합니다. 상충하는 감정을 하나로 정리하지 않으면서 어떻게 감각적으로 경험하게 할 수 있는지가 작업을 관통하는 질문입니다.")}</p>
-          <p>${tr("The rose gives this inquiry a material form. Petals and thorns hold attraction and the possibility of pain in the same object; a flower can retain its colour as it begins to wilt. Park approaches ambivalence through this simultaneity. Pink, grey and black are paired with contrasting sonic textures to work with vitality, friction and loss—not as universal codes for how a viewer should feel.", "장미는 이 질문에 물질적 형태를 부여합니다. 꽃잎과 가시는 하나의 대상 안에 매혹과 고통의 가능성을 함께 지니며, 꽃은 시들기 시작하면서도 색을 유지합니다. Park는 이러한 동시성을 통해 양가성을 다룹니다. 핑크, 회색과 검정은 상반된 사운드 질감과 짝을 이루며 생명력과 마찰, 상실을 다룹니다. 이는 관객이 느껴야 할 감정을 지시하는 보편적 코드는 아닙니다.")}</p>
+          <p>${tr("The rose gives this inquiry a material form. Petals and thorns hold attraction and the possibility of pain in the same object; a flower can retain its colour as it begins to wilt. Park approaches ambivalence through this simultaneity. Pink, grey and black are paired with contrasting sonic textures to work with vitality, friction and loss, without treating them as universal codes for how a viewer should feel.", "장미는 이 질문에 물질적 형태를 부여합니다. 꽃잎과 가시는 하나의 대상 안에 매혹과 고통의 가능성을 함께 지니며, 꽃은 시들기 시작하면서도 색을 유지합니다. Park는 이러한 동시성을 통해 양가성을 다룹니다. 핑크, 회색과 검정은 상반된 사운드 질감과 짝을 이루며 생명력과 마찰, 상실을 다룹니다. 이는 관객이 느껴야 할 감정을 지시하는 보편적 코드는 아닙니다.")}</p>
           <a class="inline-link" href="${projectUrl("meta-rose")}">${tr("The Meta Rose body of work →", "Meta Rose 연작 →")}</a>
         </div>
       </section>
@@ -745,8 +744,8 @@
           <p class="research-record__meta">${tr("Practice-based Honours research<br />RMIT University, Melbourne", "창작 실천 기반 Honours 연구<br />RMIT University, Melbourne")}</p>
         </div>
         <div class="long-copy">
-          <p>${tr("The 2025 study examined how tactile interactivity and Korean emotive colour terms shaped audiences’ affective experience. Drawing on kibun (기분)—mood, feeling and atmosphere—it invited participants to compose a colour term using a Korean emotive suffix or an expression in a language of their choice. The exhibition compared a non-interactive video with a tactile installation using the same audio-visual material.", "2025년 연구는 촉각적 인터랙션과 한국어의 정서적 색채어가 관객의 정서적 경험을 어떻게 형성하는지 살펴봤습니다. 감정 상태와 분위기를 아우르는 ‘기분’에서 출발해, 참여자가 한국어의 정서적 접미어나 원하는 언어의 표현을 색과 결합해 자신만의 색채어를 구성하도록 했습니다. 전시에서는 동일한 오디오비주얼 재료를 사용한 비인터랙티브 영상과 촉각적 설치를 비교했습니다.")}</p>
-          <p>${tr("Fifteen semi-structured interviews and sixteen survey responses were collected over 12–13 September 2025. Participants frequently described tactile participation as more personally engaging than watching the video. Colour choice and emotive language supported reflection on feelings that were mixed, changing or difficult to articulate. These accounts provide evidence within this exhibition, rather than a universal correspondence between colour and emotion or a prediction of every audience’s response.", "2025년 9월 12–13일에 반구조화 인터뷰 15건과 설문 응답 16건을 수집했습니다. 참여자들은 영상 관람보다 촉각적 참여에서 개인적인 몰입을 더 깊게 경험했다고 자주 서술했습니다. 색의 선택과 정서적 언어는 혼합되거나 변화하며 말로 설명하기 어려운 감정의 성찰을 도왔습니다. 이 응답은 해당 전시 안에서의 근거이며, 색과 감정의 보편적 대응 관계나 모든 관객의 반응을 예측하는 결과는 아닙니다.")}</p>
+          <p>${tr("The 2025 study examined how tactile interactivity and Korean emotive colour terms shaped audiences’ affective experience. Drawing on kibun (기분), a Korean term encompassing mood, feeling and atmosphere, it invited participants to compose a colour term using a Korean emotive suffix or an expression in a language of their choice. The exhibition compared a non-interactive video with a tactile installation using the same audio-visual material.", "2025년 연구는 촉각적 인터랙션과 한국어의 정서적 색채어가 관객의 정서적 경험을 어떻게 형성하는지 살펴봤습니다. 감정 상태와 분위기를 아우르는 ‘기분’에서 출발해, 참여자가 한국어의 정서적 접미어나 원하는 언어의 표현을 색과 결합해 자신만의 색채어를 구성하도록 했습니다. 전시에서는 동일한 오디오비주얼 재료를 사용한 비인터랙티브 영상과 촉각적 설치를 비교했습니다.")}</p>
+          <p>${tr("Fifteen semi-structured interviews and sixteen survey responses were collected over 12-13 September 2025. Participants frequently described tactile participation as more personally engaging than watching the video. Colour choice and emotive language supported reflection on feelings that were mixed, changing or difficult to articulate. These accounts provide evidence within this exhibition, rather than a universal correspondence between colour and emotion or a prediction of every audience’s response.", "2025년 9월 12-13일에 반구조화 인터뷰 15건과 설문 응답 16건을 수집했습니다. 참여자들은 영상 관람보다 촉각적 참여에서 개인적인 몰입을 더 깊게 경험했다고 자주 서술했습니다. 색의 선택과 정서적 언어는 혼합되거나 변화하며 말로 설명하기 어려운 감정의 성찰을 도왔습니다. 이 응답은 해당 전시 안에서의 근거이며, 색과 감정의 보편적 대응 관계나 모든 관객의 반응을 예측하는 결과는 아닙니다.")}</p>
           <p class="research-record__citation"><cite>The Meta Kibun Project: Exploring Interactivity, Audience, and Affective Experience in Digital Interactive Art Exhibitions</cite><br />Minnie Park / Bachelor of Media and Communication (Honours) / 2025</p>
           ${actions([
             { label: tr("View the project", "프로젝트 보기"), path: "works/meta-kibun/" },
@@ -806,7 +805,7 @@
       .map((item, index) => ({ ...item, index }));
 
     setSeo(
-      "Visual Index — Minnie Park",
+      "Visual Index, Minnie Park",
       "A visual field of Minnie Park’s installations, real-time visual states, material studies and moments of audience participation."
     );
     app.innerHTML = `
@@ -1003,13 +1002,13 @@
 
   function renderContact() {
     setSeo(
-      "Contact — Minnie Park",
+      "Contact, Minnie Park",
       "Contact Minnie Park for exhibitions, curatorial conversations, research, talks and artistic collaborations."
     );
     app.innerHTML = `
       <section class="contact-hero" id="top">
         <p class="eyebrow">${tr("Contact", "연락")}</p>
-        <h1>${tr("Begin a<br />conversation.", "대화를<br />시작해 주세요.")}</h1>
+        <h1>${tr("Contact", "연락")}</h1>
         <p class="hero-main">${tr("For exhibitions, curatorial conversations, institutional partnerships, research, talks and artistic collaborations.", "전시, 큐레토리얼 대화, 기관 파트너십, 리서치, 토크와 예술 협업에 관한 문의를 받습니다.")}</p>
       </section>
 
@@ -1042,7 +1041,7 @@
   }
 
   function renderCv() {
-    setSeo("Artist CV — Minnie Park", "Download the artist CV of interactive audio-visual artist Minnie Park.");
+    setSeo("Artist CV, Minnie Park", "Download the artist CV of interactive audio-visual artist Minnie Park.");
     app.innerHTML = `
       <section class="cv-hero page-hero" id="top">
         <p class="eyebrow">${tr("Artist CV / 2026 edition", "아티스트 CV / 2026년판")}</p>
@@ -1052,7 +1051,7 @@
         ${actions([{ label: tr("Download CV 2026 ↓", "CV 2026 다운로드 ↓"), path: site.downloads.cv, download: true }])}
       </section>
       <section class="cv-summary content-section content-section--compact">
-        <div><p class="section-kicker">${tr("Short Bio", "짧은 소개")}</p><h2>Minnie Park / ${tr("Interactive Audio-Visual Artist", "인터랙티브 오디오비주얼 아티스트")}</h2></div>
+        <div><h2>Minnie Park / ${tr("Interactive audio-visual installation artist / Creative technologist", "인터랙티브 오디오비주얼 설치 작가 / 크리에이티브 테크놀로지스트")}</h2></div>
         <div class="long-copy">
           <p>${tr("Minnie Park is a Korean-Australian interactive audio-visual artist working between Seoul and Melbourne. Through tactile installations combining living roses, touch, colour, sound and moving image, she explores how feeling is shaped by bodies, culture and relation.", "Minnie Park는 서울과 멜버른을 기반으로 활동하는 한국계 호주 인터랙티브 오디오비주얼 아티스트입니다. 생장미, 터치, 색, 사운드와 무빙이미지를 결합한 촉각적 설치를 통해 감정이 신체, 문화와 관계 속에서 어떻게 형성되는지 탐구합니다.")}</p>
           <p>${tr("For a project-specific introduction, exhibition history or high-resolution portfolio package, contact", "프로젝트별 소개, 전시 이력 또는 고해상도 포트폴리오 패키지는")} <a class="inline-link" href="${site.external.email}">minniepark.studio@gmail.com</a>${tr(".", "으로 문의해 주세요.")}</p>
@@ -1073,11 +1072,11 @@
   else if (page === "contact") renderContact();
   else if (page === "cv") renderCv();
   else if (page === "editions" && window.MP_EDITIONS) {
-    setSeo("Editions — Minnie Park", "Explore artwork acquisition across Minnie Park’s Meta Rose projects. Discuss software editions, installation requirements and presentation with the artist.");
+    setSeo("Editions, Minnie Park", "Explore artwork acquisition across Minnie Park’s Meta Rose projects. Discuss software editions, installation requirements and presentation with the artist.");
     app.innerHTML = window.MP_EDITIONS.renderIndex(editorialContext());
   }
   else if (page === "edition" && window.MP_EDITIONS) {
-    setSeo("RE:INTERVENTION — Minnie Park", "An interactive audio-visual software work developed within Meta Rose: The Funeral. Artwork acquisition, installation and conservation enquiries.");
+    setSeo("RE:INTERVENTION, Minnie Park", "An interactive audio-visual software work developed within Meta Rose: The Funeral. Artwork acquisition, installation and conservation enquiries.");
     app.innerHTML = window.MP_EDITIONS.renderWork(editorialContext());
   }
 

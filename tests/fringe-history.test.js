@@ -10,6 +10,27 @@ vm.createContext(sandbox);
 for (const file of ["site-media.js", "site-content.js", "project-details.js"]) vm.runInContext(read(file), sandbox);
 const { MP_SITE: site, MP_PROJECT_DETAILS: details } = sandbox.window;
 const entries = site.history.find(group => group.year === "2026").entries;
+const respite = entries.find(entry => entry.title === "Respite III");
+const platform = entries.find(entry => entry.title === "RE:INTERVENTION");
+assert(respite && platform, "Both confirmed October presentations are retained");
+for (const entry of [respite, platform]) {
+  assert.equal(entry.date, "October");
+  assert.equal(entry.dateKo, "10월");
+  assert.match(entry.type, /Group.*exhibition/);
+  assert(!entry.project, "New history entries do not borrow a different project's media or date");
+}
+assert.match(respite.context, /XFLOS.*Collingwood Yards.*Melbourne/);
+assert.match(platform.context, /LUCKY777.*Platform Presents.*Abbotsford Convent.*Melbourne/);
+const workshop = entries.find(entry => entry.title === "Flower your Face");
+assert.equal(workshop.project, "artist-workshops");
+assert.equal(workshop.anchor, "flower-your-face");
+const teaching = details["artist-workshops"].sections.find(section => section.id === "flower-your-face");
+assert.match(teaching.paragraphs[0].en, /led by Minnie Park/);
+assert.match(teaching.paragraphs[0].en, /co-hosted by Park and Jessica Dang/);
+assert.match(teaching.paragraphs[0].en, /capacity of 40 participants/);
+const allHistory = site.history.flatMap(group => group.entries);
+assert.equal(allHistory.filter(entry => entry.type.startsWith("Solo exhibition")).length, 5);
+assert.match(allHistory.find(entry => entry.title === "Body Morphosis").type, /Duo exhibition.*Interactive audio-visual artworks/);
 const shared = entries.filter(entry => entry.project === "shared-resonance");
 assert.equal(shared.length, 2, "April and Fringe remain separate exhibition records");
 assert.equal(shared[0].date, "September / October");
@@ -45,11 +66,14 @@ for (const locale of ["", "ko/"]) {
   const artist = read(locale + "artist/index.html");
   const page = read(locale + "works/shared-resonance/index.html");
   assert.match(artist, /Celia Little Room/);
+  assert(artist.includes("Respite III") && artist.includes("LUCKY777 / Platform Presents"));
+  assert(!artist.includes("Short Bio") && !artist.includes("짧은 소개"));
+  assert(artist.includes(locale ? "크리에이티브 테크놀로지스트" : "Creative technologist"));
   assert(!/Melbourne Fringe Festival\s*\((forthcoming|예정)\)/.test(artist));
   assert.match(page, /id="melbourne-fringe"/);
   assert(page.includes(official));
   for (const script of ["site-content", "project-details", "site-render"]) {
-    const version = "20261031-artist-reading-64";
+    const version = "20261031-review-round1-68";
     assert(page.includes(`${script}.js?v=${version}`), "Static and runtime cache versions agree");
   }
 }

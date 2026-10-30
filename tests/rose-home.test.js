@@ -12,7 +12,9 @@ for(const route of ['','ko/']){
  assert(html.includes('href="https://minniepark.art/'+route+'"'));
  assert(html.includes('aria-controls="primaryLinks"'));
  assert(html.includes('<noscript>')&&html.includes('id="roseFallback"')&&html.includes('src="'+(route?'../':'./')+'assets/rose-halftone.png"'));
- assert(html.includes(route?'동작':'Choose an effect')||html.includes('효과를 고른 뒤'));
+ assert(html.includes('id="interactionCue"') && html.includes('id="interactionHelp"'));
+ assert(!html.includes('data-effect=') && !html.includes('effectCaption'), 'Emotion words choose responses without a comparison menu');
+ assert(html.includes('id="heroTitle"><a href='), 'The only homepage title is its home link');
  const ids=[...html.matchAll(/\bid="([^\"]+)"/g)].map(m=>m[1]);assert.equal(new Set(ids).size,ids.length);
  for(const [,src]of html.matchAll(/(?:src|href)="((?:\.\/|\.\.\/)[^\"]+\.(?:js|css|png)(?:\?[^\"]*)?)"/g))assert(fs.existsSync(path.resolve(root,route,src.split('?')[0])),src);
 }
@@ -25,6 +27,24 @@ assert(read('rose-home.js').includes("window.addEventListener('pageshow',event=>
 assert(read('rose-home.js').includes("$('camera').addEventListener('click',async()=>"));
 assert(read('rose-home.css').includes('body[data-page="home"]{height:auto'));
 for(const route of ['artist/','works/','research/','editions/','contact/','ko/artist/'])assert(!/rose-home\.(?:js|css)/.test(read(route+'index.html')),'Homepage assets must remain home-only');
+// Evaluate the non-DOM modules only: verify accumulation across all five
+// automatic routes, rather than merely checking that button labels changed.
+const modules=read('rose-home.js').split(";\n(() => {\n  'use strict';\n  const $=id=>")[0];
+const context={console,Float32Array,Uint16Array,document:{addEventListener(){}},addEventListener(){}};
+context.window=context;context.globalThis=context;vm.createContext(context);vm.runInContext(modules,context);
+const {RoseMath,RoseEffectSession,RoseEffectLabRenderer}=context;
+const responseWords={joy:'offspring',distance:'separation',unease:'glitch',fear:'thorn',grief:'erosion'};
+for(const [word,effect] of Object.entries(responseWords)) assert.equal(RoseMath.effectOf(word),effect);
+const session=RoseEffectSession.create();
+assert.equal(session.snapshot().total,0);
+for(const word of Object.keys(responseWords)) session.select(word,RoseMath.polarityOf(word));
+let state=session.snapshot(), plan=RoseEffectLabRenderer.planEffects(state.events,state.mode);
+assert.equal(state.mode,'emotion');assert.equal(state.total,5);
+assert.equal(plan.children.length,1);assert(plan.separation>0);assert(plan.glitch);assert(plan.thornCount>0);assert(plan.erosion>0);
+session.select('hope','positive');state=session.snapshot();plan=RoseEffectLabRenderer.planEffects(state.events,state.mode);
+assert.equal(state.total,6);assert.equal(plan.children.length,2);assert(plan.thornCount>0 && plan.glitch && plan.erosion>0 && plan.separation>0, 'Earlier responses stay when a different feeling is added');
+session.reset();state=session.snapshot();plan=RoseEffectLabRenderer.planEffects(state.events,state.mode);
+assert.equal(state.total,0);assert.equal(plan.children.length,0);assert.equal(plan.thornCount,0);assert.equal(plan.erosion,0);assert.equal(plan.separation,0);assert.equal(plan.glitch,null);
 const hash=()=>crypto.createHash('sha256').update(['index.html','ko/index.html'].map(read).join('\n')).digest('hex');
 const before=hash();cp.execFileSync(process.execPath,['scripts/build-search-pages.js'],{cwd:root});assert.equal(hash(),before,'Generated homes must be idempotent');
-console.log('PASS: bilingual integrated home, shared navigation, SEO, media paths, camera consent boundary, scoped styles, no preview chrome/legacy canvases, idempotent generation.');
+console.log('PASS: bilingual integrated home, shared navigation, SEO, media paths, camera consent boundary, scoped styles, emotion-led cumulative responses, accessible help, no comparison menu/legacy canvases, idempotent generation.');

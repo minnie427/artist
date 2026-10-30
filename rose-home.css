@@ -23,3 +23,42 @@ body[data-page="home"] .global-nav__brand{visibility:visible}
 body[data-page="home"] .global-header{background:var(--pink);border-bottom:1px solid var(--line)}
 .rose-home{min-width:0}.rose-home .heading{padding:0;min-height:0}.rose-home .heading h1{font-family:inherit}.rose-home .home-copy{min-width:0}.rose-home .home-copy .hero-note{margin:10px 0 0;font-size:13px;line-height:1.5;letter-spacing:0}.rose-home #renderStats{display:none}.rose-home .error{display:block}.rose-home .error[hidden]{display:none}
 @media(max-width:600px){body[data-page="home"] #app{padding:calc(var(--header-height) + 22px) 20px 24px}.rose-home footer{flex-wrap:wrap}.rose-home .home-copy{flex:1 1 220px}}
+
+/* Home identity occupies the header's brand position once, without a rule. */
+body[data-page="home"] #app{padding:calc(var(--header-height) + 32px) var(--page-pad) 38px;z-index:auto}
+body[data-page="home"] .global-header{border-bottom:0;background:var(--pink)}
+body[data-page="home"] .global-nav{border-bottom:0;grid-template-columns:clamp(260px,29vw,420px) minmax(0,1fr) auto}
+body[data-page="home"] .global-nav__brand{visibility:hidden;pointer-events:none}
+.rose-home .heading h1{position:fixed;z-index:91;left:var(--page-pad);top:12px;margin:0;font-size:clamp(44px,5.2vw,76px);line-height:.96;font-weight:600;letter-spacing:-.065em}
+.rose-home .heading h1 a{display:inline-block;white-space:nowrap}
+.rose-home .heading p{margin:0;font-size:10px;line-height:1.45;letter-spacing:.06em}
+.rose-home .scene{margin-top:0;margin-inline:calc(-1 * var(--page-pad))}
+.rose-home .interaction-cue{position:absolute;z-index:6;left:50%;top:49%;transform:translate(-50%,-50%);margin:0;max-width:min(320px,calc(100% - 38px));border:1px solid var(--ink);border-radius:0;background:var(--ink);color:var(--pink);padding:12px 22px;pointer-events:none;text-align:center;font-size:12px;font-weight:400;line-height:1.5;letter-spacing:0}
+.rose-home .field-controls{border:0;padding-top:9px;justify-content:flex-end;position:relative;z-index:10}
+.rose-home .controls{gap:8px 22px;flex-wrap:nowrap}
+.rose-home .interaction-help{position:relative;font-size:12px}
+.rose-home .interaction-help>summary{display:flex;align-items:center;justify-content:center;list-style:none;width:44px;height:44px;border:1px solid var(--ink);border-radius:50%;font-size:16px;line-height:1;cursor:pointer}
+.rose-home .interaction-help>summary::-webkit-details-marker{display:none}
+.rose-home .interaction-help>summary:hover,.rose-home .interaction-help[open]>summary{background:var(--ink);color:var(--pink)}
+.rose-home .interaction-help__body{position:absolute;right:0;bottom:calc(100% + 14px);width:min(370px,calc(100vw - var(--page-pad)*2));max-height:65svh;overflow:auto;padding:22px;background:var(--pink);border:1px solid var(--ink);font-size:12px;line-height:1.7;box-shadow:none}
+.rose-home .interaction-help__body p{margin:0 0 12px;font-size:12px;line-height:1.7;letter-spacing:0}
+.rose-home .interaction-help__body #instruction{font-weight:600}
+.rose-home .interaction-help__body .privacy{font-size:11px;color:var(--muted)}
+.rose-home .interaction-help__body .record{margin-top:16px;border-top:1px solid var(--line);padding-top:12px;display:block}
+.rose-home .interaction-help__body .record p{font:10px/1.6 monospace;margin:5px 0 0}
+.rose-home footer{margin-top:34px;padding-top:0}
+@media(max-width:1100px){
+ body[data-page="home"] .global-nav{grid-template-columns:minmax(0,1fr) auto auto}
+ .rose-home .heading h1{top:13px;font-size:clamp(32px,5.4vw,56px)}
+}
+@media(max-width:600px){
+ body[data-page="home"] #app{padding:calc(var(--header-height) + 22px) var(--page-pad) 30px}
+ .rose-home .heading h1{top:17px;font-size:clamp(28px,8vw,36px)}
+ .rose-home .heading p{font-size:9px;margin:0}
+ .rose-home .scene{margin-top:0}
+ .rose-home .interaction-cue{font-size:11px;padding:11px 18px}
+ .rose-home .field-controls{padding-top:5px}
+ .rose-home .controls{gap:8px 14px}
+ .rose-home .interaction-help__body{padding:18px}
+ .rose-home footer{margin-top:28px}
+}

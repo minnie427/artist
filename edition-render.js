@@ -62,21 +62,21 @@
     const image = (src, alt, eager = false) => `<img src="${escape(ctx.media(src))}" alt="${escape(alt)}" loading="${eager ? "eager" : "lazy"}" decoding="async" />`;
     const email = /^mailto:[^?\s]+@[^?\s]+$/.test(ctx.site.external.email || "")
       ? ctx.site.external.email : "mailto:minniepark.studio@gmail.com";
-    const enquiry = (title) => escape(`${email}?subject=${encodeURIComponent(`Artwork acquisition enquiry — ${title}`)}`);
+    const enquiry = (title) => escape(`${email}?subject=${encodeURIComponent(`Artwork acquisition enquiry, ${title}`)}`);
     // Keep the enquiry usable without a configured mail app or JavaScript.
     const action = (title, label = ["Acquisition enquiry →", "작품 소장 문의 →"]) => `
       <details class="acquisition-enquiry">
         <summary>${text(...label)}</summary>
         <div class="acquisition-enquiry__panel">
-          <p>${text("Email the address below with the artwork title and your enquiry.", "아래 주소로 작품명과 문의 내용을 보내주세요.")}</p>
+          <p>${text("Tell me which work interests you and where you would like to present it.", "관심 작품과 설치하려는 공간을 알려주세요.")}</p>
           <dl>
             <dt>${text("Email", "이메일")}</dt>
             <dd class="acquisition-enquiry__select">${escape(email.slice(7))}</dd>
             <dt>${text("Subject", "제목")}</dt>
-            <dd class="acquisition-enquiry__select">${escape(`Artwork acquisition enquiry — ${title}`)}</dd>
+            <dd class="acquisition-enquiry__select">${escape(`Artwork acquisition enquiry, ${title}`)}</dd>
           </dl>
           <a href="${enquiry(title)}">${text("Open email app →", "메일 앱에서 작성 →")}</a>
-          <p>${text("If no email app opens, copy the address and subject into your preferred email service. Nothing is sent from this page.", "메일 앱이 열리지 않으면 주소와 제목을 복사해 사용하는 이메일 서비스에서 작성해 주세요. 이 페이지에서는 메일이 발송되지 않습니다.")}</p>
+          <p>${text("Or copy the address into your email service.", "주소를 복사해 사용하는 이메일 서비스에서 작성해도 됩니다.")}</p>
         </div>
       </details>`;
     return { text, url, image, action };
@@ -90,7 +90,7 @@
       return `
         <article class="edition-card" aria-labelledby="edition-${entry.key}">
           <a class="edition-card__media" href="${url(route)}" aria-label="${text(`View ${fullTitle}`, `${fullTitle} 보기`)}">
-            ${image(entry.image, `${fullTitle} — ${ctx.tr("installation documentation", "설치 기록")}`, index === 0)}
+            ${image(entry.image, `${fullTitle}, ${ctx.tr("installation documentation", "설치 기록")}`, index === 0)}
           </a>
           <div class="edition-card__content">
             <p class="eyebrow">${entry.year} / Meta Rose</p>
@@ -99,7 +99,14 @@
             <details>
               <summary>${text("Format & installation", "소장 형태와 설치")}</summary>
               <p>${text(...entry.format)}</p>
-              ${entry.key === "funeral" ? `<p><a href="${url("editions/reintervention/")}">${text("RE:INTERVENTION — software artwork →", "RE:INTERVENTION — 소프트웨어 작품 →")}</a></p>` : ""}
+              <dl class="edition-specs">
+                <div><dt>${text("Work", "대상 작품")}</dt><dd>${text("A defined work and version, selected before acquisition.", "소장 전에 대상 작품과 버전을 정합니다.")}</dd></div>
+                <div><dt>${text("System", "시스템")}</dt><dd>${text("TouchDesigner is the primary software. The supported build and computer specification are agreed for the selected version.", "TouchDesigner를 주 소프트웨어로 사용합니다. 선택한 버전에 맞춰 지원 빌드와 컴퓨터 사양을 협의합니다.")}</dd></div>
+                <div><dt>${text("Installation", "설치")}</dt><dd>${text("Dimensions vary by site and configuration. Display, sound, rose interfaces and other physical components are specified for the selected work.", "설치 크기는 장소와 구성에 따라 가변입니다. 디스플레이, 음향, 장미 인터페이스와 기타 물리적 구성은 대상 작품에 맞춰 정합니다.")}</dd></div>
+                <div><dt>${text("Delivery", "전달 구성")}</dt><dd>${text("Software, media, documentation, installation support and any physical components are itemised in the proposal.", "소프트웨어, 미디어, 문서, 설치 지원과 물리적 구성의 포함 범위를 제안서에 구분해 명시합니다.")}</dd></div>
+                <div><dt>${text("Terms", "소장 조건")}</dt><dd>${text("Availability, edition size, price, exhibition rights and ongoing support are agreed before acquisition.", "소장 가능 여부, 에디션 수, 가격, 전시 권한과 유지 지원은 소장 전에 협의합니다.")}</dd></div>
+              </dl>
+              ${entry.key === "funeral" ? `<p><a href="${url("editions/reintervention/")}">${text("RE:INTERVENTION, software artwork →", "RE:INTERVENTION, 소프트웨어 작품 →")}</a></p>` : ""}
             </details>
             <div class="page-actions project-links">
               ${action(fullTitle)}
