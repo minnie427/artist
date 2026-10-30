@@ -49,7 +49,7 @@ for (const locale of ["", "ko/"]) {
   assert.match(page, /id="melbourne-fringe"/);
   assert(page.includes(official));
   for (const script of ["site-content", "project-details", "site-render"]) {
-    const version = "20261031-artist-narrative-63";
+    const version = "20261031-artist-reading-64";
     assert(page.includes(`${script}.js?v=${version}`), "Static and runtime cache versions agree");
   }
 }

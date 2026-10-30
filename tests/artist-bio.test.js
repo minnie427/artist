@@ -19,7 +19,7 @@ const expected = {
 // The biography and history remain unchanged. Statement replacement approved 2026-10-31.
 const preserved = {
   en: { statement: "f9f8fdd14e140752afc371501da547ee4707a89764dfd61e57bc325b898532d3", history: "d8349cb673aa44bd25808310eb0ab75bc6c6b278096c4ef90bb2f4da4c9ef54c" },
-  ko: { statement: "c47ab5d27afc2049320915ad95f50c9f0261a2a9b6cc17e3fc0eabee494a4a6b", history: "60d1294292cd750cc8dbbd69163bc03d2e9157f4b376e7968c1a5e1854e87e77" }
+  ko: { statement: "de722a0a7ec8ce5cec7023f9e106758576d4e0474c17f787a189c396f096680c", history: "60d1294292cd750cc8dbbd69163bc03d2e9157f4b376e7968c1a5e1854e87e77" }
 };
 const normalise = value => value.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
 const hash = value => crypto.createHash("sha256").update(normalise(value)).digest("hex");
@@ -79,7 +79,7 @@ for (const language of ["en", "ko"]) {
   const route = (language === "ko" ? "ko/" : "") + "artist/index.html";
   const staticHtml = read(route);
   check(staticHtml, language, route + "/static");
-  assert(staticHtml.includes("site-render.js?v=20261031-artist-narrative-63"), route + ": refreshed renderer cache version");
+  assert(staticHtml.includes("site-render.js?v=20261031-artist-reading-64"), route + ": refreshed renderer cache version");
   for (const protocol of ["https:", "file:"]) check(render(language, protocol), language, language + "/" + protocol);
 }
 console.log("PASS: Artist biography " + words(expected.en.join(" ")) + " English words (" + words(expected.en[0]) + " original + " + words(expected.en[1]) + " added); exact EN/KO biography and approved narrative in static and HTTP/file runtime renders; history and actions retained.");

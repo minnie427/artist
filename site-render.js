@@ -602,13 +602,13 @@
       </section>
 
       <section class="artist-statement content-section content-section--compact" id="artist-statement" aria-labelledby="artist-statement-title">
-        <div>
+        <div class="artist-statement__heading">
           <p class="section-kicker">${tr("Artist Statement", "작가 노트")}</p>
           <h2 id="artist-statement-title">${tr("From The Pinkbird to Meta Rose", "The Pinkbird에서 Meta Rose로")}</h2>
-          <figure class="artist-statement__image"><img src="${media(site.artistNarrative.image.src)}" width="${site.artistNarrative.image.width}" height="${site.artistNarrative.image.height}" alt="${tr(site.artistNarrative.image.alt, site.artistNarrative.image.altKo)}" loading="lazy" decoding="async" /><figcaption><cite>${site.artistNarrative.image.title}</cite>, ${site.artistNarrative.image.year}<br />${tr(site.artistNarrative.image.medium, site.artistNarrative.image.mediumKo)}</figcaption></figure>
         </div>
-        <div class="long-copy long-copy--large">
-          <p>${tr(site.artistNarrative.en, site.artistNarrative.ko)}</p>
+        <figure class="artist-statement__image"><img src="${media(site.artistNarrative.image.src)}" width="${site.artistNarrative.image.width}" height="${site.artistNarrative.image.height}" alt="${tr(site.artistNarrative.image.alt, site.artistNarrative.image.altKo)}" loading="lazy" decoding="async" /><figcaption><cite>${site.artistNarrative.image.title}</cite>, ${site.artistNarrative.image.year}<br />${tr(site.artistNarrative.image.medium, site.artistNarrative.image.mediumKo)}</figcaption></figure>
+        <div class="artist-statement__copy long-copy long-copy--large">
+          ${tr(site.artistNarrative.en, site.artistNarrative.ko).split("\n\n").map(paragraph => `<p>${paragraph}</p>`).join("\n          ")}
           <a class="inline-link" href="${href("research/")}">${tr("Research →", "리서치 →")}</a>
         </div>
       </section>

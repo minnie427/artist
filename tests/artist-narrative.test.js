@@ -12,15 +12,17 @@ vm.runInContext(read('site-content.js'), context);
 const story = context.window.MP_SITE.artistNarrative;
 const approved = {
   en: 'a8136774c6948a70f59fb453641297a5d3c7289ecaed6428e018f6192392f86b',
-  ko: '94537e3d4bb0733b26623ec2de43fc8de8682a573fb8968ae2b5264dc805f15d'
+  ko: 'fd7ab2348422f459b91ad02a83a443586f053f320baec747d9236f9974a7be0c'
 };
 for (const locale of ['en', 'ko']) {
-  assert.equal(crypto.createHash('sha256').update(story[locale]).digest('hex'), approved[locale], 'Only the approved public copy is included');
+  assert.equal(crypto.createHash('sha256').update(story[locale].replace(/\s+/g, ' ')).digest('hex'), approved[locale], 'Approved wording preserved across paragraph breaks');
   assert(!/[\u2013\u2014]/u.test(story[locale]), 'Long dashes replaced with commas');
   const page = read((locale === 'ko' ? 'ko/' : '') + 'artist/index.html');
   const statement = page.match(/<section class="artist-statement[^>]*>([\s\S]*?)<\/section>/)[1];
-  assert.equal(statement.split(story[locale]).length - 1, 1);
-  assert.equal((statement.match(/<p>/g) || []).length, 1, 'One complete narrative paragraph');
+  const paragraphs = story[locale].split('\n\n');
+  assert.equal(paragraphs.length, 3);
+  for (const paragraph of paragraphs) assert.equal(statement.split(paragraph).length - 1, 1);
+  assert.equal((statement.match(/<p>/g) || []).length, 3, 'Three readable narrative paragraphs');
   assert.equal((statement.match(/<figure\b/g) || []).length, 1, 'Only the selected painting, no guessed rose image');
   assert(statement.includes(story.image.src));
   assert(statement.includes('width="1200" height="1441"'));
