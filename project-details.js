@@ -3,6 +3,14 @@
 window.MP_PROJECT_DETAILS = {
   "funeral": {
     "title": "Meta Rose: The Funeral",
+    "technical": [{
+      "label": { "en": "Seoul Fringe Festival / 2026", "ko": "서울프린지페스티벌 / 2026" },
+      "credit": { "en": "Minnie Park — concept, exhibition planning and production.", "ko": "Minnie Park — 작품 구상, 전시 기획 및 제작." },
+      "dimensions": { "en": "Variable according to venue and installation configuration.", "ko": "장소와 설치 구성에 따라 가변." },
+      "medium": { "en": "Interactive audio-visual installation in four parts: Naming, Intervention, Witness and Record.", "ko": "명명, 개입, 목격, 기록의 네 부분으로 구성된 인터랙티브 오디오비주얼 설치." },
+      "materials": { "en": "Living roses, skeletal model, conductive contacts, sound, light and moving image.", "ko": "생장미, 해골 모형, 전도성 접점, 사운드, 빛과 무빙이미지." },
+      "tools": { "en": "TouchDesigner (primary software); touch-responsive system, camera-based gesture tracking, responsive controller, connected phone interface and looping film.", "ko": "TouchDesigner(주 소프트웨어), 터치 반응 시스템, 카메라 기반 제스처 추적, 반응형 컨트롤러, 연결된 폰 인터페이스와 루프 영상." }
+    }],
     "meta": {
       "en": [
         "15–18 August 2026 · Solo exhibition · Seoul Fringe Festival",
@@ -157,6 +165,14 @@ window.MP_PROJECT_DETAILS = {
   },
   "meta-kibun": {
     "title": "The Meta Kibun Project",
+    "technical": [{
+      "label": { "en": "RMIT University / 2025", "ko": "RMIT University / 2025" },
+      "credit": { "en": "Minnie Park — concept, exhibition planning and production.", "ko": "Minnie Park — 작품 구상, 전시 기획 및 제작." },
+      "dimensions": { "en": "Variable according to venue and installation configuration.", "ko": "장소와 설치 구성에 따라 가변." },
+      "medium": { "en": "Interactive audio-visual installation and non-interactive video, presented within practice-based research.", "ko": "창작 실천 기반 연구에서 함께 제시한 인터랙티브 오디오비주얼 설치와 비인터랙티브 영상." },
+      "materials": { "en": "Living roses, water, coloured slime, sound, light and three-screen moving image.", "ko": "생장미, 물, 컬러 슬라임, 사운드, 빛과 3면 무빙이미지." },
+      "tools": { "en": "TouchDesigner (primary software); tactile interfaces controlling sixteen layered audio-visual effects.", "ko": "TouchDesigner(주 소프트웨어), 16개 오디오비주얼 효과의 층위를 제어하는 촉각 인터페이스." }
+    }],
     "meta": {
       "en": "2025 · Interactive audio-visual installation · RMIT University, Melbourne · 12–13 September 2025",
       "ko": "2025 · 인터랙티브 오디오비주얼 설치 · RMIT University, Melbourne · 2025년 9월 12–13일"
@@ -258,6 +274,14 @@ window.MP_PROJECT_DETAILS = {
   },
   "origin": {
     "title": "Meta Rose: Origin",
+    "technical": [{
+      "label": { "en": "Visual album and installation / 2024", "ko": "비주얼 앨범과 설치 / 2024" },
+      "credit": { "en": "Minnie Park — concept, exhibition planning and production.", "ko": "Minnie Park — 작품 구상, 전시 기획 및 제작." },
+      "dimensions": { "en": "Installation dimensions variable according to venue and configuration.", "ko": "설치 크기는 장소와 구성에 따라 가변." },
+      "medium": { "en": "Interactive visual album combining a tactile installation, moving image, original soundtracks and a multiplayer game.", "ko": "촉각적 설치, 무빙이미지, 오리지널 사운드트랙과 멀티플레이어 게임을 결합한 인터랙티브 비주얼 앨범." },
+      "materials": { "en": "Living roses arranged as a tactile keyboard across a table, 3D-rendered imagery, sound and digital character Mintie.", "ko": "테이블 위에서 촉각 키보드를 구성하는 생장미, 3D 렌더 이미지, 사운드와 디지털 캐릭터 Mintie." },
+      "tools": { "en": "TouchDesigner for the rose-responsive installation; Unreal Engine for the multiplayer game.", "ko": "장미에 반응하는 설치에는 TouchDesigner, 멀티플레이어 게임에는 Unreal Engine 사용." }
+    }],
     "meta": {
       "en": "2024 · Interactive audio-visual project · Melbourne",
       "ko": "2024 · 인터랙티브 오디오비주얼 프로젝트 · 멜버른"
@@ -334,6 +358,21 @@ window.MP_PROJECT_DETAILS = {
   },
   "shared-resonance": {
     "title": "The Meta Rose: Shared Resonance",
+    "technical": [{
+      "label": { "en": "Platform Presents: Hybrid / April 2026", "ko": "Platform Presents: Hybrid / 2026년 4월" },
+      "credit": { "en": "Minnie Park — concept, exhibition planning and production.", "ko": "Minnie Park — 작품 구상, 전시 기획 및 제작." },
+      "dimensions": { "en": "Variable according to venue and installation configuration.", "ko": "장소와 설치 구성에 따라 가변." },
+      "medium": { "en": "Participatory audio-visual installation activated by two or more people.", "ko": "두 명 이상의 참여자가 활성화하는 관객 참여형 오디오비주얼 설치." },
+      "materials": { "en": "Suspended living roses, water, conductive contacts, sound, light and moving image.", "ko": "매달린 생장미, 물, 전도성 접점, 사운드, 빛과 무빙이미지." },
+      "tools": { "en": "TouchDesigner; an open conductive circuit completed through hand-to-hand contact and touch-responsive audio-visual layers.", "ko": "TouchDesigner, 손과 손의 접촉으로 완성하는 열린 전도성 회로와 터치에 반응하는 오디오비주얼 층위." }
+    }, {
+      "label": { "en": "Melbourne Fringe Festival / September–October 2026", "ko": "Melbourne Fringe Festival / 2026년 9–10월" },
+      "credit": { "en": "Minnie Park — concept, exhibition planning and production.", "ko": "Minnie Park — 작품 구상, 전시 기획 및 제작." },
+      "dimensions": { "en": "Variable according to venue and installation configuration.", "ko": "장소와 설치 구성에 따라 가변." },
+      "medium": { "en": "Interactive installation allowing individual interaction, collective activation or observation without touching.", "ko": "개인의 인터랙션, 공동 활성화 또는 접촉 없이 관찰하는 방식을 허용하는 인터랙티브 설치." },
+      "materials": { "en": "Living roses, layered moving image and an original soundscape incorporating natural textures and artist-recorded samples.", "ko": "생장미, 다층 무빙이미지, 자연적 질감과 작가가 녹음한 샘플을 포함한 오리지널 사운드스케이프." },
+      "tools": { "en": "TouchDesigner (primary software); touch-responsive audio-visual system. This presentation has a different participation structure from the April installation.", "ko": "TouchDesigner(주 소프트웨어), 터치 반응형 오디오비주얼 시스템. 4월 설치와 구별되는 참여 구조로 구성한 발표." }
+    }],
     "meta": {
       "en": ["2026 · Interactive audio-visual installation · Melbourne", "Platform Presents: Hybrid · 18 April / Melbourne Fringe Festival · 30 September–4 October"],
       "ko": ["2026 · 인터랙티브 오디오비주얼 설치 · 멜버른", "Platform Presents: Hybrid · 4월 18일 / Melbourne Fringe Festival · 9월 30일–10월 4일"]
