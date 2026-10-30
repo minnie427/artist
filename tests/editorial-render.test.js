@@ -23,7 +23,7 @@ const projectKeys = [
   "artist-workshops", "live-performance", "melbourne-fashion-festival", "album-listening-session"
 ];
 assert.deepEqual(Object.keys(details).sort(), [...projectKeys].sort(), "All ten approved projects must be retained");
-assert.equal(Object.values(details).reduce((count, project) => count + project.sections.reduce((n, section) => n + section.paragraphs.length, 0), 0), 52, "Retain all 52 approved bilingual paragraphs");
+assert.equal(Object.values(details).reduce((count, project) => count + project.sections.reduce((n, section) => n + section.paragraphs.length, 0), 0), 54, "Retain 52 existing bilingual paragraphs and two confirmed Melbourne Fringe paragraphs");
 assert(!/\/Users\/|cautions|heroLocal/.test(read("project-details.js")), "Do not publish private source paths or notes");
 
 const knownRoutes = new Set([
@@ -84,11 +84,29 @@ function checkMarkup(html, label, language) {
   }
 }
 
+function checkAcquisitionFallback(html, titles, label, language) {
+  const enquiries = [...html.matchAll(/<details class="acquisition-enquiry">([\s\S]*?)<\/details>/g)];
+  assert.equal(enquiries.length, titles.length, `${label}: every intended acquisition action reveals contact details without an email app`);
+  assert.equal((html.match(/href="mailto:/g) || []).length, enquiries.length, `${label}: no acquisition action remains mailto-only`);
+  enquiries.forEach(([, panel], index) => {
+    assert(/<summary(?:\s[^>]*)?>/.test(panel), `${label}: native keyboard-accessible disclosure`);
+    assert(panel.includes('class="acquisition-enquiry__select">minniepark.studio@gmail.com</dd>'), `${label}: recipient is visible and selectable`);
+    const mail = new URL(panel.match(/href="(mailto:[^"]+)"/)[1].replaceAll("&amp;", "&"));
+    assert.equal(mail.pathname, "minniepark.studio@gmail.com", `${label}: correct recipient`);
+    assert.equal(mail.searchParams.get("subject"), `Artwork acquisition enquiry — ${titles[index]}`, `${label}: exact artwork-specific subject`);
+    assert(panel.includes(projectEscape(mail.searchParams.get("subject"))), `${label}: visible subject matches email draft subject`);
+    assert(panel.includes(language === "ko" ? "메일 앱이 열리지 않으면" : "If no email app opens"), `${label}: localised manual-email fallback`);
+    assert(panel.includes(language === "ko" ? "이 페이지에서는 메일이 발송되지 않습니다." : "Nothing is sent from this page."), `${label}: no-send explanation`);
+    assert(!/<form|<input|\bon(?:click|submit)=|\b(?:fetch|XMLHttpRequest|WebSocket)\s*\(/i.test(panel), `${label}: no form, interception or hidden enquiry transmission`);
+  });
+}
+
 let checkedParagraphs = 0;
 for (const language of ["en", "ko"]) {
   const ctx = context(language);
   const works = editorial.works(ctx);
   checkMarkup(works, `Works/${language}`, language);
+  checkAcquisitionFallback(works, site.primaryWorksOrder.map(key => details[key].title), `Works/${language}`, language);
   assert.equal((works.match(/class="editorial-work"/g) || []).length, 4, "Four primary works use the same card layout");
   assert.equal((works.match(/class="editorial-index-row"/g) || []).length, 6, "All six further-practice entries remain visible");
   assert.equal((works.match(/is-pair/g) || []).length, 2, "Shared Resonance and Meta Kibun retain uncropped portrait pairs");
@@ -124,10 +142,12 @@ for (const language of ["en", "ko"]) {
     const mailLinks = [...html.matchAll(/href="(mailto:[^"]+)"/g)];
     assert.equal(mailLinks.length, project.acquisition ? 2 : 0, `${label}: acquisition routes only where intended`);
     for (const [, mail] of mailLinks) assert(new URL(mail).searchParams.get("subject").endsWith(project.title), `${label}: correct acquisition subject`);
+    checkAcquisitionFallback(html, project.acquisition ? [project.title, project.title] : [], label, language);
   }
 
   const index = editions.renderIndex(ctx);
   checkMarkup(index, `Editions/${language}`, language);
+  checkAcquisitionFallback(index, site.primaryWorksOrder.map(key => details[key].title), `Editions/${language}`, language);
   assert.equal((index.match(/class="edition-card"/g) || []).length, 4);
   assert.equal((index.match(/class="edition-card__media"/g) || []).length, 4, "Four square-thumbnail media hooks");
   assert(index.includes(ctx.href("editions/reintervention/")), "Direct software-artwork route");
@@ -135,6 +155,7 @@ for (const language of ["en", "ko"]) {
 
   const edition = editions.renderWork(ctx);
   checkMarkup(edition, `RE:INTERVENTION/${language}`, language);
+  checkAcquisitionFallback(edition, ["RE:INTERVENTION"], `RE:INTERVENTION/${language}`, language);
   assert(edition.includes(ctx.href("works/funeral/")), "Return to parent exhibition context");
   assert(edition.includes(ctx.href("editions/")), "Return to Editions");
   assert(edition.includes("TouchDesigner"), "Execution requirements are documented");
@@ -145,7 +166,7 @@ for (const language of ["en", "ko"]) {
     assert(!/\b(?:fetch|XMLHttpRequest|WebSocket)\s*\(/.test(html), "No hidden enquiry transmission");
   }
 }
-assert.equal(checkedParagraphs, 104, "All 52 paragraphs checked in both languages");
+assert.equal(checkedParagraphs, 108, "All 54 paragraphs checked in both languages");
 
 // Guard the edition module against accidental raw text or attribute insertion.
 const hostile = context("en");
@@ -153,5 +174,9 @@ hostile.details = { ...details, funeral: { ...details.funeral, title: '<script>a
 hostile.site = { ...site, external: { ...site.external, email: "javascript:alert(1)" } };
 const safe = editions.renderIndex(hostile);
 assert(!safe.includes("<script>") && !safe.includes("javascript:"), "Unsafe title and mail scheme are not emitted as executable markup");
+for (const html of [editorial.works(hostile), editorial.project(hostile, "funeral")]) {
+  assert(!html.includes("<script>") && !html.includes("javascript:"), "Editorial enquiries escape unsafe titles and reject unsafe mail schemes");
+  assert(html.includes('class="acquisition-enquiry__select">minniepark.studio@gmail.com</dd>'), "Editorial enquiries retain the safe recipient fallback");
+}
 
-console.log("PASS: 26 EN/KO renders (10 projects + Works + 2 Editions pages per language), all 52 bilingual paragraphs, metadata, media, real routes, history anchors, artwork-specific enquiries, common card structure, and no unapproved acquisition terms. Static checks only; browser/mobile visual QA remains separate.");
+console.log("PASS: 26 EN/KO renders (10 projects + Works + 2 Editions pages per language), all 54 bilingual paragraphs, metadata, media, real routes, history anchors, native acquisition fallback with exact artwork subjects, common card structure, and no unapproved acquisition terms. Static checks only; browser/mobile visual QA remains separate.");

@@ -587,6 +587,7 @@
         </div>
         <div class="long-copy">
           <p>${tr("Minnie Park is a Korean-Australian interactive audio-visual artist working between Seoul and Melbourne. Her installations combine living roses, tactile interaction, sound, light and moving image to examine affect as embodied, relational and culturally situated. Through Meta Rose—begun in 2024 and including The Meta Kibun Project—she develops distinct participatory systems around emotional ambivalence, culturally shaped feeling, relational touch and memory.", "Minnie Park는 서울과 멜버른을 기반으로 활동하는 한국계 호주 인터랙티브 오디오비주얼 아티스트입니다. 생장미, 촉각적 인터랙션, 사운드, 빛과 무빙이미지를 결합한 설치를 통해 정서를 신체적이고 관계적이며 문화적으로 형성되는 경험으로 살펴봅니다. 2024년에 시작되어 The Meta Kibun Project를 포함하는 Meta Rose를 통해 감정의 양가성, 문화적으로 형성된 감정, 관계적 터치와 기억을 다루는 서로 다른 참여형 시스템을 구축합니다.")}</p>
+          <p>${tr("Her 2025 Honours research at RMIT University examined audience accounts through The Meta Kibun Project, using interviews and surveys alongside an interactive exhibition. Park is also a co-founder of TouchCollective, an artist-led community centred on TouchDesigner, and develops workshops connecting creative practice, embodied participation and technical experimentation.", "2025년 RMIT University의 Honours 연구에서는 The Meta Kibun Project의 인터랙티브 전시와 인터뷰·설문을 통해 관객의 경험 서술을 살펴봤습니다. TouchDesigner를 중심으로 활동하는 아티스트 주도 커뮤니티 TouchCollective의 공동 설립자이기도 하며, 창작 실천과 신체적 참여, 기술적 실험을 연결하는 워크숍을 발전시키고 있습니다.")}</p>
           ${actions([
             { label: tr("Download CV 2026 ↓", "CV 2026 다운로드 ↓"), path: site.downloads.cv, download: true },
             { label: tr("View Works", "작품 보기"), path: "works/" }
@@ -685,7 +686,7 @@
           <p class="section-kicker">${tr("Touch / Participation", "접촉 / 참여")}</p>
           <h2 id="research-touch">${tr("The encounter is part of the work.", "만남은 작품의 일부가 됩니다.")}</h2>
           <p>${tr("Touch connects a participant’s body to changes in sound, colour and moving image. The choice of a rose, the duration of contact and the presence of other people affect how a composition unfolds. The exhibition is therefore a research setting in which audience, material, space and artist all contribute to what can be experienced.", "터치는 참여자의 신체를 사운드, 색과 무빙이미지의 변화에 연결합니다. 어떤 장미를 선택하는지, 접촉을 얼마나 지속하는지, 다른 사람이 함께 있는지가 구성의 전개에 영향을 줍니다. 전시는 관객, 재료, 공간과 작가가 경험의 형성에 함께 관여하는 연구의 현장이 됩니다.")}</p>
-          <p>${tr("The Meta Kibun Project examined personal reflection through touch, colour and Korean emotive language. Shared Resonance extends this inquiry into interdependence: two or more participants must connect to activate the work. These different arrangements ask how agency and emotional attention change between an individual encounter and a shared one.", "The Meta Kibun Project는 터치, 색과 한국어의 정서적 언어를 통해 개인의 성찰을 살펴봤습니다. Shared Resonance는 두 명 이상의 참여자가 연결되어야 작품이 활성화되도록 구성하며 이 질문을 상호의존의 관계로 확장합니다. 서로 다른 참여 구조를 통해 개인적 경험과 공동의 경험 사이에서 행위의 주도권과 감정에 대한 주의가 어떻게 달라지는지 묻습니다.")}</p>
+          <p>${tr("The Meta Kibun Project examined personal reflection through touch, colour and Korean emotive language. The April 2026 presentation of Shared Resonance extends this inquiry into interdependence: two or more participants must connect to activate the work. These different arrangements ask how agency and emotional attention change between an individual encounter and a shared one.", "The Meta Kibun Project는 터치, 색과 한국어의 정서적 언어를 통해 개인의 성찰을 살펴봤습니다. Shared Resonance의 2026년 4월 발표는 두 명 이상의 참여자가 연결되어야 작품이 활성화되도록 구성하며 이 질문을 상호의존의 관계로 확장합니다. 서로 다른 참여 구조를 통해 개인적 경험과 공동의 경험 사이에서 행위의 주도권과 감정에 대한 주의가 어떻게 달라지는지 묻습니다.")}</p>
           <p>${tr("Beauty → Wonder → Affect describes an intention for the encounter: visual attraction invites attention, a responsive material invites investigation, and participation can open a space for emotional reflection. This sequence guides the design while leaving each participant’s response open.", "Beauty → Wonder → Affect는 작품 경험을 구성하는 방향입니다. 시각적 매력이 주의를 이끌고, 반응하는 재료가 탐색을 유도하며, 참여가 감정을 성찰할 계기를 마련하도록 합니다. 이 흐름은 작품의 구성을 이끌되, 각 참여자의 반응은 열어 둡니다.")}</p>
           <a class="inline-link" href="${projectUrl("shared-resonance")}">${tr("Shared Resonance →", "Shared Resonance →")}</a>
         </div>
@@ -741,7 +742,8 @@
     const months = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"];
     const projectDates = new Map();
     site.history.forEach((group) => group.entries.forEach((entry) => {
-      if (!entry.project) return;
+      // A new exhibition history entry must not redate older documentation.
+      if (!entry.project || entry.indexMediaAvailable === false) return;
       const month = Math.max(0, ...String(entry.date).toLowerCase().split(/\s*\/\s*/).map((name) => months.indexOf(name) + 1));
       const date = Number(group.year) * 100 + month;
       projectDates.set(entry.project, Math.max(projectDates.get(entry.project) || 0, date));

@@ -63,7 +63,22 @@
     const email = /^mailto:[^?\s]+@[^?\s]+$/.test(ctx.site.external.email || "")
       ? ctx.site.external.email : "mailto:minniepark.studio@gmail.com";
     const enquiry = (title) => escape(`${email}?subject=${encodeURIComponent(`Artwork acquisition enquiry — ${title}`)}`);
-    const action = (title, label = ["Acquisition enquiry →", "작품 소장 문의 →"]) => `<a class="edition-enquiry" href="${enquiry(title)}">${text(...label)}</a>`;
+    // Keep the enquiry usable without a configured mail app or JavaScript.
+    const action = (title, label = ["Acquisition enquiry →", "작품 소장 문의 →"]) => `
+      <details class="acquisition-enquiry">
+        <summary>${text(...label)}</summary>
+        <div class="acquisition-enquiry__panel">
+          <p>${text("Email the address below with the artwork title and your enquiry.", "아래 주소로 작품명과 문의 내용을 보내주세요.")}</p>
+          <dl>
+            <dt>${text("Email", "이메일")}</dt>
+            <dd class="acquisition-enquiry__select">${escape(email.slice(7))}</dd>
+            <dt>${text("Subject", "제목")}</dt>
+            <dd class="acquisition-enquiry__select">${escape(`Artwork acquisition enquiry — ${title}`)}</dd>
+          </dl>
+          <a href="${enquiry(title)}">${text("Open email app →", "메일 앱에서 작성 →")}</a>
+          <p>${text("If no email app opens, copy the address and subject into your preferred email service. Nothing is sent from this page.", "메일 앱이 열리지 않으면 주소와 제목을 복사해 사용하는 이메일 서비스에서 작성해 주세요. 이 페이지에서는 메일이 발송되지 않습니다.")}</p>
+        </div>
+      </details>`;
     return { text, url, image, action };
   }
 

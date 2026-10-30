@@ -113,8 +113,8 @@ window.MP_PROJECT_DETAILS = {
         },
         "paragraphs": [
           {
-            "en": "Presented as a solo exhibition at Mijin Floor, Yeonnam-dong, Seoul, from 15 to 18 August 2026, as part of Seoul Fringe Festival. A further presentation at Melbourne Fringe Festival is forthcoming in 2026.",
-            "ko": "2026년 8월 15–18일 서울 연남동 미진플로어에서 서울프린지페스티벌의 개인전으로 선보였습니다. 2026년 멜버른 프린지 페스티벌에서의 전시를 앞두고 있습니다."
+            "en": "Presented as a solo exhibition at Mijin Floor, Yeonnam-dong, Seoul, from 15 to 18 August 2026, as part of Seoul Fringe Festival.",
+            "ko": "2026년 8월 15–18일 서울 연남동 미진플로어에서 서울프린지페스티벌의 개인전으로 선보였습니다."
           }
         ]
       }
@@ -335,12 +335,12 @@ window.MP_PROJECT_DETAILS = {
   "shared-resonance": {
     "title": "The Meta Rose: Shared Resonance",
     "meta": {
-      "en": "2026 · Collective interactive audio-visual installation · Platform Presents: Hybrid, Melbourne · 18 April",
-      "ko": "2026 · 집단적 인터랙티브 오디오비주얼 설치 · Platform Presents: Hybrid, 멜버른 · 4월 18일"
+      "en": ["2026 · Interactive audio-visual installation · Melbourne", "Platform Presents: Hybrid · 18 April / Melbourne Fringe Festival · 30 September–4 October"],
+      "ko": ["2026 · 인터랙티브 오디오비주얼 설치 · 멜버른", "Platform Presents: Hybrid · 4월 18일 / Melbourne Fringe Festival · 9월 30일–10월 4일"]
     },
     "lead": {
-      "en": "An installation in which two or more people complete a shared circuit through living roses and conductive touch, collectively activating sound, moving image and light.",
-      "ko": "두 명 이상의 참여자가 생장미와 전도성 터치를 통해 하나의 회로를 완성하고, 사운드와 무빙이미지, 빛을 함께 활성화하는 설치입니다."
+      "en": "Living roses connect touch and shared presence to real-time sound and moving image. The work was presented at Platform Presents: Hybrid and Melbourne Fringe Festival in 2026.",
+      "ko": "생장미는 참여자의 접촉과 서로의 존재를 실시간 사운드와 무빙이미지로 연결합니다. 2026년 Platform Presents: Hybrid와 Melbourne Fringe Festival에서 선보였습니다."
     },
     "sections": [
       {
@@ -350,8 +350,8 @@ window.MP_PROJECT_DETAILS = {
         },
         "paragraphs": [
           {
-            "en": "Shared Resonance develops Meta Rose’s exploration of mixed and ambivalent emotion through a specific condition: the installation requires more than one person to participate. Connection between people is built into the work’s operation. Living rose flowers act as haptic interfaces, while conductive touch links the participants to a shared system of sound, moving image and light.",
-            "ko": "Shared Resonance는 한 사람만으로는 작품을 활성화할 수 없다는 구체적인 조건을 통해 Meta Rose의 혼합되고 양가적인 감정에 대한 탐구를 발전시킵니다. 사람과 사람 사이의 연결을 작품의 작동 구조에 포함한 것입니다. 생장미는 촉각적 인터페이스로 작동하며, 전도성 터치는 참여자들을 사운드, 무빙이미지와 빛으로 이루어진 하나의 시스템에 연결합니다."
+            "en": "The April 2026 presentation of Shared Resonance develops Meta Rose’s exploration of mixed and ambivalent emotion through a specific condition: the installation requires more than one person to participate. Connection between people is built into the work’s operation. Living rose flowers act as haptic interfaces, while conductive touch links the participants to a shared system of sound, moving image and light.",
+            "ko": "Shared Resonance의 2026년 4월 발표는 한 사람만으로는 작품을 활성화할 수 없다는 구체적인 조건을 통해 Meta Rose의 혼합되고 양가적인 감정에 대한 탐구를 발전시킵니다. 사람과 사람 사이의 연결을 작품의 작동 구조에 포함한 것입니다. 생장미는 촉각적 인터페이스로 작동하며, 전도성 터치는 참여자들을 사운드, 무빙이미지와 빛으로 이루어진 하나의 시스템에 연결합니다."
           },
           {
             "en": "The focus shifts towards the relationship through which an experience becomes possible. Park asks how an encounter with emotional contradiction changes when its sensory expression depends on another person’s presence and contact. The rose remains both a physical material and a recurring figure for feelings that can contain opposing qualities at once.",
@@ -366,8 +366,8 @@ window.MP_PROJECT_DETAILS = {
         },
         "paragraphs": [
           {
-            "en": "Suspended roses form part of an open circuit. Two or more participants connect through the roses, water and hand-to-hand contact to activate the installation. The bodily connection is consequential: it establishes the conductive relationship on which the audio-visual response depends. Participation becomes a shared physical action, rather than a sequence of individual commands.",
-            "ko": "공중에 매달린 장미는 열린 회로의 일부를 구성합니다. 두 명 이상의 참여자가 장미, 물과 손을 맞잡는 접촉을 통해 연결되면 설치가 활성화됩니다. 신체 간의 연결은 오디오비주얼 반응을 가능하게 하는 전도성 관계를 실제로 형성합니다. 참여는 개인의 명령을 차례로 입력하는 과정이 아니라, 함께 수행하는 신체적 행위가 됩니다."
+            "en": "In the April installation, suspended roses form part of an open circuit. Two or more participants connect through the roses, water and hand-to-hand contact to activate the installation. The bodily connection is consequential: it establishes the conductive relationship on which the audio-visual response depends. Participation becomes a shared physical action, rather than a sequence of individual commands.",
+            "ko": "4월 설치에서는 공중에 매달린 장미가 열린 회로의 일부를 구성합니다. 두 명 이상의 참여자가 장미, 물과 손을 맞잡는 접촉을 통해 연결되면 설치가 활성화됩니다. 신체 간의 연결은 오디오비주얼 반응을 가능하게 하는 전도성 관계를 실제로 형성합니다. 참여는 개인의 명령을 차례로 입력하는 과정이 아니라, 함께 수행하는 신체적 행위가 됩니다."
           },
           {
             "en": "The resulting sound, visuals and light belong to the encounter as a whole. This relational structure gives form to the project’s interest in 양가감정: mixed feeling is approached through a sensory situation in which difference and connection can remain present together. The work foregrounds the conditions of participation—who is connected, and how—within the experience itself.",
@@ -382,23 +382,44 @@ window.MP_PROJECT_DETAILS = {
         },
         "paragraphs": [
           {
-            "en": "Developed after The Meta Kibun Project (2025), Shared Resonance extends the inquiry into touch and affect towards interpersonal dependence. Its collective circuit distinguishes this chapter’s interaction from the earlier project’s focus on culturally situated feeling. It was presented before Meta Rose: The Funeral, as part of Platform Presents: Hybrid on 18 April 2026 at 118 Greeves Street, Fitzroy, Melbourne.",
-            "ko": "The Meta Kibun Project(2025) 이후 발전한 Shared Resonance는 터치와 정서에 대한 탐구를 사람 사이의 상호의존으로 확장합니다. 이전 작업이 문화적으로 형성되는 감정에 주목했다면, 이 장에서는 집단적으로 완성되는 회로가 인터랙션의 핵심이 됩니다. Meta Rose: The Funeral에 앞서 2026년 4월 18일 멜버른 Fitzroy의 118 Greeves Street에서 열린 Platform Presents: Hybrid에서 선보였습니다."
+            "en": "Developed after The Meta Kibun Project (2025), the April presentation of Shared Resonance extends the inquiry into touch and affect towards interpersonal dependence. Its collective circuit distinguishes this presentation’s interaction from the earlier project’s focus on culturally situated feeling. It was presented before Meta Rose: The Funeral, as part of Platform Presents: Hybrid on 18 April 2026 at 118 Greeves Street, Fitzroy, Melbourne.",
+            "ko": "The Meta Kibun Project(2025) 이후 발전한 Shared Resonance의 4월 발표는 터치와 정서에 대한 탐구를 사람 사이의 상호의존으로 확장합니다. 이전 작업이 문화적으로 형성되는 감정에 주목했다면, 4월 설치에서는 집단적으로 완성되는 회로가 인터랙션의 핵심이 됩니다. Meta Rose: The Funeral에 앞서 2026년 4월 18일 멜버른 Fitzroy의 118 Greeves Street에서 열린 Platform Presents: Hybrid에서 선보였습니다."
+          }
+        ]
+      },
+      {
+        "id": "melbourne-fringe",
+        "title": {
+          "en": "Melbourne Fringe Festival · 2026",
+          "ko": "Melbourne Fringe Festival · 2026"
+        },
+        "paragraphs": [
+          {
+            "en": "The work was presented at Melbourne Fringe Festival from 30 September to 4 October 2026 in the Celia Little Room at The Mission to Seafarers Victoria, Docklands. Living roses connected tactile encounters with layered moving image and an original soundscape, including natural textures and artist-recorded samples. This presentation accommodated individual interactions as well as collective activation through shared presence. Visitors could also observe without touching the installation.",
+            "ko": "2026년 9월 30일부터 10월 4일까지 Melbourne Fringe Festival의 일환으로 Docklands에 위치한 The Mission to Seafarers Victoria의 Celia Little Room에서 전시했습니다. 생장미를 매개로 한 촉각적 만남은 여러 층의 무빙이미지와 자연의 질감, 작가가 직접 녹음한 샘플을 포함한 오리지널 사운드스케이프로 이어졌습니다. 이 발표에서는 개인의 인터랙션과 함께하는 존재를 통한 공동 활성화가 모두 가능했으며, 관객은 설치를 직접 만지지 않고 관찰할 수도 있었습니다."
+          },
+          {
+            "en": "The presentation received support from Access Fringe to improve accessibility.",
+            "ko": "전시의 접근성 향상을 위해 Access Fringe의 지원을 받았습니다."
           }
         ]
       }
     ],
     "sources": [
       {
-        "label": "The Meta Rose: Shared Resonance — artist’s project website",
+        "label": "Shared Resonance — April 2026 project documentation",
         "url": "https://minnie427.github.io/metarose2604/"
+      },
+      {
+        "label": "Melbourne Fringe Festival — official 2026 event",
+        "url": "https://www.melbournefringe.com.au/whats-on/events/the-meta-rose-shared-resonance"
       }
     ],
     "hero": {
       "src": "media/shared-resonance/img-1603-763eb4f5.webp",
       "caption": {
-        "en": "The Meta Rose: Shared Resonance / Exhibition documentation",
-        "ko": "The Meta Rose: Shared Resonance / 전시 기록"
+        "en": "The Meta Rose: Shared Resonance / Platform Presents: Hybrid, April 2026",
+        "ko": "The Meta Rose: Shared Resonance / Platform Presents: Hybrid, 2026년 4월"
       }
     },
     "illustrations": [
@@ -406,8 +427,8 @@ window.MP_PROJECT_DETAILS = {
         "after": 1,
         "src": "media/shared-resonance/img-1773-c9a5bfa0.webp",
         "caption": {
-          "en": "Shared Resonance / Participation, 2026",
-          "ko": "Shared Resonance / 참여, 2026"
+          "en": "Shared Resonance / Participation, April 2026",
+          "ko": "Shared Resonance / 참여, 2026년 4월"
         }
       }
     ],

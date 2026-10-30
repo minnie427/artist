@@ -2,16 +2,21 @@
 
 The artist site retains the existing design and browser renderer. Every canonical page now also contains the same visible content and navigation in static HTML. English remains the default; `/ko/` has separately addressable Korean pages and reciprocal language alternates.
 
-After changing `site-content.js`, `site-media.js`, `site-render.js`, or importing media, run from this repository:
+After changing `site-content.js`, `site-media.js`, `project-details.js`, `site-editorial.js`, `edition-render.js`, `site-render.js`, or importing media, run from this repository:
 
 ```sh
 node scripts/build-search-pages.js
+node tests/artist-bio.test.js
+node tests/editorial-render.test.js
+node tests/editorial-mobile.test.js
 node tests/search-schema.test.js
 node tests/content-review.test.js
 node tests/visual-index.test.js
 node tests/visual-index-layout.test.js
 node tests/contact-layout.test.js
 ```
+
+These tests verify rendered content, routes, schema and static layout rules; they do not replace browser and mobile visual checks. When changing browser JavaScript or CSS, update the relevant cache version in `scripts/build-search-pages.js` before regenerating the static pages.
 
 Review and include regenerated HTML (including `ko/`) and `sitemap.xml` with the source changes. Run the build before deployment so the initial HTML and the interactive browser content agree. The sitemap contains canonical routes only; legacy aliases remain outside it. Do not add dates unless they reflect actual meaningful page changes.
 
