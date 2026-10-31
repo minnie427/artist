@@ -50,5 +50,11 @@ for (let offset=12; offset+8<=image.length;) {
 }
 const css=read('editorial.css');
 assert(css.includes('.artist-statement__image img { display: block; width: 100%; height: auto; object-fit: contain; filter: none; }'));
-assert(css.includes('.artist-hero img { display: block; width: 100%; height: auto; object-fit: contain; filter: none; }'));
+const layout=read('page-layouts.css');
+const portraitRule=layout.match(/\.artist-overview__portrait img\s*\{([^}]+)\}/)[1];
+for (const required of ['width:auto','max-width:100%','height:auto','max-height:70svh','filter:none','object-fit:contain','object-position:left top']) assert(portraitRule.includes(required), 'Portrait keeps its full ratio, reading-column alignment and viewport height: '+required);
+assert(layout.includes('grid-template-rows: min-content 1fr auto;'), 'Approved B title and descriptor remain compact beside the portrait');
+assert(layout.includes('grid-template-areas: "heading image" ". copy";'), 'Approved B narrative uses a stable left heading and right artwork/reading rail');
+assert(layout.includes('min(calc(100% - var(--page-pad) * 2), var(--editorial-width))'), 'Artist and Contact keep the shared outer gutter');
+assert(layout.includes('@media (max-width: 800px)'), 'Approved single-column transition is retained');
 console.log('PASS: exact EN/KO narrative, comma punctuation, first-person voice, selected 2021 painting with intrinsic ratio and original colour, no embedded source metadata, approved colour portrait and no rose placeholder.');

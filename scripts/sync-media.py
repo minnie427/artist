@@ -13,8 +13,10 @@ import json
 import re
 import subprocess
 import unicodedata
+from contextlib import contextmanager
 from datetime import datetime, timezone
 from pathlib import Path
+from tempfile import TemporaryDirectory
 
 from PIL import Image, ImageOps
 
@@ -27,10 +29,12 @@ MEDIA_ROOT = SITE_ROOT / "media"
 MANIFEST_PATH = SITE_ROOT / "site-media.js"
 SOURCE_SELECTION_PATH = SITE_ROOT / "media-source-selection.json"
 
-IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".webp", ".tif", ".tiff"}
+IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".webp", ".tif", ".tiff", ".heic", ".heif"}
 VIDEO_EXTENSIONS = {".mov", ".mp4", ".m4v"}
 
 PROJECT_SOURCES = [
+    ("artist/2023_body-morphosis", "body-morphosis", "body-morphosis", "Body Morphosis", "2023"),
+    ("artist/2026_flower-your-face", "flower-your-face", "flower-your-face", "Flower your Face", "2026"),
     ("artist/live-performance", "live-performance", "live-performance", "Live Performance", "2023-2024"),
     ("artist/artist-workshops", "artist-workshops", "artist-workshops", "Artist Workshops", "2025 onwards"),
     ("artist/2026_reintervention", "reintervention", "reintervention", "RE:INTERVENTION", "2026"),
@@ -49,6 +53,18 @@ PROJECT_SOURCES = [
     ("artist/2024_median-2", "median-2", "median-2", "Median 2", "2024"),
     ("artist/2023_median", "median", "median", "Median", "2023"),
 ]
+
+RESEARCH_SOURCES = {
+    "meta-rose": ("Meta Rose", "메타 로즈"),
+    "cultural-study": ("Cultural study", "문화적 연구"),
+    "dried-roses": ("Dried roses", "말린 장미"),
+    "touch-participation": ("Touch and participation", "접촉과 참여"),
+    "making-process": ("Making process", "제작 과정"),
+    "research-record": ("Research record", "연구 기록"),
+}
+
+# This workshop clip opens before the tracking effect appears.
+POSTER_TIMES = {"flower-your-face": 12.0}
 
 # These presentations were imported from an artist-supplied local folder before
 # its iCloud counterpart was organised. An empty/missing source folder is not a
@@ -165,9 +181,27 @@ def needs_update(source: Path, output: Path) -> bool:
     return not output.exists() or output.stat().st_mtime < source.stat().st_mtime
 
 
+@contextmanager
+def open_source_image(source: Path):
+    """Decode HEIC without changing or exporting beside the original."""
+    if source.suffix.casefold() not in {".heic", ".heif"}:
+        with Image.open(source) as image:
+            yield image
+        return
+    with TemporaryDirectory(prefix="minnie-heic-") as temporary:
+        decoded = Path(temporary) / "decoded.png"
+        subprocess.run(
+            ["/opt/homebrew/bin/ffmpeg", "-v", "error", "-i", str(source),
+             "-frames:v", "1", "-map_metadata", "-1", str(decoded)],
+            check=True, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE,
+        )
+        with Image.open(decoded) as image:
+            yield image
+
+
 def image_ratio(path: Path) -> float:
     try:
-        with Image.open(path) as image:
+        with open_source_image(path) as image:
             width, height = ImageOps.exif_transpose(image).size
             return width / max(height, 1)
     except Exception:
@@ -195,7 +229,7 @@ def parse_media_date(value: object) -> str | None:
 def media_creation_date(source: Path) -> tuple[str, str]:
     if source.suffix.casefold() in IMAGE_EXTENSIONS:
         try:
-            with Image.open(source) as image:
+            with open_source_image(source) as image:
                 exif = image.getexif()
                 camera = exif.get_ifd(0x8769) if 0x8769 in exif else {}
                 for tag in (36867, 36868):  # Original / digitised, not edited date.
@@ -211,7 +245,7 @@ def media_creation_date(source: Path) -> tuple[str, str]:
                     date = parse_media_date(image.info.get(key))
                     if date:
                         return date, "embedded"
-        except (OSError, ValueError, TypeError):
+        except (OSError, ValueError, TypeError, subprocess.CalledProcessError):
             pass
     else:
         result = subprocess.run(
@@ -248,21 +282,62 @@ def media_creation_date(source: Path) -> tuple[str, str]:
     return datetime.fromtimestamp(timestamp, timezone.utc).isoformat(), "file-created" if birth and birth > 0 else "file-modified"
 
 
-def optimise_image(source: Path, output: Path, max_size: int = 2000) -> None:
+def optimise_image(source: Path, output: Path, max_size: int = 2000, force: bool = False) -> None:
     output.parent.mkdir(parents=True, exist_ok=True)
-    if not needs_update(source, output):
-        return
-    with Image.open(source) as raw:
+    if not force and not needs_update(source, output):
+        with Image.open(output) as previous:
+            if not previous.getexif() and not any(key in previous.info for key in ("exif", "xmp", "XML:com.adobe.xmp")):
+                return
+    with open_source_image(source) as raw:
+        colour_profile = raw.info.get("icc_profile")
         image = ImageOps.exif_transpose(raw)
         image.thumbnail((max_size, max_size), Image.Resampling.LANCZOS)
         if image.mode not in {"RGB", "RGBA"}:
             image = image.convert("RGBA" if "transparency" in image.info else "RGB")
-        image.save(output, "WEBP", quality=84, method=6)
+        image.info.clear()
+        colour_options = {"icc_profile": colour_profile} if colour_profile else {}
+        # A few approved legacy URLs end in .jpg; retain their format and URL.
+        if output.suffix.casefold() in {".jpg", ".jpeg"}:
+            image.convert("RGB").save(output, "JPEG", quality=90, optimize=True, **colour_options)
+        elif output.suffix.casefold() == ".png":
+            image.save(output, "PNG", optimize=True, **colour_options)
+        else:
+            image.save(output, "WEBP", quality=84, method=6, **colour_options)
 
 
-def optimise_video(source: Path, output: Path, poster: Path) -> None:
-    output.parent.mkdir(parents=True, exist_ok=True)
+def video_probe(path: Path) -> dict[str, object]:
+    result = subprocess.run(
+        ["/opt/homebrew/bin/ffprobe", "-v", "error", "-show_format", "-show_streams", "-of", "json", str(path)],
+        capture_output=True, text=True, check=True,
+    )
+    return json.loads(result.stdout)
+
+
+def video_needs_update(source: Path, output: Path) -> bool:
     if needs_update(source, output) or output.stat().st_size > 95 * 1024 * 1024:
+        return True
+    metadata = video_probe(output)
+    for stream in metadata.get("streams", []):
+        tags = stream.get("tags", {})
+        if any(key.casefold() not in {"language", "handler_name", "vendor_id", "encoder"} for key in tags):
+            return True
+        if stream.get("codec_type") == "video":
+            numerator, _, denominator = stream.get("avg_frame_rate", "0/1").partition("/")
+            fps = float(numerator or 0) / max(float(denominator or 1), 1)
+            if max(stream.get("width", 0), stream.get("height", 0)) > 1280 or fps > 30.01:
+                return True
+    return any(key.casefold() not in {"major_brand", "minor_version", "compatible_brands", "encoder"}
+               for key in metadata.get("format", {}).get("tags", {}))
+
+
+def optimise_video(source: Path, output: Path, poster: Path, poster_time: float = 1) -> None:
+    output.parent.mkdir(parents=True, exist_ok=True)
+    if video_needs_update(source, output):
+        print(f"Optimising video: {source.name}", flush=True)
+        duration = float(video_probe(source).get("format", {}).get("duration") or 0)
+        # A long source remains below GitHub's per-file limit without truncation.
+        maxrate = min(6_000_000, int(88 * 1024 * 1024 * 8 / duration - 128_000)) if duration else 6_000_000
+        maxrate = max(100_000, maxrate)
         subprocess.run(
             [
                 "/opt/homebrew/bin/ffmpeg",
@@ -270,17 +345,21 @@ def optimise_video(source: Path, output: Path, poster: Path) -> None:
                 "-i",
                 str(source),
                 "-vf",
-                "scale=1920:1920:force_original_aspect_ratio=decrease:force_divisible_by=2",
+                "scale=1280:1280:force_original_aspect_ratio=decrease:force_divisible_by=2,fps=30",
+                "-map_metadata",
+                "-1",
+                "-map_chapters",
+                "-1",
                 "-c:v",
                 "libx264",
                 "-preset",
                 "medium",
                 "-crf",
-                "24",
+                "25",
                 "-maxrate",
-                "10M",
+                str(maxrate),
                 "-bufsize",
-                "20M",
+                str(maxrate * 2),
                 "-pix_fmt",
                 "yuv420p",
                 "-movflags",
@@ -295,17 +374,21 @@ def optimise_video(source: Path, output: Path, poster: Path) -> None:
             stdout=subprocess.DEVNULL,
             stderr=subprocess.DEVNULL,
         )
-    if not poster.exists() or poster.stat().st_mtime < output.stat().st_mtime:
+        if output.stat().st_size > 95 * 1024 * 1024:
+            raise ValueError(f"Web video exceeds 95 MiB: {output}")
+    if poster_time != 1 or not poster.exists() or poster.stat().st_mtime < output.stat().st_mtime:
         subprocess.run(
             [
                 "/opt/homebrew/bin/ffmpeg",
                 "-y",
                 "-ss",
-                "1",
+                str(poster_time),
                 "-i",
                 str(output),
                 "-frames:v",
                 "1",
+                "-map_metadata",
+                "-1",
                 "-vf",
                 "scale=1600:1600:force_original_aspect_ratio=decrease:force_divisible_by=2",
                 "-q:v",
@@ -324,7 +407,7 @@ def context_for(source: Path, is_video: bool, is_hero: bool, project_key: str) -
         return "Moving-image documentation"
     if project_key in {"median", "median-2", "live-performance"}:
         return "Performance documentation"
-    if project_key in {"touching-resonance", "science-gallery", "artist-workshops"}:
+    if project_key in {"touching-resonance", "science-gallery", "artist-workshops", "flower-your-face"}:
         return "Workshop documentation"
     if is_hero:
         return "Installation view"
@@ -333,15 +416,17 @@ def context_for(source: Path, is_video: bool, is_hero: bool, project_key: str) -
     return "Installation documentation"
 
 
-def process_file(source: Path, source_root: Path, destination_folder: Path) -> tuple[str, str | None, bool]:
+def process_file(source: Path, source_root: Path, destination_folder: Path,
+                 existing: dict[str, object] | None = None,
+                 poster_time: float = 1) -> tuple[str, str | None, bool]:
     name = stable_name(source, source_root)
     is_video = source.suffix.casefold() in VIDEO_EXTENSIONS
     if is_video:
-        output = destination_folder / f"{name}.mp4"
-        poster = destination_folder / f"{name}-poster.jpg"
-        optimise_video(source, output, poster)
+        output = SITE_ROOT / existing["src"] if existing else destination_folder / f"{name}.mp4"
+        poster = SITE_ROOT / existing["poster"] if existing and existing.get("poster") else output.with_name(f"{output.stem}-poster.jpg")
+        optimise_video(source, output, poster, poster_time)
         return output.relative_to(SITE_ROOT).as_posix(), poster.relative_to(SITE_ROOT).as_posix(), True
-    output = destination_folder / f"{name}.webp"
+    output = SITE_ROOT / existing["src"] if existing else destination_folder / f"{name}.webp"
     optimise_image(source, output)
     return output.relative_to(SITE_ROOT).as_posix(), None, False
 
@@ -366,18 +451,84 @@ def content_digest(source: Path) -> str:
         return hashlib.file_digest(stream, "sha256").hexdigest()
 
 
-def build_manifest(source_root: Path) -> dict[str, object]:
-    manifest: dict[str, object] = {"profile": None, "projects": {}, "showreel": [], "visualIndex": []}
+def source_role(source: Path, folder: Path) -> tuple[str, str | None]:
+    parts = source.relative_to(folder).parts[:-1]
+    for role in ("hero", "interaction", "selected"):
+        if role in parts:
+            return role, None
+    if "parts" in parts:
+        position = parts.index("parts")
+        return "parts", parts[position + 1] if len(parts) > position + 1 else "unassigned"
+    return "documentation", None
+
+
+def previous_sources(previous: dict[str, object]) -> dict[str, dict[str, dict[str, object]]]:
+    """Keep approved URLs when originals move between organised subfolders."""
+    result: dict[str, dict[str, dict[str, object]]] = {}
+    for item in previous.get("visualIndex", []):
+        if item.get("sourceHash") and item.get("project"):
+            result.setdefault(item["project"], {}).setdefault(item["sourceHash"], item)
+    return result
+
+
+def research_identity(source: Path, folder: Path, slug: str) -> tuple[str, str, str]:
+    """Attribute a research photograph only from an explicit year/project folder."""
+    known = {Path(relative).name: (key, title, year)
+             for relative, key, destination, title, year in PROJECT_SOURCES}
+    year = ""
+    for part in source.relative_to(folder).parts[:-1]:
+        if part in known:
+            return known[part]
+        if re.fullmatch(r"(?:19|20)\d{2}", part):
+            year = part
+    return f"research-{slug}", RESEARCH_SOURCES[slug][0], year
+
+
+def build_manifest(source_root: Path, previous: dict[str, object] | None = None) -> dict[str, object]:
+    manifest: dict[str, object] = {
+        "profile": None, "projects": {}, "research": {}, "showreel": [], "visualIndex": []
+    }
     identities: dict[str, dict[str, tuple[str, str, str, str]]] = {}
+    existing_sources = previous_sources(previous or {})
+    processed: dict[tuple[str, str], tuple[str, str | None, bool]] = {}
+
+    def make_item(source: Path, folder: Path, project_key: str, title: str, year: str,
+                  is_hero: bool = False) -> dict[str, object]:
+        digest = content_digest(source)
+        cache_key = (project_key, digest)
+        if cache_key not in processed:
+            existing = existing_sources.get(project_key, {}).get(digest)
+            processed[cache_key] = process_file(
+                source, source_root, MEDIA_ROOT / project_key, existing=existing,
+                poster_time=POSTER_TIMES.get(project_key, 1),
+            )
+        src, poster, is_video = processed[cache_key]
+        created_at, date_source = media_creation_date(source)
+        role, part = source_role(source, folder)
+        context = context_for(source, is_video, is_hero, project_key)
+        if project_key.startswith("research-"):
+            context = "Moving-image research documentation" if is_video else "Research documentation"
+        item = {
+            "src": src, "alt": f"{title}, {context}", "title": title,
+            "year": year, "context": context, "project": project_key,
+            "originalFilename": source.name, "sourceRelative": source.relative_to(source_root).as_posix(),
+            "sourceHash": digest, "sourceRole": role,
+            "createdAt": created_at, "dateSource": date_source,
+        }
+        if part:
+            item["sourcePart"] = part
+        if poster:
+            item["poster"] = poster
+            item["posterTime"] = POSTER_TIMES.get(project_key, 1)
+        with Image.open(SITE_ROOT / (poster or src)) as image:
+            item["width"], item["height"] = image.size
+        return item
 
     profile_files = media_files(source_root / "artist/profile")
     if profile_files:
         source = next((item for item in profile_files if item.stem.casefold() == "artist2"), profile_files[0])
         src, _, _ = process_file(source, source_root, MEDIA_ROOT / "profile")
-        manifest["profile"] = {
-            "src": src,
-            "alt": "Minnie Park within an interactive installation",
-        }
+        manifest["profile"] = {"src": src, "alt": "Minnie Park within an interactive installation"}
 
     for relative, project_key, destination_name, title, year in PROJECT_SOURCES:
         folder = source_root / relative
@@ -385,48 +536,42 @@ def build_manifest(source_root: Path) -> dict[str, object]:
         if not files:
             continue
         print(f"Processing {title}: {len(files)} media items", flush=True)
-
-        hero_candidates = [path for path in files if "hero" in path.relative_to(folder).parts and path.suffix.casefold() in IMAGE_EXTENSIONS]
+        hero_candidates = [path for path in files if "hero" in path.relative_to(folder).parts
+                           and path.suffix.casefold() in IMAGE_EXTENSIONS]
         hero_source = max(hero_candidates, key=image_ratio) if hero_candidates else None
-        project_data = manifest["projects"].setdefault(project_key, {"hero": None, "gallery": []})
-        destination = MEDIA_ROOT / destination_name
-
+        project_data = {"hero": None, "gallery": [], "selected": [], "interaction": [], "parts": {}}
+        manifest["projects"][project_key] = project_data
         for source in files:
-            src, poster, is_video = process_file(source, source_root, destination)
-            created_at, date_source = media_creation_date(source)
             is_hero = source == hero_source
-            context = context_for(source, is_video, is_hero, project_key)
-            item = {
-                "src": src,
-                "alt": f"{title}, {context}",
-            }
-            if poster:
-                item["poster"] = poster
-
-            if is_hero and not is_video and project_data["hero"] is None:
+            item = make_item(source, folder, project_key, title, year, is_hero)
+            if is_hero:
                 project_data["hero"] = item
             else:
                 project_data["gallery"].append(item)
+            if item["sourceRole"] in {"selected", "interaction"}:
+                project_data[item["sourceRole"]].append(item)
+            elif item["sourceRole"] == "parts":
+                project_data["parts"].setdefault(item["sourcePart"], []).append(item)
+            manifest["visualIndex"].append(item.copy())
+            identities.setdefault(item["sourceHash"], {})[project_key] = (project_key, title, year, item["context"])
 
-            digest = content_digest(source)
-            index_item = {
-                "src": src,
-                "originalFilename": source.name,
-                "sourceHash": digest,
-                "title": title,
-                "year": year,
-                "context": context,
-                "project": project_key,
-                "createdAt": created_at,
-                "dateSource": date_source,
-            }
-            # Reserve the natural ratio before lazy images or video metadata load.
-            with Image.open(SITE_ROOT / (poster or src)) as image:
-                index_item["width"], index_item["height"] = image.size
-            if poster:
-                index_item["poster"] = poster
-            manifest["visualIndex"].append(index_item)
-            identities.setdefault(digest, {})[project_key] = (project_key, title, year, context)
+    for slug, (title, title_ko) in RESEARCH_SOURCES.items():
+        folder = source_root / "research" / slug
+        files = media_files(folder)
+        items = []
+        if files:
+            print(f"Processing research / {slug}: {len(files)} media items", flush=True)
+        for source in files:
+            project_key, project_title, year = research_identity(source, folder, slug)
+            item = make_item(source, folder, project_key, project_title, year)
+            item["context"] = "Moving-image research documentation" if item.get("poster") else "Research documentation"
+            item["alt"] = f"{title}, {item['context']}"
+            item["collectionTitle"] = title
+            item["collectionTitleKo"] = title_ko
+            item["researchCollection"] = slug
+            items.append(item)
+            manifest["visualIndex"].append(item.copy())
+        manifest["research"][slug] = items
 
     selected_files = media_files(source_root / "artist/selected") + media_files(source_root / "artist/showreel")
     selected_digests: set[str] = set()
@@ -440,21 +585,18 @@ def build_manifest(source_root: Path) -> dict[str, object]:
         if identity:
             project, title, year, context = identity
         else:
-            # Keep every selected visual without guessing its title or date.
             project, title, year, context = None, "", "", "Selected audio-visual work by Minnie Park"
             print(f"Included selected image without a project label: {source.name}", flush=True)
         src, poster, _ = process_file(source, source_root, MEDIA_ROOT / "showreel")
         item = {
-            "src": src,
-            "alt": f"{title}, {context}" if title else context,
-            "title": title,
-            "year": year,
-            "project": project,
+            "src": src, "alt": f"{title}, {context}" if title else context,
+            "title": title, "year": year, "project": project,
+            "originalFilename": source.name, "sourceRelative": source.relative_to(source_root).as_posix(),
+            "sourceHash": digest,
         }
         if poster:
             item["poster"] = poster
         manifest["showreel"].append(item)
-
     return manifest
 
 
@@ -471,7 +613,7 @@ def main() -> None:
         prefix = "window.MP_IMPORTED_MEDIA = "
         if source.startswith(prefix) and source.endswith(";"):
             previous = json.loads(source[len(prefix):-1])
-    manifest = build_manifest(args.source)
+    manifest = build_manifest(args.source, previous)
     preserve_pending_sources(manifest, previous)
     apply_source_removals(manifest, active_source_removals(args.source))
     MANIFEST_PATH.write_text(

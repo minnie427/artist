@@ -85,4 +85,4 @@ assert.equal(schema.citation.dateCreated, "2025");
 assert.equal(schema.citation["@type"], "CreativeWork");
 assert(researchHtml.includes("material time"));
 assert(!read("works/funeral/index.html").includes("the%20meta%20rose%20project.webp"));
-console.log("PASS: all EN/KO pages and project renders, local media, Research full ongoing account first, six image-above accounts with nine source-captioned images, source-correct facts and credits, and search-facing consistency.");
+console.log("PASS: all EN/KO pages and project renders, local media, Research full ongoing account first, six image-above accounts with eight source-captioned images, source-correct facts and credits, and search-facing consistency.");

@@ -581,16 +581,14 @@
       "Minnie Park is a Korean-Australian interactive audio-visual artist working with roses, touch, colour, sound and moving image between Seoul and Melbourne."
     );
     app.innerHTML = `
-      <section class="artist-hero" id="top">
-        <div>
+      <section class="artist-overview" id="top">
+        <div class="artist-overview__heading">
           <p class="eyebrow">${tr("Artist", "아티스트")}</p>
           <h1>Minnie<br />Park</h1>
-          <p class="hero-main">${tr("A Korean-Australian interactive audio-visual artist working between Seoul and Melbourne.", "서울과 멜버른을 기반으로 활동하는 한국계 호주 인터랙티브 오디오비주얼 아티스트입니다.")}</p>
         </div>
-        <figure>${imageMarkup(site.artistImage?.src || "images/liveperformance.jpg", site.artistImage?.alt || "Minnie Park during a live audio-visual performance", true)}</figure>
-      </section>
-
-      <section class="artist-bio content-section content-section--compact">
+        <p class="hero-main artist-overview__descriptor">${tr("A Korean-Australian interactive audio-visual artist working between Seoul and Melbourne.", "서울과 멜버른을 기반으로 활동하는 한국계 호주 인터랙티브 오디오비주얼 아티스트입니다.")}</p>
+        <figure class="artist-overview__portrait">${imageMarkup(site.artistImage?.src || "images/liveperformance.jpg", site.artistImage?.alt || "Minnie Park during a live audio-visual performance", true)}</figure>
+      <section class="artist-bio artist-overview__biography">
         <div>
           <h2>${tr("Interactive audio-visual installation artist / Creative technologist", "인터랙티브 오디오비주얼 설치 작가 / 크리에이티브 테크놀로지스트")}</h2>
         </div>
@@ -603,8 +601,9 @@
           ])}
         </div>
       </section>
+      </section>
 
-      <section class="artist-statement content-section content-section--compact" id="artist-statement" aria-labelledby="artist-statement-title">
+      <section class="artist-statement artist-narrative content-section" id="artist-statement" aria-labelledby="artist-statement-title">
         <div class="artist-statement__heading">
           <p class="section-kicker">${tr("Artist Statement", "작가 노트")}</p>
           <h2 id="artist-statement-title">${tr("From The Pink Bird to Meta Rose", "The Pink Bird에서 Meta Rose로")}</h2>
@@ -1008,9 +1007,13 @@
       // A new exhibition history entry must not redate older documentation.
       if (!entry.project || entry.indexMediaAvailable === false) return;
       const month = Math.max(0, ...String(entry.date).toLowerCase().split(/\s*\/\s*/).map((name) => months.indexOf(name) + 1));
-      const date = Number(group.year) * 100 + month;
+      const date = Number(group.year) * 10000 + month * 100;
       projectDates.set(entry.project, Math.max(projectDates.get(entry.project) || 0, date));
+      if (entry.anchor && site.projects[entry.anchor]) projectDates.set(entry.anchor, Math.max(projectDates.get(entry.anchor) || 0, date));
     }));
+    Object.entries(site.visualIndexPresentationDates || {}).forEach(([key, date]) => {
+      if (/^\d{4}-\d{2}-\d{2}$/.test(date)) projectDates.set(key, Number(date.replaceAll("-", "")));
+    });
     const groups = new Map();
     site.visualIndex.forEach((item, sourceIndex) => {
       const key = item.project || "unassigned";
@@ -1019,7 +1022,7 @@
         groups.set(key, {
           key, title: item.title, year: item.year, sourceIndex,
           // Project chronology stays stable when an old image is newly copied.
-          date: projectDates.get(key) || Math.max(...years) * 100,
+          date: projectDates.get(key) || Math.max(...years) * 10000,
           items: []
         });
       }
@@ -1250,20 +1253,19 @@
       "Contact Minnie Park for exhibitions, curatorial conversations, research, talks and artistic collaborations."
     );
     app.innerHTML = `
-      <section class="contact-hero contact-hero--direct page-hero" id="top">
-        <p class="eyebrow">${tr("Contact", "연락")}</p>
-        <h1>${tr("Contact", "연락")}</h1>
-        <p class="hero-main">${tr("For exhibitions, curatorial conversations, institutional partnerships, research, talks and artistic collaborations.", "전시, 큐레토리얼 대화, 기관 파트너십, 리서치, 토크와 예술 협업에 관한 문의를 받습니다.")}</p>
-      </section>
-
-      <section class="contact-details contact-stack content-section">
+      <section class="contact-overview" id="top">
+        <div class="contact-overview__introduction">
+          <p class="eyebrow">${tr("Contact", "연락")}</p>
+          <h1>${tr("Contact", "연락")}</h1>
+          <p class="hero-main">${tr("For exhibitions, curatorial conversations, institutional partnerships, research, talks and artistic collaborations.", "전시, 큐레토리얼 대화, 기관 파트너십, 리서치, 토크와 예술 협업에 관한 문의를 받습니다.")}</p>
+          <div class="contact-location">
+            <p class="section-kicker">${tr("Artist Enquiries", "아티스트 문의")}</p>
+            <h2>${tr("Seoul / Melbourne<br />Working internationally", "서울 / 멜버른<br />국제적으로 활동합니다")}</h2>
+          </div>
+        </div>
         <div class="contact-links">
           <a href="${site.external.email}">minniepark.studio@gmail.com</a>
           <a class="contact-instagram" href="${site.external.instagram}" target="_blank" rel="noreferrer">@minniepark.studio ↗</a>
-        </div>
-        <div class="contact-location">
-          <p class="section-kicker">${tr("Artist Enquiries", "아티스트 문의")}</p>
-          <h2>${tr("Seoul / Melbourne<br />Working internationally", "서울 / 멜버른<br />국제적으로 활동합니다")}</h2>
         </div>
       </section>
 

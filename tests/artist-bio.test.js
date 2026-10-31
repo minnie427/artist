@@ -44,6 +44,10 @@ function render(language, protocol) {
 }
 
 function check(html, language, label) {
+  assert(html.includes('class="artist-overview"'), label + ": approved B layout is rendered natively");
+  assert(html.includes('class="artist-overview__portrait"'), label + ": portrait retained in the shared right column");
+  assert(html.includes('class="artist-bio artist-overview__biography"'), label + ": full biography follows the portrait");
+  assert(!/layout-review|data-layout-review/.test(html), label + ": no preview-only transformation or controls");
   const section = html.match(/<section class="artist-bio[^>]*>([\s\S]*?)<\/section>/);
   assert(section, label + ": biography section exists");
   const copy = section[1].match(/<div class="long-copy">([\s\S]*)/)[1];
@@ -72,7 +76,8 @@ for (const language of ["en", "ko"]) {
   const route = (language === "ko" ? "ko/" : "") + "artist/index.html";
   const staticHtml = read(route);
   check(staticHtml, language, route + "/static");
-  assert(staticHtml.includes("site-render.js?v=20261031-centred-cue-footer-76"), route + ": refreshed renderer cache version");
+  assert(staticHtml.includes("page-layouts.css?v="), route + ": approved B stylesheet is connected");
+  assert(staticHtml.includes("site-render.js?v=20261031-layout-b-media-78"), route + ": refreshed renderer cache version");
   for (const protocol of ["https:", "file:"]) check(render(language, protocol), language, language + "/" + protocol);
 }
 console.log("PASS: Artist biography " + words(expected.en.join(" ")) + " English words (" + words(expected.en[0]) + " original + " + words(expected.en[1]) + " added); exact EN/KO biography and approved narrative in static and HTTP/file runtime renders; history and actions retained.");

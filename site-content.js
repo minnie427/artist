@@ -57,6 +57,15 @@ window.MP_SITE = {
     "album-listening-session"
   ],
 
+  // Final presentation dates disambiguate several exhibitions in the same month.
+  visualIndexPresentationDates: {
+    reintervention: "2026-10-11", "respite-iii": "2026-10-09",
+    "melbourne-fringe": "2026-10-04", "flower-your-face": "2026-10-02",
+    funeral: "2026-08-18", "shared-resonance": "2026-04-18",
+    "touching-resonance": "2026-04-15", "meta-kibun": "2025-09-13",
+    mugonggan: "2025-07-05"
+  },
+
   worksOpeningImages: [
     { src: "images/tr1.png", alt: "Participants completing a circuit through roses in The Meta Rose: Shared Resonance", title: "The Meta Rose: Shared Resonance", year: "2026", project: "shared-resonance" },
     { src: "images/the meta kibun project.png", alt: "Three-screen installation view of The Meta Kibun Project", title: "The Meta Kibun Project", year: "2025", project: "meta-kibun" },
@@ -1173,6 +1182,24 @@ window.MP_SITE = {
   const site = window.MP_SITE;
   if (!imported || !site) return;
 
+  if (imported.projects?.["flower-your-face"]) {
+    site.projects["flower-your-face"] = {
+      parent: "artist-workshops", title: "Flower your Face", shortTitle: "Flower your Face",
+      year: "2026", route: "works/artist-workshops/#flower-your-face",
+      eyebrow: "TouchDesigner workshop / Melbourne / 2026", eyebrowKo: "TouchDesigner 워크숍 / 멜버른 / 2026",
+      subtitle: "Face and finger tracking with TouchDesigner and MediaPipe.", subtitleKo: "TouchDesigner와 MediaPipe를 활용한 얼굴·손가락 트래킹.",
+      lead: "An artist-led workshop connecting body tracking with real-time visuals.", leadKo: "신체 트래킹과 실시간 비주얼을 연결하는 아티스트 주도형 워크숍입니다.",
+      card: "A beginner-friendly TouchDesigner workshop led by Minnie Park.", cardKo: "Minnie Park가 진행한 입문자를 위한 TouchDesigner 워크숍입니다.",
+      category: "Artist-led TouchDesigner workshop", categoryKo: "아티스트 주도 TouchDesigner 워크숍",
+      metadata: ["2 October 2026 / 6:30-8:30 pm", "The Mission to Seafarers Victoria, Docklands, Melbourne", "Led by Minnie Park / TouchCollective and Platform Presents"],
+      metadataKo: ["2026년 10월 2일 / 오후 6:30-8:30", "The Mission to Seafarers Victoria, Docklands, 멜버른", "Minnie Park 진행 / TouchCollective 및 Platform Presents"],
+      paragraphs: ["Presented by TouchCollective and Platform Presents, this beginner-friendly TouchDesigner workshop was led by Minnie Park. Participants used MediaPipe finger and face tracking to control real-time visuals and customise effects with their own images. The event was co-hosted by Park and Jessica Dang, with a capacity of 40 participants."],
+      paragraphsKo: ["TouchCollective와 Platform Presents가 함께 선보인 입문자를 위한 TouchDesigner 워크숍으로, Minnie Park가 단독으로 진행했습니다. 참여자는 MediaPipe 손가락·얼굴 트래킹으로 실시간 비주얼을 제어하고 자신의 이미지로 효과를 구성했습니다. Park와 Jessica Dang이 공동 호스트를 맡았으며 정원은 40명이었습니다."],
+      image: null, imageAlt: "Flower your Face, Melbourne, October 2026", gallery: []
+    };
+    site.projects["artist-workshops"].entries = ["flower-your-face", "touching-resonance", "science-gallery"];
+  }
+
   if (imported.profile) site.artistImage = imported.profile;
   if (imported.showreel?.length) site.worksOpeningImages = imported.showreel;
 
@@ -1186,15 +1213,21 @@ window.MP_SITE = {
       project.imageAlt = cover.alt;
       project.placeholder = null;
     }
-    if (media.gallery?.length) project.gallery = media.gallery;
+    project.gallery = media.gallery || [];
+    project.importedDocumentation = true;
+    project.documentationPending = false;
+    project.photoPending = false;
   });
 
   Object.entries(site.projects).forEach(([key, project]) => {
     if (!project.entries || imported.projects?.[key]?.hero) return;
-    const entryHero = project.entries.map((entry) => imported.projects?.[entry]?.hero).find(Boolean);
+    const entryMedia = project.entries.map(entry => imported.projects?.[entry]).filter(Boolean);
+    const entryHero = entryMedia.map(record => record.hero).find(Boolean)
+      || entryMedia.flatMap(record => record.gallery || []).find(item => /\.(webp|png|jpe?g)$/i.test(item.src));
     if (entryHero) {
       project.image = entryHero.src;
       project.imageAlt = entryHero.alt;
+      project.importedDocumentation = true;
     }
   });
 

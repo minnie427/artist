@@ -129,11 +129,17 @@ for (const language of ["en", "ko"]) {
   for (const [key, [src, x, y, zoom]] of Object.entries(approvedCrops)) {
     const card = cards.find(match => match[1] === key)?.[2];
     assert(card, `Works/${language}: approved crop project retained: ${key}`);
-    assert(card.includes(`src="${ctx.media(src)}"`) && card.includes(`data-crop-x="${x}"`) && card.includes(`data-crop-y="${y}"`) && card.includes(`data-crop-zoom="${zoom}"`) && card.includes(`transform:scale(${zoom})`) && card.includes(`transform-origin:${x}% ${y}%`), `Works/${language}: exact selected source and crop for ${key}`);
+    const replacement = site.projects[key].importedDocumentation && site.projects[key].image !== src ? site.projects[key].image : null;
+    if (replacement) {
+      assert(card.includes(`src="${ctx.media(replacement)}"`) && card.includes('data-crop-x="50"') && card.includes('data-crop-y="50"') && card.includes('data-crop-zoom="1"'), `Works/${language}: a newly selected hero is shown without borrowing the previous photograph's crop`);
+    } else {
+      assert(card.includes(`src="${ctx.media(src)}"`) && card.includes(`data-crop-x="${x}"`) && card.includes(`data-crop-y="${y}"`) && card.includes(`data-crop-zoom="${zoom}"`) && card.includes(`transform:scale(${zoom})`) && card.includes(`transform-origin:${x}% ${y}%`), `Works/${language}: exact retained photograph and approved crop for ${key}`);
+    }
   }
   for (const key of ["respite-iii", "reintervention"]) {
     const card = cards.find(match => match[1] === key)?.[2];
-    assert(card.includes("catalogue-work__image--pending") && !/<img\b/.test(card), `Works/${language}: pending photography does not borrow a different presentation's image`);
+    const selectedHero = sandbox.window.MP_IMPORTED_MEDIA.projects[key]?.hero;
+    assert(selectedHero && card.includes(ctx.media(selectedHero.src)) && !card.includes("catalogue-work__image--pending"), `Works/${language}: new presentation photography replaces the pending state with its own selected hero`);
   }
   for (const key of projectKeys) {
     assert(works.includes(`href="${ctx.href(site.projects[key].route)}"`), `Works/${language}: direct route for ${key}`);
@@ -219,4 +225,4 @@ for (const html of [editorial.works(hostile), editorial.project(hostile, "funera
   assert(html.includes('class="acquisition-enquiry__select">minniepark.studio@gmail.com</dd>'), "Editorial enquiries retain the safe recipient fallback");
 }
 
-console.log(`PASS: ${2 * (projectKeys.length + 3)} EN/KO renders, all ${expectedParagraphs} bilingual source paragraphs, 13 common catalogue records and 11 exact v2 saved crops, linear accounts and selected native galleries, metadata/media/routes/history anchors, safe acquisition fallback and no unapproved terms. Static checks only; browser/mobile visual QA remains separate.`);
+console.log(`PASS: ${2 * (projectKeys.length + 3)} EN/KO renders, all ${expectedParagraphs} bilingual source paragraphs, 13 common catalogue records with photograph-specific saved crops and current folder-selected heroes, linear accounts and selected native galleries, metadata/media/routes/history anchors, safe acquisition fallback and no unapproved terms. Static checks only; browser/mobile visual QA remains separate.`);

@@ -7,7 +7,7 @@ const root = path.resolve(__dirname, "..");
 const read = name => fs.readFileSync(path.join(root, name), "utf8");
 // Follow the real stylesheet order. Only exact selectors are queried below;
 // actual wrapping, specificity interactions and gutter coordinates need browser QA.
-const css = ["style.css", "editorial.css", "research-contact-layout.css"].map(read).join("\n").replace(/\/\*[\s\S]*?\*\//g, "");
+const css = ["style.css", "editorial.css", "research-contact-layout.css", "page-layouts.css"].map(read).join("\n").replace(/\/\*[\s\S]*?\*\//g, "");
 const rules = [];
 
 function collect(source, limit = Infinity) {
@@ -56,38 +56,43 @@ function pixels(value, width) {
 }
 
 for (const width of [320, 390, 640, 768, 1024, 1280, 1440, 1728]) {
-  const hero = style('body[data-page="contact"] .contact-hero--direct', width);
-  assert.equal(hero.display, "block", "Approved B hero uses the shared full-width reading axis");
-  for (const property of ["width", "max-width", "left", "margin-left", "padding-left", "padding-top"]) assert.equal(hero[property], undefined, "The Contact override must inherit the shared Artist/page hero gutter and top offset");
-  const details = style('body[data-page="contact"] .contact-details.contact-stack', width);
-  assert.equal(details.display, "grid");
-  assert.equal(details["grid-template-columns"], "minmax(0, 1fr)", "Direct links and location stack at all widths");
+  const hero = style('.contact-overview', width);
+  assert.equal(hero.display, width <= 800 ? "flex" : "block", "Approved B uses the vertical reading axis");
+  assert.equal(hero.width, "min(calc(100% - var(--page-pad) * 2), var(--editorial-width))", "Contact uses the same outer width and gutter as Artist, Works and Research");
+  assert.equal(hero["margin-inline"], "auto");
+  assert.equal(hero.padding, "calc(var(--header-height) + var(--page-hero-offset)) 0 0", "The title inherits shared hero top-offset tokens");
+  assert.equal(hero["max-width"], undefined, "Only internal content is narrow; the page title never shifts inward");
+  const details = style('.contact-overview .contact-links', width);
+  assert.equal(details.display, "flex");
+  assert.equal(details["flex-direction"], "column", "Email and Instagram follow vertically");
   assert.equal(style('body[data-page="contact"] .contact-routes.contact-stack', width).display, "block", "CV and commission routes follow vertically");
   const article = style('body[data-page="contact"] .contact-routes.contact-stack > article', width);
-  assert.equal(article.display, width <= 640 ? "block" : "grid");
-  const direct = style('body[data-page="contact"] .contact-stack .contact-links > a:first-child', width);
-  const instagram = style('body[data-page="contact"] .contact-stack .contact-links > a.contact-instagram', width);
-  assert(pixels(direct["font-size"], width) <= 28, "Contact links stay within the approved shared scale");
-  for (const property of ["font-size", "font-weight", "line-height", "letter-spacing"]) assert.equal(direct[property], instagram[property], "Email and Instagram use the same typography");
-  assert.equal(style(".contact-links a", width)["min-height"], "44px", "Contact links retain a mobile-sized target");
-  assert(pixels(style(".contact-hero .hero-main", width)["font-size"], width) <= 17);
-  assert(pixels(style(".contact-routes h2", width)["font-size"].replace(/\s*!important$/, ""), width) <= 16);
+  assert.equal(article.display, width <= 800 ? "block" : "grid");
+  assert.equal(article["max-width"], "820px", "Secondary routes narrow internally without changing the page gutter");
+  const direct = style('.contact-overview .contact-links a', width);
+  assert(pixels(direct["font-size"], width) <= 25, "Both Contact links use the same restrained type scale");
+  assert.equal(style('.contact-overview .contact-links .contact-instagram', width)["font-size"], undefined, "Instagram does not override the shared email typography");
+  assert.equal(direct["min-height"], "44px", "Contact links retain a mobile-sized target");
+  assert(pixels(style('body:not([data-page="home"]) .contact-overview__introduction .hero-main', width)["font-size"], width) <= 17);
+  assert(pixels(style('body[data-page="contact"] .contact-routes.contact-stack h2', width)["font-size"].replace(/\s*!important$/, ""), width) <= 16);
 }
 assert.equal(style('body[data-page="contact"] .site-shell', 1440)["min-height"], "100svh");
 assert.equal(style('body[data-page="contact"] .site-footer', 1440)["margin-top"], "auto");
-assert.match(style(".contact-details.content-section", 1440)["padding-block"], /64px/);
-assert.match(style(".contact-routes.content-section", 1440)["padding-bottom"], /96px/);
+assert.equal(style(".contact-overview", 1440)["padding-bottom"], "66px", "Contact retains intentional space before CV and commissions");
+assert.equal(style('body[data-page="contact"] .contact-routes.contact-stack', 1440).padding, "0 0 100px", "The footer retains room below the final route");
 const expected = {
   en: ["For exhibitions, curatorial conversations, institutional partnerships, research, talks and artistic collaborations.", "Artist Enquiries", "Seoul / Melbourne", "Working internationally", "Artist CV", "Exhibitions, education, research, public programmes and selected collaborations.", "Current PDF: 2026 edition.", "Download CV 2026", "Commercial / Commissioned Work", "For commissioned installations, brand activations, event visuals and production-led projects.", "Commissions"],
   ko: ["전시, 큐레토리얼 대화, 기관 파트너십, 리서치, 토크와 예술 협업에 관한 문의를 받습니다.", "아티스트 문의", "서울 / 멜버른", "국제적으로 활동합니다", "아티스트 CV", "전시, 교육, 리서치, 공공 프로그램과 주요 협업 기록입니다.", "현재 PDF는 2026년판입니다.", "CV 2026 다운로드", "상업 / 커미션 작업", "커미션 설치, 브랜드 액티베이션, 이벤트 비주얼과 프로덕션 중심 프로젝트를 위한 별도 사이트입니다.", "커미션"]
 };
 function checkContact(html, language, label) {
   assert(!html.includes("undefined"), label);
-  assert(html.includes('contact-hero--direct page-hero'), label + ": shared hero sizing with B layout");
+  assert(html.includes('class="contact-overview"'), label + ": B layout is rendered natively");
+  assert(html.includes('class="contact-overview__introduction"'), label + ": consistent introduction and location rail");
+  assert(!/layout-review|data-layout-review/.test(html), label + ": no preview controls or DOM transformation");
   for (const value of expected[language]) assert(html.includes(value), label + ": complete original copy retained: " + value);
   for (const value of ["mailto:minniepark.studio@gmail.com", "https://www.instagram.com/minniepark.studio/", language === "ko" ? "assets/Minnie_Park_Artist_CV_2026_KO.pdf" : "assets/Minnie_Park_Artist_CV_2026.pdf", "https://work.minniepark.art"]) assert(html.includes(value), label + ": " + value);
-  assert(html.indexOf('class="contact-links"') < html.indexOf('class="contact-location"'), label + ": email/Instagram precede location");
-  assert(html.indexOf('class="contact-location"') < html.indexOf('class="contact-routes contact-stack content-section"'), label + ": routes follow direct contact");
+  assert(html.indexOf('class="contact-location"') < html.indexOf('class="contact-links"'), label + ": location stays with the introduction in approved B");
+  assert(html.indexOf('class="contact-links"') < html.indexOf('class="contact-routes contact-stack content-section"'), label + ": routes follow direct contact");
   assert(html.indexOf(language === "ko" ? "아티스트 CV" : "Artist CV") < html.indexOf(language === "ko" ? "상업 / 커미션 작업" : "Commercial / Commissioned Work"), label + ": CV precedes commissioned work");
   assert(/<a[^>]*\bdownload(?:\s|>|=)/.test(html), label + ": CV remains a download");
   assert(html.includes('class="contact-instagram"'), label + ": Instagram retains its existing hover class");
@@ -109,7 +114,7 @@ for (const language of ["en", "ko"]) {
   const route = (language === "ko" ? "ko/" : "") + "contact/index.html";
   const staticHtml = read(route);
   checkContact(staticHtml, language, route);
-  assert(staticHtml.includes("research-contact-layout.css?v="), route + ": approved layout stylesheet is connected");
-  assert(staticHtml.indexOf("editorial.css?v=") < staticHtml.indexOf("research-contact-layout.css?v="), route + ": scoped Contact rules load after shared editorial rules");
+  assert(staticHtml.includes("page-layouts.css?v="), route + ": approved native layout stylesheet is connected");
+  assert(staticHtml.indexOf("research-contact-layout.css?v=") < staticHtml.indexOf("page-layouts.css?v="), route + ": approved B rules load after previous editorial rules");
 }
-console.log("PASS: Contact B responsive source rules, inherited hero alignment, generous spacing, full EN/KO original copy and direct links, vertical route order, mobile targets and connected stylesheet in static pages.");
+console.log("PASS: native Contact B responsive source rules, common hero gutter, generous spacing, exact EN/KO original copy and direct links, vertical route order, equal link sizing, mobile targets and connected stylesheet in static pages.");

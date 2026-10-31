@@ -1376,3 +1376,76 @@ window.MP_PROJECT_DETAILS = {
     "acquisition": false
   }
 };
+
+// Folder-selected documentation is authoritative; written project accounts stay intact.
+(() => {
+  const imported = window.MP_IMPORTED_MEDIA;
+  const site = window.MP_SITE;
+  const details = window.MP_PROJECT_DETAILS;
+  if (!imported?.projects || !site || !details) return;
+  const video = item => /\.(mp4|webm|ogv)$/i.test(item?.src || "");
+  const unique = items => {
+    const used = new Set();
+    return items.filter(item => item?.src && !used.has(item.src) && (used.add(item.src), true));
+  };
+  const all = record => unique([record?.hero, ...(record?.gallery || [])]);
+  const first = items => items.find(item => !video(item)) || items[0];
+  const caption = (item, title, titleKo = title) => ({
+    en: `${title} / ${item.context || "Documentation"}${item.year ? " / " + item.year : ""}`,
+    ko: `${titleKo} / 기록${item.year ? " / " + item.year : ""}`
+  });
+  const partSections = {
+    funeral: { naming: 1, intervention: 2, witness: 3, record: 4 },
+    "melbourne-fringe": { naming: 1, intervention: 2, witness: 3, record: 4 },
+    reintervention: { reintervention: 1, record: 2 }
+  };
+
+  Object.entries(details).forEach(([key, detail]) => {
+    const original = site.projects[key];
+    if (!original) return;
+    const own = imported.projects[key];
+    const children = (original.entries || []).map(id => [id, imported.projects[id]]).filter(([, record]) => all(record).length);
+    const records = all(own).length ? [[key, own]] : children;
+    const pool = unique(records.flatMap(([, record]) => all(record)));
+    if (!pool.length) return;
+    const allowed = new Set(pool.map(item => item.src));
+    const heroItem = records.map(([, record]) => record.hero).find(Boolean) || first(pool);
+    if (heroItem) {
+      const hero = video(heroItem) && heroItem.poster ? { ...heroItem, src: heroItem.poster } : heroItem;
+      const previousCaption = detail.hero?.src === hero.src ? detail.hero.caption : null;
+      detail.hero = { ...hero, caption: previousCaption || caption(heroItem, heroItem.title || detail.title, detail.titleKo || heroItem.title || detail.title) };
+      original.image = hero.src;
+      original.imageAlt = hero.alt || detail.title;
+    }
+    detail.documentationPending = false;
+    original.documentationPending = false;
+    original.photoPending = false;
+    original.importedDocumentation = true;
+
+    // Keep an existing, verified assignment only while that image remains selected.
+    detail.illustrations = (detail.illustrations || []).filter(item => allowed.has(item.src));
+    const assign = (items, after, title, titleKo = title) => {
+      if (!detail.sections[after] || !items?.length) return;
+      const alternatives = items.filter(item => item.src !== detail.hero?.src);
+      const item = first(alternatives.length ? alternatives : items);
+      detail.illustrations = detail.illustrations.filter(existing => existing.after !== after);
+      detail.illustrations.push({ ...item, after, caption: caption(item, title, titleKo) });
+    };
+    Object.entries(partSections[key] || {}).forEach(([part, after]) => {
+      const title = detail.sections[after]?.title;
+      assign(own?.parts?.[part], after, title?.en || detail.title, title?.ko || detail.titleKo || detail.title);
+    });
+    children.forEach(([child, record]) => {
+      const after = detail.sections.findIndex(section => section.id === child);
+      assign(all(record), after, site.projects[child]?.title || record.hero?.title || detail.title);
+    });
+    if (key === "respite-iii") assign(own?.interaction, 1, detail.sections[1].title.en, detail.sections[1].title.ko);
+
+    const selected = records.flatMap(([, record]) => record.selected || []);
+    const interaction = records.flatMap(([, record]) => record.interaction || []);
+    const partMedia = records.flatMap(([, record]) => Object.values(record.parts || {}).flat());
+    const used = new Set([detail.hero?.src, ...detail.illustrations.map(item => item.src)].filter(Boolean));
+    detail.selectedGallery = unique([...selected, ...partMedia.filter(video), ...interaction, ...pool])
+      .filter(item => !used.has(item.src)).slice(0, 6);
+  });
+})();

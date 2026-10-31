@@ -5,7 +5,7 @@ const vm = require("node:vm");
 const { parseSchemas, structuredData } = require("./search-schema.js");
 const root = path.resolve(__dirname, "..");
 const origin = "https://minniepark.art/";
-const stamp = "20261031-centred-cue-footer-76";
+const stamp = "20261031-layout-b-media-78";
 const editorialStyleStamp = stamp;
 const editionStamp = stamp;
 const rendererStamp = stamp;
@@ -106,8 +106,8 @@ function render(template, route, locale) {
     html = html.replace('Each click introduces another rose.</span>', '클릭할 때마다 또 하나의 장미가 나타납니다.</span>')
       .replace('Each tap introduces another rose.</span>', '터치할 때마다 또 하나의 장미가 나타납니다.</span>');
   }
-  html = html.replace(/\s*<link\b[^>]*href="[^"]*(?:editorial|catalogue-layout|research-contact-layout)\.css[^"\s]*"[^>]*>/g, "")
-    .replace('</head>', ["editorial.css", "catalogue-layout.css", "research-contact-layout.css"].map(file => `  <link rel="stylesheet" href="${relative}${file}?v=${editorialStyleStamp}" />`).join("\n") + "\n</head>");
+  html = html.replace(/\s*<link\b[^>]*href="[^"]*(?:editorial|catalogue-layout|research-contact-layout|page-layouts)\.css[^"\s]*"[^>]*>/g, "")
+    .replace('</head>', ["editorial.css", "catalogue-layout.css", "research-contact-layout.css", "page-layouts.css"].map(file => `  <link rel="stylesheet" href="${relative}${file}?v=${editorialStyleStamp}" />`).join("\n") + "\n</head>");
   html = html.replace(/\s*<script\b[^>]*src="[^"]*(?:project-details|site-editorial|edition-render)\.js[^"\s]*"[^>]*><\/script>/g, "");
   if (!html.includes('site-media.js?')) html = html.replace(/(<script\b[^>]*src="[^"]*site-content\.js[^"\s]*"[^>]*><\/script>)/, `<script src="${relative}site-media.js?v=${stamp}"></script>\n  $1`);
   html = html.replace(/(<script\b[^>]*src="[^"]*site-render\.js[^"\s]*"[^>]*><\/script>)/,

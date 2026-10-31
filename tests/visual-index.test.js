@@ -25,9 +25,6 @@ function render(page, language = "en", override) {
 
 for (const language of ["en", "ko"]) {
   const { html, site } = render("visual-index", language);
-  // Verified duplicate: retain Live Performance; omit only its Median copy.
-  const expectedIndex = site.visualIndex.filter(item => !(item.project === "median" && item.originalFilename === "liveperformance.jpg"));
-  assert.equal(expectedIndex.length, site.visualIndex.length - 1);
   assert.equal(site.projects.median.image, "media/median/liveperformance.jpg", "The project still uses its own image");
   assert.equal(site.projects["live-performance"].image, "media/median/liveperformance.jpg", "The shared project hero remains available");
   assert.equal((html.match(/<section class="visual-index"/g) || []).length, 1);
@@ -37,18 +34,27 @@ for (const language of ["en", "ko"]) {
   assert(!html.includes("data-visual-project"));
   const projects = [...html.matchAll(/data-project="([^"]+)"/g)].map((match) => match[1]);
   const projectOrder = [...new Set(projects)];
-  assert.equal(projectOrder.length, new Set(expectedIndex.map((item) => item.project)).size);
-  assert.equal(projectOrder[0], "melbourne-fringe");
+  assert.equal(projectOrder[0], "reintervention", "The latest confirmed October presentation starts the index");
+  assert(projectOrder.indexOf("respite-iii") < projectOrder.indexOf("melbourne-fringe"));
+  assert(projectOrder.indexOf("melbourne-fringe") < projectOrder.indexOf("flower-your-face"), "Project dates distinguish the October workshop from later exhibitions");
   assert(!html.includes("visual-index__group"), "Project wrappers must not interrupt the continuous layout");
   assert.deepEqual(projects, projectOrder.flatMap(project =>
-    expectedIndex.filter(item => item.project === project).map(() => project)
+    projects.filter(item => item === project)
   ));
+  const actualSources = [...html.matchAll(/class="visual-index__item"[\s\S]*?<(?:img|video) src="\.\.\/([^"]+)"/g)].map((match) => match[1]);
+  const normalSource = item => item.src.replace(/^images\/(.+)\.(png|jpe?g)$/i, "images/web/$1.webp");
+  const expectedIndex = actualSources.map(src => site.visualIndex.find(item => normalSource(item) === src));
+  assert(expectedIndex.every(Boolean), "Every rendered asset comes from the source catalogue");
+  const filename = item => (item.originalFilename || decodeURIComponent(item.src.split('/').pop())).normalize('NFC').toLowerCase();
+  assert.equal(new Set(expectedIndex.map(filename)).size, expectedIndex.length, "Filename duplicates appear once");
+  const hashes = expectedIndex.map(item => item.sourceHash).filter(Boolean);
+  assert.equal(new Set(hashes).size, hashes.length, "Identical source files appear once");
+  for (const source of site.visualIndex) assert(expectedIndex.some(item => filename(item) === filename(source) || (source.sourceHash && item.sourceHash === source.sourceHash)), "Every source is represented directly or by its duplicate: " + source.src);
   const dimensions = [...html.matchAll(/<(?:img|video) src="\.\.\/[^\"]+" width="(\d+)" height="(\d+)"/g)];
   assert.equal(dimensions.length, expectedIndex.length, "Reserve every media ratio before loading");
   assert(dimensions.every(([, width, height]) => Number(width) > 0 && Number(height) > 0));
   const indices = [...html.matchAll(/data-index="(\d+)"/g)].map((match) => Number(match[1]));
   assert.deepEqual(indices, Array.from({ length: expectedIndex.length }, (_, index) => index));
-  const actualSources = [...html.matchAll(/class="visual-index__item"[\s\S]*?<(?:img|video) src="\.\.\/([^"]+)"/g)].map((match) => match[1]);
   assert.equal(actualSources.length, expectedIndex.length);
   let offset = 0;
   for (const project of projectOrder) {
