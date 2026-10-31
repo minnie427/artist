@@ -72,7 +72,7 @@ for (const language of ["en", "ko"]) {
   const route = (language === "ko" ? "ko/" : "") + "artist/index.html";
   const staticHtml = read(route);
   check(staticHtml, language, route + "/static");
-  assert(staticHtml.includes("site-render.js?v=20261031-review-round1-68"), route + ": refreshed renderer cache version");
+  assert(staticHtml.includes("site-render.js?v=20261031-layout-integration-70"), route + ": refreshed renderer cache version");
   for (const protocol of ["https:", "file:"]) check(render(language, protocol), language, language + "/" + protocol);
 }
 console.log("PASS: Artist biography " + words(expected.en.join(" ")) + " English words (" + words(expected.en[0]) + " original + " + words(expected.en[1]) + " added); exact EN/KO biography and approved narrative in static and HTTP/file runtime renders; history and actions retained.");

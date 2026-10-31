@@ -1,16 +1,437 @@
 // Approved bilingual project narratives. Media paths are relative to the site root.
 // Illustration `after` values are zero-based indexes into the sections array.
 window.MP_PROJECT_DETAILS = {
+  "reintervention": {
+    "title": "RE:INTERVENTION",
+    "subtitle": {
+      "en": "LUCKY777 / Platform Presents",
+      "ko": "LUCKY777 / Platform Presents"
+    },
+    "meta": {
+      "en": [
+        "10-11 October 2026 / Group exhibition / Interactive audio-visual installation",
+        "Abbotsford Convent, Melbourne"
+      ],
+      "ko": [
+        "2026년 10월 10-11일 / 그룹전 / 인터랙티브 오디오비주얼 설치",
+        "Abbotsford Convent, 멜버른"
+      ]
+    },
+    "lead": {
+      "en": "A responsive digital body places care and damage within the same participatory system. Developed from Intervention within The Funeral, the work was presented at LUCKY777 alongside a making video and Record.",
+      "ko": "반응형 디지털 신체 안에 돌봄과 훼손을 함께 놓는 참여형 시스템입니다. The Funeral의 개입에서 발전한 작업으로, LUCKY777에서 제작 과정 영상과 기록을 함께 선보였습니다."
+    },
+    "hero": null,
+    "documentationPending": true,
+    "illustrations": [],
+    "sources": [],
+    "acquisition": true,
+    "technical": [
+      {
+        "label": {
+          "en": "LUCKY777 / October 2026",
+          "ko": "LUCKY777 / 2026년 10월"
+        },
+        "medium": {
+          "en": "Interactive audio-visual installation, presented with moving-image works.",
+          "ko": "무빙이미지 작업과 함께 선보인 인터랙티브 오디오비주얼 설치."
+        },
+        "materials": {
+          "en": "Living roses, a physical-button interface, camera, responsive digital body, sound and moving image.",
+          "ko": "생장미, 물리 버튼 인터페이스, 카메라, 반응형 디지털 신체, 사운드와 무빙이미지."
+        },
+        "dimensions": {
+          "en": "Variable according to venue and installation configuration.",
+          "ko": "장소와 설치 구성에 따라 가변."
+        },
+        "tools": {
+          "en": "TouchDesigner, body and face tracking, physical inputs and a participant-requested screenshot interaction.",
+          "ko": "TouchDesigner, 몸과 얼굴 트래킹, 물리 입력과 참여자가 요청하는 스크린샷 인터랙션."
+        },
+        "credit": {
+          "en": "Minnie Park, artist and production.",
+          "ko": "Minnie Park, 작품 및 제작."
+        }
+      }
+    ],
+    "sections": [
+      {
+        "title": {
+          "en": "From Intervention to RE:INTERVENTION",
+          "ko": "개입에서 RE:INTERVENTION으로"
+        },
+        "paragraphs": [
+          {
+            "en": "RE:INTERVENTION develops Intervention, a work within Meta Rose: The Funeral, into a separate presentation. It was shown in the LUCKY777 group exhibition presented by Platform Presents at Abbotsford Convent on 10 and 11 October 2026. This presentation is distinct from both the August Seoul exhibition and the September-October Melbourne Fringe configuration.",
+            "ko": "RE:INTERVENTION은 Meta Rose: The Funeral을 구성하는 개입에서 발전한 별도 발표입니다. 2026년 10월 10일과 11일 Abbotsford Convent에서 Platform Presents가 선보인 LUCKY777 그룹전에 전시했습니다. 8월 서울 전시, 9-10월 Melbourne Fringe의 구성과 구별되는 발표입니다."
+          },
+          {
+            "en": "The work draws on vanitas and memento mori through the overlap of rose and skeleton. The rose carries the possibility of decay within its beauty, while the skeletal figure retains the trace of a body that lived. Rather than treating these as separate symbols, the work brings life, death, care and damage into a body whose condition changes through participation.",
+            "ko": "이 작업은 장미와 해골의 중첩을 통해 바니타스와 메멘토 모리를 다룹니다. 장미는 아름다움 안에 시듦의 가능성을 품고, 해골 형상에는 살아 있던 신체의 흔적이 남습니다. 이들을 분리된 상징으로 다루기보다, 참여에 따라 상태가 달라지는 신체 안에 삶과 죽음, 돌봄과 훼손을 함께 놓습니다."
+          }
+        ]
+      },
+      {
+        "title": {
+          "en": "Participation and the responsive body",
+          "ko": "참여와 반응형 신체"
+        },
+        "paragraphs": [
+          {
+            "en": "Physical buttons let visitors intervene in a responsive digital body. A forehead-mounted webcam and body tracking connect the person who acts with the image being altered. The participant becomes both an agent within the system and a witness to the consequences of their choices.",
+            "ko": "관객은 물리 버튼을 사용해 반응형 디지털 신체에 개입합니다. 이마에 설치한 웹캠과 몸 트래킹은 행동하는 사람과 변화하는 이미지를 연결합니다. 참여자는 시스템에 영향을 주는 행위자인 동시에 자신이 선택한 결과를 지켜보는 사람이 됩니다."
+          },
+          {
+            "en": "A screenshot interaction preserves a selected moment and returns it through the Phone Hub as a trace of a decision. The image records an action within the work, rather than diagnosing the participant’s feelings. Care and harm are not resolved into a correct sequence: the work keeps their consequences available to attention.",
+            "ko": "스크린샷 인터랙션은 선택한 순간을 보존하고 Phone Hub를 통해 그 결정의 흔적을 돌려줍니다. 이미지는 참여자의 감정을 진단하는 결과가 아니라 작품 안에서 이루어진 행동의 기록입니다. 돌봄과 훼손을 정답이 있는 순서로 정리하지 않고, 그 결과를 계속 바라볼 수 있도록 남깁니다."
+          }
+        ]
+      },
+      {
+        "title": {
+          "en": "Record and the making process",
+          "ko": "기록과 제작 과정"
+        },
+        "paragraphs": [
+          {
+            "en": "The LUCKY777 presentation also screened a behind-the-scenes video and Record, the fourth work developed within The Funeral. These moving-image elements retain the labour, tests and repetitions behind the interactive system. The programme brought this moving-image material alongside the interactive RE:INTERVENTION work.",
+            "ko": "LUCKY777에서는 비하인드 더 신 영상과 The Funeral에서 발전한 네 번째 작품 기록도 함께 상영했습니다. 이 무빙이미지들은 인터랙티브 시스템 뒤에 놓인 노동과 테스트, 반복의 시간을 남깁니다. 인터랙티브 작품 RE:INTERVENTION 곁에 이 영상 작업들을 함께 배치했습니다."
+          }
+        ]
+      }
+    ]
+  },
+  "respite-iii": {
+    "title": "Respite III",
+    "subtitle": {
+      "en": "Meta Roses Installation",
+      "ko": "Meta Roses Installation"
+    },
+    "meta": {
+      "en": [
+        "9 October 2026 / Group audio-visual exhibition",
+        "XFLOS / Flowerclub, Collingwood Yards, 30B Perry Street, Collingwood, Melbourne"
+      ],
+      "ko": [
+        "2026년 10월 9일 / 그룹 오디오비주얼 전시",
+        "XFLOS / Flowerclub, Collingwood Yards, 30B Perry Street, Collingwood, 멜버른"
+      ]
+    },
+    "lead": {
+      "en": "A touch-responsive floral installation presented within Respite III, an evening bringing floral practice, music and live visuals into a shared setting at Collingwood Yards.",
+      "ko": "Collingwood Yards에서 꽃 작업, 음악과 라이브 비주얼이 함께 놓이는 Respite III의 일부로 선보인 터치 반응형 꽃 설치입니다."
+    },
+    "hero": null,
+    "documentationPending": true,
+    "illustrations": [],
+    "sources": [],
+    "acquisition": false,
+    "technical": [
+      {
+        "label": {
+          "en": "Respite III / October 2026",
+          "ko": "Respite III / 2026년 10월"
+        },
+        "medium": {
+          "en": "Interactive floral and audio-visual installation.",
+          "ko": "인터랙티브 꽃·오디오비주얼 설치."
+        },
+        "materials": {
+          "en": "Flowers, conductive touch interfaces, sound and real-time moving image.",
+          "ko": "꽃, 전도성 터치 인터페이스, 사운드와 실시간 무빙이미지."
+        },
+        "dimensions": {
+          "en": "Variable according to venue and installation configuration.",
+          "ko": "장소와 설치 구성에 따라 가변."
+        },
+        "tools": {
+          "en": "TouchDesigner and touch-responsive inputs.",
+          "ko": "TouchDesigner와 터치 반응 입력."
+        },
+        "credit": {
+          "en": "Minnie Park, Meta Roses Installation. Presented within the group event Respite III.",
+          "ko": "Minnie Park, Meta Roses Installation. 그룹 행사 Respite III의 일부로 발표."
+        }
+      }
+    ],
+    "sections": [
+      {
+        "title": {
+          "en": "Installation within Respite III",
+          "ko": "Respite III 안의 설치"
+        },
+        "paragraphs": [
+          {
+            "en": "Meta Roses Installation was presented at Respite III on Friday 9 October 2026, from 4 to 10 pm, at XFLOS / Flowerclub in Collingwood Yards. The group audio-visual event brought floral installation, music and visual practices together. Park contributed the interactive rose installation to this shared floral and audio-visual setting.",
+            "ko": "Meta Roses Installation은 2026년 10월 9일 금요일 오후 4시부터 10시까지 Collingwood Yards의 XFLOS / Flowerclub에서 열린 Respite III에 발표했습니다. 꽃 설치, 음악과 비주얼 작업이 함께 놓인 그룹 오디오비주얼 행사에서 Park는 꽃과 오디오비주얼 작업이 함께하는 자리 안에 인터랙티브 장미 설치를 선보였습니다."
+          }
+        ]
+      },
+      {
+        "title": {
+          "en": "Living material as an interface",
+          "ko": "인터페이스로서의 살아 있는 재료"
+        },
+        "paragraphs": [
+          {
+            "en": "The installation continued Park’s exploration of flowers as tactile interfaces for real-time image and sound. Touch entered the audio-visual system through the material arrangement of the floral work. This placed the participant’s physical encounter with a living material inside the composition, rather than leaving the flowers as a setting for an independent screen work.",
+            "ko": "이 설치는 꽃을 실시간 이미지와 사운드를 위한 촉각적 인터페이스로 다루는 Park의 탐구를 이어갑니다. 꽃 작업의 물리적 배치를 통해 접촉이 오디오비주얼 시스템으로 입력됩니다. 꽃을 별개의 스크린 작업을 꾸미는 배경으로 두기보다, 참여자가 살아 있는 재료를 신체적으로 만나는 순간을 구성 안에 포함합니다."
+          }
+        ]
+      },
+      {
+        "title": {
+          "en": "Presentation context",
+          "ko": "발표 맥락"
+        },
+        "paragraphs": [
+          {
+            "en": "Respite III was presented through the shared context of XFLOS, SOYA Florist, Minnie Park and FOZZA. The floral workshop was hosted by XFLOS and SOYA. Park’s installation connected this collaborative setting to her ongoing exploration of living materials, touch and real-time systems.",
+            "ko": "Respite III는 XFLOS, SOYA Florist, Minnie Park와 FOZZA가 함께하는 맥락에서 선보였습니다. 꽃 워크숍은 XFLOS와 SOYA가 진행했습니다. Park의 설치는 이 공동의 자리를 살아 있는 재료, 터치와 실시간 시스템에 관한 지속적인 탐구와 연결했습니다."
+          }
+        ]
+      }
+    ]
+  },
+  "melbourne-fringe": {
+    "title": "The Meta Rose: Shared Resonance",
+    "subtitle": {
+      "en": "Melbourne Fringe Festival / 2026",
+      "ko": "Melbourne Fringe Festival / 2026"
+    },
+    "meta": {
+      "en": [
+        "30 September-4 October 2026 / Melbourne Fringe Festival",
+        "Celia Little Room, The Mission to Seafarers Victoria, Docklands, Melbourne"
+      ],
+      "ko": [
+        "2026년 9월 30일-10월 4일 / Melbourne Fringe Festival",
+        "The Mission to Seafarers Victoria, Celia Little Room, Docklands, 멜버른"
+      ]
+    },
+    "lead": {
+      "en": "Living roses, audience bodies and responsive digital images connect naming, intervention, witnessing and material time in the Melbourne presentation of Meta Rose.",
+      "ko": "생장미, 관객의 신체와 반응형 디지털 이미지가 명명, 개입, 목격과 재료의 시간을 연결하는 Meta Rose의 멜버른 발표입니다."
+    },
+    "hero": {
+      "src": "media/melbourne-fringe/img-1983.webp",
+      "caption": {
+        "en": "Touching hanging roses within The Meta Rose: Shared Resonance, Melbourne Fringe Festival, October 2026.",
+        "ko": "매달린 장미를 만지는 관객. The Meta Rose: Shared Resonance, Melbourne Fringe Festival, 2026년 10월."
+      }
+    },
+    "technical": [
+      {
+        "label": {
+          "en": "Melbourne Fringe Festival / September-October 2026",
+          "ko": "Melbourne Fringe Festival / 2026년 9-10월"
+        },
+        "credit": {
+          "en": "Minnie Park, concept, exhibition planning and production.",
+          "ko": "Minnie Park, 작품 구상, 전시 기획 및 제작."
+        },
+        "dimensions": {
+          "en": "Variable according to venue and installation configuration.",
+          "ko": "장소와 설치 구성에 따라 가변."
+        },
+        "medium": {
+          "en": "Interactive installation allowing individual interaction, collective activation or observation without touching.",
+          "ko": "개인의 인터랙션, 공동 활성화 또는 접촉 없이 관찰하는 방식을 허용하는 인터랙티브 설치."
+        },
+        "materials": {
+          "en": "Hanging living roses, ribbons and conductive contacts, projected moving image, a physical-button interface, camera and sound.",
+          "ko": "매달린 생장미, 리본과 전도성 접점, 투사 무빙이미지, 물리 버튼 인터페이스, 카메라와 사운드."
+        },
+        "tools": {
+          "en": "TouchDesigner, conductive touch, body and hand tracking, physical controls and an optional Phone Hub for requested captures.",
+          "ko": "TouchDesigner, 전도성 터치, 몸과 손 트래킹, 물리 컨트롤과 요청한 캡처를 위한 선택형 Phone Hub."
+        }
+      }
+    ],
+    "acquisition": true,
+    "sections": [
+      {
+        "title": {
+          "en": "Melbourne presentation",
+          "ko": "멜버른 발표"
+        },
+        "paragraphs": [
+          {
+            "en": "The work was presented at Melbourne Fringe Festival from 30 September to 4 October 2026 in the Celia Little Room at The Mission to Seafarers Victoria, Docklands. Living roses connected tactile encounters with layered moving image and an original soundscape, including natural textures and artist-recorded samples. This presentation accommodated individual interactions as well as collective activation through shared presence. Visitors could also observe without touching the installation.",
+            "ko": "2026년 9월 30일부터 10월 4일까지 Melbourne Fringe Festival의 일환으로 Docklands에 위치한 The Mission to Seafarers Victoria의 Celia Little Room에서 전시했습니다. 생장미를 매개로 한 촉각적 만남은 여러 층의 무빙이미지와 자연의 질감, 작가가 직접 녹음한 샘플을 포함한 오리지널 사운드스케이프로 이어졌습니다. 이 발표에서는 개인의 인터랙션과 함께하는 존재를 통한 공동 활성화가 모두 가능했으며, 관객은 설치를 직접 만지지 않고 관찰할 수도 있었습니다."
+          },
+          {
+            "en": "The Melbourne presentation brings together four works, Naming, Intervention, Witness and Record. Each establishes a distinct encounter with the rose through touch, gesture, sustained observation or the record of making. Visitors can move between them without following a required sequence.",
+            "ko": "멜버른 전시는 명명, 개입, 목격, 기록의 네 작품으로 구성됩니다. 터치, 제스처, 지속적인 관찰과 제작의 기록을 통해 각각 장미와의 만남을 구성합니다. 관객은 정해진 순서를 따르지 않고 작품 사이를 이동할 수 있습니다."
+          }
+        ]
+      },
+      {
+        "id": "naming",
+        "title": {
+          "en": "01 / Naming",
+          "ko": "01 / 명명"
+        },
+        "paragraphs": [
+          {
+            "en": "The participant holds a black ribbon while touching hanging living roses. Each rose activates a different layer of light and sound; sustained contact deepens a response and additional flowers combine layers. Holding the white and black ribbons together requests a capture of the selected moment.",
+            "ko": "참여자는 검은 리본을 잡고 매달린 생장미를 만집니다. 각 장미는 서로 다른 빛과 소리의 층위를 활성화하며, 접촉을 지속하면 반응이 깊어지고 다른 꽃을 만지면 여러 층이 결합됩니다. 흰 리본과 검은 리본을 함께 잡으면 선택한 순간의 캡처를 요청할 수 있습니다."
+          },
+          {
+            "en": "A living flower is both the interface and a material changed by contact. Its gradual drying and wear remain present beside a digital response that can be repeated. The work holds these different times together within the act of touching.",
+            "ko": "생화는 인터페이스이면서 접촉에 따라 달라지는 재료입니다. 반복할 수 있는 디지털 반응 옆에서 꽃은 점차 마르고 손길의 흔적을 쌓습니다. 이 작업은 서로 다른 시간을 터치라는 행위 안에 함께 놓습니다."
+          }
+        ]
+      },
+      {
+        "id": "intervention",
+        "title": {
+          "en": "02 / Intervention",
+          "ko": "02 / 개입"
+        },
+        "paragraphs": [
+          {
+            "en": "A physical-button interface and camera-based tracking allow visitors to intervene in a responsive rose-skeleton body. A rectangle formed with thumb and index finger reveals a camera mask; an open five-finger gesture reveals another mask carrying the visitor’s selected colour and optional name. The participant appears within the image they are also acting upon.",
+            "ko": "물리 버튼 인터페이스와 카메라 기반 트래킹을 통해 관객은 반응형 장미·스켈레톤 신체에 개입합니다. 엄지와 검지로 사각형을 만들면 카메라 마스크가 나타나고, 다섯 손가락을 펼치면 선택한 색과 선택적 이름을 지닌 다른 마스크가 나타납니다. 참여자는 자신이 영향을 주는 이미지 안에 동시에 등장합니다."
+          },
+          {
+            "en": "Care and damage do not separate into a simple positive and negative sequence. An action that sustains one balance may disturb another. In the Melbourne configuration, holding any two buttons on the Rose Human Interface for five seconds requests a capture.",
+            "ko": "돌봄과 훼손은 단순한 긍정·부정의 순서로 분리되지 않습니다. 한 균형을 지탱하는 행동이 다른 균형을 흔들 수 있습니다. 멜버른 구성에서는 Rose Human Interface의 버튼 두 개를 5초 동안 누르면 캡처를 요청합니다."
+          }
+        ]
+      },
+      {
+        "id": "witness",
+        "title": {
+          "en": "03 / Witness",
+          "ko": "03 / 목격"
+        },
+        "paragraphs": [
+          {
+            "en": "A hand moves vertically near a rose to intervene in moving-image time. Three slow acts of witnessing allow an initially distorted rose-skeleton figure to be encountered within the image. A rose button marks the moment when the visitor feels they have found the figure. Stillness and sustained looking remain part of the encounter.",
+            "ko": "장미 가까이에서 손을 수직으로 움직여 무빙이미지의 시간에 개입합니다. 세 번의 느린 목격을 통해 처음에는 왜곡되어 있던 장미·스켈레톤 형상을 이미지 안에서 마주합니다. 형상을 찾았다고 느끼는 순간 장미 버튼을 누릅니다. 가만히 머무르며 오래 바라보는 시간도 만남의 일부입니다."
+          }
+        ]
+      },
+      {
+        "id": "record",
+        "title": {
+          "en": "04 / Record",
+          "ko": "04 / 기록"
+        },
+        "paragraphs": [
+          {
+            "en": "A silent, looping film records hands, connections, failed tests and repetitions behind the installation. It stands as a work about material labour and making time. It does not require a fixed beginning or end, and it does not produce a personal capture.",
+            "ko": "소리 없이 반복되는 영상은 설치 뒤에 놓인 손, 연결, 실패한 테스트와 반복을 기록합니다. 재료를 다루는 노동과 제작의 시간을 다루는 독립된 작업입니다. 정해진 시작과 끝을 요구하지 않으며 개인 캡처를 만들지 않습니다."
+          }
+        ]
+      },
+      {
+        "title": {
+          "en": "Participation records and access",
+          "ko": "참여 기록과 접근성"
+        },
+        "paragraphs": [
+          {
+            "en": "The Melbourne Phone Hub is an optional companion for selected colour, an optional name and captures requested by the visitor. A random Rose number returns the images of a visit without asking for a legal name. These records concern choices within the artwork, not an objective classification of a person’s emotional state.",
+            "ko": "멜버른 Phone Hub는 선택한 색, 선택적 이름과 관객이 요청한 캡처를 위한 선택형 동반 인터페이스입니다. 무작위 장미 번호를 통해 본명을 묻지 않고 그 관람의 이미지를 돌려줍니다. 이 기록은 작품 안의 선택을 다루며, 한 사람의 감정 상태를 객관적으로 분류하는 결과가 아닙니다."
+          },
+          {
+            "en": "The presentation received support from Access Fringe to improve accessibility.",
+            "ko": "전시의 접근성 향상을 위해 Access Fringe의 지원을 받았습니다."
+          }
+        ]
+      }
+    ],
+    "illustrations": [
+      {
+        "src": "media/melbourne-fringe/img-1520.webp",
+        "caption": {
+          "en": "Melbourne installation view with hanging roses and projected images, October 2026.",
+          "ko": "매달린 장미와 투사 이미지를 함께 배치한 멜버른 설치 전경, 2026년 10월."
+        },
+        "after": 0
+      },
+      {
+        "src": "media/melbourne-fringe/img-1817.webp",
+        "caption": {
+          "en": "A participant touches the hanging-rose interface in Naming, Melbourne, October 2026.",
+          "ko": "명명의 매달린 장미 인터페이스를 만지는 참여자, 멜버른, 2026년 10월."
+        },
+        "after": 1
+      },
+      {
+        "src": "media/melbourne-fringe/img-2053.webp",
+        "caption": {
+          "en": "The physical-button interface and responsive digital body in Intervention, Melbourne, October 2026.",
+          "ko": "개입의 물리 버튼 인터페이스와 반응형 디지털 신체, 멜버른, 2026년 10월."
+        },
+        "after": 2
+      },
+      {
+        "src": "media/melbourne-fringe/img-1922.webp",
+        "caption": {
+          "en": "Projected image with a hand-sensitive control interface in the Melbourne installation, October 2026.",
+          "ko": "손 감지 컨트롤 인터페이스와 함께 제시한 멜버른 설치의 투사 이미지, 2026년 10월."
+        },
+        "after": 3
+      },
+      {
+        "src": "media/melbourne-fringe/img-2269.webp",
+        "caption": {
+          "en": "Dried roses from the Melbourne installation, October 2026.",
+          "ko": "멜버른 설치에서 마른 장미, 2026년 10월."
+        },
+        "after": 4
+      }
+    ],
+    "sources": [
+      {
+        "label": "Melbourne Fringe Festival, official 2026 event",
+        "url": "https://www.melbournefringe.com.au/whats-on/events/the-meta-rose-shared-resonance"
+      },
+      {
+        "label": "Melbourne Phone Hub",
+        "labelKo": "멜버른 Phone Hub",
+        "url": "https://minnie427.github.io/metarose-funeral/"
+      }
+    ],
+    "phoneHubUrl": "https://minnie427.github.io/metarose-funeral/",
+    "phoneHubLabel": {
+      "en": "Melbourne Phone Hub",
+      "ko": "멜버른 Phone Hub"
+    }
+  },
   "funeral": {
     "title": "Meta Rose: The Funeral",
-    "technical": [{
-      "label": { "en": "Seoul Fringe Festival / 2026", "ko": "서울프린지페스티벌 / 2026" },
-      "credit": { "en": "Minnie Park, concept, exhibition planning and production.", "ko": "Minnie Park, 작품 구상, 전시 기획 및 제작." },
-      "dimensions": { "en": "Variable according to venue and installation configuration.", "ko": "장소와 설치 구성에 따라 가변." },
-      "medium": { "en": "Interactive audio-visual installation in four parts: Naming, Intervention, Witness and Record.", "ko": "명명, 개입, 목격, 기록의 네 부분으로 구성된 인터랙티브 오디오비주얼 설치." },
-      "materials": { "en": "Living roses, skeletal model, conductive contacts, sound, light and moving image.", "ko": "생장미, 해골 모형, 전도성 접점, 사운드, 빛과 무빙이미지." },
-      "tools": { "en": "TouchDesigner (primary software); touch-responsive system, camera-based gesture tracking, responsive controller, connected phone interface and looping film.", "ko": "TouchDesigner(주 소프트웨어), 터치 반응 시스템, 카메라 기반 제스처 추적, 반응형 컨트롤러, 연결된 폰 인터페이스와 루프 영상." }
-    }],
+    "technical": [
+      {
+        "label": {
+          "en": "Seoul Fringe Festival / 2026",
+          "ko": "서울프린지페스티벌 / 2026"
+        },
+        "credit": {
+          "en": "Minnie Park, concept, exhibition planning and production.",
+          "ko": "Minnie Park, 작품 구상, 전시 기획 및 제작."
+        },
+        "dimensions": {
+          "en": "Variable according to venue and installation configuration.",
+          "ko": "장소와 설치 구성에 따라 가변."
+        },
+        "medium": {
+          "en": "Interactive audio-visual installation in four parts: Naming, Intervention, Witness and Record.",
+          "ko": "명명, 개입, 목격, 기록의 네 부분으로 구성된 인터랙티브 오디오비주얼 설치."
+        },
+        "materials": {
+          "en": "Living roses, skeletal model, conductive contacts, sound, light and moving image.",
+          "ko": "생장미, 해골 모형, 전도성 접점, 사운드, 빛과 무빙이미지."
+        },
+        "tools": {
+          "en": "TouchDesigner (primary software); touch-responsive system, camera-based gesture tracking, responsive controller, connected phone interface and looping film.",
+          "ko": "TouchDesigner(주 소프트웨어), 터치 반응 시스템, 카메라 기반 제스처 추적, 반응형 컨트롤러, 연결된 폰 인터페이스와 루프 영상."
+        }
+      }
+    ],
     "meta": {
       "en": [
         "15-18 August 2026 · Solo exhibition · Seoul Fringe Festival",
@@ -67,10 +488,6 @@ window.MP_PROJECT_DETAILS = {
           {
             "en": "Camera-based gesture tracking and a responsive controller connect the participant’s actions to a digital skeletal body. Visitors alter its balance and vitality, bringing intervention into view as an action with consequences. Rose and skeleton, care and damage, the self who acts and the self who watches occupy the same image.",
             "ko": "카메라 기반 제스처 추적과 반응형 컨트롤러가 참여자의 행동을 디지털 해골 신체에 연결합니다. 관객은 그 균형과 생명력을 변화시키며, 개입이 결과를 수반하는 행위임을 마주합니다. 장미와 해골, 돌봄과 훼손, 행동하는 나와 지켜보는 내가 하나의 이미지 안에 공존합니다."
-          },
-          {
-            "en": "A software-edition proposal based on this part of the exhibition is being developed as RE:INTERVENTION. The proposal considers a defined version of the work and the conditions for presenting it beyond the original installation; its acquisition terms remain separate from the exhibition documentation.",
-            "ko": "전시의 이 부분을 바탕으로 RE:INTERVENTION이라는 소프트웨어 에디션을 제안하고 있습니다. 작품의 특정 버전과 원래 설치 밖에서 구현하기 위한 조건을 다루는 제안이며, 소장 조건은 전시 기록과 구분해 검토합니다."
           }
         ]
       },
@@ -165,14 +582,34 @@ window.MP_PROJECT_DETAILS = {
   },
   "meta-kibun": {
     "title": "The Meta Kibun Project",
-    "technical": [{
-      "label": { "en": "RMIT University / 2025", "ko": "RMIT University / 2025" },
-      "credit": { "en": "Minnie Park, concept, exhibition planning and production.", "ko": "Minnie Park, 작품 구상, 전시 기획 및 제작." },
-      "dimensions": { "en": "Variable according to venue and installation configuration.", "ko": "장소와 설치 구성에 따라 가변." },
-      "medium": { "en": "Interactive audio-visual installation and non-interactive video, presented within practice-based research.", "ko": "창작 실천 기반 연구에서 함께 제시한 인터랙티브 오디오비주얼 설치와 비인터랙티브 영상." },
-      "materials": { "en": "Living roses, water, coloured slime, sound, light and three-screen moving image.", "ko": "생장미, 물, 컬러 슬라임, 사운드, 빛과 3면 무빙이미지." },
-      "tools": { "en": "TouchDesigner (primary software); tactile interfaces controlling sixteen layered audio-visual effects.", "ko": "TouchDesigner(주 소프트웨어), 16개 오디오비주얼 효과의 층위를 제어하는 촉각 인터페이스." }
-    }],
+    "technical": [
+      {
+        "label": {
+          "en": "RMIT University / 2025",
+          "ko": "RMIT University / 2025"
+        },
+        "credit": {
+          "en": "Minnie Park, concept, exhibition planning and production.",
+          "ko": "Minnie Park, 작품 구상, 전시 기획 및 제작."
+        },
+        "dimensions": {
+          "en": "Variable according to venue and installation configuration.",
+          "ko": "장소와 설치 구성에 따라 가변."
+        },
+        "medium": {
+          "en": "Interactive audio-visual installation and non-interactive video, presented within practice-based research.",
+          "ko": "창작 실천 기반 연구에서 함께 제시한 인터랙티브 오디오비주얼 설치와 비인터랙티브 영상."
+        },
+        "materials": {
+          "en": "Living roses, water, coloured slime, sound, light and three-screen moving image.",
+          "ko": "생장미, 물, 컬러 슬라임, 사운드, 빛과 3면 무빙이미지."
+        },
+        "tools": {
+          "en": "TouchDesigner (primary software); tactile interfaces controlling sixteen layered audio-visual effects.",
+          "ko": "TouchDesigner(주 소프트웨어), 16개 오디오비주얼 효과의 층위를 제어하는 촉각 인터페이스."
+        }
+      }
+    ],
     "meta": {
       "en": "2025 · Solo exhibition · Interactive audio-visual installation · RMIT University, Melbourne · 12-13 September 2025",
       "ko": "2025 · 개인전 · 인터랙티브 오디오비주얼 설치 · RMIT University, Melbourne · 2025년 9월 12-13일"
@@ -274,14 +711,34 @@ window.MP_PROJECT_DETAILS = {
   },
   "origin": {
     "title": "Meta Rose: Origin",
-    "technical": [{
-      "label": { "en": "Visual album and installation / 2024", "ko": "비주얼 앨범과 설치 / 2024" },
-      "credit": { "en": "Minnie Park, concept, exhibition planning and production.", "ko": "Minnie Park, 작품 구상, 전시 기획 및 제작." },
-      "dimensions": { "en": "Installation dimensions variable according to venue and configuration.", "ko": "설치 크기는 장소와 구성에 따라 가변." },
-      "medium": { "en": "Interactive visual album combining a tactile installation, moving image, original soundtracks and a multiplayer game.", "ko": "촉각적 설치, 무빙이미지, 오리지널 사운드트랙과 멀티플레이어 게임을 결합한 인터랙티브 비주얼 앨범." },
-      "materials": { "en": "Living roses arranged as a tactile keyboard across a table, 3D-rendered imagery, sound and digital character Mintie.", "ko": "테이블 위에서 촉각 키보드를 구성하는 생장미, 3D 렌더 이미지, 사운드와 디지털 캐릭터 Mintie." },
-      "tools": { "en": "TouchDesigner for the rose-responsive installation; Unreal Engine for the multiplayer game.", "ko": "장미에 반응하는 설치에는 TouchDesigner, 멀티플레이어 게임에는 Unreal Engine 사용." }
-    }],
+    "technical": [
+      {
+        "label": {
+          "en": "Visual album and installation / 2024",
+          "ko": "비주얼 앨범과 설치 / 2024"
+        },
+        "credit": {
+          "en": "Minnie Park, concept, exhibition planning and production.",
+          "ko": "Minnie Park, 작품 구상, 전시 기획 및 제작."
+        },
+        "dimensions": {
+          "en": "Installation dimensions variable according to venue and configuration.",
+          "ko": "설치 크기는 장소와 구성에 따라 가변."
+        },
+        "medium": {
+          "en": "Interactive visual album combining a tactile installation, moving image, original soundtracks and a multiplayer game.",
+          "ko": "촉각적 설치, 무빙이미지, 오리지널 사운드트랙과 멀티플레이어 게임을 결합한 인터랙티브 비주얼 앨범."
+        },
+        "materials": {
+          "en": "Living roses arranged as a tactile keyboard across a table, 3D-rendered imagery, sound and digital character Mintie.",
+          "ko": "테이블 위에서 촉각 키보드를 구성하는 생장미, 3D 렌더 이미지, 사운드와 디지털 캐릭터 Mintie."
+        },
+        "tools": {
+          "en": "TouchDesigner for the rose-responsive installation; Unreal Engine for the multiplayer game.",
+          "ko": "장미에 반응하는 설치에는 TouchDesigner, 멀티플레이어 게임에는 Unreal Engine 사용."
+        }
+      }
+    ],
     "meta": {
       "en": "2024 · Interactive audio-visual project · Melbourne",
       "ko": "2024 · 인터랙티브 오디오비주얼 프로젝트 · 멜버른"
@@ -358,28 +815,47 @@ window.MP_PROJECT_DETAILS = {
   },
   "shared-resonance": {
     "title": "The Meta Rose: Shared Resonance",
-    "technical": [{
-      "label": { "en": "Platform Presents: Hybrid / April 2026", "ko": "Platform Presents: Hybrid / 2026년 4월" },
-      "credit": { "en": "Minnie Park, concept, exhibition planning and production.", "ko": "Minnie Park, 작품 구상, 전시 기획 및 제작." },
-      "dimensions": { "en": "Variable according to venue and installation configuration.", "ko": "장소와 설치 구성에 따라 가변." },
-      "medium": { "en": "Participatory audio-visual installation activated by two or more people.", "ko": "두 명 이상의 참여자가 활성화하는 관객 참여형 오디오비주얼 설치." },
-      "materials": { "en": "Suspended living roses, water, conductive contacts, sound, light and moving image.", "ko": "매달린 생장미, 물, 전도성 접점, 사운드, 빛과 무빙이미지." },
-      "tools": { "en": "TouchDesigner; an open conductive circuit completed through hand-to-hand contact and touch-responsive audio-visual layers.", "ko": "TouchDesigner, 손과 손의 접촉으로 완성하는 열린 전도성 회로와 터치에 반응하는 오디오비주얼 층위." }
-    }, {
-      "label": { "en": "Melbourne Fringe Festival / September-October 2026", "ko": "Melbourne Fringe Festival / 2026년 9-10월" },
-      "credit": { "en": "Minnie Park, concept, exhibition planning and production.", "ko": "Minnie Park, 작품 구상, 전시 기획 및 제작." },
-      "dimensions": { "en": "Variable according to venue and installation configuration.", "ko": "장소와 설치 구성에 따라 가변." },
-      "medium": { "en": "Interactive installation allowing individual interaction, collective activation or observation without touching.", "ko": "개인의 인터랙션, 공동 활성화 또는 접촉 없이 관찰하는 방식을 허용하는 인터랙티브 설치." },
-      "materials": { "en": "Living roses, layered moving image and an original soundscape incorporating natural textures and artist-recorded samples.", "ko": "생장미, 다층 무빙이미지, 자연적 질감과 작가가 녹음한 샘플을 포함한 오리지널 사운드스케이프." },
-      "tools": { "en": "TouchDesigner (primary software); touch-responsive audio-visual system. This presentation has a different participation structure from the April installation.", "ko": "TouchDesigner(주 소프트웨어), 터치 반응형 오디오비주얼 시스템. 4월 설치와 구별되는 참여 구조로 구성한 발표." }
-    }],
+    "technical": [
+      {
+        "label": {
+          "en": "Platform Presents: Hybrid / April 2026",
+          "ko": "Platform Presents: Hybrid / 2026년 4월"
+        },
+        "credit": {
+          "en": "Minnie Park, concept, exhibition planning and production.",
+          "ko": "Minnie Park, 작품 구상, 전시 기획 및 제작."
+        },
+        "dimensions": {
+          "en": "Variable according to venue and installation configuration.",
+          "ko": "장소와 설치 구성에 따라 가변."
+        },
+        "medium": {
+          "en": "Participatory audio-visual installation activated by two or more people.",
+          "ko": "두 명 이상의 참여자가 활성화하는 관객 참여형 오디오비주얼 설치."
+        },
+        "materials": {
+          "en": "Suspended living roses, water, conductive contacts, sound, light and moving image.",
+          "ko": "매달린 생장미, 물, 전도성 접점, 사운드, 빛과 무빙이미지."
+        },
+        "tools": {
+          "en": "TouchDesigner; an open conductive circuit completed through hand-to-hand contact and touch-responsive audio-visual layers.",
+          "ko": "TouchDesigner, 손과 손의 접촉으로 완성하는 열린 전도성 회로와 터치에 반응하는 오디오비주얼 층위."
+        }
+      }
+    ],
     "meta": {
-      "en": ["2026 · Interactive audio-visual installation · Melbourne", "Platform Presents: Hybrid · 18 April / Melbourne Fringe Festival · 30 September to 4 October"],
-      "ko": ["2026 · 인터랙티브 오디오비주얼 설치 · 멜버른", "Platform Presents: Hybrid · 4월 18일 / Melbourne Fringe Festival · 9월 30일~10월 4일"]
+      "en": [
+        "18 April 2026 / Group exhibition / Interactive audio-visual installation",
+        "Platform Presents: Hybrid / 118 Greeves Street, Fitzroy, Melbourne"
+      ],
+      "ko": [
+        "2026년 4월 18일 / 그룹전 / 인터랙티브 오디오비주얼 설치",
+        "Platform Presents: Hybrid / 118 Greeves Street, Fitzroy, 멜버른"
+      ]
     },
     "lead": {
-      "en": "Living roses connect touch and shared presence to real-time sound and moving image. The work was presented at Platform Presents: Hybrid and Melbourne Fringe Festival in 2026.",
-      "ko": "생장미는 참여자의 접촉과 서로의 존재를 실시간 사운드와 무빙이미지로 연결합니다. 2026년 Platform Presents: Hybrid와 Melbourne Fringe Festival에서 선보였습니다."
+      "en": "Two or more participants complete a circuit through living roses, water and hand-to-hand contact to activate a shared audio-visual composition. Presented at Platform Presents: Hybrid in April 2026.",
+      "ko": "두 명 이상의 참여자가 생장미, 물과 손과 손의 접촉으로 회로를 완성하며 공동의 오디오비주얼 구성을 활성화합니다. 2026년 4월 Platform Presents: Hybrid에 발표했습니다."
     },
     "sections": [
       {
@@ -425,33 +901,12 @@ window.MP_PROJECT_DETAILS = {
             "ko": "The Meta Kibun Project(2025) 이후 발전한 Shared Resonance의 4월 발표는 터치와 정서에 대한 탐구를 사람 사이의 상호의존으로 확장합니다. 이전 작업이 문화적으로 형성되는 감정에 주목했다면, 4월 설치에서는 집단적으로 완성되는 회로가 인터랙션의 핵심이 됩니다. Meta Rose: The Funeral에 앞서 2026년 4월 18일 멜버른 Fitzroy의 118 Greeves Street에서 열린 Platform Presents: Hybrid에서 선보였습니다."
           }
         ]
-      },
-      {
-        "id": "melbourne-fringe",
-        "title": {
-          "en": "Melbourne Fringe Festival · 2026",
-          "ko": "Melbourne Fringe Festival · 2026"
-        },
-        "paragraphs": [
-          {
-            "en": "The work was presented at Melbourne Fringe Festival from 30 September to 4 October 2026 in the Celia Little Room at The Mission to Seafarers Victoria, Docklands. Living roses connected tactile encounters with layered moving image and an original soundscape, including natural textures and artist-recorded samples. This presentation accommodated individual interactions as well as collective activation through shared presence. Visitors could also observe without touching the installation.",
-            "ko": "2026년 9월 30일부터 10월 4일까지 Melbourne Fringe Festival의 일환으로 Docklands에 위치한 The Mission to Seafarers Victoria의 Celia Little Room에서 전시했습니다. 생장미를 매개로 한 촉각적 만남은 여러 층의 무빙이미지와 자연의 질감, 작가가 직접 녹음한 샘플을 포함한 오리지널 사운드스케이프로 이어졌습니다. 이 발표에서는 개인의 인터랙션과 함께하는 존재를 통한 공동 활성화가 모두 가능했으며, 관객은 설치를 직접 만지지 않고 관찰할 수도 있었습니다."
-          },
-          {
-            "en": "The presentation received support from Access Fringe to improve accessibility.",
-            "ko": "전시의 접근성 향상을 위해 Access Fringe의 지원을 받았습니다."
-          }
-        ]
       }
     ],
     "sources": [
       {
         "label": "Shared Resonance, April 2026 project documentation",
         "url": "https://minnie427.github.io/metarose2604/"
-      },
-      {
-        "label": "Melbourne Fringe Festival, official 2026 event",
-        "url": "https://www.melbournefringe.com.au/whats-on/events/the-meta-rose-shared-resonance"
       }
     ],
     "hero": {

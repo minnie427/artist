@@ -32,6 +32,9 @@ VIDEO_EXTENSIONS = {".mov", ".mp4", ".m4v"}
 PROJECT_SOURCES = [
     ("artist/live-performance", "live-performance", "live-performance", "Live Performance", "2023-2024"),
     ("artist/artist-workshops", "artist-workshops", "artist-workshops", "Artist Workshops", "2025 onwards"),
+    ("artist/2026_reintervention", "reintervention", "reintervention", "RE:INTERVENTION", "2026"),
+    ("artist/2026_respite-iii", "respite-iii", "respite-iii", "Respite III", "2026"),
+    ("artist/2026_melbourne-fringe", "melbourne-fringe", "melbourne-fringe", "The Meta Rose: Shared Resonance / Melbourne Fringe", "2026"),
     ("artist/2026_funeral", "funeral", "funeral", "Meta Rose: The Funeral", "2026"),
     ("artist/2026_shared-resonance", "shared-resonance", "shared-resonance", "The Meta Rose: Shared Resonance", "2026"),
     ("artist/2026_touching-resonance", "touching-resonance", "touching-resonance", "Touching Resonance", "2026"),
@@ -45,6 +48,21 @@ PROJECT_SOURCES = [
     ("artist/2024_median-2", "median-2", "median-2", "Median 2", "2024"),
     ("artist/2023_median", "median", "median", "Median", "2023"),
 ]
+
+# These presentations were imported from an artist-supplied local folder before
+# its iCloud counterpart was organised. An empty/missing source folder is not a
+# request to delete this already verified documentation from the manifest.
+PRESERVE_UNTIL_SOURCE_READY = {"melbourne-fringe", "respite-iii", "reintervention"}
+
+
+def preserve_pending_sources(manifest: dict[str, object], previous: dict[str, object]) -> None:
+    for key in PRESERVE_UNTIL_SOURCE_READY:
+        if key in manifest["projects"] or key not in previous.get("projects", {}):
+            continue
+        manifest["projects"][key] = previous["projects"][key]
+        manifest["visualIndex"].extend(
+            item for item in previous.get("visualIndex", []) if item.get("project") == key
+        )
 
 
 def natural_key(path: Path) -> list[object]:
@@ -378,7 +396,14 @@ def main() -> None:
     if not args.source.exists():
         raise SystemExit(f"Media source not found: {args.source}")
 
+    previous = {}
+    if MANIFEST_PATH.exists():
+        source = MANIFEST_PATH.read_text(encoding="utf-8").strip()
+        prefix = "window.MP_IMPORTED_MEDIA = "
+        if source.startswith(prefix) and source.endswith(";"):
+            previous = json.loads(source[len(prefix):-1])
     manifest = build_manifest(args.source)
+    preserve_pending_sources(manifest, previous)
     MANIFEST_PATH.write_text(
         "window.MP_IMPORTED_MEDIA = "
         + json.dumps(manifest, ensure_ascii=False, indent=2)

@@ -19,11 +19,27 @@ for (const file of ["site-media.js", "site-content.js", "project-details.js", "s
 
 const { MP_SITE: site, MP_PROJECT_DETAILS: details, MP_EDITORIAL: editorial, MP_EDITIONS: editions } = sandbox.window;
 const projectKeys = [
-  "funeral", "shared-resonance", "meta-kibun", "origin", "bugskin-chapter-2", "mugonggan",
+  "reintervention", "respite-iii", "melbourne-fringe", "funeral", "shared-resonance", "meta-kibun", "origin", "bugskin-chapter-2", "mugonggan",
   "artist-workshops", "live-performance", "melbourne-fashion-festival", "album-listening-session"
 ];
-assert.deepEqual(Object.keys(details).sort(), [...projectKeys].sort(), "All ten approved projects must be retained");
-assert.equal(Object.values(details).reduce((count, project) => count + project.sections.reduce((n, section) => n + section.paragraphs.length, 0), 0), 56, "Retain existing bilingual accounts, confirmed Fringe presentation and two Flower your Face paragraphs");
+const editionKeys = ["funeral", "shared-resonance", "meta-kibun", "origin"];
+assert.deepEqual(Object.keys(details).sort(), [...projectKeys].sort(), "The ten retained projects and three confirmed presentation accounts are all available");
+// Compare every paragraph to its complete bilingual source, wherever a confirmed
+// presentation now lives. Splitting April/Melbourne must not freeze a legacy count.
+const expectedParagraphs = Object.values(details).reduce((count, project) => count + project.sections.reduce((n, section) => n + section.paragraphs.length, 0), 0);
+assert(expectedParagraphs > 0);
+const approvedCrops = {
+  funeral: ["media/funeral/img-8821-340c5ad7.webp", 72, 42],
+  "shared-resonance": ["media/shared-resonance/img-1603-763eb4f5.webp", 100, 49],
+  "meta-kibun": ["media/meta-kibun/installation-07d43c32.webp", 50, 57],
+  origin: ["media/origin/the-meta-rose-project-631d0c1a.webp", 62, 62],
+  "bugskin-chapter-2": ["media/bugskin-chapter-2/img-0727-b0a7b7e7.webp", 68, 41],
+  mugonggan: ["media/mugonggan/img-5898-4ee3afc5.webp", 60, 100],
+  "live-performance": ["media/median/liveperformance.jpg", 50, 50],
+  "artist-workshops": ["media/touching-resonance/touching-resonance-b956e3bc.webp", 79, 0],
+  "melbourne-fashion-festival": ["images/fashionrunway.png", 50, 100],
+  "album-listening-session": ["images/listening-session.png", 50, 50]
+};
 assert(!/\/Users\/|cautions|heroLocal/.test(read("project-details.js")), "Do not publish private source paths or notes");
 
 const knownRoutes = new Set([
@@ -78,6 +94,13 @@ function checkMarkup(html, label, language) {
       assert.match(mail.searchParams.get("subject") || "", /^Artwork acquisition enquiry, .+/, `${label}: subject identifies the artwork`);
       continue;
     }
+    if (/^\/site\/.+\.(?:png|jpe?g|webp|gif|mp4|webm|ogv)$/i.test(href)) {
+      const file = decodeURI(href.slice("/site/".length));
+      const target = path.resolve(root, file);
+      assert(target.startsWith(root + path.sep), `${label}: gallery asset stays within the site`);
+      assert(fs.existsSync(target), `${label}: native gallery fallback points to a real media file: ${file}`);
+      continue;
+    }
     assert(href.startsWith(prefix), `${label}: link preserves ${language} route: ${href}`);
     const route = href.slice(prefix.length).split("#")[0];
     assert(knownRoutes.has(route), `${label}: known page link: ${route}`);
@@ -105,10 +128,23 @@ for (const language of ["en", "ko"]) {
   const ctx = context(language);
   const works = editorial.works(ctx);
   checkMarkup(works, `Works/${language}`, language);
-  checkAcquisitionFallback(works, site.primaryWorksOrder.map(key => details[key].title), `Works/${language}`, language);
-  assert.equal((works.match(/class="editorial-work"/g) || []).length, 4, "Four primary works use the same card layout");
-  assert.equal((works.match(/class="editorial-index-row"/g) || []).length, 6, "All six further-practice entries remain visible");
-  assert.equal((works.match(/is-pair/g) || []).length, 2, "Shared Resonance and Meta Kibun retain uncropped portrait pairs");
+  const catalogueKeys = editorial.orderedWorks(site, details);
+  checkAcquisitionFallback(works, catalogueKeys.filter(key => details[key].acquisition).map(key => details[key].title), `Works/${language}`, language);
+  const cards = [...works.matchAll(/<article class="catalogue-work" id="work-([^"]+)">([\s\S]*?)<\/article>/g)];
+  assert.equal(cards.length, 13, "All projects and confirmed presentations use one catalogue record structure");
+  assert.equal((works.match(/class="catalogue-work__record"/g) || []).length, 13);
+  assert.equal((works.match(/class="catalogue-work__summary"/g) || []).length, 13, "Every project has a readable summary, including further practice");
+  assert.equal((works.match(/class="catalogue-work__facts"/g) || []).length, 13, "Every project shares the same fact structure");
+  assert(!/editorial-index-row|Further Practice|추가 실천|Explore the visual index/.test(works), "No text-only secondary list or long Visual Index CTA");
+  for (const [key, [src, x, y]] of Object.entries(approvedCrops)) {
+    const card = cards.find(match => match[1] === key)?.[2];
+    assert(card, `Works/${language}: approved crop project retained: ${key}`);
+    assert(card.includes(`src="${ctx.media(src)}"`) && card.includes(`style="object-position:${x}% ${y}%"`), `Works/${language}: exact selected source and crop for ${key}`);
+  }
+  for (const key of ["respite-iii", "reintervention"]) {
+    const card = cards.find(match => match[1] === key)?.[2];
+    assert(card.includes("catalogue-work__image--pending") && !/<img\b/.test(card), `Works/${language}: pending photography does not borrow a different presentation's image`);
+  }
   for (const key of projectKeys) {
     assert(works.includes(`href="${ctx.href(site.projects[key].route)}"`), `Works/${language}: direct route for ${key}`);
     assert(fs.existsSync(path.join(root, site.projects[key].route, "index.html")), `Existing project template: ${key}`);
@@ -134,9 +170,24 @@ for (const language of ["en", "ko"]) {
     }
     for (const line of [].concat(project.meta[language])) assert(html.includes(projectEscape(line)), `${label}: complete metadata`);
     if (project.subtitle) assert(html.includes(projectEscape(project.subtitle[language])), `${label}: full subtitle`);
-    for (const illustration of project.illustrations) {
+    const accountSections = [...html.matchAll(/<section class="project-detail__section catalogue-project__section"[^>]*>([\s\S]*?)<\/section>/g)];
+    assert.equal(accountSections.length, project.sections.length, `${label}: every account remains in the linear reading flow`);
+    assert(!/role="tab(?:list)?"|data-chapter=|catalogue-related|related-project|other-project-promo/.test(html), `${label}: no hidden chapter tabs or other-project promotion`);
+    for (const illustration of project.illustrations || []) {
+      const account = accountSections[illustration.after][1];
       const heading = `<h2>${projectEscape(project.sections[illustration.after].title[language])}</h2>`;
-      assert(html.indexOf(ctx.media(illustration.src)) > html.indexOf(heading), `${label}: illustration follows its own section`);
+      assert(account.includes(ctx.media(illustration.src)), `${label}: illustration belongs to its own account`);
+      assert(account.indexOf(ctx.media(illustration.src)) < account.indexOf(heading), `${label}: its own photograph precedes the matching text`);
+    }
+    const selectedStrip = html.match(/<section class="catalogue-selected">([\s\S]*?)<\/section>/)?.[1];
+    if (selectedStrip) {
+      const selected = [...selectedStrip.matchAll(/<figure>([\s\S]*?)<\/figure>/g)];
+      assert(selected.length > 0 && selected.length <= 6, `${label}: a short selected gallery, not a second full visual index`);
+      assert(selectedStrip.includes(ctx.href("visual-index/")), `${label}: full image archive remains a separate destination`);
+      for (const [, figure] of selected) {
+        if (figure.includes("<video")) assert(/controls(?:\s|>)/.test(figure), `${label}: gallery videos retain native controls`);
+        else assert(/<a[^>]+href="\/site\/[^"<>]+\.(?:png|jpe?g|webp|gif)"[^>]+data-catalogue-gallery/.test(figure), `${label}: image opens directly even without gallery scripting`);
+      }
     }
     const mailLinks = [...html.matchAll(/href="(mailto:[^"]+)"/g)];
     assert.equal(mailLinks.length, project.acquisition ? 2 : 0, `${label}: acquisition routes only where intended`);
@@ -146,11 +197,11 @@ for (const language of ["en", "ko"]) {
 
   const index = editions.renderIndex(ctx);
   checkMarkup(index, `Editions/${language}`, language);
-  checkAcquisitionFallback(index, site.primaryWorksOrder.map(key => details[key].title), `Editions/${language}`, language);
+  checkAcquisitionFallback(index, editionKeys.map(key => details[key].title), `Editions/${language}`, language);
   assert.equal((index.match(/class="edition-card"/g) || []).length, 4);
   assert.equal((index.match(/class="edition-card__media"/g) || []).length, 4, "Four square-thumbnail media hooks");
   assert(index.includes(ctx.href("editions/reintervention/")), "Direct software-artwork route");
-  for (const key of site.primaryWorksOrder) assert(index.includes(ctx.href(site.projects[key].route)), `Edition links to original work: ${key}`);
+  for (const key of editionKeys) assert(index.includes(ctx.href(site.projects[key].route)), `Edition links to original work: ${key}`);
 
   const edition = editions.renderWork(ctx);
   checkMarkup(edition, `RE:INTERVENTION/${language}`, language);
@@ -165,7 +216,7 @@ for (const language of ["en", "ko"]) {
     assert(!/\b(?:fetch|XMLHttpRequest|WebSocket)\s*\(/.test(html), "No hidden enquiry transmission");
   }
 }
-assert.equal(checkedParagraphs, 112, "All 56 paragraphs checked in both languages");
+assert.equal(checkedParagraphs, expectedParagraphs * 2, "Every complete source paragraph is checked in both languages across the thirteen current accounts");
 
 // Guard the edition module against accidental raw text or attribute insertion.
 const hostile = context("en");
@@ -178,4 +229,4 @@ for (const html of [editorial.works(hostile), editorial.project(hostile, "funera
   assert(html.includes('class="acquisition-enquiry__select">minniepark.studio@gmail.com</dd>'), "Editorial enquiries retain the safe recipient fallback");
 }
 
-console.log("PASS: 26 EN/KO renders (10 projects + Works + 2 Editions pages per language), all 56 bilingual paragraphs, metadata, media, real routes, history anchors, native acquisition fallback with exact artwork subjects, common card structure, and no unapproved acquisition terms. Static checks only; browser/mobile visual QA remains separate.");
+console.log(`PASS: ${2 * (projectKeys.length + 3)} EN/KO renders, all ${expectedParagraphs} bilingual source paragraphs, 13 common catalogue records and 10 exact saved crops, linear accounts and selected native galleries, metadata/media/routes/history anchors, safe acquisition fallback and no unapproved terms. Static checks only; browser/mobile visual QA remains separate.`);

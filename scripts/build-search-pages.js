@@ -5,7 +5,7 @@ const vm = require("node:vm");
 const { parseSchemas, structuredData } = require("./search-schema.js");
 const root = path.resolve(__dirname, "..");
 const origin = "https://minniepark.art/";
-const stamp = "20261031-review-round1-68";
+const stamp = "20261031-layout-integration-70";
 const editorialStyleStamp = stamp;
 const editionStamp = stamp;
 const rendererStamp = stamp;
@@ -23,6 +23,12 @@ if (!person || !website) throw new Error("Homepage Person and WebSite identity a
 const routes = [...new Set([...read("sitemap.xml").matchAll(/<loc>https:\/\/minniepark\.art\/([^<]*)<\/loc>/g)]
   .map(match => match[1]).filter(route => !route.startsWith("ko/")))];
 for (const route of ["editions/", "editions/reintervention/"]) if (!routes.includes(route)) routes.push(route);
+const addedProjectRoutes = {
+  "works/melbourne-fringe/": "melbourne-fringe",
+  "works/respite-iii/": "respite-iii",
+  "works/reintervention/": "reintervention"
+};
+for (const route of Object.keys(addedProjectRoutes)) if (!routes.includes(route)) routes.push(route);
 const enDescriptions = {
   home: "Minnie Park is an interactive audio-visual artist based in Seoul and Melbourne. Explore Meta Rose, living-rose installations and research into touch, colour, affect and audience participation.",
   artist: "Minnie Park’s biography, artistic practice, exhibition and workshop history, and artist CV. Interactive media art shaped by living roses, touch, colour and affect.",
@@ -100,8 +106,8 @@ function render(template, route, locale) {
     html = html.replace('Each click introduces another rose.</span>', '클릭할 때마다 또 하나의 장미가 나타납니다.</span>')
       .replace('Each tap introduces another rose.</span>', '터치할 때마다 또 하나의 장미가 나타납니다.</span>');
   }
-  html = html.replace(/\s*<link\b[^>]*href="[^"]*editorial\.css[^"\s]*"[^>]*>/g, "")
-    .replace('</head>', `  <link rel="stylesheet" href="${relative}editorial.css?v=${editorialStyleStamp}" />\n</head>`);
+  html = html.replace(/\s*<link\b[^>]*href="[^"]*(?:editorial|catalogue-layout|research-contact-layout)\.css[^"\s]*"[^>]*>/g, "")
+    .replace('</head>', ["editorial.css", "catalogue-layout.css", "research-contact-layout.css"].map(file => `  <link rel="stylesheet" href="${relative}${file}?v=${editorialStyleStamp}" />`).join("\n") + "\n</head>");
   html = html.replace(/\s*<script\b[^>]*src="[^"]*(?:project-details|site-editorial|edition-render)\.js[^"\s]*"[^>]*><\/script>/g, "");
   if (!html.includes('site-media.js?')) html = html.replace(/(<script\b[^>]*src="[^"]*site-content\.js[^"\s]*"[^>]*><\/script>)/, `<script src="${relative}site-media.js?v=${stamp}"></script>\n  $1`);
   html = html.replace(/(<script\b[^>]*src="[^"]*site-render\.js[^"\s]*"[^>]*><\/script>)/,
@@ -121,7 +127,7 @@ function render(template, route, locale) {
       .replace(/\s*<script[^>]*src="[^"]*(?:hero-visual|rose-sprites)\.js[^"]*"[^>]*><\/script>/g, "")
       .replace(/\s*<link[^>]*href="[^"]*rose-home\.css[^"]*"[^>]*>/g, "")
       .replace(/\s*<script[^>]*src="[^"]*rose-home(?:-template)?\.js[^"]*"[^>]*><\/script>/g, "");
-    html = html.replace('</head>', '<link rel="stylesheet" href="'+relative+'rose-home.css?v=20261031-review-round1-68" />\n</head>')
+    html = html.replace('</head>', '<link rel="stylesheet" href="'+relative+'rose-home.css?v='+stamp+'" />\n</head>')
       .replace(/(<script[^>]*src="[^"]*site-render\.js[^"]*"[^>]*><\/script>)/, '<script src="'+relative+'rose-home-template.js?v='+stamp+'"></script>\n  $1')
       .replace('</body>', '<script defer src="'+relative+'rose-home.js?v='+stamp+'"></script>\n</body>');
     const noScriptCopy = locale === "ko" ? "인터랙션에는 JavaScript가 필요합니다. 작품과 리서치는 그대로 읽을 수 있습니다." : "JavaScript is needed for this interaction. You can still explore the works and research.";
@@ -135,6 +141,9 @@ function render(template, route, locale) {
 }
 for (const route of routes) {
   const template = fs.existsSync(path.join(root, route, "index.html")) ? read(`${route}index.html`)
+    : addedProjectRoutes[route] ? read("works/funeral/index.html")
+      .replace('data-project="funeral"', `data-project="${addedProjectRoutes[route]}"`)
+      .replace(/\s*<script\b[^>]*type="application\/ld\+json"[^>]*>[\s\S]*?<\/script>/g, "")
     : read("contact/index.html").replace('data-page="contact"', `data-page="${route === "editions/" ? "editions" : "edition"}"`)
       .replace(/\s*<script\b[^>]*type="application\/ld\+json"[^>]*>[\s\S]*?<\/script>/g, "");
   render(template, route, "en");

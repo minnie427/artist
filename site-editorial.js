@@ -1,76 +1,159 @@
 (() => {
   "use strict";
-  const esc = value => String(value ?? "").replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;");
+  const esc = value => String(value ?? "").replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll(String.fromCharCode(34), "&quot;");
   const local = (value, language) => typeof value === "string" ? value : value?.[language] || value?.en || "";
-  const list = value => Array.isArray(value) ? value : [value];
-  const further = ["bugskin-chapter-2", "mugonggan", "artist-workshops", "live-performance", "melbourne-fashion-festival", "album-listening-session"];
-  // Keep acquisition enquiries usable without JavaScript or a configured mail app.
+  const list = value => Array.isArray(value) ? value : value ? [value] : [];
+  const approvedCrops = {
+    funeral: { src: "media/funeral/img-8821-340c5ad7.webp", x: 72, y: 42 },
+    "shared-resonance": { src: "media/shared-resonance/img-1603-763eb4f5.webp", x: 100, y: 49 },
+    "meta-kibun": { src: "media/meta-kibun/installation-07d43c32.webp", x: 50, y: 57 },
+    origin: { src: "media/origin/the-meta-rose-project-631d0c1a.webp", x: 62, y: 62 },
+    "bugskin-chapter-2": { src: "media/bugskin-chapter-2/img-0727-b0a7b7e7.webp", x: 68, y: 41 },
+    mugonggan: { src: "media/mugonggan/img-5898-4ee3afc5.webp", x: 60, y: 100 },
+    "live-performance": { src: "media/median/liveperformance.jpg", x: 50, y: 50 },
+    "artist-workshops": { src: "media/touching-resonance/touching-resonance-b956e3bc.webp", x: 79, y: 0 },
+    "melbourne-fashion-festival": { src: "images/fashionrunway.png", x: 50, y: 100 },
+    "album-listening-session": { src: "images/listening-session.png", x: 50, y: 50 }
+  };
+  const catalogueFacts = {
+    funeral: {
+      location: { en: "Mijin Floor, Yeonnam-dong, Seoul", ko: "미진플로어, 서울 연남동" },
+      presentation: { en: "Seoul Fringe Festival, solo exhibition, 15 to 18 August 2026", ko: "서울프린지페스티벌 개인전, 2026년 8월 15~18일" },
+      participation: { en: "Touch, gesture, proximity and observation across Naming, Intervention, Witness and Record.", ko: "명명, 개입, 목격과 기록에서 접촉, 제스처, 가까워짐과 관찰을 서로 다른 참여 방식으로 구성합니다." }
+    },
+    "shared-resonance": {
+      location: { en: "118 Greeves Street, Fitzroy, Melbourne", ko: "118 Greeves Street, Fitzroy, 멜버른" },
+      presentation: { en: "Platform Presents: Hybrid, 18 April 2026", ko: "Platform Presents: Hybrid, 2026년 4월 18일" },
+      participation: { en: "Two or more participants connect through roses, water and hand-to-hand contact to activate the installation.", ko: "두 명 이상의 참여자가 장미, 물과 손을 맞잡는 접촉을 통해 설치를 함께 활성화합니다." }
+    },
+    "meta-kibun": {
+      location: { en: "RMIT University, Melbourne", ko: "RMIT University, 멜버른" },
+      presentation: { en: "12 to 13 September 2025, solo exhibition", ko: "2025년 9월 12~13일, 개인전" },
+      participation: { en: "Participants compose a colour term, then touch roses and water to alter sound and moving image.", ko: "참여자는 자신만의 색채어를 구성하고, 장미와 물을 만지며 사운드와 무빙이미지에 변화를 더합니다." }
+    },
+    origin: {
+      location: { en: "Seventh Gallery and Blackbox, RMIT University, Melbourne", ko: "Seventh Gallery 및 RMIT University Blackbox, 멜버른" },
+      presentation: { en: "Group exhibition, 29 May 2024; solo exhibitions, 7 June and November 2024", ko: "2024년 5월 29일 그룹전, 6월 7일 및 11월 개인전" },
+      participation: { en: "Touching living roses combines sound and image. An interactive game forms a separate part of the full presentation.", ko: "생장미를 만지며 사운드와 이미지를 조합합니다. 전체 발표에는 별도의 인터랙티브 게임이 함께 구성됩니다." }
+    },
+    "bugskin-chapter-2": {
+      location: { en: "Norla Dome, Docklands, Melbourne", ko: "Norla Dome, Docklands, 멜버른" },
+      presentation: { en: "November 2025, group exhibition", ko: "2025년 11월, 그룹전" },
+      materials: { en: "Suspended living roses, sound and real-time moving image.", ko: "공중에 매단 생장미, 사운드와 실시간 무빙이미지." },
+      participation: { en: "Suspended living roses form tactile interfaces for the audio-visual installation.", ko: "공중에 매단 생장미가 오디오비주얼 설치의 촉각적 인터페이스를 이룹니다." }
+    },
+    mugonggan: {
+      location: { en: "Mugonggan, Seongnam, Gyeonggi-do, South Korea", ko: "무공간, 경기도 성남시" },
+      presentation: { en: "5 July 2025, solo exhibition", ko: "2025년 7월 5일, 개인전" },
+      materials: { en: "Living roses, pink glass blocks, touch, sound and moving image.", ko: "생장미, 핑크 유리 블록, 터치, 사운드와 무빙이미지." },
+      participation: { en: "Rose interfaces arranged on pink glass blocks connect touch with sound and moving image.", ko: "핑크 유리 블록 위의 장미 인터페이스가 접촉을 사운드와 무빙이미지로 연결합니다." }
+    },
+    "live-performance": {
+      location: { en: "Miscellania, Melbourne", ko: "Miscellania, 멜버른" },
+      presentation: { en: "Median, 2023; Median 2, 2024", ko: "Median, 2023년 / Median 2, 2024년" },
+      materials: { en: "Original sound and real-time moving image.", ko: "오리지널 사운드와 실시간 무빙이미지." },
+      participation: { en: "A live composition of sound, image and the duration of performance.", ko: "사운드와 이미지, 공연의 지속시간을 라이브로 구성합니다." }
+    },
+    "artist-workshops": {
+      location: { en: "The Mission to Seafarers Victoria, Seventh Gallery and Science Gallery Melbourne", ko: "The Mission to Seafarers Victoria, Seventh Gallery 및 Science Gallery Melbourne" },
+      presentation: { en: "Flower your Face, 2 October 2026; Touching Resonance, 15 April 2026; creative technology and community workshops", ko: "Flower your Face, 2026년 10월 2일. Touching Resonance, 2026년 4월 15일. 크리에이티브 테크놀로지 및 커뮤니티 워크숍" },
+      materials: { en: "TouchDesigner, MediaPipe, tracking data, tactile interfaces, sound and real-time image.", ko: "TouchDesigner, MediaPipe, 트래킹 데이터, 촉각적 인터페이스, 사운드와 실시간 이미지." },
+      participation: { en: "Practical exercises and shared experimentation in creative technology.", ko: "크리에이티브 테크놀로지를 활용한 실습과 공동 실험을 진행합니다." }
+    },
+    "melbourne-fashion-festival": {
+      location: { en: "PayPal Melbourne Fashion Festival, Melbourne", ko: "PayPal Melbourne Fashion Festival, 멜버른" },
+      presentation: { en: "Premium Runways, March 2025", ko: "Premium Runways, 2025년 3월" },
+      materials: { en: "Moving image for runway-scale screens.", ko: "런웨이 스케일의 스크린을 위한 무빙이미지." },
+      participation: { en: "Sixteen moving-image sequences presented within the runway programme.", ko: "런웨이 프로그램에서 16개의 무빙이미지 시퀀스를 선보였습니다." }
+    },
+    "album-listening-session": {
+      location: { en: "Pre-release album listening session, Seoul", ko: "앨범 선공개 청음회, 서울" },
+      presentation: { en: "2026, commissioned event visuals", ko: "2026년, 이벤트 비주얼 커미션" },
+      materials: { en: "Audio-reactive moving image.", ko: "오디오에 반응하는 무빙이미지." },
+      participation: { en: "A 30-minute visual composition developed for the listening session.", ko: "청음회를 위해 30분 길이의 비주얼 구성을 제작했습니다." }
+    }
+  };
   const enquiryAction = (ctx, title, label = ["Acquisition enquiry", "작품 소장 문의"]) => {
     const text = (en, ko) => esc(ctx.tr(en, ko));
-    const email = /^mailto:[^?\s]+@[^?\s]+$/.test(ctx.site.external.email || "")
-      ? ctx.site.external.email : "mailto:minniepark.studio@gmail.com";
+    const email = /^mailto:[^?\s]+@[^?\s]+$/.test(ctx.site.external.email || "") ? ctx.site.external.email : "mailto:minniepark.studio@gmail.com";
     const subject = `Artwork acquisition enquiry, ${title}`;
-    return `<details class="acquisition-enquiry">
-      <summary class="inline-link">${text(...label)}</summary>
-      <div class="acquisition-enquiry__panel">
-        <p>${text("Tell me which work interests you and where you would like to present it.", "관심 작품과 설치하려는 공간을 알려주세요.")}</p>
-        <dl>
-          <dt>${text("Email", "이메일")}</dt>
-          <dd class="acquisition-enquiry__select">${esc(email.slice(7))}</dd>
-          <dt>${text("Subject", "제목")}</dt>
-          <dd class="acquisition-enquiry__select">${esc(subject)}</dd>
-        </dl>
-        <a href="${esc(`${email}?subject=${encodeURIComponent(subject)}`)}">${text("Open email app →", "메일 앱에서 작성 →")}</a>
-        <p>${text("Or copy the address into your email service.", "주소를 복사해 사용하는 이메일 서비스에서 작성해도 됩니다.")}</p>
-      </div>
-    </details>`;
+    return `<details class="acquisition-enquiry"><summary class="inline-link">${text(...label)}</summary><div class="acquisition-enquiry__panel"><p>${text("Tell me which work interests you and where you would like to present it.", "관심 작품과 설치하려는 공간을 알려주세요.")}</p><dl><dt>${text("Email", "이메일")}</dt><dd class="acquisition-enquiry__select">${esc(email.slice(7))}</dd><dt>${text("Subject", "제목")}</dt><dd class="acquisition-enquiry__select">${esc(subject)}</dd></dl><a href="${esc(`${email}?subject=${encodeURIComponent(subject)}`)}">${text("Open email app →", "메일 앱에서 작성 →")}</a><p>${text("Or copy the address into your email service.", "주소를 복사해 사용하는 이메일 서비스에서 작성해도 됩니다.")}</p></div></details>`;
   };
-
+  function orderedWorks(site, details) {
+    const candidates = [...(site.worksCatalogueOrder || []), ...(site.primaryWorksOrder || []), ...(site.projectSequence || []), ...Object.keys(details)];
+    const available = [...new Set(candidates)].filter(key => site.projects[key]?.route && details[key]);
+    if (site.worksCatalogueOrder?.length) return available;
+    const rank = key => key === "live-performance" ? 1 : key === "artist-workshops" ? 2 : ["melbourne-fashion-festival", "album-listening-session"].includes(key) || /commission/i.test(site.projects[key].category || "") ? 3 : 0;
+    return available.map((key,index)=>({key,index})).sort((a,b)=>rank(a.key)-rank(b.key)||a.index-b.index).map(item=>item.key);
+  }
+  function workFacts(original, detail, key, language) {
+    const overrides = original.catalogue || {};
+    const fallback = catalogueFacts[key] || {};
+    const field = name => local(overrides[name] || fallback[name], language);
+    const materials = field("materials") || local(detail.technical?.[0]?.materials, language);
+    return { location: field("location"), presentation: field("presentation"), materials, participation: field("participation") };
+  }
   function works(ctx) {
-    const { site, details, language, tr, href, imageMarkup, renderFooter } = ctx;
-    const pairs = {
-      "shared-resonance": ["media/shared-resonance/img-1603-763eb4f5.webp", "media/shared-resonance/img-1773-c9a5bfa0.webp"],
-      "meta-kibun": ["media/meta-kibun/installation-07d43c32.webp", "media/meta-kibun/img-8620-11ca27fe.webp"]
-    };
-    return `<section class="page-hero page-hero--works" id="top"><p class="eyebrow">${tr("Selected Works / 2024-2026", "주요 작품 / 2024-2026")}</p><h1>${tr("Works", "작품")}</h1><p class="hero-main">${tr("Interactive installations, moving image and participatory systems.", "인터랙티브 설치, 무빙이미지와 관객 참여 시스템.")}</p></section>
-      <section class="editorial-works-intro content-section content-section--compact"><p>${tr("Meta Rose is Minnie Park’s ongoing body of work, developed through distinct installations. Roses, pink and touch connect an inquiry into emotional ambivalence, participation and time.", "Meta Rose는 서로 다른 설치로 이어지는 Minnie Park의 지속적인 작업입니다. 장미, 핑크, 터치를 통해 감정의 양가성, 참여와 시간을 탐구합니다.")}</p><a class="inline-link" href="${href("research/")}">${tr("Read the research →", "작업의 배경 읽기 →")}</a></section>
-      <section class="editorial-works content-section" aria-label="${tr("Selected artworks", "주요 작품")}">
-      ${site.primaryWorksOrder.map((key, index) => {
-        const p = details[key], original = site.projects[key];
-        const images = pairs[key] || [p.hero.src];
-        return `<article class="editorial-work"><a class="editorial-work__media${images.length > 1 ? " is-pair" : ""}" href="${href(original.route)}" aria-label="${esc(tr("View ", "작품 보기: ") + p.title)}">${images.map(src => imageMarkup(src, p.title + " / " + tr("Installation documentation", "설치 기록"), index === 0)).join("")}</a>
-          <div class="editorial-work__caption"><div><p class="section-kicker">${esc(original.year)} / ${esc(local(original.categoryKo && language === "ko" ? original.categoryKo : original.category, language))}</p><h2><a href="${href(original.route)}">${esc(p.title)}</a></h2></div><div><p>${esc(local(p.lead, language))}</p><div class="editorial-work__actions"><a class="inline-link" href="${href(original.route)}">${tr("View work →", "작품 보기 →")}</a>${enquiryAction(ctx, p.title)}</div></div></div></article>`;
-      }).join("")}</section>
-      <section class="content-section editorial-further"><div class="section-heading section-heading--row"><h2>${tr("Further practice", "작업의 확장")}</h2><a class="inline-link" href="${href("artist/")}#artistHistoryTitle">${tr("Exhibition history →", "전시·활동 이력 →")}</a></div>
-      ${further.map(key => { const p = details[key]; return `<article class="editorial-index-row"><span>${esc(site.projects[key].year)}</span><div><h3><a href="${href(site.projects[key].route)}">${esc(p.title)}</a></h3><p>${esc(local(p.lead, language))}</p></div><a class="inline-link" href="${href(site.projects[key].route)}">${tr("View work →", "작품 보기 →")}</a></article>`; }).join("")}</section>
-      <section class="index-invitation content-section"><a href="${href("visual-index/")}">${tr("Visual Index →", "비주얼 인덱스 →")}</a><p>${tr("Installation views, visual studies and traces of participation.", "설치 전경, 비주얼 스터디와 참여의 흔적.")}</p></section>${renderFooter()}`;
+    const { site, details, language, tr, href, media, renderFooter } = ctx;
+    const keys = orderedWorks(site, details);
+    const cards = keys.map((key,index) => {
+      const p = details[key], original = site.projects[key], facts = workFacts(original,p,key,language);
+      const crop = approvedCrops[key];
+      const image = original.photoPending || original.documentationPending ? null : crop?.src || original.image || p.hero?.src;
+      const position = crop ? `${crop.x}% ${crop.y}%` : "50% 50%";
+      const year = language === "ko" ? String(original.year).replace(/(\d{4}) onwards/, "$1년부터 현재") : original.year;
+      const category = language === "ko" ? original.categoryKo || original.category : original.category;
+      const summary = language === "ko" ? original.cardKo || local(p.lead,language) : original.card || local(p.lead,language);
+      const alt = key === "shared-resonance" ? tr("Shared Resonance, April 2026 presentation", "Shared Resonance, 2026년 4월 발표") : original.imageAlt || local(p.hero?.caption,language) || p.title;
+      return `<article class="catalogue-work" id="work-${esc(key)}"><a class="catalogue-work__image${image ? "" : " catalogue-work__image--pending"}" href="${href(original.route)}" aria-label="${esc(tr("View ", "작품 보기: ") + p.title)}">${image ? `<img src="${esc(media(image))}" alt="${esc(alt)}" loading="${index===0 ? "eager" : "lazy"}" decoding="async" style="object-position:${position}" />` : `<span>${tr("Documentation to follow", "전시 기록 준비 중")}</span>`}</a><div class="catalogue-work__record"><div><p class="section-kicker">${esc(year)} / ${esc(category)}</p><h2><a href="${href(original.route)}">${esc(language === "ko" ? p.titleKo || p.title : p.title)}</a></h2><div class="editorial-work__actions"><a class="inline-link" href="${href(original.route)}">${tr("View project →", "작품 보기 →")}</a>${p.acquisition ? enquiryAction(ctx,p.title) : ""}</div></div><div><p class="catalogue-work__summary">${esc(summary)}</p><dl class="catalogue-work__facts">${[["year",tr("Year","연도"),year],["format",tr("Format","형식"),category],["location",tr("Location","장소"),facts.location],["presentation",tr("Presentation","발표"),facts.presentation],["materials",tr("Materials","재료"),facts.materials],["participation",tr("Participation","참여 방식"),facts.participation]].filter(([, , value])=>value).map(([,label,value])=>`<div><dt>${esc(label)}</dt><dd>${esc(value)}</dd></div>`).join("")}</dl></div></div></article>`;
+    }).join("");
+    return `<section class="page-hero page-hero--works catalogue-hero" id="top"><p class="eyebrow">${tr("Selected works", "주요 작품")}</p><h1>${tr("Works", "작품")}</h1><p class="hero-main">${tr("Installations, live audio-visual works, artist-led workshops and selected commissions.", "설치, 라이브 오디오비주얼 작업, 아티스트 워크숍과 주요 커미션.")}</p></section><section class="content-section catalogue-works" aria-label="${tr("Selected artworks", "주요 작품")}">${cards}</section><section class="content-section catalogue-index-link"><a class="inline-link" href="${href("visual-index/")}">${tr("Visual Index →", "비주얼 인덱스 →")}</a><p>${tr("Installation views, moving-image records and traces of participation.", "설치 전경, 무빙이미지 기록과 참여의 흔적.")}</p></section>${renderFooter()}`;
   }
-
-  function project(ctx, key) {
-    const { site, details, language, tr, href, imageMarkup, galleryMediaMarkup, renderFooter, renderProjectNav } = ctx;
-    const p = details[key], original = site.projects[key];
-    const text = value => esc(local(value, language));
-    const used = new Set([p.hero.src, ...(p.illustrations || []).map(item => item.src)]);
-    const relatedEntries = (original.entries || []).flatMap(entryKey => {
-      const entry = site.projects[entryKey];
-      return [{ src: entry.image, alt: entry.imageAlt }, ...(entry.gallery || [])];
+  function selectedGallery(original, detail, site) {
+    const used = new Set([detail.hero?.src, ...(detail.illustrations || []).map(item=>item.src)].filter(Boolean));
+    const related = (original.entries || []).flatMap(key => {
+      const entry = site.projects[key];
+      return entry ? [{src:entry.image,alt:entry.imageAlt},...(entry.gallery || [])] : [];
     });
-    const gallery = [...(original.gallery || []), ...relatedEntries].filter(item => {if (used.has(item.src)) return false; used.add(item.src); return true;});
-    return `<article class="project-detail" id="top">
-      <header class="project-detail__header"><a class="inline-link" href="${href("works/")}">← ${tr("Works", "작품")}</a><h1>${esc(language === "ko" ? p.titleKo || p.title : p.title)}</h1>${p.subtitle ? `<p class="project-subtitle">${text(p.subtitle)}</p>` : ""}<div class="project-meta">${list(local(p.meta, language)).map(line => `<p>${esc(line)}</p>`).join("")}</div>
-      ${p.acquisition ? `<div class="editorial-work__actions">${enquiryAction(ctx, p.title)}<a class="inline-link" href="${href("editions/")}">Editions →</a></div>` : ""}</header>
-      <figure class="project-detail__figure project-detail__hero">${imageMarkup(p.hero.src, local(p.hero.caption, language), true)}<figcaption>${text(p.hero.caption)}</figcaption></figure>
-      <p class="project-detail__lead">${text(p.lead)}</p>
-      ${p.technical?.length ? `<section class="project-detail__section project-detail__technical" id="technical-details" aria-labelledby="technical-title"><h2 id="technical-title">${tr("Technical details", "작품 기술 정보")}</h2><div>${p.technical.map(record => `<div class="project-technical-record"><h3>${text(record.label)}</h3><dl>${[["medium", "Medium", "매체"], ["materials", "Materials", "재료"], ["dimensions", "Dimensions", "설치 크기"], ["tools", "Tools / software", "제작 도구"], ["credit", "Artist / production", "작가 / 제작"]].filter(([field]) => record[field]).map(([field, en, ko]) => `<div><dt>${tr(en, ko)}</dt><dd>${text(record[field])}</dd></div>`).join("")}</dl></div>`).join("")}</div></section>` : ""}
-      ${p.sections.map((section, index) => {
-        const illustration = (p.illustrations || []).find(item => item.after === index);
-        return `<section class="project-detail__section"${section.id ? ` id="${esc(section.id)}"` : ""}><h2>${text(section.title)}</h2><div class="long-copy">${section.paragraphs.map(para => `<p>${text(para)}</p>`).join("")}</div></section>${illustration ? `<figure class="project-detail__figure">${imageMarkup(illustration.src, local(illustration.caption, language))}<figcaption>${text(illustration.caption)}</figcaption></figure>` : ""}`;
-      }).join("")}
-      ${key === "funeral" ? `<section class="edition-enquiry project-detail__section"><div><p class="section-kicker">${tr("Software edition", "소프트웨어 에디션")}</p><h2>RE:INTERVENTION</h2></div><div class="long-copy"><p>${tr("A software work developed within The Funeral. Explore acquisition possibilities and the conditions for presenting the work.", "The Funeral에서 전개된 소프트웨어 작품입니다. 소장 가능성과 작품 구현 조건을 살펴볼 수 있습니다.")}</p><a class="inline-link" href="${href("editions/reintervention/")}">${tr("Acquisition details →", "소장 안내 →")}</a></div></section>` : ""}
-      ${p.sources.length ? `<details class="project-detail__sources"><summary>${tr("Project documentation", "프로젝트 자료")}</summary>${p.sources.map(source => `<a href="${esc(source.url)}" target="_blank" rel="noreferrer">${esc(source.label)} ↗</a>`).join("")}</details>` : ""}
-      ${gallery.length ? `<section class="project-gallery" aria-label="${esc(p.title)}, ${tr("documentation", "기록")}">${gallery.map(item => `<figure>${galleryMediaMarkup(item)}</figure>`).join("")}</section>` : ""}
-      <div class="editorial-work__actions"><a class="inline-link" href="${href("visual-index/")}">Visual Index →</a>${p.acquisition ? enquiryAction(ctx, p.title, ["Acquisition enquiry →", "작품 소장 문의 →"]) : ""}</div>
-      ${renderProjectNav(key, site.primaryWorksOrder.includes(key))}</article>${renderFooter()}`;
+    const explicit = detail.selectedGallery || original.selectedGallery;
+    const candidates = explicit || [...(original.gallery || []),...related];
+    const unique = candidates.filter(item=>item?.src && !used.has(item.src) && (used.add(item.src),true));
+    if (explicit) return unique.slice(0,6);
+    const records = unique.filter(item=>/installation|participation|workshop|performance|설치|참여|워크숍|공연/i.test(item.alt || ""));
+    const videos = unique.filter(item=>/\.(mp4|webm|ogv)$/i.test(item.src));
+    const choices = [...videos.slice(0,1),...records,...unique];
+    const selected = new Set();
+    return choices.filter(item=>!selected.has(item.src) && (selected.add(item.src),true)).slice(0,6);
   }
-  window.MP_EDITORIAL = { works, project };
+  function project(ctx,key) {
+    const { site,details,language,tr,href,imageMarkup,galleryMediaMarkup,media,renderFooter,renderProjectNav } = ctx;
+    const p=details[key],original=site.projects[key];
+    const text=value=>esc(local(value,language));
+    const hero = p.hero?.src && !original.photoPending && !original.documentationPending ? p.hero : null;
+    const gallery = selectedGallery(original,p,site);
+    const phoneHub = p.phoneHubUrl || original.phoneHubUrl;
+    const phoneLink = typeof phoneHub === "string" && /^https:\/\/[^\s<>]+$/i.test(phoneHub) ? `<a class="inline-link" href="${esc(phoneHub)}" target="_blank" rel="noreferrer">${esc(local(p.phoneHubLabel,language) || tr("Phone Hub","Phone Hub"))} ↗</a>` : "";
+    const imageItems = gallery.filter(item=>! /\.(mp4|webm|ogv)$/i.test(item.src));
+    const selectedStrip = gallery.length ? `<section class="catalogue-selected"><div class="catalogue-selected__heading"><h2>${tr("Selected documentation","주요 기록")}</h2><a class="inline-link" href="${href("visual-index/")}">Visual Index →</a></div><div class="catalogue-selected__strip">${gallery.map(item=>`<figure>${/\.(mp4|webm|ogv)$/i.test(item.src) ? galleryMediaMarkup(item) : `<a href="${esc(media(item.src))}" target="_blank" rel="noreferrer" data-catalogue-gallery aria-label="${esc(tr("Enlarge image: ","이미지 확대: ") + (item.alt || p.title))}">${imageMarkup(item.src,item.alt || p.title)}</a>`}${item.alt ? `<figcaption>${esc(item.alt)}</figcaption>` : ""}</figure>`).join("")}</div></section>` : "";
+    const viewer = imageItems.length ? `<dialog class="catalogue-viewer" aria-label="${tr("Selected artwork documentation","선택한 작품 기록")}"><button class="catalogue-viewer__close" type="button" data-catalogue-close aria-label="${tr("Close image","이미지 닫기")}">×</button><div class="catalogue-viewer__stage"><button type="button" data-catalogue-prev aria-label="${tr("Previous image","이전 이미지")}">‹</button><figure><img alt="${tr("Selected artwork documentation","선택한 작품 기록")}" /><figcaption></figcaption></figure><button type="button" data-catalogue-next aria-label="${tr("Next image","다음 이미지")}">›</button></div></dialog>` : "";
+    return `<article class="project-detail catalogue-project" id="top"><header class="project-detail__header"><p class="eyebrow catalogue-project__eyebrow"><a href="${href("works/")}">← ${tr("Works","작품")}</a></p><h1>${esc(language === "ko" ? p.titleKo || p.title : p.title)}</h1>${p.subtitle ? `<p class="project-subtitle">${text(p.subtitle)}</p>` : ""}<div class="project-meta">${list(local(p.meta,language)).map(line=>`<p>${esc(line)}</p>`).join("")}</div>${p.acquisition ? `<div class="editorial-work__actions">${enquiryAction(ctx,p.title)}<a class="inline-link" href="${href("editions/")}">Editions →</a>${phoneLink}</div>` : phoneLink}</header>${hero ? `<figure class="project-detail__figure project-detail__hero">${imageMarkup(hero.src,local(hero.caption,language) || p.title,true)}${hero.caption ? `<figcaption>${text(hero.caption)}</figcaption>` : ""}</figure>` : ""}<p class="project-detail__lead">${text(p.lead)}</p>${p.sections.map((section,index)=>{const illustration=(p.illustrations || []).find(item=>item.after===index && item.src);return `<section class="project-detail__section catalogue-project__section"${section.id ? ` id="${esc(section.id)}"` : ""}>${illustration ? `<figure class="project-detail__figure catalogue-project__illustration">${imageMarkup(illustration.src,local(illustration.caption,language) || p.title)}${illustration.caption ? `<figcaption>${text(illustration.caption)}</figcaption>` : ""}</figure>` : ""}<h2>${text(section.title)}</h2><div class="long-copy">${section.paragraphs.map(para=>`<p>${text(para)}</p>`).join("")}</div></section>`;}).join("")}${p.technical?.length ? `<section class="project-detail__section catalogue-project__technical" id="technical-details" aria-labelledby="technical-title"><h2 id="technical-title">${tr("Technical details","작품 기술 정보")}</h2><div>${p.technical.map(record=>`<div class="project-technical-record"><h3>${text(record.label)}</h3><dl>${[["medium","Medium","매체"],["materials","Materials","재료"],["dimensions","Dimensions","설치 크기"],["tools","Tools / software","제작 도구"],["credit","Artist / production","작가 / 제작"]].filter(([field])=>record[field]).map(([field,en,ko])=>`<div><dt>${tr(en,ko)}</dt><dd>${text(record[field])}</dd></div>`).join("")}</dl></div>`).join("")}</div></section>` : ""}${p.sources?.length ? `<details class="project-detail__sources"><summary>${tr("Project documentation","프로젝트 자료")}</summary>${p.sources.map(source=>`<a href="${esc(source.url)}" target="_blank" rel="noreferrer">${esc(language === "ko" ? source.labelKo || source.label : source.label)} ↗</a>`).join("")}</details>` : ""}${selectedStrip}<div class="editorial-work__actions catalogue-project__actions"><a class="inline-link" href="${href("visual-index/")}">Visual Index →</a>${p.acquisition ? enquiryAction(ctx,p.title,["Acquisition enquiry →","작품 소장 문의 →"]) : ""}${phoneLink}</div>${renderProjectNav(key,site.primaryWorksOrder.includes(key))}${viewer}</article>${renderFooter()}`;
+  }
+  function bindGallery(container) {
+    if (!container?.querySelectorAll) return;
+    const links=[...container.querySelectorAll('[data-catalogue-gallery]')];
+    const dialog=container.querySelector('.catalogue-viewer');
+    if (!links.length || !dialog || typeof dialog.showModal !== "function" || dialog.dataset.bound) return;
+    dialog.dataset.bound="true";
+    const image=dialog.querySelector('img'),caption=dialog.querySelector('figcaption');
+    let current=0;
+    const show=index=>{current=(index+links.length)%links.length;const link=links[current];image.src=link.href;image.alt=link.querySelector('img')?.alt || "";caption.textContent=image.alt;if(!dialog.open){dialog.showModal();document.body.classList.add('is-catalogue-viewer-open');}};
+    links.forEach((link,index)=>link.addEventListener('click',event=>{if(event.button!==0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey)return;event.preventDefault();show(index);}));
+    dialog.querySelector('[data-catalogue-close]').addEventListener('click',()=>dialog.close());
+    dialog.querySelector('[data-catalogue-prev]').addEventListener('click',()=>show(current-1));
+    dialog.querySelector('[data-catalogue-next]').addEventListener('click',()=>show(current+1));
+    dialog.addEventListener('click',event=>{if(event.target===dialog || event.target.classList.contains('catalogue-viewer__stage'))dialog.close();});
+    dialog.addEventListener('keydown',event=>{if(event.key==='ArrowLeft'){event.preventDefault();show(current-1);}if(event.key==='ArrowRight'){event.preventDefault();show(current+1);}});
+    dialog.addEventListener('close',()=>document.body.classList.remove('is-catalogue-viewer-open'));
+  }
+  window.MP_EDITORIAL = { works, project, bindGallery, orderedWorks };
 })();

@@ -1,0 +1,79 @@
+/* Approved Research media-above accounts and the direct Contact layout.
+   Page widths, gutters and hero offsets come from the shared editorial system. */
+body[data-page="research"] .research-sequence {
+  display: block;
+  grid-template-columns: none;
+}
+.research-sequence__media {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(18px, 2.5vw, 34px);
+  margin: 0;
+}
+.research-sequence__media.is-multiple { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+.research-sequence__media figure { min-width: 0; margin: 0; }
+.research-sequence__media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 78svh;
+  object-fit: contain;
+  object-position: left top;
+  filter: none;
+  background: transparent;
+}
+.research-sequence__media.is-multiple img { max-height: 68svh; }
+.research-sequence__media figcaption { margin-top: 10px; font-size: 11px; line-height: 1.65; color: var(--muted); }
+.research-sequence__account {
+  display: grid;
+  grid-template-columns: minmax(0, .72fr) minmax(0, 1.28fr);
+  align-items: start;
+  gap: 28px 64px;
+  margin-top: 32px;
+}
+.research-sequence__account h2 { margin-top: 12px; margin-bottom: 0; }
+.research-sequence__account .long-copy > p:first-child { margin-top: 0; }
+.research-sequence__account .research-record__meta { margin-top: 20px; font-size: 12px; line-height: 1.75; color: var(--muted); }
+.research-sequence__account .research-record__citation { margin-top: 28px; font-size: 12px; line-height: 1.8; color: var(--muted); }
+.research-sequence { scroll-margin-top: calc(var(--header-height) + 24px); }
+
+body[data-page="contact"] .contact-hero--direct { display: block; }
+body[data-page="contact"] .contact-hero--direct .hero-main { max-width: 65ch; }
+body[data-page="contact"] .contact-details.contact-stack {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 52px;
+  border-bottom: 0;
+}
+body[data-page="contact"] .contact-stack .contact-links { align-items: flex-start; }
+body[data-page="contact"] .contact-stack .contact-links a { width: fit-content; max-width: 100%; }
+body[data-page="contact"] .contact-stack .contact-links > a:first-child { font-size: clamp(20px, 3vw, 38px); line-height: 1.35; letter-spacing: -.025em; }
+body[data-page="contact"] .contact-location .section-kicker { margin-bottom: 14px; }
+body[data-page="contact"] .contact-location h2 { margin: 0; }
+body[data-page="contact"] .contact-routes.contact-stack { display: block; }
+body[data-page="contact"] .contact-routes.contact-stack > article {
+  display: grid;
+  grid-template-columns: minmax(0, .35fr) minmax(0, 1fr);
+  gap: 0 48px;
+  padding: 30px 0 0;
+  border-top: 1px solid var(--line);
+}
+body[data-page="contact"] .contact-routes.contact-stack > article + article { margin-top: clamp(56px, 6vw, 88px); }
+body[data-page="contact"] .contact-routes.contact-stack > article > .section-kicker { grid-column: 1; grid-row: 1 / 4; }
+body[data-page="contact"] .contact-routes.contact-stack > article > :not(.section-kicker) { grid-column: 2; }
+body[data-page="contact"] .contact-routes.contact-stack h2 { max-width: 58ch; margin: 0 0 14px; }
+body[data-page="contact"] .contact-routes.contact-stack .cv-status { margin: 0 0 12px; font-size: 12px; color: var(--muted); }
+body[data-page="contact"] .contact-routes.contact-stack .page-actions { margin-top: 14px; }
+@media (max-width: 880px) {
+  .research-sequence__account { grid-template-columns: minmax(0, 1fr); gap: 24px; margin-top: 28px; }
+  .research-sequence__account h2 { max-width: 32ch; }
+}
+@media (max-width: 640px) {
+  .research-sequence__media.is-multiple { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .research-sequence__media img, .research-sequence__media.is-multiple img { max-height: none; }
+  .research-sequence__account { margin-top: 26px; }
+  body[data-page="contact"] .contact-details.contact-stack { gap: 38px; }
+  body[data-page="contact"] .contact-stack .contact-links > a:first-child { font-size: clamp(18px, 5.5vw, 28px); }
+  body[data-page="contact"] .contact-routes.contact-stack > article { display: block; }
+  body[data-page="contact"] .contact-routes.contact-stack > article > .section-kicker { margin-bottom: 17px; }
+}

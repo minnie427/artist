@@ -38,7 +38,7 @@ for (const language of ["en", "ko"]) {
   const projects = [...html.matchAll(/data-project="([^"]+)"/g)].map((match) => match[1]);
   const projectOrder = [...new Set(projects)];
   assert.equal(projectOrder.length, new Set(expectedIndex.map((item) => item.project)).size);
-  assert.equal(projectOrder[0], "funeral");
+  assert.equal(projectOrder[0], "melbourne-fringe");
   assert(!html.includes("visual-index__group"), "Project wrappers must not interrupt the continuous layout");
   assert.deepEqual(projects, projectOrder.flatMap(project =>
     expectedIndex.filter(item => item.project === project).map(() => project)

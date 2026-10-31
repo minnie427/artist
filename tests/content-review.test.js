@@ -39,8 +39,21 @@ function checkMarkup(html, name) {
 for (const language of ["en", "ko"]) {
   const { html: research, site } = render("research", language);
   checkMarkup(research, `research/${language}`);
-  assert.equal((research.match(/<figure/g) || []).length, 3);
-  assert(!research.includes('images/web/the meta kibun project.webp'));
+  assert.equal((research.match(/<figure/g) || []).length, 7, "Seven verified photographs across the six approved research accounts");
+  const sections = [...research.matchAll(/<section class="research-sequence content-section[^>]*id="([^"]+)"[^>]*>([\s\S]*?)<\/section>/g)];
+  assert.deepEqual(sections.map(match => match[1]), ["meta-rose", "research-culture", "research-time", "research-touch", "research-making", "research-data"], "The full ongoing Meta Rose body of work precedes the cultural study and subsequent research");
+  for (const [, id, section] of sections) {
+    assert(section.indexOf('class="research-sequence__media') >= 0, id + ": media exists");
+    assert(section.indexOf('class="research-sequence__media') < section.indexOf('class="research-sequence__account"'), id + ": photographs appear above the heading and body account");
+    assert(section.includes("<figure>") && section.includes("<figcaption>"), id + ": image has its own source-specific caption");
+    assert(!/<h2[^>]*>[^<]*\?/.test(section), id + ": statement heading rather than a question");
+  }
+  assert.equal((sections.find(match => match[1] === "research-time")[2].match(/<figure>/g) || []).length, 2, "Material time has two separately captioned installation photographs, not a fabricated longitudinal archive");
+  assert(language === "en" ? sections[0][2].includes("Meta Rose is Minnie Park’s central, long-term body of work.") : sections[0][2].includes("Meta Rose는 Minnie Park 작업의 중심을 이루는 장기 연작입니다."));
+  assert(language === "en" ? sections[0][2].includes("Minnie Park’s research develops through making") : sections[0][2].includes("Minnie Park의 연구는 Meta Rose의 작품을 제작하고"), "The existing account of the artistic research method is retained");
+  assert(language === "en" ? research.includes("sixteen survey responses") : research.includes("설문 응답 16건"));
+  assert(language === "en" ? research.includes("compared a non-interactive video with a tactile installation using the same audio-visual material") : research.includes("동일한 오디오비주얼 재료를 사용한 비인터랙티브 영상과 촉각적 설치를 비교"));
+  assert(!/data-order=|media-pending|class="pending"/.test(research), "No order chooser or placeholder archive is published");
   assert(research.indexOf('id="research-time"') < research.indexOf('id="research-evidence"'));
   assert(research.indexOf('id="research-data"') < research.indexOf('id="research-evidence"'));
   assert(research.includes("assets/honours-exegesis.pdf"));
@@ -62,6 +75,9 @@ for (const language of ["en", "ko"]) {
 const css = read("style.css");
 assert.match(css, /\.research-feature img,[\s\S]*?height:\s*auto;\s*object-fit:\s*contain;/);
 assert.match(css, /\.research-study\s*\{\s*grid-template-columns:\s*1fr;/);
+const approvedLayout = read("research-contact-layout.css");
+assert.match(approvedLayout, /\.research-sequence__media img\s*\{[^}]*height:\s*auto;[^}]*object-fit:\s*contain;[^}]*filter:\s*none;/);
+assert.match(approvedLayout, /@media \(max-width: 640px\)[\s\S]*?\.research-sequence__media\.is-multiple\s*\{\s*grid-template-columns:\s*minmax\(0, 1fr\)/);
 const researchHtml = read("research/index.html");
 const schema = JSON.parse(researchHtml.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
 assert.equal(schema["@type"], "WebPage");
@@ -69,4 +85,4 @@ assert.equal(schema.citation.dateCreated, "2025");
 assert.equal(schema.citation["@type"], "CreativeWork");
 assert(researchHtml.includes("material time"));
 assert(!read("works/funeral/index.html").includes("the%20meta%20rose%20project.webp"));
-console.log("PASS: all EN/KO pages and project renders, local media, Research inquiry/evidence order, source-correct dates and credits, and search-facing consistency.");
+console.log("PASS: all EN/KO pages and project renders, local media, Research full ongoing account first, six image-above accounts with seven captioned images, source-correct facts and credits, and search-facing consistency.");
