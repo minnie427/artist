@@ -13,6 +13,9 @@ for(const route of ['','ko/']){
  assert(html.includes('aria-controls="primaryLinks"'));
  assert(html.includes('<noscript>')&&html.includes('id="roseFallback"')&&html.includes('src="'+(route?'../':'./')+'assets/rose-halftone.png"'));
  assert(html.includes('id="interactionCue"') && html.includes('id="interactionHelp"'));
+ assert(html.includes('class="interaction-cue__icon"') && html.includes('class="interaction-cue__rays"'), 'The centred cue uses a local click icon');
+ const cueText=html.match(/<p id="interactionCue"[\s\S]*?<\/p>/)[0].replace(/<[^>]+>/g,'').trim();
+ assert.equal(cueText,route?'감정의 양가성을 탐색하는 인터랙티브 공간.':'An interactive space for emotional ambivalence.','Keep the exact fixed cue wording');
  assert(!html.includes('data-effect=') && !html.includes('effectCaption'), 'Emotion words choose responses without a comparison menu');
  assert(html.includes('id="heroTitle"><a href='), 'The only homepage title is its home link');
  const ids=[...html.matchAll(/\bid="([^\"]+)"/g)].map(m=>m[1]);assert.equal(new Set(ids).size,ids.length);
@@ -32,7 +35,34 @@ for(const route of ['artist/','works/','research/','editions/','contact/','ko/ar
 const modules=read('rose-home.js').split(";\n(() => {\n  'use strict';\n  const $=id=>")[0];
 const context={console,Float32Array,Uint16Array,document:{addEventListener(){}},addEventListener(){}};
 context.window=context;context.globalThis=context;vm.createContext(context);vm.runInContext(modules,context);
-const {RoseMath,RoseEffectSession,RoseEffectLabRenderer}=context;
+const {RoseMath,RoseEffectSession,RoseEffectLabRenderer,RoseInteractionCue,RoseViewportSizing,RoseFieldLayout}=context;
+// Exercise the actual scene listener and once-per-visit state without a camera.
+function cueFixture(){const listeners={},scene={dataset:{},addEventListener(type,listener){listeners[type]=listener;}},cue={hidden:false};return{scene,cue,listeners,controller:RoseInteractionCue.mount(scene,cue)};}
+let cueCase=cueFixture();cueCase.controller.refresh(false);assert.equal(cueCase.cue.hidden,false);
+cueCase.listeners.click({button:2});assert.equal(cueCase.cue.hidden,false,'A context click is not the entry interaction');
+cueCase.listeners.click({button:0});assert.equal(cueCase.cue.hidden,true,'A primary scene click dismisses the cue');
+assert.equal(cueCase.scene.dataset.cueDismissed,'true');
+cueCase.controller.refresh(false);assert.equal(cueCase.cue.hidden,true,'Reset or a tracking status refresh does not reopen the invitation');
+cueCase=cueFixture();cueCase.controller.dismiss();cueCase.controller.refresh(true);cueCase.controller.refresh(false);assert.equal(cueCase.cue.hidden,true,'Keyboard/hand feeling selection uses the same persistent dismissal');
+cueCase=cueFixture();assert.equal(cueCase.cue.hidden,false,'Navigation, camera and help have no listener in the scene controller');
+assert.deepEqual(Object.keys(cueCase.listeners),['click']);
+assert(/\.scene > \.interaction-cue\s*\{[\s\S]*?left:50%;[\s\S]*?top:50%;/.test(read('rose-home.css')));
+assert(read('rose-home.css').includes('@keyframes rose-cue-float') && read('rose-home.css').includes('@media(prefers-reduced-motion:reduce)'));
+// The viewport budget may reduce the fixed rose footprint on resize, while
+// keeping all seven cards and preserving their positions for new selections.
+for(const [width,height,cardWidth,cardHeight] of [[320,314,96,55],[390,557,104,63],[768,320,154,68],[1100,480,154,68],[1440,577,154,68]]){
+ const widths=Array(7).fill(cardWidth),heights=Array(7).fill(cardHeight),sizing=RoseViewportSizing.configure(width,height,widths,heights);
+ assert(sizing.fit,`${width}×${height}: seven cards fit the compact scene`);
+ const layout=RoseFieldLayout.create();layout.resize(width,height);
+ const input={dt:0,time:0,widths,heights,reservedEllipse:{x:width/2,y:height/2,rx:sizing.radius*1.13,ry:sizing.radius*1.13,gap:sizing.gap}};
+ const before=layout.update(input),after=layout.update({...input,frozen:new Set(['node-3'])});
+ assert.equal(before.unplaced,0);assert.equal(after.unplaced,0);
+ assert.deepEqual(before.map(p=>[p.x,p.y]),after.map(p=>[p.x,p.y]),'Selection membership cannot repack the cards');
+ assert.equal(RoseEffectLabRenderer.fixedBaseRadius(width,height),sizing.radius,'Renderer and card reservation share one fixed viewport radius');
+}
+assert(!read('rose-home.js').includes('RosePreviewSizing'));
+assert.equal((read('rose-home.js').match(/RoseViewportSizing\.configure\(/g)||[]).length,1,'Only the resize path configures the source footprint');
+assert(read('rose-home.css').includes('@supports(height:100dvh)'));
 const responseWords={joy:'offspring',distance:'separation',unease:'glitch',fear:'thorn',grief:'erosion'};
 for(const [word,effect] of Object.entries(responseWords)) assert.equal(RoseMath.effectOf(word),effect);
 const session=RoseEffectSession.create();

@@ -25,6 +25,7 @@ DEFAULT_SOURCE = Path(
 SITE_ROOT = Path(__file__).resolve().parents[1]
 MEDIA_ROOT = SITE_ROOT / "media"
 MANIFEST_PATH = SITE_ROOT / "site-media.js"
+SOURCE_SELECTION_PATH = SITE_ROOT / "media-source-selection.json"
 
 IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".webp", ".tif", ".tiff"}
 VIDEO_EXTENSIONS = {".mov", ".mp4", ".m4v"}
@@ -63,6 +64,74 @@ def preserve_pending_sources(manifest: dict[str, object], previous: dict[str, ob
         manifest["visualIndex"].extend(
             item for item in previous.get("visualIndex", []) if item.get("project") == key
         )
+
+
+def active_source_removals(
+    source_root: Path | None = None,
+    site_root: Path | None = None,
+    selection_path: Path | None = None,
+) -> list[dict[str, str]]:
+    """Reconcile only artist-confirmed omissions from a manual import.
+
+    Missing source folders never cause a general prune. A known omission stays
+    excluded from preserved manifests until that source is selected again in
+    either its original local folder or the organised library. Re-adding the
+    filename, or renaming the same content, therefore permits the next import.
+    """
+    site_root = site_root or SITE_ROOT
+    selection_path = selection_path or SOURCE_SELECTION_PATH
+    if not selection_path.exists():
+        return []
+    selection = json.loads(selection_path.read_text(encoding="utf-8"))
+    if selection.get("version") != 1 or not isinstance(selection.get("selections"), list):
+        raise ValueError("Unsupported media source selection format")
+    active: list[dict[str, str]] = []
+    for group in selection["selections"]:
+        project = group["project"]
+        folders = [site_root / group["siteSourceFolder"]]
+        if source_root is not None:
+            folders.append(source_root / group["librarySourceFolder"])
+        files = [item for folder in folders for item in media_files(folder)]
+        names = {item.name.casefold() for item in files}
+        missing = [row for row in group["missingSources"] if row["originalFilename"].casefold() not in names]
+        hashes: set[str] = set()
+        if missing:
+            for item in files:
+                try:
+                    hashes.add(content_digest(item))
+                except OSError:
+                    # A not-yet-available cloud original cannot prove restoration.
+                    continue
+        active.extend(dict(row, project=project) for row in missing if row["sourceHash"] not in hashes)
+    return active
+
+
+def apply_source_removals(manifest: dict[str, object], removals: list[dict[str, str]]) -> None:
+    """Remove stale public references, while retaining every original/derivative."""
+    if not removals:
+        return
+    projects = {row["project"] for row in removals}
+
+    def excluded(project: str, item: dict[str, object]) -> bool:
+        return any(
+            row["project"] == project
+            and (
+                item.get("src") == row["src"]
+                or (row.get("poster") and item.get("src") == row["poster"])
+                or item.get("sourceHash") == row["sourceHash"]
+            )
+            for row in removals
+        )
+
+    for key, project in manifest.get("projects", {}).items():
+        if key not in projects:
+            continue
+        if project.get("hero") and excluded(key, project["hero"]):
+            project["hero"] = None
+        project["gallery"] = [item for item in project.get("gallery", []) if not excluded(key, item)]
+    manifest["visualIndex"] = [
+        item for item in manifest.get("visualIndex", []) if not excluded(item.get("project"), item)
+    ]
 
 
 def natural_key(path: Path) -> list[object]:
@@ -404,6 +473,7 @@ def main() -> None:
             previous = json.loads(source[len(prefix):-1])
     manifest = build_manifest(args.source)
     preserve_pending_sources(manifest, previous)
+    apply_source_removals(manifest, active_source_removals(args.source))
     MANIFEST_PATH.write_text(
         "window.MP_IMPORTED_MEDIA = "
         + json.dumps(manifest, ensure_ascii=False, indent=2)

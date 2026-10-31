@@ -1088,20 +1088,7 @@ window.MP_IMPORTED_MEDIA = {
           "poster": "media/melbourne-fringe/img-2238-poster.jpg"
         },
         {
-          "src": "media/melbourne-fringe/img-2239.mp4",
-          "alt": "Moving-image documentation, Melbourne Fringe Festival, 2026",
-          "poster": "media/melbourne-fringe/img-2239-poster.jpg"
-        },
-        {
           "src": "media/melbourne-fringe/img-2250.webp",
-          "alt": "Installation documentation, Melbourne Fringe Festival, 2026"
-        },
-        {
-          "src": "media/melbourne-fringe/img-2269.webp",
-          "alt": "Roses drying after exhibition, Melbourne Fringe Festival, 2026"
-        },
-        {
-          "src": "media/melbourne-fringe/img-2304.webp",
           "alt": "Installation documentation, Melbourne Fringe Festival, 2026"
         },
         {
@@ -4465,21 +4452,6 @@ window.MP_IMPORTED_MEDIA = {
       "poster": "media/melbourne-fringe/img-2238-poster.jpg"
     },
     {
-      "src": "media/melbourne-fringe/img-2239.mp4",
-      "originalFilename": "IMG_2239.MOV",
-      "sourceHash": "966124f56b25e1327ca557df09f7fac74896e3b9f91be4a42dbcc6db63c93d76",
-      "title": "The Meta Rose: Shared Resonance / Melbourne Fringe",
-      "year": "2026",
-      "context": "Moving-image documentation",
-      "contextKo": "영상 기록",
-      "project": "melbourne-fringe",
-      "createdAt": "2026-10-04T19:50:05+1100",
-      "dateSource": "embedded",
-      "width": 720,
-      "height": 1280,
-      "poster": "media/melbourne-fringe/img-2239-poster.jpg"
-    },
-    {
       "src": "media/melbourne-fringe/img-2250.webp",
       "originalFilename": "IMG_2250.JPG",
       "sourceHash": "321bdee12972d5273bd51b7c6a06ff9a8d7e2c6f601871cb89f41cd70e97e465",
@@ -4491,34 +4463,6 @@ window.MP_IMPORTED_MEDIA = {
       "createdAt": "2026-10-04T19:51:19+11:00",
       "dateSource": "camera",
       "width": 1350,
-      "height": 1800
-    },
-    {
-      "src": "media/melbourne-fringe/img-2269.webp",
-      "originalFilename": "IMG_2269.JPG",
-      "sourceHash": "0d8ac01a28f0cc55274bdc582881bd1baffe7de8d6698eff8e209f169053dc87",
-      "title": "The Meta Rose: Shared Resonance / Melbourne Fringe",
-      "year": "2026",
-      "context": "Roses drying after exhibition",
-      "contextKo": "전시 이후 마르고 있는 장미",
-      "project": "melbourne-fringe",
-      "createdAt": "2026-10-04T19:52:26+11:00",
-      "dateSource": "camera",
-      "width": 1350,
-      "height": 1800
-    },
-    {
-      "src": "media/melbourne-fringe/img-2304.webp",
-      "originalFilename": "IMG_2304.jpg",
-      "sourceHash": "3e2843056d3587b32ea14c44a8e9fac83633a7b60afd927219a0e880fa642d7a",
-      "title": "The Meta Rose: Shared Resonance / Melbourne Fringe",
-      "year": "2026",
-      "context": "Installation documentation",
-      "contextKo": "설치 기록",
-      "project": "melbourne-fringe",
-      "createdAt": "2026-10-04T20:30:18+11:00",
-      "dateSource": "camera",
-      "width": 1012,
       "height": 1800
     },
     {

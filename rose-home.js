@@ -968,7 +968,7 @@
       if(nextW!==width||nextH!==height){width=nextW;height=nextH;initialised=false;geometry=null;lastTime=null;}
     }
     function buildGeometry(input){
-      const small=width<650,margin=small?10:22,gap=small?12:14;
+      const small=width<650,margin=small?10:22,gap=small?8:14;
       const widths=nodes.map((_,i)=>Math.min(width-margin*2,Math.max(44,finite(typeof input.widths?.[i]==='number'?input.widths[i]:input.widths?.[i]?.width,small?118:154))));
       const heights=nodes.map((_,i)=>Math.min(height-margin*2,Math.max(24,finite(typeof input.heights?.[i]==='number'?input.heights[i]:input.heights?.[i]?.height,68))));
       const radius=Math.min(width*(small?.345:.255),height*.385)*1.13;
@@ -992,20 +992,22 @@
     }
     function initialise(){
       const g=geometry,step=g.small?14:22,all=[];
+      const seed=width<360&&height<400?[[.17,.11],[.83,.11],[.17,.37],[.83,.37],[.17,.63],[.83,.63],[.17,.89]]:initial;
       // Dense candidates are an INITIAL/RESIZE operation only. During motion
       // there is no nearest-safe search, projection, reordering or fallback
       // re-pack, so a new selection can never make a card jump across the page.
       for(let i=0;i<COUNT;i++){
-        const b=g.bounds[i],xs=[b.x0,b.x1,clamp(width*initial[i][0],b.x0,b.x1)],ys=[b.y0,b.y1,clamp(height*initial[i][1],b.y0,b.y1)];
+        const b=g.bounds[i],xs=[b.x0,b.x1,clamp(width*seed[i][0],b.x0,b.x1)],ys=[b.y0,b.y1,clamp(height*seed[i][1],b.y0,b.y1)];
         for(let x=b.x0+step;x<b.x1;x+=step)xs.push(x);
         for(let y=b.y0+step;y<b.y1;y+=step)ys.push(y);
+        if(width<360&&height<400){for(let y=b.y0+g.heights[i]+g.gap;y<=b.y1;y+=g.heights[i]+g.gap)ys.push(y);}
         const candidates=[];for(const x of xs)for(const y of ys)if(!meetsRose(x,y,i))candidates.push({x,y});all.push(candidates);
       }
       for(let attempt=0;attempt<16;attempt++){
         const placed=[];
         for(let i=0;i<COUNT;i++){
           const b=g.bounds[i],shift=attempt===0?0:.22;
-          const targetX=clamp(width*(initial[i][0]+(hash(attempt*17+i)-.5)*shift),b.x0,b.x1),targetY=clamp(height*(initial[i][1]+(hash(attempt*29+i+76)-.5)*shift),b.y0,b.y1);
+          const targetX=clamp(width*(seed[i][0]+(hash(attempt*17+i)-.5)*shift),b.x0,b.x1),targetY=clamp(height*(seed[i][1]+(hash(attempt*29+i+76)-.5)*shift),b.y0,b.y1);
           let best=null,bestScore=Infinity;
           for(const p of all[i]){const score=((p.x-targetX)/width)**2+((p.y-targetY)/height)**2;if(score<bestScore&&safe(p.x,p.y,i,placed)){best=p;bestScore=score;}}
           if(!best)break;nodes[i].x=best.x;nodes[i].y=best.y;nodes[i].vx=nodes[i].vy=0;placed.push(i);
@@ -1077,7 +1079,7 @@
   // Legacy growth helpers remain explicit no-ops for older preview callers.
   function growthForCount() { return 1; }
   function growthForView() { return 1; }
-  function fixedBaseRadius(width,height) { return Math.min(width*(width<650?.345:.255),height*.385); }
+  function fixedBaseRadius(width,height) { return root.RoseViewportSizing?.radiusFor(width,height) ?? Math.min(width*(width<650?.345:.255),height*.385); }
   function normalizeArtBounds(rect, width, height) {
     const x = clamp(finite(rect?.x), 0, width), y = clamp(finite(rect?.y), 0, height);
     return {x,y,width:clamp(finite(rect?.width,width-x),0,width-x),height:clamp(finite(rect?.height,height-y),0,height-y)};
@@ -1453,6 +1455,23 @@
 
 
 ;
+/* Viewport fitting chooses a fixed source radius on resize, never after a click. */
+(function(root){
+  let geometry=null;
+  function configure(width,height,widths,heights){
+    const ideal=Math.min(width*(width<650?.345:.255),height*.385),gap=width<650?8:16;
+    let radius=ideal*.1,fit=false;
+    for(const scale of [1,.8,.65,.5,.4,.3,.2,.1]){
+      const candidate=ideal*scale,probe=root.RoseFieldLayout.create();probe.resize(width,height);
+      const result=probe.update({dt:0,time:0,widths,heights,reservedEllipse:{x:width/2,y:height/2,rx:candidate*1.13,ry:candidate*1.13,gap}});
+      if(!result.unplaced){radius=candidate;fit=true;break;}
+    }
+    geometry={width,height,radius,gap,fit};return geometry;
+  }
+  function radiusFor(width,height){return geometry&&Math.abs(geometry.width-width)<1&&Math.abs(geometry.height-height)<1?geometry.radius:Math.min(width*(width<650?.345:.255),height*.385);}
+  root.RoseViewportSizing={configure,radiusFor,get geometry(){return geometry;}};
+})(globalThis);
+
 /* Only explicit selections add responses; emotion-led selections accumulate together. */
 (function(root){
   'use strict';
@@ -1470,10 +1489,34 @@
 })(typeof globalThis!=='undefined'?globalThis:this);
 
 ;
+
+(function (root) {
+  'use strict';
+  // A scene-only invitation, dismissed for this visit independently of effect resets.
+  function mount(scene, cue) {
+    let dismissed = false;
+    function dismiss() {
+      if (dismissed) return;
+      dismissed = true;
+      if (cue) cue.hidden = true;
+      if (scene?.dataset) scene.dataset.cueDismissed = 'true';
+    }
+    scene?.addEventListener('click', event => {
+      if (event.button != null && event.button !== 0) return;
+      dismiss();
+    });
+    return Object.freeze({ dismiss,
+      refresh(hasSelection = false) { if (cue) cue.hidden = dismissed || hasSelection; },
+      get dismissed() { return dismissed; }
+    });
+  }
+  root.RoseInteractionCue = Object.freeze({ mount });
+})(typeof window !== 'undefined' ? window : globalThis);
 (() => {
   'use strict';
   const $=id=>document.getElementById(id), {words,clamp,polarityOf}=RoseMath;
   const scene=$('scene'),canvas=$('portrait'),rose=$('roseSource'),thorn=$('thornSource'),status=$('status'),error=$('error');
+  const cueController=RoseInteractionCue.mount(scene,$('interactionCue'));
   const buttons=[...document.querySelectorAll('[data-slot]')],containers=buttons.map(b=>b.closest('.emotion-node'));
   const reduced=matchMedia('(prefers-reduced-motion:reduce)'),target=RoseHandTarget.create({mode:'pinch'}),layout=RoseFieldLayout.create();
   const effectSession=RoseEffectSession.create();
@@ -1496,7 +1539,7 @@
   function measure(){S.widths=containers.map(b=>b.offsetWidth);S.heights=containers.map(b=>b.offsetHeight);S.buttonHeights=buttons.map(b=>b.offsetHeight);}
   function refreshWords(){buttons.forEach((b,i)=>{const w=wordAt(i);b.dataset.word=w.id;b.dataset.polarity=polarityOf(w.id);b.querySelector('.word-label').textContent=label(w);b.setAttribute('aria-label',`${label(w)}, ${tr('select feeling','감정 선택')}`);});}
   function refresh(){
-    scene.dataset.mode=S.mode;$('interactionCue').hidden=S.total>0;$('reset').hidden=S.total===0;
+    scene.dataset.mode=S.mode;cueController.refresh(S.total>0);$('reset').hidden=S.total===0;
     const running=S.phase==='running',pending=['requesting','loading'].includes(S.phase);
     $('camera').textContent=pending?tr('Cancel camera','카메라 취소'):running?tr('Turn camera off','카메라 끄기'):tr('Enable camera','카메라 켜기');$('camera').setAttribute('aria-pressed',String(running));
     $('handMode').textContent=target.mode==='dwell'?tr('Hand: hold','손 선택: 머무르기'):tr('Hand: pinch','손 선택: 핀치');$('reset').textContent=tr('Reset','초기화');
@@ -1507,7 +1550,7 @@
   }
   function frozenSlots(){const f=new Set();if(S.hoverSlot>=0)f.add(`node-${S.hoverSlot}`);buttons.forEach((b,i)=>{const p=S.points[i],near=S.hasPointer&&p&&Math.abs(S.pointer.x*S.w-p.x)<(S.widths[i]||154)/2+40&&Math.abs(S.pointer.y*S.h-p.y)<(S.heights[i]||68)/2+30;if(near||b.matches(':focus-visible')||S.clock<S.freezeUntil[i])f.add(`node-${i}`);});if(S.handState?.hoverId)f.add(S.handState.hoverId);if(S.handState?.lockedId)f.add(S.handState.lockedId);return f;}
   function select(i){
-    const w=wordAt(i);if(!w)return;const polarity=polarityOf(w.id);syncEffects(effectSession.select(w.id,polarity));S.lastSelect=performance.now();S.freezeUntil[i]=S.clock+1.8;S.feedbackUntil[i]=S.clock+1.25;
+    const w=wordAt(i);if(!w)return;cueController.dismiss();const polarity=polarityOf(w.id);syncEffects(effectSession.select(w.id,polarity));S.lastSelect=performance.now();S.freezeUntil[i]=S.clock+1.8;S.feedbackUntil[i]=S.clock+1.25;
     S.lastEvent={slot:i,word:w.id,polarity,version:S.total};scene.dataset.lastWord=w.id;scene.dataset.lastPolarity=polarity;
     containers[i].classList.add('is-committed');
     scene.dataset.lastClickNode=String(i);scene.dataset.lastClickX=String(S.points[i]?.x??0);scene.dataset.lastClickY=String(S.points[i]?.y??0);
@@ -1608,8 +1651,8 @@
       const pulse=reduced.matches?0:Math.exp(-(now-S.lastSelect)/900);
       const motion=S.phase==='running'?RoseTracker.sample(now):null,visualFace=motion?motion.face:null;
       // This reservation is viewport-derived only. Clicks/effects never resize it.
-      const baseRadius=Math.min(S.w*(S.w<650?.345:.255),S.h*.385);
-      const reservedEllipse={x:S.w/2,y:S.h/2,rx:baseRadius*1.13,ry:baseRadius*1.13,gap:16};
+      const baseRadius=RoseViewportSizing.radiusFor(S.w,S.h);
+      const reservedEllipse={x:S.w/2,y:S.h/2,rx:baseRadius*1.13,ry:baseRadius*1.13,gap:S.w<650?8:16};
       const previousPoints=S.points;
       S.points=layout.update({dt,time:reduced.matches?0:S.visualTime,reservedEllipse,widths:S.widths,heights:S.heights,frozen,reduced:reduced.matches});
       scene.dataset.unplaced=String(S.points.unplaced||0);
@@ -1632,7 +1675,7 @@
     }S.raf=requestAnimationFrame(render);
   }
   function wake(){if(!S.raf&&!document.hidden)S.raf=requestAnimationFrame(render);}
-  function resize(){const r=scene.getBoundingClientRect();S.w=r.width;S.h=r.height;measure();if(S.initialised&&S.textNodes.length)applyText(S.textSnapshot,true);measureText();textSpace.resize(r.width,r.height);linkCanvas.width=Math.round(r.width*Math.min(devicePixelRatio||1,1.5));linkCanvas.height=Math.round(r.height*Math.min(devicePixelRatio||1,1.5));layout.resize(r.width,r.height);S.renderer?.resize(r.width,r.height,Math.min(devicePixelRatio||1,1.5));wake();}
+  function resize(){const r=scene.getBoundingClientRect();S.w=r.width;S.h=r.height;measure();const sizing=RoseViewportSizing.configure(r.width,r.height,S.widths,S.heights);scene.dataset.viewportFit=String(sizing.fit);if(S.initialised&&S.textNodes.length)applyText(S.textSnapshot,true);measureText();textSpace.resize(r.width,r.height);linkCanvas.width=Math.round(r.width*Math.min(devicePixelRatio||1,1.5));linkCanvas.height=Math.round(r.height*Math.min(devicePixelRatio||1,1.5));layout.resize(r.width,r.height);S.renderer?.resize(r.width,r.height,Math.min(devicePixelRatio||1,1.5));wake();}
   function ready(){if(S.initialised)return;S.initialised=true;S.renderer=RoseEffectLabRenderer.create({canvas,image:rose,thornImage:thorn});scene.dataset.ready='true';makeText();refresh();announce('off');resize();}
   new ResizeObserver(resize).observe(scene);const assetsReady=()=>{if(rose.complete&&rose.naturalWidth&&thorn.complete&&thorn.naturalWidth)ready();};rose.addEventListener('load',assetsReady,{once:true});thorn.addEventListener('load',assetsReady,{once:true});rose.addEventListener('error',()=>{error.hidden=false;error.textContent=tr('The rose image could not load. Reopen the preview.','장미 이미지를 불러오지 못했습니다. 미리보기를 다시 열어 주세요.');});
   document.addEventListener('visibilitychange',()=>{if(document.hidden){RoseTracker.stop();cancelAnimationFrame(S.raf);S.raf=0;}else{S.lastTime=0;wake();}});

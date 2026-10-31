@@ -39,7 +39,7 @@ function checkMarkup(html, name) {
 for (const language of ["en", "ko"]) {
   const { html: research, site } = render("research", language);
   checkMarkup(research, `research/${language}`);
-  assert.equal((research.match(/<figure/g) || []).length, 9, "Nine verified temporary photographs across the six approved research accounts");
+  assert.equal((research.match(/<figure/g) || []).length, 8, "Eight retained temporary photographs after the user removed a Melbourne source");
   const sections = [...research.matchAll(/<section class="research-sequence content-section[^>]*id="([^"]+)"[^>]*>([\s\S]*?)<\/section>/g)];
   assert.deepEqual(sections.map(match => match[1]), ["meta-rose", "research-culture", "research-time", "research-touch", "research-making", "research-data"], "The full ongoing Meta Rose body of work precedes the cultural study and subsequent research");
   for (const [, id, section] of sections) {
@@ -48,7 +48,7 @@ for (const language of ["en", "ko"]) {
     assert(section.includes("<figure>") && /<figcaption(?: |>)/.test(section), id + ": image has its own source-specific caption");
     assert(!/<h2[^>]*>[^<]*\?/.test(section), id + ": statement heading rather than a question");
   }
-  assert.equal((sections.find(match => match[1] === "research-time")[2].match(/<figure>/g) || []).length, 4, "Four source-specific 2026 photos form the dried rose collection, without inventing multi-year documentation");
+  assert.equal((sections.find(match => match[1] === "research-time")[2].match(/<figure>/g) || []).length, 3, "Three retained 2026 photos form the dried rose collection, without inventing multi-year documentation");
   assert(language === "en" ? sections[0][2].includes("Meta Rose is Minnie Park’s central, long-term body of work.") : sections[0][2].includes("Meta Rose는 Minnie Park 작업의 중심을 이루는 장기 연작입니다."));
   assert(language === "en" ? sections[0][2].includes("Minnie Park’s research develops through making") : sections[0][2].includes("Minnie Park의 연구는 Meta Rose의 작품을 제작하고"), "The existing account of the artistic research method is retained");
   assert(language === "en" ? research.includes("sixteen survey responses") : research.includes("설문 응답 16건"));

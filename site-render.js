@@ -156,20 +156,21 @@
 
   function renderFooter() {
     return `
-      <footer class="site-footer">
+      <footer class="site-footer site-footer--compact">
         <div class="site-footer__identity">
           <p>Minnie Park</p>
           <p>${tr("Interactive Audio-Visual Artist", "인터랙티브 오디오비주얼 아티스트")}<br />${tr("Seoul / Melbourne", "서울 / 멜버른")}</p>
         </div>
-        <nav aria-label="${tr("Footer navigation", "하단 메뉴")}">
-          ${site.nav.map((item) => navLink(item, true)).join("")}
+        <div class="site-footer__contact"><a href="${site.external.email}">minniepark.studio@gmail.com</a></div>
+        <nav class="site-footer__pages" aria-label="${tr("Footer navigation", "하단 메뉴")}">
+          ${site.nav.filter(item => !item.external).map(item => navLink(item, true)).join("")}
+        </nav>
+        <nav class="site-footer__resources" aria-label="${tr("Further information", "추가 정보")}">
+          ${site.nav.filter(item => item.external).map(item => navLink(item, true)).join("")}
           <a href="${href(cvDownload)}" download>${tr("CV 2026 ↓", "CV 2026 다운로드 ↓")}</a>
           <a href="${site.external.instagram}" target="_blank" rel="noreferrer">Instagram ↗</a>
         </nav>
-        <div class="site-footer__contact">
-          <a href="${site.external.email}">minniepark.studio@gmail.com</a>
-          <p>© ${new Date().getFullYear()} Minnie Park</p>
-        </div>
+        <p class="site-footer__copyright">© ${new Date().getFullYear()} Minnie Park</p>
       </footer>
     `;
   }
@@ -777,17 +778,6 @@
     },
     "headingId": "research-time-title",
     "images": [
-      {
-        "src": "media/melbourne-fringe/img-2269.webp",
-        "alt": {
-          "en": "Dried pale roses beside curled leaves, Melbourne, 2026",
-          "ko": "말린 잎과 함께 놓인 연한 시든 장미, 멜버른, 2026"
-        },
-        "caption": {
-          "en": "Shared Resonance, Melbourne, 2026. Rose detail.",
-          "ko": "Shared Resonance, 멜버른, 2026. 장미 세부."
-        }
-      },
       {
         "src": "media/melbourne-fringe/img-2250.webp",
         "alt": {

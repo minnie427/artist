@@ -629,3 +629,25 @@ body[data-page="visual-index"] .site-shell { padding-top: calc(var(--header-heig
 @media (prefers-reduced-motion: reduce) {
   .editorial-work__media :is(img, video), .visual-index__item :is(img, video) { transition: none; }
 }
+
+/* Shared two-row footer: identity/contact, followed by pages/resources. */
+.site-footer.site-footer--compact {
+  display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:28px 64px; align-items:start; padding-block:42px 28px;
+}
+.site-footer--compact .site-footer__identity { grid-column:1; grid-row:1; }
+.site-footer--compact .site-footer__identity p:first-child { font-size:15px; margin-bottom:10px; }
+.site-footer--compact .site-footer__identity p:last-child { margin:0; color:var(--muted); font-size:11px; line-height:1.7; }
+.site-footer--compact .site-footer__contact { grid-column:2; grid-row:1; text-align:right; }
+.site-footer--compact .site-footer__contact a { display:inline-flex; min-height:36px; align-items:center; font-size:14px; }
+.site-footer--compact :is(.site-footer__pages,.site-footer__resources) { display:flex; flex-wrap:wrap; column-gap:20px; row-gap:0; margin:0; }
+.site-footer--compact .site-footer__pages { grid-column:1; grid-row:2; }
+.site-footer--compact .site-footer__resources { grid-column:2; grid-row:2; justify-content:flex-end; }
+.site-footer--compact :is(.site-footer__pages,.site-footer__resources) a { font-size:10px; font-weight:500; min-height:36px; }
+.site-footer--compact .site-footer__copyright { grid-column:1 / -1; grid-row:3; margin:2px 0 0; color:var(--muted); font-size:10px; }
+@media(max-width:640px) {
+  .site-footer.site-footer--compact { grid-template-columns:minmax(0,1fr); gap:20px; padding-block:32px 24px; }
+  .site-footer--compact :is(.site-footer__identity,.site-footer__contact,.site-footer__pages,.site-footer__resources,.site-footer__copyright) { grid-column:1; grid-row:auto; text-align:left; }
+  .site-footer--compact .site-footer__resources { justify-content:flex-start; }
+  .site-footer--compact :is(.site-footer__pages,.site-footer__resources) a { min-height:44px; }
+}

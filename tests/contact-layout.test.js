@@ -66,7 +66,9 @@ for (const width of [320, 390, 640, 768, 1024, 1280, 1440, 1728]) {
   const article = style('body[data-page="contact"] .contact-routes.contact-stack > article', width);
   assert.equal(article.display, width <= 640 ? "block" : "grid");
   const direct = style('body[data-page="contact"] .contact-stack .contact-links > a:first-child', width);
-  assert(pixels(direct["font-size"], width) <= (width <= 640 ? 28 : 38), "Direct email stays within the approved B scale");
+  const instagram = style('body[data-page="contact"] .contact-stack .contact-links > a.contact-instagram', width);
+  assert(pixels(direct["font-size"], width) <= 28, "Contact links stay within the approved shared scale");
+  for (const property of ["font-size", "font-weight", "line-height", "letter-spacing"]) assert.equal(direct[property], instagram[property], "Email and Instagram use the same typography");
   assert.equal(style(".contact-links a", width)["min-height"], "44px", "Contact links retain a mobile-sized target");
   assert(pixels(style(".contact-hero .hero-main", width)["font-size"], width) <= 17);
   assert(pixels(style(".contact-routes h2", width)["font-size"].replace(/\s*!important$/, ""), width) <= 16);

@@ -376,14 +376,6 @@ window.MP_PROJECT_DETAILS = {
           "ko": "손 감지 컨트롤 인터페이스와 함께 제시한 멜버른 설치의 투사 이미지, 2026년 10월."
         },
         "after": 3
-      },
-      {
-        "src": "media/melbourne-fringe/img-2269.webp",
-        "caption": {
-          "en": "Dried roses from the Melbourne installation, October 2026.",
-          "ko": "멜버른 설치에서 마른 장미, 2026년 10월."
-        },
-        "after": 4
       }
     ],
     "sources": [

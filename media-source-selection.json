@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "selections": [
+    {
+      "project": "melbourne-fringe",
+      "siteSourceFolder": "media/funeral-melb",
+      "librarySourceFolder": "artist/2026_melbourne-fringe",
+      "missingSources": [
+        {
+          "originalFilename": "IMG_2239.MOV",
+          "sourceHash": "966124f56b25e1327ca557df09f7fac74896e3b9f91be4a42dbcc6db63c93d76",
+          "src": "media/melbourne-fringe/img-2239.mp4",
+          "poster": "media/melbourne-fringe/img-2239-poster.jpg"
+        },
+        {
+          "originalFilename": "IMG_2269.JPG",
+          "sourceHash": "0d8ac01a28f0cc55274bdc582881bd1baffe7de8d6698eff8e209f169053dc87",
+          "src": "media/melbourne-fringe/img-2269.webp"
+        },
+        {
+          "originalFilename": "IMG_2304.jpg",
+          "sourceHash": "3e2843056d3587b32ea14c44a8e9fac83633a7b60afd927219a0e880fa642d7a",
+          "src": "media/melbourne-fringe/img-2304.webp"
+        }
+      ]
+    }
+  ]
+}
