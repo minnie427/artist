@@ -99,7 +99,8 @@ window.MP_PROJECT_DETAILS = {
           }
         ]
       }
-    ]
+    ],
+    "phoneHubArchiveUrl": "https://meta-rose-exhibition-archives.hw4225.chatgpt.site/lucky777-2026/"
   },
   "respite-iii": {
     "title": "Respite III",
@@ -389,18 +390,9 @@ window.MP_PROJECT_DETAILS = {
       {
         "label": "Melbourne Fringe Festival, official 2026 event",
         "url": "https://www.melbournefringe.com.au/whats-on/events/the-meta-rose-shared-resonance"
-      },
-      {
-        "label": "Melbourne Phone Hub",
-        "labelKo": "멜버른 Phone Hub",
-        "url": "https://minnie427.github.io/metarose-funeral/"
       }
     ],
-    "phoneHubUrl": "https://minnie427.github.io/metarose-funeral/",
-    "phoneHubLabel": {
-      "en": "Melbourne Phone Hub",
-      "ko": "멜버른 Phone Hub"
-    }
+    "phoneHubArchiveUrl": "https://meta-rose-exhibition-archives.hw4225.chatgpt.site/melbourne-2026/"
   },
   "funeral": {
     "title": "Meta Rose: The Funeral",
@@ -578,7 +570,8 @@ window.MP_PROJECT_DETAILS = {
         }
       }
     ],
-    "acquisition": true
+    "acquisition": true,
+    "phoneHubArchiveUrl": "https://meta-rose-exhibition-archives.hw4225.chatgpt.site/seoul-2026/"
   },
   "meta-kibun": {
     "title": "The Meta Kibun Project",

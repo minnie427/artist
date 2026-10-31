@@ -12,7 +12,7 @@ window.MP_ROSE_HOME = {
           <canvas id="textLinks" aria-hidden="true"></canvas><div id="textField" class="text-field" aria-hidden="true"></div>
           <div id="words" class="words" role="group" aria-label="${tr('Hold and select a feeling', '감정 단어 멈추고 선택하기')}">${nodes}</div>
           <div id="handIndicator" class="hand-indicator" hidden aria-hidden="true"><svg viewBox="0 0 44 44"><circle cx="22" cy="22" r="19" class="ring"/><circle cx="22" cy="22" r="19" class="progress"/></svg><i></i></div>
-          <p id="interactionCue" class="interaction-cue">${tr('An interactive rose space.<br>Explore feelings.', '장미와 감정을 탐색하는<br>인터랙티브 공간입니다.')}</p>
+          <p id="interactionCue" class="interaction-cue">${tr('An interactive space for emotional ambivalence.', '감정의 양가성을 탐색하는 인터랙티브 공간.')}</p>
           <span class="scene-label" id="modeLabel" hidden aria-hidden="true"></span>
         </div>
         <div class="field-controls"><div class="controls">

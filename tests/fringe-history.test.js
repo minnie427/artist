@@ -93,12 +93,18 @@ assert(melbourneMedia.length > 0, "Newly selected Melbourne documentation is ava
 for (const item of melbourneMedia) assert.equal(item.project, "melbourne-fringe", "Melbourne images do not acquire April/Seoul context");
 for (const item of site.visualIndex.filter(item => item.src.startsWith("media/shared-resonance/"))) assert.equal(item.project, "shared-resonance", "Existing April media identity remains unchanged");
 
-// The supplied destination is the Melbourne-specific URL. PhoneHub functionality
-// may legitimately be described for other editions without reusing this URL.
-const phoneHubUrl = "https://minnie427.github.io/metarose-funeral/";
-assert(fringe.sources.some(source => source.url === phoneHubUrl));
-for (const [key, record] of Object.entries(details)) if (key !== "melbourne-fringe") assert(!JSON.stringify(record).includes(phoneHubUrl), key + ": no borrowed Melbourne phone destination");
-for (const [key, record] of Object.entries(site.projects)) if (key !== "melbourne-fringe") assert(!JSON.stringify(record).includes(phoneHubUrl), key + ": no borrowed Melbourne phone destination");
+// Each public, read-only exhibition archive belongs to its own presentation.
+const operationalPhoneHubUrl = "https://minnie427.github.io/metarose-funeral/";
+const archiveUrls = {
+  funeral: "https://meta-rose-exhibition-archives.hw4225.chatgpt.site/seoul-2026/",
+  "melbourne-fringe": "https://meta-rose-exhibition-archives.hw4225.chatgpt.site/melbourne-2026/",
+  reintervention: "https://meta-rose-exhibition-archives.hw4225.chatgpt.site/lucky777-2026/"
+};
+for (const [key,url] of Object.entries(archiveUrls)) {
+  assert.equal(details[key].phoneHubArchiveUrl,url, key + ": correct archive edition");
+  for (const [other,record] of Object.entries(details)) if (other !== key) assert(!JSON.stringify(record).includes(url), other + ": no borrowed archive destination");
+}
+for (const record of Object.values(details)) assert(!JSON.stringify(record).includes(operationalPhoneHubUrl), "The operating interface is no longer a public project action");
 
 const version = read("scripts/build-search-pages.js").match(/const stamp = "([^"]+)";/)[1];
 for (const locale of ["", "ko/"]) {
@@ -112,11 +118,21 @@ for (const locale of ["", "ko/"]) {
   assert(!artist.includes("Short Bio") && !artist.includes("짧은 소개"));
   assert(artist.includes(locale ? "크리에이티브 테크놀로지스트" : "Creative technologist"));
   assert(!/Melbourne Fringe Festival\s*\((forthcoming|예정)\)/.test(artist));
-  assert(fringePage.includes(official) && fringePage.includes(phoneHubUrl));
-  assert(!aprilPage.includes(phoneHubUrl));
+  assert(fringePage.includes(official));
+  for (const [key,url] of Object.entries(archiveUrls)) {
+    const html = read(locale + `works/${key}/index.html`);
+    const links = [...html.matchAll(/<a\b([^>]*data-phone-hub-archive[^>]*)>([^<]+)<\/a>/g)];
+    assert.equal(links.length,1, key + ": one clear archive action in the project header");
+    assert(links[0][1].includes(`href="${url}"`), key + ": correct version destination");
+    assert.equal(links[0][2], locale ? "폰 허브 아카이브 보기" : "Explore the Phone Hub Archive", key + ": shared exact localised button name");
+    assert(links[0][1].includes('target="_blank"') && links[0][1].includes('rel="noreferrer"'), key + ": external archive retains existing link behaviour");
+    assert(links[0][1].includes(locale ? "읽기 전용 전시 아카이브" : "Read-only exhibition archive"));
+    assert(!html.includes(operationalPhoneHubUrl));
+  }
+  assert(!aprilPage.includes(operationalPhoneHubUrl));
   for (const id of ["naming", "intervention", "witness", "record"]) assert(fringePage.includes(`id="${id}"`));
-  for (const key of ["funeral", "shared-resonance", "reintervention", "respite-iii"]) assert(!read(locale + `works/${key}/index.html`).includes(phoneHubUrl));
+  for (const key of ["funeral", "shared-resonance", "reintervention", "respite-iii"]) assert(!read(locale + `works/${key}/index.html`).includes(operationalPhoneHubUrl));
   for (const page of [aprilPage, fringePage]) for (const script of ["site-content", "project-details", "site-render"]) assert(page.includes(`${script}.js?v=${version}`), "Static and runtime cache versions agree");
 }
 assert.match(read("site-render.js"), /The April 2026 presentation of Shared Resonance/);
-console.log("PASS: three October presentation accounts, distinct April/Melbourne routes/media, relocated official facts/access credits, Seoul Funeral, Lucky RE:INTERVENTION with BTS/Record screenings, Melbourne-specific phone URL, bilingual static routes and current cache versions.");
+console.log("PASS: three October presentation accounts, distinct April/Melbourne routes/media, relocated official facts/access credits, Seoul Funeral, Lucky RE:INTERVENTION with BTS/Record screenings, three exact read-only exhibition archive URLs, bilingual static routes and current cache versions.");

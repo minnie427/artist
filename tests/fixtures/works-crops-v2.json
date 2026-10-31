@@ -1,0 +1,97 @@
+{
+  "version": 2,
+  "scope": "Works crop review",
+  "aspectRatio": "16:9",
+  "originalFilesChanged": false,
+  "framing": "cover + zoom + pan",
+  "crops": [
+    {
+      "project": "melbourne-fringe",
+      "src": "media/melbourne-fringe/img-1983.webp",
+      "x": 100,
+      "y": 49.9,
+      "zoom": 1.12,
+      "objectPosition": "100% 49.9%"
+    },
+    {
+      "project": "funeral",
+      "src": "media/funeral/img-8821-340c5ad7.webp",
+      "x": 39.4,
+      "y": 100,
+      "zoom": 1.12,
+      "objectPosition": "39.4% 100%"
+    },
+    {
+      "project": "shared-resonance",
+      "src": "media/shared-resonance/img-1603-763eb4f5.webp",
+      "x": 100,
+      "y": 49,
+      "zoom": 1,
+      "objectPosition": "100% 49%"
+    },
+    {
+      "project": "bugskin-chapter-2",
+      "src": "media/bugskin-chapter-2/img-0727-b0a7b7e7.webp",
+      "x": 68,
+      "y": 41,
+      "zoom": 1,
+      "objectPosition": "68% 41%"
+    },
+    {
+      "project": "meta-kibun",
+      "src": "media/meta-kibun/installation-07d43c32.webp",
+      "x": 50,
+      "y": 57,
+      "zoom": 1,
+      "objectPosition": "50% 57%"
+    },
+    {
+      "project": "mugonggan",
+      "src": "media/mugonggan/img-5898-4ee3afc5.webp",
+      "x": 65.8,
+      "y": 91.9,
+      "zoom": 1.22,
+      "objectPosition": "65.8% 91.9%"
+    },
+    {
+      "project": "origin",
+      "src": "media/origin/the-meta-rose-project-631d0c1a.webp",
+      "x": 62.6,
+      "y": 64.6,
+      "zoom": 1.41,
+      "objectPosition": "62.6% 64.6%"
+    },
+    {
+      "project": "live-performance",
+      "src": "media/median/liveperformance.jpg",
+      "x": 47.3,
+      "y": 50.1,
+      "zoom": 1,
+      "objectPosition": "47.3% 50.1%"
+    },
+    {
+      "project": "artist-workshops",
+      "src": "media/touching-resonance/touching-resonance-b956e3bc.webp",
+      "x": 0,
+      "y": 0,
+      "zoom": 1.12,
+      "objectPosition": "0% 0%"
+    },
+    {
+      "project": "melbourne-fashion-festival",
+      "src": "images/fashionrunway.png",
+      "x": 50,
+      "y": 100,
+      "zoom": 1,
+      "objectPosition": "50% 100%"
+    },
+    {
+      "project": "album-listening-session",
+      "src": "images/listening-session.png",
+      "x": 50,
+      "y": 50,
+      "zoom": 1,
+      "objectPosition": "50% 50%"
+    }
+  ]
+}

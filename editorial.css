@@ -428,9 +428,10 @@ body[data-page="visual-index"] .site-shell { padding-top: calc(var(--header-heig
 .visual-index {
   --index-columns: 3;
   --index-gap: 18px;
-  width: min(calc(100% - var(--page-pad) * 2), var(--editorial-width));
-  margin-inline: auto;
-  padding: 0 0 18px;
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
+  padding: 0 18px 18px;
 }
 .visual-index__item :is(img, video) { filter: none !important; }
 .index-viewer { width: 100%; padding: 18px; }

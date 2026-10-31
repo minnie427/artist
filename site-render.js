@@ -18,6 +18,7 @@
   document.documentElement.lang = language;
 
   const tr = (english, korean) => language === "ko" ? korean : english;
+  const cvDownload = language === "ko" ? site.downloads.cvKo || site.downloads.cv : site.downloads.cv;
   const contextKo = {
     "Installation view": "설치 전경",
     "Suspended rose interface": "공중에 매단 장미 인터페이스",
@@ -162,7 +163,7 @@
         </div>
         <nav aria-label="${tr("Footer navigation", "하단 메뉴")}">
           ${site.nav.map((item) => navLink(item, true)).join("")}
-          <a href="${href(site.downloads.cv)}" download>${tr("CV 2026 ↓", "CV 2026 다운로드 ↓")}</a>
+          <a href="${href(cvDownload)}" download>${tr("CV 2026 ↓", "CV 2026 다운로드 ↓")}</a>
           <a href="${site.external.instagram}" target="_blank" rel="noreferrer">Instagram ↗</a>
         </nav>
         <div class="site-footer__contact">
@@ -596,7 +597,7 @@
           <p>${tr("Minnie Park is a Korean-Australian interactive audio-visual artist working between Seoul and Melbourne. Her installations combine living roses, tactile interaction, sound, light and moving image to examine affect as embodied, relational and culturally situated. Through Meta Rose, begun in 2024 and including The Meta Kibun Project, she develops distinct participatory systems around emotional ambivalence, culturally shaped feeling, relational touch and memory.", "Minnie Park는 서울과 멜버른을 기반으로 활동하는 한국계 호주 인터랙티브 오디오비주얼 아티스트입니다. 생장미, 촉각적 인터랙션, 사운드, 빛과 무빙이미지를 결합한 설치를 통해 정서를 신체적이고 관계적이며 문화적으로 형성되는 경험으로 살펴봅니다. 2024년에 시작되어 The Meta Kibun Project를 포함하는 Meta Rose를 통해 감정의 양가성, 문화적으로 형성된 감정, 관계적 터치와 기억을 다루는 서로 다른 참여형 시스템을 구축합니다.")}</p>
           <p>${tr("Her 2025 Honours research at RMIT University examined audience accounts through The Meta Kibun Project, using interviews and surveys alongside an interactive exhibition. Park is also a co-founder of TouchCollective, an artist-led community centred on TouchDesigner, and develops workshops connecting creative practice, embodied participation and technical experimentation.", "2025년 RMIT University의 Honours 연구에서는 The Meta Kibun Project의 인터랙티브 전시와 인터뷰·설문을 통해 관객의 경험 서술을 살펴봤습니다. TouchDesigner를 중심으로 활동하는 아티스트 주도 커뮤니티 TouchCollective의 공동 설립자이기도 하며, 창작 실천과 신체적 참여, 기술적 실험을 연결하는 워크숍을 발전시키고 있습니다.")}</p>
           ${actions([
-            { label: tr("Download CV 2026 ↓", "CV 2026 다운로드 ↓"), path: site.downloads.cv, download: true },
+            { label: tr("Download CV 2026 ↓", "CV 2026 다운로드 ↓"), path: cvDownload, download: true },
             { label: tr("View Works", "작품 보기"), path: "works/" }
           ])}
         </div>
@@ -669,12 +670,14 @@
       "en": [
         "Meta Rose is Minnie Park’s central, long-term body of work. Begun in 2024, it treats the rose, pink and touch as a recurring artistic grammar. Each chapter begins with a new emotional question and recomposes that grammar as a distinct installation, with its own spatial arrangement, audio-visual system and conditions of participation.",
         "Across the series, living roses move between interface, image, body, memorial and data trace. Opposing states, including bloom and decay, tenderness and friction, life and death, remain in tension rather than resolving into a single emotional reading.",
-        "Minnie Park’s research develops through making, exhibiting and revisiting the works of Meta Rose. Each installation tests a different relationship between living materials, an audio-visual system and the people who activate it. The recurring question is how an artwork can make conflicting feelings available to sensory experience without requiring them to resolve into a single emotion."
+        "Minnie Park’s research develops through making, exhibiting and revisiting the works of Meta Rose. Each installation tests a different relationship between living materials, an audio-visual system and the people who activate it. The recurring question is how an artwork can make conflicting feelings available to sensory experience without requiring them to resolve into a single emotion.",
+        "The rose gives this inquiry a material form. Petals and thorns hold attraction and the possibility of pain in the same object; a flower can retain its colour as it begins to wilt. Park approaches ambivalence through this simultaneity. Pink, grey and black are paired with contrasting sonic textures to work with vitality, friction and loss, without treating them as universal codes for how a viewer should feel."
       ],
       "ko": [
         "Meta Rose는 Minnie Park 작업의 중심을 이루는 장기 연작입니다. 2024년에 시작된 이 연작은 장미, 핑크와 터치를 반복되는 조형 언어로 다룹니다. 각 장은 새로운 감정적 질문에서 출발하며, 고유한 공간 구성, 오디오비주얼 시스템과 참여 조건을 지닌 서로 다른 설치로 이 언어를 다시 구성합니다.",
         "연작에서 생장미는 인터페이스, 이미지, 신체, 기념물과 데이터 흔적 사이를 이동합니다. 개화와 소멸, 부드러움과 마찰, 삶과 죽음 같은 대립하는 상태는 하나의 감정적 해석으로 정리되지 않은 채 긴장 속에 함께 존재합니다.",
-        "Minnie Park의 연구는 Meta Rose의 작품을 제작하고 전시하며 다시 살펴보는 과정에서 전개됩니다. 각 설치는 살아 있는 재료, 오디오비주얼 시스템과 이를 활성화하는 사람들 사이의 관계를 서로 다른 방식으로 탐구합니다. 상충하는 감정을 하나로 정리하지 않으면서 어떻게 감각적으로 경험하게 할 수 있는지가 작업을 관통하는 질문입니다."
+        "Minnie Park의 연구는 Meta Rose의 작품을 제작하고 전시하며 다시 살펴보는 과정에서 전개됩니다. 각 설치는 살아 있는 재료, 오디오비주얼 시스템과 이를 활성화하는 사람들 사이의 관계를 서로 다른 방식으로 탐구합니다. 상충하는 감정을 하나로 정리하지 않으면서 어떻게 감각적으로 경험하게 할 수 있는지가 작업을 관통하는 질문입니다.",
+        "장미는 이 질문에 물질적 형태를 부여합니다. 꽃잎과 가시는 하나의 대상 안에 매혹과 고통의 가능성을 함께 지니며, 꽃은 시들기 시작하면서도 색을 유지합니다. Park는 이러한 동시성을 통해 양가성을 다룹니다. 핑크, 회색과 검정은 상반된 사운드 질감과 짝을 이루며 생명력과 마찰, 상실을 다룹니다. 이는 관객이 느껴야 할 감정을 지시하는 보편적 코드는 아닙니다."
       ]
     },
     "links": [
@@ -753,22 +756,20 @@
   {
     "id": "research-time",
     "eyebrow": {
-      "en": "Ambivalence / Material time",
-      "ko": "양가성 / 재료의 시간"
+      "en": "Material time / A photographic collection",
+      "ko": "재료의 시간 / 사진 컬렉션"
     },
     "title": {
-      "en": "The rose continues to change after the encounter.",
-      "ko": "만남이 끝난 뒤에도 장미는 변합니다."
+      "en": "Dried roses",
+      "ko": "시든 장미"
     },
     "paragraphs": {
       "en": [
-        "The rose gives this inquiry a material form. Petals and thorns hold attraction and the possibility of pain in the same object; a flower can retain its colour as it begins to wilt. Park approaches ambivalence through this simultaneity. Pink, grey and black are paired with contrasting sonic textures to work with vitality, friction and loss, without treating them as universal codes for how a viewer should feel.",
         "Living roses introduce a duration that differs from the repeatable time of a digital system. Over an exhibition, many people touch the flowers while petals lose moisture, leaves curl and stems dry. Contact and natural change take place together. In Park’s practice, the flower’s remaining vitality and its deterioration make life and death perceptible as overlapping conditions rather than a simple before and after.",
         "After each exhibition, Park keeps and dries the roses, photographing their changing condition. The photograph cannot restore the living flower or repeat the encounter. It retains a visible record of a material state that can no longer be returned to, bringing the flower’s absence into relation with its continuing image.",
         "Read across successive exhibitions and years, these photographs offer another way to study Meta Rose: through the materials that remain after participation has ended. This developing photographic inquiry asks what an image can retain of touch, duration and loss, and what remains outside its frame."
       ],
       "ko": [
-        "장미는 이 질문에 물질적 형태를 부여합니다. 꽃잎과 가시는 하나의 대상 안에 매혹과 고통의 가능성을 함께 지니며, 꽃은 시들기 시작하면서도 색을 유지합니다. Park는 이러한 동시성을 통해 양가성을 다룹니다. 핑크, 회색과 검정은 상반된 사운드 질감과 짝을 이루며 생명력과 마찰, 상실을 다룹니다. 이는 관객이 느껴야 할 감정을 지시하는 보편적 코드는 아닙니다.",
         "생장미는 반복 가능한 디지털 시스템의 시간과 다른 지속을 작품에 들여옵니다. 전시가 이어지는 동안 여러 사람이 꽃을 만지고, 꽃잎은 수분을 잃으며 잎은 말리고 줄기는 마릅니다. 접촉과 자연적인 변화가 함께 일어납니다. Park의 작업에서 꽃에 남아 있는 생명력과 쇠퇴는 삶과 죽음을 단순한 이전과 이후가 아닌 중첩된 상태로 드러냅니다.",
         "Park는 전시가 끝날 때마다 장미를 보관해 말리고, 변화한 상태를 사진으로 기록합니다. 사진은 살아 있던 꽃을 되돌리거나 그 만남을 재현할 수 없습니다. 대신 다시 돌아갈 수 없는 재료의 상태를 시각적 기록으로 남기며, 꽃의 부재와 지속되는 이미지 사이의 관계를 드러냅니다.",
         "여러 전시와 해에 걸쳐 이 사진들을 함께 보는 것은 참여가 끝난 뒤 남은 재료를 통해 Meta Rose를 살펴보는 또 하나의 방식입니다. 이 사진 연구는 이미지가 접촉, 지속과 상실의 무엇을 간직할 수 있으며, 무엇이 프레임 밖에 남는지 묻습니다."
@@ -777,25 +778,47 @@
     "headingId": "research-time-title",
     "images": [
       {
-        "src": "media/funeral/img-8592-544825ad.webp",
+        "src": "media/melbourne-fringe/img-2269.webp",
         "alt": {
-          "en": "Wilted pale roses and curled leaves attached to the skeleton model in Meta Rose: The Funeral",
-          "ko": "Meta Rose: The Funeral의 해골 모형에 연결된 시든 연한 장미와 말린 잎"
+          "en": "Dried pale roses beside curled leaves, Melbourne, 2026",
+          "ko": "말린 잎과 함께 놓인 연한 시든 장미, 멜버른, 2026"
         },
         "caption": {
-          "en": "Wilting roses within Meta Rose: The Funeral, 2026. Installation detail.",
-          "ko": "Meta Rose: The Funeral 안에서 시들어가는 장미, 2026. 설치 세부."
+          "en": "Shared Resonance, Melbourne, 2026. Rose detail.",
+          "ko": "Shared Resonance, 멜버른, 2026. 장미 세부."
+        }
+      },
+      {
+        "src": "media/melbourne-fringe/img-2250.webp",
+        "alt": {
+          "en": "Drying roses retained from the Melbourne installation, 2026",
+          "ko": "멜버른 설치에서 남은 시든 장미 묶음, 2026"
+        },
+        "caption": {
+          "en": "Shared Resonance, Melbourne, 2026. Retained flowers.",
+          "ko": "Shared Resonance, 멜버른, 2026. 보관한 꽃."
         }
       },
       {
         "src": "media/funeral/img-8715-e4c71394.webp",
         "alt": {
-          "en": "Rose detail in Meta Rose: The Funeral, 2026",
-          "ko": "Meta Rose: The Funeral의 장미 세부, 2026"
+          "en": "Dry rose heads hanging among wires in The Funeral, Seoul, 2026",
+          "ko": "The Funeral의 전선 사이에 매달린 마른 장미, 서울, 2026"
         },
         "caption": {
-          "en": "Rose detail / The Funeral, 2026.",
-          "ko": "장미 세부 / The Funeral, 2026."
+          "en": "The Funeral, Seoul, 2026. Dry rose heads.",
+          "ko": "The Funeral, 서울, 2026. 마른 장미."
+        }
+      },
+      {
+        "src": "media/funeral/img-8592-544825ad.webp",
+        "alt": {
+          "en": "Wilted roses and curled leaves within The Funeral, Seoul, 2026",
+          "ko": "The Funeral 안에서 시든 장미와 말린 잎, 서울, 2026"
+        },
+        "caption": {
+          "en": "The Funeral, Seoul, 2026. Wilting roses.",
+          "ko": "The Funeral, 서울, 2026. 시들어가는 장미."
         }
       }
     ]
@@ -971,7 +994,8 @@
       ${researchSections.map((section, sectionIndex) => `
         <section class="research-sequence content-section ${section.className || "research-body"}" id="${section.id}" aria-labelledby="${section.headingId}">
           <div class="research-sequence__media${section.images.length > 1 ? " is-multiple" : ""}">
-            ${section.images.map(image => `<figure>${imageMarkup(image.src, field(image.alt), sectionIndex === 0)}<figcaption>${field(image.caption)}</figcaption></figure>`).join("\n            ")}
+            ${section.images.length===1?section.images.map(image=>`<figure><div class="research-media-frame">${imageMarkup(image.src,field(image.alt),sectionIndex===0)}</div><figcaption>${field(image.caption)}</figcaption></figure>`).join(""):Array.from({length:Math.ceil(section.images.length/4)},(_,group)=>{const images=section.images.slice(group*4,group*4+4);return `<div class="research-media-panel" data-count="${images.length}">${images.map(image=>`<figure><div class="research-media-frame">${imageMarkup(image.src,field(image.alt),sectionIndex===0)}</div><figcaption class="sr-only">${field(image.caption)}</figcaption></figure>`).join("")}</div>`;}).join("")}
+            ${section.images.length>1?`<div class="research-media-captions" aria-hidden="true">${section.images.map((image,index)=>`<p>${String(index+1).padStart(2,"0")} / ${field(image.caption)}</p>`).join("")}</div>`:""}
           </div>
           <div class="research-sequence__account">
             <header><p class="section-kicker">${field(section.eyebrow)}</p><h2 id="${section.headingId}">${field(section.title)}</h2>${section.meta ? `<p class="research-record__meta">${field(section.meta)}</p>` : ""}</header>
@@ -1258,7 +1282,7 @@
           <p class="section-kicker">${tr("Artist CV", "아티스트 CV")}</p>
           <h2>${tr("Exhibitions, education, research, public programmes and selected collaborations.", "전시, 교육, 리서치, 공공 프로그램과 주요 협업 기록입니다.")}</h2>
           <p class="cv-status">${tr("Current PDF: 2026 edition.", "현재 PDF는 2026년판입니다.")}</p>
-          ${actions([{ label: tr("Download CV 2026 ↓", "CV 2026 다운로드 ↓"), path: site.downloads.cv, download: true }])}
+          ${actions([{ label: tr("Download CV 2026 ↓", "CV 2026 다운로드 ↓"), path: cvDownload, download: true }])}
         </article>
         <article>
           <p class="section-kicker">${tr("Commercial / Commissioned Work", "상업 / 커미션 작업")}</p>
@@ -1277,8 +1301,8 @@
         <p class="eyebrow">${tr("Artist CV / 2026 edition", "아티스트 CV / 2026년판")}</p>
         <h1>Curriculum<br />Vitae</h1>
         <p class="hero-main">${tr("A record of exhibitions, education, research, public programmes and selected collaborations.", "전시, 교육, 리서치, 공공 프로그램과 주요 협업 기록입니다.")}</p>
-        <p class="cv-status">${tr("The 2026 Artist CV is available to download.", "2026년 아티스트 CV를 다운로드할 수 있습니다.")}</p>
-        ${actions([{ label: tr("Download CV 2026 ↓", "CV 2026 다운로드 ↓"), path: site.downloads.cv, download: true }])}
+        <p class="cv-status">${tr("The 2026 Artist CV is available in English and Korean.", "2026년 아티스트 CV를 한국어와 영어로 다운로드할 수 있습니다.")}</p>
+        ${actions([{label:"CV 2026 · English ↓",path:site.downloads.cv,download:true},{label:"CV 2026 · 한국어 ↓",path:site.downloads.cvKo,download:true}])}
       </section>
       <section class="cv-summary content-section content-section--compact">
         <div><h2>Minnie Park / ${tr("Interactive audio-visual installation artist / Creative technologist", "인터랙티브 오디오비주얼 설치 작가 / 크리에이티브 테크놀로지스트")}</h2></div>

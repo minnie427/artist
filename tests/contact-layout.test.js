@@ -83,7 +83,7 @@ function checkContact(html, language, label) {
   assert(!html.includes("undefined"), label);
   assert(html.includes('contact-hero--direct page-hero'), label + ": shared hero sizing with B layout");
   for (const value of expected[language]) assert(html.includes(value), label + ": complete original copy retained: " + value);
-  for (const value of ["mailto:minniepark.studio@gmail.com", "https://www.instagram.com/minniepark.studio/", "assets/Minnie_Park_Artist_CV_2026.pdf", "https://work.minniepark.art"]) assert(html.includes(value), label + ": " + value);
+  for (const value of ["mailto:minniepark.studio@gmail.com", "https://www.instagram.com/minniepark.studio/", language === "ko" ? "assets/Minnie_Park_Artist_CV_2026_KO.pdf" : "assets/Minnie_Park_Artist_CV_2026.pdf", "https://work.minniepark.art"]) assert(html.includes(value), label + ": " + value);
   assert(html.indexOf('class="contact-links"') < html.indexOf('class="contact-location"'), label + ": email/Instagram precede location");
   assert(html.indexOf('class="contact-location"') < html.indexOf('class="contact-routes contact-stack content-section"'), label + ": routes follow direct contact");
   assert(html.indexOf(language === "ko" ? "아티스트 CV" : "Artist CV") < html.indexOf(language === "ko" ? "상업 / 커미션 작업" : "Commercial / Commissioned Work"), label + ": CV precedes commissioned work");

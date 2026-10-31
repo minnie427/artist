@@ -28,18 +28,7 @@ assert.deepEqual(Object.keys(details).sort(), [...projectKeys].sort(), "The ten 
 // presentation now lives. Splitting April/Melbourne must not freeze a legacy count.
 const expectedParagraphs = Object.values(details).reduce((count, project) => count + project.sections.reduce((n, section) => n + section.paragraphs.length, 0), 0);
 assert(expectedParagraphs > 0);
-const approvedCrops = {
-  funeral: ["media/funeral/img-8821-340c5ad7.webp", 72, 42],
-  "shared-resonance": ["media/shared-resonance/img-1603-763eb4f5.webp", 100, 49],
-  "meta-kibun": ["media/meta-kibun/installation-07d43c32.webp", 50, 57],
-  origin: ["media/origin/the-meta-rose-project-631d0c1a.webp", 62, 62],
-  "bugskin-chapter-2": ["media/bugskin-chapter-2/img-0727-b0a7b7e7.webp", 68, 41],
-  mugonggan: ["media/mugonggan/img-5898-4ee3afc5.webp", 60, 100],
-  "live-performance": ["media/median/liveperformance.jpg", 50, 50],
-  "artist-workshops": ["media/touching-resonance/touching-resonance-b956e3bc.webp", 79, 0],
-  "melbourne-fashion-festival": ["images/fashionrunway.png", 50, 100],
-  "album-listening-session": ["images/listening-session.png", 50, 50]
-};
+const approvedCrops = Object.fromEntries(JSON.parse(read("tests/fixtures/works-crops-v2.json")).crops.map(crop => [crop.project, [crop.src, crop.x, crop.y, crop.zoom]]));
 assert(!/\/Users\/|cautions|heroLocal/.test(read("project-details.js")), "Do not publish private source paths or notes");
 
 const knownRoutes = new Set([
@@ -129,6 +118,7 @@ for (const language of ["en", "ko"]) {
   const works = editorial.works(ctx);
   checkMarkup(works, `Works/${language}`, language);
   const catalogueKeys = editorial.orderedWorks(site, details);
+  assert.deepEqual(Array.from(catalogueKeys), ["reintervention","respite-iii","melbourne-fringe","funeral","shared-resonance","bugskin-chapter-2","meta-kibun","mugonggan","origin","artist-workshops","live-performance","melbourne-fashion-festival","album-listening-session"]);
   checkAcquisitionFallback(works, catalogueKeys.filter(key => details[key].acquisition).map(key => details[key].title), `Works/${language}`, language);
   const cards = [...works.matchAll(/<article class="catalogue-work" id="work-([^"]+)">([\s\S]*?)<\/article>/g)];
   assert.equal(cards.length, 13, "All projects and confirmed presentations use one catalogue record structure");
@@ -136,10 +126,10 @@ for (const language of ["en", "ko"]) {
   assert.equal((works.match(/class="catalogue-work__summary"/g) || []).length, 13, "Every project has a readable summary, including further practice");
   assert.equal((works.match(/class="catalogue-work__facts"/g) || []).length, 13, "Every project shares the same fact structure");
   assert(!/editorial-index-row|Further Practice|추가 실천|Explore the visual index/.test(works), "No text-only secondary list or long Visual Index CTA");
-  for (const [key, [src, x, y]] of Object.entries(approvedCrops)) {
+  for (const [key, [src, x, y, zoom]] of Object.entries(approvedCrops)) {
     const card = cards.find(match => match[1] === key)?.[2];
     assert(card, `Works/${language}: approved crop project retained: ${key}`);
-    assert(card.includes(`src="${ctx.media(src)}"`) && card.includes(`style="object-position:${x}% ${y}%"`), `Works/${language}: exact selected source and crop for ${key}`);
+    assert(card.includes(`src="${ctx.media(src)}"`) && card.includes(`data-crop-x="${x}"`) && card.includes(`data-crop-y="${y}"`) && card.includes(`data-crop-zoom="${zoom}"`) && card.includes(`transform:scale(${zoom})`) && card.includes(`transform-origin:${x}% ${y}%`), `Works/${language}: exact selected source and crop for ${key}`);
   }
   for (const key of ["respite-iii", "reintervention"]) {
     const card = cards.find(match => match[1] === key)?.[2];
@@ -229,4 +219,4 @@ for (const html of [editorial.works(hostile), editorial.project(hostile, "funera
   assert(html.includes('class="acquisition-enquiry__select">minniepark.studio@gmail.com</dd>'), "Editorial enquiries retain the safe recipient fallback");
 }
 
-console.log(`PASS: ${2 * (projectKeys.length + 3)} EN/KO renders, all ${expectedParagraphs} bilingual source paragraphs, 13 common catalogue records and 10 exact saved crops, linear accounts and selected native galleries, metadata/media/routes/history anchors, safe acquisition fallback and no unapproved terms. Static checks only; browser/mobile visual QA remains separate.`);
+console.log(`PASS: ${2 * (projectKeys.length + 3)} EN/KO renders, all ${expectedParagraphs} bilingual source paragraphs, 13 common catalogue records and 11 exact v2 saved crops, linear accounts and selected native galleries, metadata/media/routes/history anchors, safe acquisition fallback and no unapproved terms. Static checks only; browser/mobile visual QA remains separate.`);
