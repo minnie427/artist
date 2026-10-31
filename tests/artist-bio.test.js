@@ -77,7 +77,7 @@ for (const language of ["en", "ko"]) {
   const staticHtml = read(route);
   check(staticHtml, language, route + "/static");
   assert(staticHtml.includes("page-layouts.css?v="), route + ": approved B stylesheet is connected");
-  assert(staticHtml.includes("site-render.js?v=20261031-layout-b-media-78"), route + ": refreshed renderer cache version");
+  assert(staticHtml.includes("site-render.js?v=20261031-reading-width-80"), route + ": refreshed renderer cache version");
   for (const protocol of ["https:", "file:"]) check(render(language, protocol), language, language + "/" + protocol);
 }
 console.log("PASS: Artist biography " + words(expected.en.join(" ")) + " English words (" + words(expected.en[0]) + " original + " + words(expected.en[1]) + " added); exact EN/KO biography and approved narrative in static and HTTP/file runtime renders; history and actions retained.");

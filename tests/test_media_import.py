@@ -39,7 +39,7 @@ class MediaImportTest(unittest.TestCase):
         self.image("documents/cv/private.jpg")
         self.image("unsorted/private.jpg")
         with patch.object(media, "SITE_ROOT", self.site), patch.object(media, "MEDIA_ROOT", self.site / "media"), contextlib.redirect_stdout(io.StringIO()):
-            manifest = media.build_manifest(self.source)
+            manifest = media.build_manifest(self.source, update_profile=True)
         flower = manifest["projects"]["flower-your-face"]
         self.assertEqual(flower["hero"]["sourceRole"], "hero")
         self.assertEqual(len(flower["selected"]), 1)
@@ -54,6 +54,34 @@ class MediaImportTest(unittest.TestCase):
             self.assertEqual(item["sourceHash"], media.content_digest(self.source / item["sourceRelative"]))
             self.assertNotIn("private", item["sourceRelative"])
         self.assertIsNotNone(manifest["profile"])
+
+    def test_bulk_import_preserves_existing_profile_without_processing_new_candidates(self):
+        self.image("artist/profile/other-photo.jpg")
+        selected = {"src": "media/profile/artist2.webp", "alt": "Approved artist portrait"}
+        with patch.object(media, "process_file") as process:
+            manifest = media.build_manifest(self.source, {"profile": selected})
+        self.assertEqual(manifest["profile"], selected)
+        process.assert_not_called()
+
+    def test_initial_bulk_import_does_not_select_a_profile_automatically(self):
+        self.image("artist/profile/first-photo.jpg")
+        with patch.object(media, "process_file") as process:
+            manifest = media.build_manifest(self.source)
+        self.assertIsNone(manifest["profile"])
+        process.assert_not_called()
+
+    def test_explicit_profile_asset_update_can_import_a_candidate(self):
+        self.image("artist/profile/artist2.jpg")
+        previous = {"profile": {"src": "media/profile/older.webp", "alt": "Earlier portrait"}}
+        with patch.object(media, "SITE_ROOT", self.site), patch.object(media, "MEDIA_ROOT", self.site / "media"), contextlib.redirect_stdout(io.StringIO()):
+            manifest = media.build_manifest(self.source, previous, update_profile=True)
+        self.assertNotEqual(manifest["profile"]["src"], previous["profile"]["src"])
+        self.assertTrue((self.site / manifest["profile"]["src"]).exists())
+
+    def test_missing_explicit_profile_source_does_not_clear_existing_selection(self):
+        previous = {"profile": {"src": "media/profile/artist2.webp", "alt": "Approved artist portrait"}}
+        manifest = media.build_manifest(self.source, previous, update_profile=True)
+        self.assertEqual(manifest["profile"], previous["profile"])
 
     def test_unchanged_content_moved_to_nested_folder_keeps_approved_url(self):
         source = self.image("artist/2026_flower-your-face/hero/renamed.jpg")

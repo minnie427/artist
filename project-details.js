@@ -62,12 +62,12 @@ window.MP_PROJECT_DETAILS = {
         },
         "paragraphs": [
           {
-            "en": "RE:INTERVENTION develops Intervention, a work within Meta Rose: The Funeral, into a separate presentation. It was shown in the LUCKY777 group exhibition presented by Platform Presents at Abbotsford Convent on 10 and 11 October 2026. This presentation is distinct from both the August Seoul exhibition and the September-October Melbourne Fringe configuration.",
-            "ko": "RE:INTERVENTION은 Meta Rose: The Funeral을 구성하는 개입에서 발전한 별도 발표입니다. 2026년 10월 10일과 11일 Abbotsford Convent에서 Platform Presents가 선보인 LUCKY777 그룹전에 전시했습니다. 8월 서울 전시, 9-10월 Melbourne Fringe의 구성과 구별되는 발표입니다."
+            "en": "RE:INTERVENTION develops Intervention, a work within Meta Rose: The Funeral, into a separate presentation. It was shown at the LUCKY777 group exhibition presented by Platform Presents at Abbotsford Convent on 10 and 11 October 2026. This presentation centres on the interactive RE:INTERVENTION work. It also screened a behind-the-scenes video and Record, presented as an independent moving-image artwork.",
+            "ko": "RE:INTERVENTION은 Meta Rose: The Funeral의 개입에서 발전한 별도 발표입니다. 2026년 10월 10일과 11일 Abbotsford Convent에서 Platform Presents가 선보인 LUCKY777 그룹전에 전시했습니다. 이 전시에서는 인터랙티브 작품 RE:INTERVENTION을 중심에 두고, 비하인드 더 신 영상과 독립된 무빙이미지 작품인 기록도 함께 상영했습니다."
           },
           {
-            "en": "The work draws on vanitas and memento mori through the overlap of rose and skeleton. The rose carries the possibility of decay within its beauty, while the skeletal figure retains the trace of a body that lived. Rather than treating these as separate symbols, the work brings life, death, care and damage into a body whose condition changes through participation.",
-            "ko": "이 작업은 장미와 해골의 중첩을 통해 바니타스와 메멘토 모리를 다룹니다. 장미는 아름다움 안에 시듦의 가능성을 품고, 해골 형상에는 살아 있던 신체의 흔적이 남습니다. 이들을 분리된 상징으로 다루기보다, 참여에 따라 상태가 달라지는 신체 안에 삶과 죽음, 돌봄과 훼손을 함께 놓습니다."
+            "en": "The work begins with the selves we reject while trying to sustain an acceptable image. Drawing on vanitas, the rose carries decay within its beauty, while the skeleton retains the time of a body that lived. These are two faces of the same body. Rather than remove an unwanted side and declare a positive self victorious, the work keeps care and harm, injury and return visible together. The visitor can choose a different relationship with what remains.",
+            "ko": "작업은 받아들여질 만한 모습을 유지하려 하면서 밀어내는 자신의 여러 면에서 출발합니다. 바니타스에서 출발한 장미는 아름다움 안에 시듦을 품고, 해골에는 한때 살아 있던 신체의 시간이 남습니다. 이들은 같은 몸의 두 얼굴입니다. 원하지 않는 면을 없애고 긍정적인 자아의 승리를 선언하기보다, 돌봄과 훼손, 상처와 돌아옴을 함께 드러냅니다. 관객은 남아 있는 존재와 맺는 관계를 다시 선택할 수 있습니다."
           }
         ]
       },
@@ -78,12 +78,16 @@ window.MP_PROJECT_DETAILS = {
         },
         "paragraphs": [
           {
-            "en": "Physical buttons let visitors intervene in a responsive digital body. A forehead-mounted webcam and body tracking connect the person who acts with the image being altered. The participant becomes both an agent within the system and a witness to the consequences of their choices.",
-            "ko": "관객은 물리 버튼을 사용해 반응형 디지털 신체에 개입합니다. 이마에 설치한 웹캠과 몸 트래킹은 행동하는 사람과 변화하는 이미지를 연결합니다. 참여자는 시스템에 영향을 주는 행위자인 동시에 자신이 선택한 결과를 지켜보는 사람이 됩니다."
+            "en": "Physical buttons let visitors alter the balance and vitality of a responsive digital body. A forehead-mounted webcam and body tracking connect the person acting with the image being altered. A rectangle formed with thumb and index finger reveals a camera mask; an open five-finger gesture reveals another mask carrying the visitor’s chosen colour and optional rose name. The participant becomes both an agent within the system and a witness to the consequences of their choices.",
+            "ko": "관객은 물리 버튼으로 반응형 디지털 신체의 균형과 생명력을 바꿉니다. 이마에 설치한 웹캠과 몸 트래킹은 행동하는 사람과 변화하는 이미지를 연결합니다. 엄지와 검지로 사각형을 만들면 카메라 마스크가 나타나고, 다섯 손가락을 펼치면 선택한 색과 선택적으로 적은 장미 이름을 지닌 다른 마스크가 나타납니다. 참여자는 시스템에 영향을 주는 행위자인 동시에 자신이 선택한 결과를 지켜보는 사람이 됩니다."
           },
           {
-            "en": "A screenshot interaction preserves a selected moment and returns it through the Phone Hub as a trace of a decision. The image records an action within the work, rather than diagnosing the participant’s feelings. Care and harm are not resolved into a correct sequence: the work keeps their consequences available to attention.",
-            "ko": "스크린샷 인터랙션은 선택한 순간을 보존하고 Phone Hub를 통해 그 결정의 흔적을 돌려줍니다. 이미지는 참여자의 감정을 진단하는 결과가 아니라 작품 안에서 이루어진 행동의 기록입니다. 돌봄과 훼손을 정답이 있는 순서로 정리하지 않고, 그 결과를 계속 바라볼 수 있도록 남깁니다."
+            "en": "Holding any two buttons on the Rose Human Interface for five seconds requests a capture. Care and harm do not resolve into a correct sequence: an attempt to preserve one balance may disturb another, while life may return after a destructive action. The capture preserves a chosen moment within that relationship. It records an action in the work rather than diagnosing the visitor’s feelings.",
+            "ko": "Rose Human Interface의 아무 버튼 두 개를 5초 동안 누르면 캡처를 요청할 수 있습니다. 돌봄과 훼손은 정답이 있는 순서로 정리되지 않습니다. 한 균형을 지키려는 행동이 다른 균형을 흔들 수 있고, 파괴 뒤에 생명이 돌아오기도 합니다. 캡처는 그 관계 속에서 선택한 한순간을 남깁니다. 관객의 감정을 진단하기보다 작품 안에서의 행동을 기록합니다."
+          },
+          {
+            "en": "The optional Phone Hub returns the chosen colour, optional name and requested captures through a random Rose number, without requiring a legal name. Live camera processing is distinct from storing an image after the visitor requests it. Watching, declining a capture, pausing or leaving remain valid choices. The linked Phone Hub Archive is a read-only record of the historical interface and examples, with no installation connection, new capture or visitor-response collection.",
+            "ko": "선택형 Phone Hub는 본명 대신 무작위 장미 번호를 사용해 선택한 색과 선택적으로 적은 이름, 요청한 캡처를 돌려줍니다. 실시간 카메라 처리와 관객의 요청 후 이미지를 저장하는 일은 구분합니다. 바라보거나 캡처를 하지 않고, 잠시 쉬거나 떠나는 선택도 가능합니다. 연결된 폰 허브 아카이브는 전시 당시의 인터페이스와 예시를 보는 읽기 전용 기록이며 설치 연결, 새 촬영이나 관객 응답 수집은 하지 않습니다."
           }
         ]
       },
@@ -94,8 +98,12 @@ window.MP_PROJECT_DETAILS = {
         },
         "paragraphs": [
           {
-            "en": "The LUCKY777 presentation also screened a behind-the-scenes video and Record, the fourth work developed within The Funeral. These moving-image elements retain the labour, tests and repetitions behind the interactive system. The programme brought this moving-image material alongside the interactive RE:INTERVENTION work.",
-            "ko": "LUCKY777에서는 비하인드 더 신 영상과 The Funeral에서 발전한 네 번째 작품 기록도 함께 상영했습니다. 이 무빙이미지들은 인터랙티브 시스템 뒤에 놓인 노동과 테스트, 반복의 시간을 남깁니다. 인터랙티브 작품 RE:INTERVENTION 곁에 이 영상 작업들을 함께 배치했습니다."
+            "en": "Record is a separate, silent looping artwork about the labour of making the installation. Hands, cable joins, shaped forms, failed tests and repeated connections remain visible. The film keeps the machine’s material body and the time required to make it in view, rather than allowing them to disappear behind an apparently seamless response.",
+            "ko": "기록은 설치를 만드는 노동을 다루는 별도의 무성 루프 작품입니다. 손과 전선의 연결부, 만들어진 형상, 실패한 테스트와 반복된 연결을 드러냅니다. 매끄럽게 반응하는 표면 뒤로 사라지기 쉬운 기계의 물질적 신체와 그것을 만드는 시간을 남깁니다."
+          },
+          {
+            "en": "It has no required first or last scene and makes no personal capture. Visitors may enter or leave at any point, and the film does not interpret their actions or the results of RE:INTERVENTION. Its status as an independent work is distinct from the behind-the-scenes video also screened in the LUCKY777 presentation.",
+            "ko": "반드시 먼저 보아야 할 장면이나 마지막 장면은 없으며 개인 캡처도 만들지 않습니다. 관객은 어느 순간이든 들어오거나 떠날 수 있고, 영상은 그 행동이나 RE:INTERVENTION의 결과를 해석하지 않습니다. 기록은 LUCKY777에서 함께 상영한 제작 과정 영상과 구별되는 독립된 작품입니다."
           }
         ]
       }
@@ -259,11 +267,15 @@ window.MP_PROJECT_DETAILS = {
         "paragraphs": [
           {
             "en": "The work was presented at Melbourne Fringe Festival from 30 September to 4 October 2026 in the Celia Little Room at The Mission to Seafarers Victoria, Docklands. Living roses connected tactile encounters with layered moving image and an original soundscape, including natural textures and artist-recorded samples. This presentation accommodated individual interactions as well as collective activation through shared presence. Visitors could also observe without touching the installation.",
-            "ko": "2026년 9월 30일부터 10월 4일까지 Melbourne Fringe Festival의 일환으로 Docklands에 위치한 The Mission to Seafarers Victoria의 Celia Little Room에서 전시했습니다. 생장미를 매개로 한 촉각적 만남은 여러 층의 무빙이미지와 자연의 질감, 작가가 직접 녹음한 샘플을 포함한 오리지널 사운드스케이프로 이어졌습니다. 이 발표에서는 개인의 인터랙션과 함께하는 존재를 통한 공동 활성화가 모두 가능했으며, 관객은 설치를 직접 만지지 않고 관찰할 수도 있었습니다."
+            "ko": "2026년 9월 30일부터 10월 4일까지 Melbourne Fringe Festival의 일환으로 Docklands에 위치한 The Mission to Seafarers Victoria의 Celia Little Room에서 전시했습니다. 생장미를 매개로 한 촉각적 만남은 여러 층의 무빙이미지와 자연의 질감, 작가가 직접 녹음한 샘플을 포함한 오리지널 사운드스케이프로 이어졌습니다. 개인의 인터랙션과 공동 활성화, 접촉 없이 관찰하는 방식으로 참여할 수 있었습니다."
           },
           {
-            "en": "The Melbourne presentation brings together four works, Naming, Intervention, Witness and Record. Each establishes a distinct encounter with the rose through touch, gesture, sustained observation or the record of making. Visitors can move between them without following a required sequence.",
-            "ko": "멜버른 전시는 명명, 개입, 목격, 기록의 네 작품으로 구성됩니다. 터치, 제스처, 지속적인 관찰과 제작의 기록을 통해 각각 장미와의 만남을 구성합니다. 관객은 정해진 순서를 따르지 않고 작품 사이를 이동할 수 있습니다."
+            "en": "The exhibition begins with the selves we repeatedly reject while trying to become an acceptable version of ourselves. Its funeral is not a ritual for making those selves disappear, but a setting in which their other faces can return. Drawing on vanitas, the rose already carries decay within its bloom, while the skeleton holds the time of a body that once lived. Life and death, care and damage are treated as simultaneous conditions rather than opposites that must defeat one another.",
+            "ko": "전시는 받아들여질 만한 사람이 되려 하면서 반복해서 밀어내는 자신의 여러 면에서 출발합니다. 이 장례식은 그 면들을 없애는 의식이 아니라 다른 얼굴로 돌아올 수 있는 자리입니다. 바니타스에서 출발한 장미는 피어 있는 순간에도 시듦을 품고, 해골에는 한때 살아 있던 신체의 시간이 남습니다. 삶과 죽음, 돌봄과 훼손을 서로 이겨야 할 대립이 아니라 동시에 존재하는 조건으로 다룹니다."
+          },
+          {
+            "en": "Naming, Intervention, Witness and Record establish different encounters through touch, gesture, sustained observation and the record of making. There is no requirement to complete every work or follow a fixed order. The visitor decides how closely and how long to engage. Their chosen colour is a marker through which images can return to them, rather than an emotion assigned by the system.",
+            "ko": "명명, 개입, 목격, 기록은 터치와 제스처, 지속적인 관찰과 제작의 기록을 통해 서로 다른 만남을 구성합니다. 모든 작품을 완료하거나 정해진 순서를 따를 필요는 없습니다. 얼마나 가까이, 얼마나 오래 참여할지는 관객이 정합니다. 선택한 색은 시스템이 부여하는 감정이 아니라 자신의 이미지를 다시 찾기 위한 표식입니다."
           }
         ]
       },
@@ -292,12 +304,12 @@ window.MP_PROJECT_DETAILS = {
         },
         "paragraphs": [
           {
-            "en": "A physical-button interface and camera-based tracking allow visitors to intervene in a responsive rose-skeleton body. A rectangle formed with thumb and index finger reveals a camera mask; an open five-finger gesture reveals another mask carrying the visitor’s selected colour and optional name. The participant appears within the image they are also acting upon.",
-            "ko": "물리 버튼 인터페이스와 카메라 기반 트래킹을 통해 관객은 반응형 장미·스켈레톤 신체에 개입합니다. 엄지와 검지로 사각형을 만들면 카메라 마스크가 나타나고, 다섯 손가락을 펼치면 선택한 색과 선택적 이름을 지닌 다른 마스크가 나타납니다. 참여자는 자신이 영향을 주는 이미지 안에 동시에 등장합니다."
+            "en": "A physical-button interface and camera-based tracking allow visitors to intervene in a responsive body that is both rose and skeleton. A rectangle formed with thumb and index finger reveals a camera mask; an open five-finger gesture reveals another mask carrying the visitor’s selected colour and optional name. The participant sees their own image over the figure they are caring for and harming, becoming both the person who acts and the person who watches.",
+            "ko": "물리 버튼 인터페이스와 카메라 기반 트래킹을 통해 관객은 장미이자 스켈레톤인 반응형 신체에 개입합니다. 엄지와 검지로 사각형을 만들면 카메라 마스크가 나타나고, 다섯 손가락을 펼치면 선택한 색과 선택적으로 적은 이름을 지닌 다른 마스크가 나타납니다. 돌보고 훼손하던 형상 위에 자신의 모습을 보며, 행동하는 사람과 그 행동을 바라보는 사람이 동시에 됩니다."
           },
           {
-            "en": "Care and damage do not separate into a simple positive and negative sequence. An action that sustains one balance may disturb another. In the Melbourne configuration, holding any two buttons on the Rose Human Interface for five seconds requests a capture.",
-            "ko": "돌봄과 훼손은 단순한 긍정·부정의 순서로 분리되지 않습니다. 한 균형을 지탱하는 행동이 다른 균형을 흔들 수 있습니다. 멜버른 구성에서는 Rose Human Interface의 버튼 두 개를 5초 동안 누르면 캡처를 요청합니다."
+            "en": "Care and damage do not separate into a simple positive and negative sequence. An action that preserves one balance may disturb another, and life may return after destruction. In this Melbourne configuration, holding any two buttons on the Rose Human Interface for five seconds requests a capture. The image retains a chosen moment within that unsettled relationship, rather than certifying a correct outcome.",
+            "ko": "돌봄과 훼손은 단순한 긍정과 부정의 순서로 분리되지 않습니다. 한 균형을 지키는 행동이 다른 균형을 흔들 수 있고, 파괴 뒤에 다시 생명이 돌아오기도 합니다. 이 멜버른 구성에서는 Rose Human Interface의 아무 버튼 두 개를 5초 동안 누르면 캡처를 요청합니다. 이미지는 정답을 증명하기보다 그 불안정한 관계 속에서 선택한 한순간을 남깁니다."
           }
         ]
       },
@@ -309,8 +321,12 @@ window.MP_PROJECT_DETAILS = {
         },
         "paragraphs": [
           {
-            "en": "A hand moves vertically near a rose to intervene in moving-image time. Three slow acts of witnessing allow an initially distorted rose-skeleton figure to be encountered within the image. A rose button marks the moment when the visitor feels they have found the figure. Stillness and sustained looking remain part of the encounter.",
-            "ko": "장미 가까이에서 손을 수직으로 움직여 무빙이미지의 시간에 개입합니다. 세 번의 느린 목격을 통해 처음에는 왜곡되어 있던 장미·스켈레톤 형상을 이미지 안에서 마주합니다. 형상을 찾았다고 느끼는 순간 장미 버튼을 누릅니다. 가만히 머무르며 오래 바라보는 시간도 만남의 일부입니다."
+            "en": "A hand moves vertically near a rose to control the speed of a moving image. Three slow acts of witnessing make an initially distorted rose-skeleton figure available to view within the images, languages and time of a wider world. The visitor presses the rose button when they feel they have found the figure. The repeated acts do not confirm a correct answer; they reveal how the same image changes with time, distance and the position from which it is seen.",
+            "ko": "장미 가까이에서 손을 수직으로 움직여 영상의 속도를 조절합니다. 더 넓은 세계의 이미지와 언어, 시간 속에서 세 번의 느린 목격을 거치며 처음에는 왜곡되어 있던 장미·스켈레톤 형상을 바라봅니다. 형상을 찾았다고 느끼는 순간 장미 버튼을 누릅니다. 반복은 정답을 확인하기 위한 것이 아니라, 시간과 거리, 보는 위치에 따라 같은 이미지가 달라짐을 드러냅니다."
+          },
+          {
+            "en": "Time never stops completely. Stillness and sustained looking remain part of the work, and the encounter does not end when the hand stops moving. Sound is played through room speakers. The figure becoming clearer does not make death disappear; it allows a distorted face and its other face to be seen within one narrative.",
+            "ko": "시간은 완전히 멈추지 않습니다. 가만히 머무르며 오래 바라보는 일도 작품의 일부이며, 손이 멈춰도 만남은 끝나지 않습니다. 사운드는 공간의 스피커를 통해 재생됩니다. 형상이 선명해져도 죽음이 사라지는 것은 아닙니다. 왜곡된 얼굴과 그 다른 얼굴을 하나의 서사 안에서 바라보게 합니다."
           }
         ]
       },
@@ -322,8 +338,12 @@ window.MP_PROJECT_DETAILS = {
         },
         "paragraphs": [
           {
-            "en": "A silent, looping film records hands, connections, failed tests and repetitions behind the installation. It stands as a work about material labour and making time. It does not require a fixed beginning or end, and it does not produce a personal capture.",
-            "ko": "소리 없이 반복되는 영상은 설치 뒤에 놓인 손, 연결, 실패한 테스트와 반복을 기록합니다. 재료를 다루는 노동과 제작의 시간을 다루는 독립된 작업입니다. 정해진 시작과 끝을 요구하지 않으며 개인 캡처를 만들지 않습니다."
+            "en": "Record is an independent, silent looping film about the hands and making time behind the installation. Cable joins, shaped forms, failed tests and restarted connections remain visible. The film does not serve as a promotional explanation of the responsive works: it treats material labour, error and repetition as the subject of a work in its own right.",
+            "ko": "기록은 설치 뒤에 놓인 손과 제작의 시간을 다루는 독립된 무성 루프 영상입니다. 전선을 이은 자리와 만들어진 형상, 실패한 테스트와 다시 시작한 연결을 드러냅니다. 반응형 작품을 홍보하거나 설명하는 부록이 아니라, 재료를 다루는 노동과 오류, 반복 자체를 작품의 주제로 둡니다."
+          },
+          {
+            "en": "There is no required beginning or end, and several people can watch at once. A visitor may enter or leave at any scene. Record does not produce a personal capture or interpret the results of the other works.",
+            "ko": "정해진 시작과 끝을 요구하지 않으며 여러 사람이 함께 볼 수 있습니다. 관객은 어느 장면에서든 들어오거나 떠날 수 있습니다. 기록은 개인 캡처를 만들거나 다른 작품의 결과를 해석하지 않습니다."
           }
         ]
       },
@@ -334,12 +354,16 @@ window.MP_PROJECT_DETAILS = {
         },
         "paragraphs": [
           {
-            "en": "The Melbourne Phone Hub is an optional companion for selected colour, an optional name and captures requested by the visitor. A random Rose number returns the images of a visit without asking for a legal name. These records concern choices within the artwork, not an objective classification of a person’s emotional state.",
-            "ko": "멜버른 Phone Hub는 선택한 색, 선택적 이름과 관객이 요청한 캡처를 위한 선택형 동반 인터페이스입니다. 무작위 장미 번호를 통해 본명을 묻지 않고 그 관람의 이미지를 돌려줍니다. 이 기록은 작품 안의 선택을 다루며, 한 사람의 감정 상태를 객관적으로 분류하는 결과가 아닙니다."
+            "en": "The Melbourne Phone Hub is an optional companion for selected colour, an optional name and visitor-requested captures from Naming, Intervention and Witness. A random Rose number returns the images of a visit without asking for a legal name. These are traces of choices within an artwork, not an objective classification of emotion or personality. Live camera processing inside a work is distinct from storing an image after a separate capture request.",
+            "ko": "멜버른 Phone Hub는 선택한 색과 선택적으로 적은 이름, 명명·개입·목격에서 관객이 요청한 캡처를 위한 선택형 동반 인터페이스입니다. 무작위 장미 번호로 본명을 묻지 않고 그 관람의 이미지를 돌려줍니다. 이는 작품 안의 선택에 관한 흔적이며 감정이나 성격의 객관적인 분류가 아닙니다. 작품 안의 실시간 카메라 처리와 별도 요청 후 이미지를 저장하는 일도 구분합니다."
           },
           {
-            "en": "The presentation received support from Access Fringe to improve accessibility.",
-            "ko": "전시의 접근성 향상을 위해 Access Fringe의 지원을 받았습니다."
+            "en": "Touching, watching and listening are valid ways to participate. A phone, QR or NFC interaction, name, capture and survey are not required. Visitors may pause, leave or return, and staff can explain which alternative input is installed for each work. Participation takes priority over the data left behind. The presentation received support from Access Fringe to improve accessibility.",
+            "ko": "만지거나 바라보고 듣는 방식 모두 참여가 됩니다. 휴대폰이나 QR·NFC 사용, 이름, 캡처와 설문은 필수가 아닙니다. 관객은 잠시 쉬거나 떠났다가 돌아올 수 있으며, 스태프에게 각 작품에 마련된 대체 입력 방식을 확인할 수 있습니다. 남겨진 데이터보다 관객의 경험을 우선합니다. 전시의 접근성 향상을 위해 Access Fringe의 지원을 받았습니다."
+          },
+          {
+            "en": "The linked Phone Hub Archive preserves the historical interface and example captures. It does not connect to the installation, make new captures or collect visitor responses.",
+            "ko": "연결된 폰 허브 아카이브에서는 전시 당시의 인터페이스와 캡처 예시를 볼 수 있습니다. 설치와 연결하거나 새로 촬영하지 않으며 관객의 응답을 수집하지 않습니다."
           }
         ]
       }
@@ -407,8 +431,8 @@ window.MP_PROJECT_DETAILS = {
           "ko": "명명, 개입, 목격, 기록의 네 부분으로 구성된 인터랙티브 오디오비주얼 설치."
         },
         "materials": {
-          "en": "Living roses, skeletal model, conductive contacts, sound, light and moving image.",
-          "ko": "생장미, 해골 모형, 전도성 접점, 사운드, 빛과 무빙이미지."
+          "en": "Living roses, artificial rose specimens, skeletal model, conductive contacts, sound, light and moving image.",
+          "ko": "생장미, 조화 표본, 해골 모형, 전도성 접점, 사운드, 빛과 무빙이미지."
         },
         "tools": {
           "en": "TouchDesigner (primary software); touch-responsive system, camera-based gesture tracking, responsive controller, connected phone interface and looping film.",
@@ -438,12 +462,16 @@ window.MP_PROJECT_DETAILS = {
         },
         "paragraphs": [
           {
-            "en": "Meta Rose: The Funeral considers the parts of the self suppressed in pursuit of an acceptable image. The funeral becomes a setting in which to encounter what has been excluded, altered or left behind. Living roses inserted into a skeletal form bring vitality and mortality into the same physical structure, while touch-responsive sound, light and moving image connect the installation to participants’ actions.",
-            "ko": "Meta Rose: The Funeral은 받아들여질 만한 모습을 갖추기 위해 억눌러 온 자아의 여러 면을 바라봅니다. 장례식은 배제하거나 바꾸고 남겨둔 자신을 다시 마주하는 자리가 됩니다. 해골 형상에 꽂힌 생장미는 생명력과 죽음을 하나의 물리적 구조 안에 놓으며, 터치에 반응하는 사운드, 빛과 무빙이미지는 설치를 참여자의 행동과 연결합니다."
+            "en": "Meta Rose: The Funeral stages a funeral for the parts of the self repeatedly suppressed in pursuit of an acceptable image. It considers not only private self-rejection, but also the demands of perfection, productivity and a presentable public self. The person who kills, the person who dies and the person who remains may be the same person. The funeral creates a place to meet those rejected selves again, rather than declare them gone.",
+            "ko": "Meta Rose: The Funeral은 받아들여질 만한 모습을 갖추기 위해 반복해서 밀어내 온 자신의 여러 면을 위한 장례식입니다. 개인의 자기 부정과 함께 완벽함, 생산성, 좋아 보이는 모습을 요구하는 시선이 한 사람 안에서 작동하는 방식도 살펴봅니다. 죽인 사람과 죽은 사람, 장례 뒤에 남은 사람이 모두 자신일 수 있습니다. 이 장례식은 그 면들이 사라졌다고 선언하기보다 다시 마주할 자리를 만듭니다."
           },
           {
-            "en": "The exhibition comprises four parts: Naming, Intervention, Witness and Record. Each establishes a different relationship between a body and an image through touch, gesture, proximity or observation. The four parts are conceived as distinct encounters rather than a prescribed sequence. Together, the works place care beside damage and beauty beside discomfort, approaching ambivalence as the coexistence of conflicting states.",
-            "ko": "전시는 명명, 개입, 목격, 기록의 네 부분으로 구성됩니다. 터치, 제스처, 가까워짐과 관찰을 통해 각각 신체와 이미지 사이에 서로 다른 관계를 만듭니다. 정해진 순서로 완료하는 과정이 아니라 서로 구별되는 만남으로 구상한 네 작업은 돌봄과 훼손, 아름다움과 불편함을 나란히 놓고, 상충하는 상태가 함께 존재하는 양가성을 다룹니다."
+            "en": "The work draws on vanitas, in which flowers and skulls hold life and decay within the same image. Here, those symbols become bodies that respond to an audience: a skeleton offers its hand, and roses release sound and light through touch. The reminder of mortality turns towards the ways we treat ourselves while alive. Beauty and injury, care and destruction can occupy the same body without cancelling one another.",
+            "ko": "바니타스 정물화에서 꽃과 해골은 삶과 소멸을 하나의 화면 안에 놓습니다. 이 전시에서 그 상징들은 관객에게 반응하는 신체가 됩니다. 해골은 손을 내밀고, 장미는 터치를 통해 소리와 빛을 얻습니다. 죽음을 기억하는 일은 살아 있는 동안 자신을 어떻게 대하는지 살펴보는 일로 이어집니다. 아름다움과 상처, 돌봄과 파괴는 서로를 없애지 않은 채 하나의 몸에 공존합니다."
+          },
+          {
+            "en": "Naming, Intervention, Witness and Record form a connected funeral ritual. A name made through the first encounter accompanies the figure that is acted upon and witnessed in the following works. Record brings the hands and material labour behind the installation into view. This progression does not promise treatment or a correct path to recovery; visitors retain the choice to observe, pause, leave or return.",
+            "ko": "명명, 개입, 목격, 기록은 서로 연결된 장례 의식을 이룹니다. 첫 만남에서 지은 이름은 이후의 작품에서 개입하고 목격하는 형상으로 이어지고, 기록은 설치 뒤에 놓인 손과 재료의 노동을 드러냅니다. 이 흐름은 치료나 회복의 정답을 제시하지 않습니다. 관객은 관찰하거나 잠시 쉬고, 떠나거나 다시 돌아올 수 있습니다."
           }
         ]
       },
@@ -454,12 +482,12 @@ window.MP_PROJECT_DETAILS = {
         },
         "paragraphs": [
           {
-            "en": "Holding the skeleton’s hand, visitors touch living roses. Each flower activates a distinct layer of sound, light and image. Sustained contact deepens a response, while touching different roses combines layers into a changing audio-visual composition. The encounter is shaped not only by which flower is touched but also by duration and combination.",
-            "ko": "관객은 해골의 손을 잡고 생장미를 만집니다. 각 꽃은 서로 다른 사운드, 빛과 이미지의 층위를 활성화합니다. 접촉을 지속하면 반응이 깊어지고, 서로 다른 장미를 만지면 여러 층이 결합하며 오디오비주얼 구성이 달라집니다. 어떤 꽃을 만지는지뿐 아니라 접촉의 시간과 조합이 경험을 구성합니다."
+            "en": "Visitors hold the skeleton’s left hand and touch living roses with the other hand to complete a circuit. Fifteen roses each carry a different response in sound, light and pixels. Sustained contact deepens a response, while the order and combination of flowers create layers within a changing audio-visual composition. The living hand, skeleton and flower become simultaneous conditions of the same circuit.",
+            "ko": "관객은 스켈레톤의 왼손을 잡고 다른 손으로 생장미를 만져 하나의 회로를 완성합니다. 열다섯 송이는 각각 다른 소리와 빛, 픽셀의 반응을 지닙니다. 접촉을 지속하면 반응이 깊어지고, 만지는 순서와 조합에 따라 오디오비주얼 층위가 달라집니다. 살아 있는 손과 스켈레톤, 꽃은 하나의 회로를 이루는 동시적인 조건이 됩니다."
           },
           {
-            "en": "A chosen configuration can be captured and later given a name. Naming follows the encounter rather than determining it in advance: participants do not have to select an emotional category before engaging with the installation. The resulting image and words become a record of a particular moment within an open-ended composition.",
-            "ko": "선택한 구성은 이미지로 기록한 뒤 이름을 붙일 수 있습니다. 명명은 경험을 미리 규정하기보다 경험 이후에 이루어집니다. 참여자는 설치를 경험하기 전에 감정의 범주를 선택할 필요가 없습니다. 남겨진 이미지와 언어는 열린 구성 속에서 선택한 특정 순간의 기록이 됩니다."
+            "en": "When a desired balance appears, holding both of the skeleton’s hands requests a capture. Naming comes afterwards, through a description of a side of the self the visitor has rejected and another face that existed alongside it. The second description does not correct or beautify the first. The name holds their contradiction together, translating a bodily encounter with sound and image into the visitor’s own language.",
+            "ko": "원하는 균형을 찾은 순간 스켈레톤의 양손을 잡으면 화면 기록을 요청할 수 있습니다. 이름은 그 뒤에 짓습니다. 자신이 밀어내 온 한 면과 그 곁에 함께 존재했던 다른 얼굴을 적습니다. 두 번째 서술이 첫 번째를 바로잡거나 미화하지는 않습니다. 그 모순을 함께 지닌 이름은 몸으로 만난 소리와 이미지를 관객 자신의 언어로 옮깁니다."
           }
         ]
       },
@@ -470,8 +498,12 @@ window.MP_PROJECT_DETAILS = {
         },
         "paragraphs": [
           {
-            "en": "Camera-based gesture tracking and a responsive controller connect the participant’s actions to a digital skeletal body. Visitors alter its balance and vitality, bringing intervention into view as an action with consequences. Rose and skeleton, care and damage, the self who acts and the self who watches occupy the same image.",
-            "ko": "카메라 기반 제스처 추적과 반응형 컨트롤러가 참여자의 행동을 디지털 해골 신체에 연결합니다. 관객은 그 균형과 생명력을 변화시키며, 개입이 결과를 수반하는 행위임을 마주합니다. 장미와 해골, 돌봄과 훼손, 행동하는 나와 지켜보는 내가 하나의 이미지 안에 공존합니다."
+            "en": "The figure named in Naming returns as a responsive body that is both rose and skeleton. Physical controls and camera-based gesture tracking allow visitors to alter its balance and vitality. Water, sunlight, poison and a monster do not form a simple set of good and bad choices: care can become excessive, and destruction need not produce a final ending. What matters is the pattern of repeated actions and the decision to change it. Death is followed by return, with traces of earlier damage still present.",
+            "ko": "명명에서 이름을 얻은 존재가 장미이자 스켈레톤인 반응형 신체로 돌아옵니다. 관객은 물리 컨트롤과 카메라 기반 제스처 추적으로 그 균형과 생명력을 바꿉니다. 물과 햇빛, 독과 괴물은 단순한 선악의 선택지가 아닙니다. 돌봄은 지나칠 수 있고 파괴가 반드시 마지막을 뜻하지도 않습니다. 반복해서 무엇을 선택하고 언제 바꾸는지가 중요합니다. 죽음 뒤에도 존재는 다시 일어나며, 이전 손상의 흔적은 남습니다."
+          },
+          {
+            "en": "A rectangle formed with thumb and index finger reveals the camera image over the figure being cared for and harmed. An open five-finger gesture reveals a mask carrying the visitor’s chosen rose colour and name. The person acting and the person watching that action meet within one image. In the Seoul configuration, holding any two buttons on the Rose Human Controller for two seconds requests a capture of the selected moment.",
+            "ko": "엄지와 검지로 사각형을 만들면 돌보고 훼손하던 형상 위에 카메라 이미지가 나타납니다. 다섯 손가락을 펼치면 관객이 선택한 장미 색과 이름을 지닌 마스크가 나타납니다. 행동하는 사람과 그 행동을 바라보는 사람이 하나의 이미지 안에서 만납니다. 서울 구성에서는 로즈 휴먼 컨트롤러의 아무 버튼 두 개를 2초 동안 누르면 선택한 순간의 캡처를 요청할 수 있습니다."
           }
         ]
       },
@@ -482,8 +514,12 @@ window.MP_PROJECT_DETAILS = {
         },
         "paragraphs": [
           {
-            "en": "A rose initially appears blurred and distorted. Three acts of proximity slow the passing image, allowing another face of the rose to emerge while the surrounding world continues to move. Attention becomes a form of participation: approaching and remaining with the image changes the conditions under which it can be seen. The work brings the participant’s time into contact with a temporal process that cannot simply be held still.",
-            "ko": "장미는 처음에 흐리고 왜곡된 모습으로 나타납니다. 세 번의 가까워지는 행위가 흘러가는 이미지를 늦추고, 주변 세계가 계속 움직이는 가운데 장미의 다른 얼굴이 드러납니다. 주의를 기울이는 일이 참여의 방식이 됩니다. 이미지에 다가가고 머무는 행위는 그것을 볼 수 있는 조건을 바꿉니다. 작품은 참여자가 머무는 시간을 완전히 멈춰둘 수 없는 시간의 흐름과 만나게 합니다."
+            "en": "Visitors move a hand vertically near a rose to control the speed of a moving image. Across three slow acts of witnessing, they look for an initially distorted rose-skeleton figure within images and languages drawn from funeral narratives around the world. When they feel they have found the figure, they press the rose button. This is a decision made from a particular position, rather than confirmation of a correct answer.",
+            "ko": "관객은 장미 가까이에서 손을 수직으로 움직여 영상의 속도를 조절합니다. 세계의 장례 서사를 이루는 이미지와 여러 언어 속에서 세 번의 느린 목격을 거치며, 처음에는 왜곡되어 있던 장미·스켈레톤 형상을 찾습니다. 형상을 찾았다고 느끼는 순간 장미 버튼을 누릅니다. 이는 정답을 확인하는 일이 아니라, 자신이 서 있는 위치에서 내리는 선택입니다."
+          },
+          {
+            "en": "The distortion draws on the anamorphic presence of death in vanitas painting, where a form becomes legible from another position. Here, hand and body position change the conditions of seeing. Time is slowed rather than possessed or permanently stopped, allowing the visitor to grant themselves time to look. The clearer image does not remove death; it lets apparently opposing faces become visible within the same narrative.",
+            "ko": "왜곡은 다른 위치에서 바라볼 때 죽음의 형상이 드러나는 바니타스 회화의 왜상 구조에서 출발합니다. 여기서는 손과 몸의 위치가 보는 조건을 바꿉니다. 시간을 소유하거나 영원히 멈추기보다 그 흐름을 늦추며, 자신을 살펴볼 시간을 스스로에게 줍니다. 형상이 선명해져도 죽음이 사라지는 것은 아닙니다. 서로 대립하는 듯한 얼굴들이 같은 서사 안에서 보이게 됩니다."
           }
         ]
       },
@@ -494,8 +530,12 @@ window.MP_PROJECT_DETAILS = {
         },
         "paragraphs": [
           {
-            "en": "A silent, looping film returns attention to the making of the exhibition. Hands, failed tests, cuts, connections and repeated labour remain visible, rather than disappearing behind a completed surface. This record sits alongside the responsive works as an account of the material and bodily work that precedes an audience’s encounter.",
-            "ko": "소리 없이 반복되는 영상은 전시를 만드는 과정으로 시선을 되돌립니다. 손, 실패한 테스트, 상처, 연결과 반복된 노동이 완성된 표면 뒤로 사라지지 않고 드러납니다. 이 기록은 관객과의 만남에 앞서 있었던 재료와 신체의 작업을 담으며 반응형 작품들과 나란히 놓입니다."
+            "en": "Record is an independent, silent looping film about the material and bodily work of making the exhibition. Hands cut and join cables, shape forms, test sensors and restart failed connections. The film leaves these joins, errors and repetitions visible instead of presenting the completed machine as seamless magic. It is a work in its own right, rather than a promotional explanation of the other installations.",
+            "ko": "기록은 전시를 만드는 재료와 신체의 노동을 다루는 독립된 무성 루프 영상입니다. 손은 전선을 자르고 잇고, 형상을 만들고, 센서를 시험하며 실패한 연결을 다시 시작합니다. 완성된 기계를 매끄러운 마술처럼 보이게 하기보다 연결부와 오류, 반복을 드러냅니다. 다른 설치를 설명하는 홍보 영상이 아니라 그 자체로 하나의 작품입니다."
+          },
+          {
+            "en": "There is no required first or last scene. A visitor may enter or leave at any point while the hands on screen continue their work. Record does not interpret the outcomes of the interactive works or classify the audience. It preserves the labour and making time that would otherwise disappear behind the finished surface.",
+            "ko": "반드시 먼저 보아야 할 장면이나 마지막 장면은 없습니다. 관객이 어느 순간 들어오거나 떠나도 화면 속 손은 작업을 이어갑니다. 기록은 인터랙티브 작품의 결과를 해석하거나 관객을 분류하지 않습니다. 완성된 표면 뒤로 사라지기 쉬운 노동과 제작의 시간을 남깁니다."
           }
         ]
       },
@@ -506,12 +546,16 @@ window.MP_PROJECT_DETAILS = {
         },
         "paragraphs": [
           {
-            "en": "A connected phone interface offers a place to retain selected images and written responses. These traces record participation and choices within the work; they are not presented as an objective reading of someone’s emotional state. The distinction is central to the project’s developing inquiry into how affective experience might be recorded without reducing it to a fixed label.",
-            "ko": "연결된 폰 인터페이스에서는 선택한 이미지와 작성한 응답을 남길 수 있습니다. 이 흔적은 작품 안에서의 참여와 선택을 기록하며, 누군가의 감정 상태를 객관적으로 판독한 결과로 제시되지 않습니다. 이는 감정적 경험을 고정된 이름으로 축소하지 않으면서 어떻게 기록할 수 있을지에 관한 프로젝트의 탐구에서 중요한 구분입니다."
+            "en": "The colour chosen on arrival, the name formed in Naming and visitor-requested images are connected through a random Rose number. The name and traces travel between the works, making one choice available to encounter again in another form. The Phone Hub returns these records without turning them into a score, personality type or objective reading of emotion. Naming and recording remain choices, and participation without a record is possible.",
+            "ko": "입장에서 고른 색, 명명에서 지은 이름과 관객이 요청한 이미지는 무작위 장미 번호로 연결됩니다. 이름과 흔적은 작품 사이를 이동하며, 한 번의 선택을 다른 형태로 다시 마주하게 합니다. Phone Hub는 이 기록을 점수나 성격 유형, 객관적인 감정 판독으로 바꾸지 않습니다. 이름과 기록을 남기는 일은 선택이며, 기록 없이 참여할 수도 있습니다."
           },
           {
-            "en": "The roses also change through handling, drying and decay. Their time differs from a digital system that can restart. Photographs preserve particular appearances of these materials, but do not reverse the changes themselves. This tension between a repeatable image and an irreversible living process connects The Funeral to Park’s continuing documentation of roses after exhibition.",
-            "ko": "장미는 사람들의 손길을 거치고 마르며 시드는 동안에도 달라집니다. 장미의 시간은 다시 시작할 수 있는 디지털 시스템의 시간과 다릅니다. 사진은 재료의 특정한 모습을 남기지만 그 변화 자체를 되돌리지는 않습니다. 반복 가능한 이미지와 되돌릴 수 없는 생명 과정 사이의 긴장은 전시 이후의 장미를 지속적으로 기록하는 Park의 작업과 The Funeral을 연결합니다."
+            "en": "The living roses in Naming change through touch, drying and decay. The artificial roses and specimen-like materials of Intervention and Witness hold a different relationship with time, retaining a form against change. The work does not rank them as real and fake: one disappears because it is alive, while another remains because it does not change in the same way. Photographs retain particular material states without reversing their loss.",
+            "ko": "명명의 생장미는 손길을 거치고 마르며 시듭니다. 개입과 목격의 조화와 표본 같은 재료는 변화에 맞서 형상을 남기며 다른 시간과 관계를 맺습니다. 작품은 이를 진짜와 가짜의 위계로 나누지 않습니다. 하나는 살아 있어서 사라지고, 다른 하나는 같은 방식으로 변하지 않기에 남습니다. 사진은 그 재료의 특정 상태를 간직하지만 상실을 되돌리지는 않습니다."
+          },
+          {
+            "en": "The linked Phone Hub Archive preserves the historical interface and example captures. It does not connect to the installation, make new captures or collect visitor responses.",
+            "ko": "연결된 폰 허브 아카이브에서는 전시 당시의 인터페이스와 캡처 예시를 볼 수 있습니다. 설치와 연결하거나 새로 촬영하지 않으며 관객의 응답을 수집하지 않습니다."
           }
         ]
       },

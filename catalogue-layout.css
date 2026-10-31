@@ -26,10 +26,15 @@ body[data-page="works"] .catalogue-work h2 { max-width: 20ch; margin: 14px 0 24p
 .catalogue-project__eyebrow a { font: inherit; letter-spacing: inherit; text-decoration: none; }
 .catalogue-project .project-detail__header .project-meta { max-width: 86ch; }
 .catalogue-project .project-detail__hero { margin: 0 0 34px; }
-.catalogue-project .project-detail__lead { max-width: 760px; margin: 28px 0 40px; font-size: 17px; line-height: 1.75; }
+.catalogue-project .project-detail__hero-frame { width: 100%; aspect-ratio: 16 / 9; overflow: hidden; background: #090909; }
+.catalogue-project .project-detail__hero-frame > :is(img, video) { display: block; width: 100%; height: 100%; max-height: none; object-fit: cover; object-position: center; }
+body[data-page="project"] .project-hero__media { height: auto; aspect-ratio: auto; overflow: visible; }
+body[data-page="project"] .project-hero__media > :is(img, video) { display: block; width: 100%; height: auto; max-height: none; aspect-ratio: 16 / 9; object-fit: cover; object-position: center; padding: 0; }
+body[data-page="project"] .project-hero__media > figcaption { position: static; display: table; max-width: 100%; margin: 9px 0 0 auto; }
+.catalogue-project .project-detail__lead { max-width: 72ch; margin: 28px 0 40px; font-size: 17px; line-height: 1.75; }
 .project-detail.catalogue-project .project-detail__section { display: block; padding: 48px 0; border-top: 1px solid var(--line); }
 .catalogue-project__section h2 { margin: 0 0 24px; }
-.catalogue-project__section .long-copy { max-width: 760px; }
+.catalogue-project__section .long-copy { max-width: 72ch; }
 .catalogue-project__section .long-copy p { font-size: 14px; font-weight: 450; line-height: 1.9; margin: 0 0 22px; }
 .catalogue-project__section .long-copy p:last-child { margin-bottom: 0; }
 .catalogue-project .catalogue-project__illustration { width: 100%; margin: 0 0 30px; }
@@ -45,10 +50,11 @@ body[data-page="works"] .catalogue-work h2 { max-width: 20ch; margin: 14px 0 24p
 .catalogue-selected__heading { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; margin-bottom: 26px; }
 body[data-page="project"] .catalogue-selected h2 { margin: 0; font-size: 26px; line-height: 1.2; }
 .catalogue-selected__heading a { flex-shrink: 0; min-height: 44px; display: inline-flex; align-items: center; font-size: 12px; }
-.catalogue-selected__strip { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(240px, 36%); gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 16px; }
+.catalogue-selected__strip { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(280px, 58%); gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none; padding-bottom: 16px; }
+.catalogue-selected__strip::-webkit-scrollbar { display: none; width: 0; height: 0; }
 .catalogue-selected__strip figure { min-width: 0; margin: 0; scroll-snap-align: start; }
 .catalogue-selected__strip :is(a, video) { display: block; }
-.catalogue-selected__strip :is(img, video) { display: block; width: 100%; height: 280px; object-fit: contain; background: #080808; }
+.catalogue-selected__strip :is(img, video) { display: block; width: 100%; height: 320px; object-fit: contain; background: #080808; }
 .catalogue-selected__strip figcaption { margin-top: 10px; color: var(--muted); font-size: 10px; line-height: 1.7; }
 .is-catalogue-viewer-open { overflow: hidden; }
 .catalogue-viewer { width: 100vw; height: 100dvh; max-width: none; max-height: none; margin: 0; padding: 52px 32px 24px; border: 0; background: #080808; color: #f4f0ec; }
@@ -66,7 +72,7 @@ html.has-art-pointer .catalogue-viewer button { cursor: pointer; }
   .catalogue-work__record { grid-template-columns: 1fr; gap: 26px; }
   body[data-page="works"] .catalogue-work h2 { max-width: 28ch; margin-bottom: 18px; }
   .catalogue-work .editorial-work__actions { margin-bottom: 6px; }
-  .catalogue-selected__strip { grid-auto-columns: minmax(240px, 55%); }
+  .catalogue-selected__strip { grid-auto-columns: minmax(260px, 72%); }
 }
 @media (max-width: 640px) {
   .catalogue-work { margin-bottom: 96px; }
@@ -84,8 +90,8 @@ html.has-art-pointer .catalogue-viewer button { cursor: pointer; }
   .catalogue-selected { padding: 36px 0; }
   .catalogue-selected__heading { flex-wrap: wrap; gap: 12px; margin-bottom: 22px; }
   body[data-page="project"] .catalogue-selected h2 { font-size: 25px; }
-  .catalogue-selected__strip { grid-auto-columns: 84%; gap: 14px; }
-  .catalogue-selected__strip :is(img, video) { height: 240px; }
+  .catalogue-selected__strip { grid-auto-columns: 86%; gap: 14px; }
+  .catalogue-selected__strip :is(img, video) { height: 270px; }
   .catalogue-viewer { padding: 54px 10px 22px; }
   .catalogue-viewer__stage { grid-template-columns: 28px minmax(0, 1fr) 28px; gap: 4px; }
   .catalogue-viewer__stage > button { min-width: 28px; font-size: 34px; }

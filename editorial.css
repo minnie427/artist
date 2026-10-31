@@ -2,7 +2,7 @@
 :root {
   --header-height: 72px;
   --page-pad: clamp(18px, 4vw, 56px);
-  --editorial-width: 1320px;
+  --editorial-width: 960px;
   --page-hero-offset: 44px;
 }
 

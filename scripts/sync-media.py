@@ -484,9 +484,11 @@ def research_identity(source: Path, folder: Path, slug: str) -> tuple[str, str, 
     return f"research-{slug}", RESEARCH_SOURCES[slug][0], year
 
 
-def build_manifest(source_root: Path, previous: dict[str, object] | None = None) -> dict[str, object]:
+def build_manifest(source_root: Path, previous: dict[str, object] | None = None,
+                   *, update_profile: bool = False) -> dict[str, object]:
     manifest: dict[str, object] = {
-        "profile": None, "projects": {}, "research": {}, "showreel": [], "visualIndex": []
+        "profile": (previous or {}).get("profile"),
+        "projects": {}, "research": {}, "showreel": [], "visualIndex": []
     }
     identities: dict[str, dict[str, tuple[str, str, str, str]]] = {}
     existing_sources = previous_sources(previous or {})
@@ -524,7 +526,9 @@ def build_manifest(source_root: Path, previous: dict[str, object] | None = None)
             item["width"], item["height"] = image.size
         return item
 
-    profile_files = media_files(source_root / "artist/profile")
+    # Profile assets are not a project-media update. Only stage them on request;
+    # the published portrait remains explicitly selected in site-content.js.
+    profile_files = media_files(source_root / "artist/profile") if update_profile else []
     if profile_files:
         source = next((item for item in profile_files if item.stem.casefold() == "artist2"), profile_files[0])
         src, _, _ = process_file(source, source_root, MEDIA_ROOT / "profile")
@@ -603,6 +607,10 @@ def build_manifest(source_root: Path, previous: dict[str, object] | None = None)
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("source", nargs="?", type=Path, default=DEFAULT_SOURCE)
+    parser.add_argument(
+        "--update-profile", action="store_true",
+        help="Explicitly refresh imported profile assets; the published portrait remains curated in site-content.js.",
+    )
     args = parser.parse_args()
     if not args.source.exists():
         raise SystemExit(f"Media source not found: {args.source}")
@@ -613,7 +621,7 @@ def main() -> None:
         prefix = "window.MP_IMPORTED_MEDIA = "
         if source.startswith(prefix) and source.endswith(";"):
             previous = json.loads(source[len(prefix):-1])
-    manifest = build_manifest(args.source, previous)
+    manifest = build_manifest(args.source, previous, update_profile=args.update_profile)
     preserve_pending_sources(manifest, previous)
     apply_source_removals(manifest, active_source_removals(args.source))
     MANIFEST_PATH.write_text(

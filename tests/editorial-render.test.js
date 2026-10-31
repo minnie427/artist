@@ -152,6 +152,12 @@ for (const language of ["en", "ko"]) {
     const html = editorial.project(ctx, key);
     const label = `${key}/${language}`;
     checkMarkup(html, label, language);
+    const heroFigure = html.match(/<figure class="project-detail__figure project-detail__hero">([\s\S]*?)<\/figure>/)?.[1];
+    if (heroFigure) {
+      const heroFrame = heroFigure.match(/<([a-z]+) class="project-detail__hero-frame">([\s\S]*?)<\/\1>/)?.[2];
+      assert(heroFrame && /<(?:img|video)\b/.test(heroFrame), `${label}: hero media has its own landscape frame`);
+      assert(!/<figcaption\b/.test(heroFrame), `${label}: the caption cannot change the hero frame's proportions`);
+    }
     assert(html.includes(projectEscape(project.lead[language])), `${label}: complete lead retained`);
     for (const section of project.sections) {
       assert(html.includes(`<h2>${projectEscape(section.title[language])}</h2>`), `${label}: section title retained`);
