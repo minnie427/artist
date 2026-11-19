@@ -11,6 +11,7 @@ window.MP_SITE = {
 
   external: {
     commercial: "https://work.minniepark.art",
+    play: "https://play.minniepark.art/",
     instagram: "https://www.instagram.com/minniepark.studio/",
     email: "mailto:minniepark.studio@gmail.com"
   },
@@ -43,11 +44,12 @@ window.MP_SITE = {
     }
   },
 
-  primaryWorksOrder: ["reintervention", "respite-iii", "melbourne-fringe", "funeral", "shared-resonance", "meta-kibun", "origin"],
+  primaryWorksOrder: ["meta-rose-play", "reintervention", "respite-iii", "melbourne-fringe", "funeral", "shared-resonance", "meta-kibun", "origin"],
   exhibitionWorksOrder: ["artist-workshops", "bugskin-chapter-2", "mugonggan"],
   liveWorksOrder: ["live-performance"],
   selectedWorksOrder: ["melbourne-fashion-festival", "album-listening-session"],
   projectSequence: [
+    "meta-rose-play",
     "reintervention",
     "respite-iii",
     "melbourne-fringe",
@@ -287,6 +289,27 @@ window.MP_SITE = {
   ],
 
   projects: {
+    "meta-rose-play": {
+      title: "The Meta Rose: Play",
+      titleKo: "메타로즈 플레이",
+      shortTitle: "The Meta Rose: Play",
+      shortTitleKo: "메타로즈 플레이",
+      year: "2026 onwards",
+      route: "works/meta-rose-play/",
+      sisterSite: "play",
+      category: "Interactive web series",
+      categoryKo: "인터랙티브 웹 연작",
+      card: "Choose a flower with one hand and gather feelings with the other in the first work in Minnie Park’s ongoing web series.",
+      cardKo: "메타로즈 플레이의 첫 작품에서는 한 손으로 꽃을 고르고 다른 손으로 감정 단어를 모아 오늘의 기분을 담습니다.",
+      image: "media/meta-rose-play/kibun-picker.webp",
+      imageAlt: "Your Kibun Picker, two hand gestures for selecting a flower and collecting feeling words",
+      imageAltKo: "Your Kibun Picker, 한 손으로 꽃을 고르고 다른 손으로 감정 단어를 모으는 두 손의 움직임",
+      gallery: [],
+      catalogue: {
+        location: { en: "Online", ko: "온라인" },
+        participation: { en: "Hand tracking in the browser", ko: "웹 브라우저에서 손동작으로 참여" }
+      }
+    },
     "reintervention": {
       "title": "RE:INTERVENTION",
       "shortTitle": "RE:INTERVENTION",
@@ -896,6 +919,7 @@ window.MP_SITE = {
       shortTitle: "Meta Rose",
       year: "2024 onwards",
       route: "works/meta-rose/",
+      relatedSeries: "meta-rose-play",
       eyebrow: "Ongoing body of work / 2024 onwards",
       category: "Ongoing body of work / Evolving framework",
       categoryKo: "장기 연작 / 확장되는 프레임워크",

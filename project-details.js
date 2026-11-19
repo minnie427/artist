@@ -1,6 +1,44 @@
 // Approved bilingual project narratives. Media paths are relative to the site root.
 // Illustration `after` values are zero-based indexes into the sections array.
 window.MP_PROJECT_DETAILS = {
+  "meta-rose-play": {
+    title: "The Meta Rose: Play",
+    titleKo: "메타로즈 플레이",
+    meta: {
+      en: ["2026 onwards / Interactive web series"],
+      ko: ["2026년부터 현재 / 인터랙티브 웹 연작"]
+    },
+    lead: {
+      en: "For Minnie Park, the rose stands for both the viewer and her own feelings. Petals and thorns share a stem, as contradictory feelings can share a body. Each work in this series sets flowers and vintage print textures in motion through a different gesture.",
+      ko: "메타로즈는 관객 자신이자 작가의 감정 그 자체다. 한 줄기에 돋는 꽃잎과 가시는 모순되는 감정이 한 몸에 머무는 모습을 보여준다. 이 연작에서는 작품마다 다른 몸짓이 꽃 이미지와 빈티지 인쇄 질감을 움직인다."
+    },
+    hero: {
+      src: "media/meta-rose-play/kibun-picker.webp",
+      alt: {
+        en: "Two illustrated hands pinch a pink flower in a row of blooms and the drifting word ‘hopeful’.",
+        ko: "한 손은 늘어선 꽃 중 분홍 꽃을, 다른 손은 떠다니는 단어 ‘hopeful’을 집는 모습을 그린 그림."
+      },
+      caption: { en: "Your Kibun Picker, hand gesture study", ko: "Your Kibun Picker, 두 손의 동작을 보여주는 도해" }
+    },
+    sisterSite: { key: "play", label: { en: "View all plays", ko: "전체 플레이 보기" } },
+    sections: [
+      {
+        id: "kibun-picker",
+        title: { en: "P01S00 · Your *Kibun* Picker", ko: "P01S00 · Your *Kibun* Picker (기분)" },
+        released: { date: "2026-10-31", en: "First released 31 October 2026", ko: "2026년 10월 31일 첫 공개" },
+        paragraphs: [{
+          en: "Move one hand across a row of 21 flowers and pinch your thumb and index finger to choose one. With your other hand, collect as many drifting words as you like. Your flower and words come together on a card for today’s *kibun* (기분).",
+          ko: "한 손을 좌우로 움직여 21송이 중 마음이 가는 꽃에 멈춘 뒤, 엄지와 검지를 맞대 한 송이를 고른다. 다른 손으로 떠다니는 감정 단어를 원하는 만큼 모으면, 꽃과 단어가 ‘오늘의 기분’ 카드 한 장에 담긴다."
+        }],
+        action: { hash: "#play/kibun", label: { en: "Try Your *Kibun* Picker", ko: "기분 고르기 체험" } }
+      },
+      {
+        title: { en: "Play 02 · Coming soon", ko: "Play 02 · 공개 예정" },
+        paragraphs: []
+      }
+    ],
+    acquisition: false
+  },
   "reintervention": {
     "title": "RE:INTERVENTION",
     "subtitle": {

@@ -5,7 +5,7 @@ const vm = require("node:vm");
 const { parseSchemas, structuredData } = require("./search-schema.js");
 const root = path.resolve(__dirname, "..");
 const origin = "https://minniepark.art/";
-const stamp = "20261031-reading-width-80";
+const stamp = "20261120-meta-rose-play";
 const editorialStyleStamp = stamp;
 const editionStamp = stamp;
 const rendererStamp = stamp;
@@ -26,7 +26,8 @@ for (const route of ["editions/", "editions/reintervention/"]) if (!routes.inclu
 const addedProjectRoutes = {
   "works/melbourne-fringe/": "melbourne-fringe",
   "works/respite-iii/": "respite-iii",
-  "works/reintervention/": "reintervention"
+  "works/reintervention/": "reintervention",
+  "works/meta-rose-play/": "meta-rose-play"
 };
 for (const route of Object.keys(addedProjectRoutes)) if (!routes.includes(route)) routes.push(route);
 const enDescriptions = {
@@ -73,7 +74,7 @@ function render(template, route, locale) {
   vm.createContext(context);
   for (const file of ["site-media.js", "site-content.js", "project-details.js", "site-editorial.js", "edition-render.js", "rose-home-template.js", "site-render.js"]) vm.runInContext(read(file), context);
   const projectData = context.window.MP_SITE.projects[project];
-  const title = locale === "en" ? context.document.title : koTitles[page] || `${projectData?.title || "작품"} | Minnie Park`;
+  const title = locale === "en" ? context.document.title : koTitles[page] || `${projectData?.titleKo || projectData?.title || "작품"} | Minnie Park`;
   const summary = locale === "en" ? enDescriptions[page] || description.content : koDescriptions[page] || projectData?.cardKo || projectData?.paragraphsKo?.[0] || `${projectData?.title}, Minnie Park의 인터랙티브 오디오비주얼 작업. 작품 설명과 전시 기록을 살펴보세요.`;
   let html = template.replace(/<html lang="[^"]+">/, `<html lang="${locale}">`)
     .replace(/\s*<header class="global-header" data-search-chrome>[\s\S]*?<\/header>/g, "")
@@ -85,6 +86,21 @@ function render(template, route, locale) {
     .replace(/data-root="[^"]+"(?: data-locale="[^"]+" data-route="[^"]*" data-seo-static="true")?/, `data-root="${relative}" data-locale="${locale}" data-route="${route}" data-seo-static="true"`);
   // Static head and body agree; the browser does not replace these with English metadata.
   const canonical = origin + (locale === "ko" ? "ko/" : "") + route;
+  if (project === "meta-rose-play") {
+    const imageUrl = new URL(projectData.image, origin).href;
+    const imageAlt = locale === "ko" ? projectData.imageAltKo || projectData.imageAlt : projectData.imageAlt;
+    html = html.replace(/(<meta property="og:image" content=")[^"]+/, `$1${esc(imageUrl)}`)
+      .replace(/(<meta property="og:image:alt" content=")[^"]+/, `$1${esc(imageAlt)}`);
+    const series = {
+      "@context": "https://schema.org", "@type": "CreativeWorkSeries", "@id": origin + route + "#work",
+      name: locale === "ko" ? projectData.titleKo : projectData.title, url: origin + route,
+      creator: { "@id": person["@id"] }, isPartOf: { "@id": origin + "works/meta-rose/#work" },
+      image: imageUrl, sameAs: context.window.MP_SITE.external.play
+    };
+    // Replace this page's previous generated graph on repeat builds.
+    html = html.replace(/\s*<script\b[^>]*type="application\/ld\+json"[^>]*>[\s\S]*?<\/script>/g, "")
+      .replace("</head>", `<script type="application/ld+json">${JSON.stringify(series).replaceAll("<", "\\u003c")}</script>\n</head>`);
+  }
   html = html.replace(/(<link rel="canonical" href=")[^"]+/, `$1${canonical}`)
     .replace(/(<meta property="og:url" content=")[^"]+/, `$1${canonical}`)
     .replace(/(<meta (?:property="og:title"|name="twitter:title") content=")[^"]+/g, `$1${esc(title)}`)

@@ -19,11 +19,11 @@ for (const file of ["site-media.js", "site-content.js", "project-details.js", "s
 
 const { MP_SITE: site, MP_PROJECT_DETAILS: details, MP_EDITORIAL: editorial, MP_EDITIONS: editions } = sandbox.window;
 const projectKeys = [
-  "reintervention", "respite-iii", "melbourne-fringe", "funeral", "shared-resonance", "meta-kibun", "origin", "bugskin-chapter-2", "mugonggan",
+  "meta-rose-play", "reintervention", "respite-iii", "melbourne-fringe", "funeral", "shared-resonance", "meta-kibun", "origin", "bugskin-chapter-2", "mugonggan",
   "artist-workshops", "live-performance", "melbourne-fashion-festival", "album-listening-session"
 ];
 const editionKeys = ["funeral", "shared-resonance", "meta-kibun", "origin"];
-assert.deepEqual(Object.keys(details).sort(), [...projectKeys].sort(), "The ten retained projects and three confirmed presentation accounts are all available");
+assert.deepEqual(Object.keys(details).sort(), [...projectKeys].sort(), "The current project accounts are all available");
 // Compare every paragraph to its complete bilingual source, wherever a confirmed
 // presentation now lives. Splitting April/Melbourne must not freeze a legacy count.
 const expectedParagraphs = Object.values(details).reduce((count, project) => count + project.sections.reduce((n, section) => n + section.paragraphs.length, 0), 0);
@@ -118,13 +118,13 @@ for (const language of ["en", "ko"]) {
   const works = editorial.works(ctx);
   checkMarkup(works, `Works/${language}`, language);
   const catalogueKeys = editorial.orderedWorks(site, details);
-  assert.deepEqual(Array.from(catalogueKeys), ["reintervention","respite-iii","melbourne-fringe","funeral","shared-resonance","bugskin-chapter-2","meta-kibun","mugonggan","origin","artist-workshops","live-performance","melbourne-fashion-festival","album-listening-session"]);
+  assert.deepEqual(Array.from(catalogueKeys), ["meta-rose-play","reintervention","respite-iii","melbourne-fringe","funeral","shared-resonance","bugskin-chapter-2","meta-kibun","mugonggan","origin","artist-workshops","live-performance","melbourne-fashion-festival","album-listening-session"]);
   checkAcquisitionFallback(works, catalogueKeys.filter(key => details[key].acquisition).map(key => details[key].title), `Works/${language}`, language);
   const cards = [...works.matchAll(/<article class="catalogue-work" id="work-([^"]+)">([\s\S]*?)<\/article>/g)];
-  assert.equal(cards.length, 13, "All projects and confirmed presentations use one catalogue record structure");
-  assert.equal((works.match(/class="catalogue-work__record"/g) || []).length, 13);
-  assert.equal((works.match(/class="catalogue-work__summary"/g) || []).length, 13, "Every project has a readable summary, including further practice");
-  assert.equal((works.match(/class="catalogue-work__facts"/g) || []).length, 13, "Every project shares the same fact structure");
+  assert.equal(cards.length, projectKeys.length, "All projects and confirmed presentations use one catalogue record structure");
+  assert.equal((works.match(/class="catalogue-work__record"/g) || []).length, projectKeys.length);
+  assert.equal((works.match(/class="catalogue-work__summary"/g) || []).length, projectKeys.length, "Every project has a readable summary, including further practice");
+  assert.equal((works.match(/class="catalogue-work__facts"/g) || []).length, projectKeys.length, "Every project shares the same fact structure");
   assert(!/editorial-index-row|Further Practice|추가 실천|Explore the visual index/.test(works), "No text-only secondary list or long Visual Index CTA");
   for (const [key, [src, x, y, zoom]] of Object.entries(approvedCrops)) {
     const card = cards.find(match => match[1] === key)?.[2];
@@ -159,14 +159,15 @@ for (const language of ["en", "ko"]) {
       assert(!/<figcaption\b/.test(heroFrame), `${label}: the caption cannot change the hero frame's proportions`);
     }
     assert(html.includes(projectEscape(project.lead[language])), `${label}: complete lead retained`);
+    const readable = html.replace(/<\/?em>/g, "");
     for (const section of project.sections) {
-      assert(html.includes(`<h2>${projectEscape(section.title[language])}</h2>`), `${label}: section title retained`);
+      assert(readable.includes(`<h2>${projectEscape(section.title[language].replaceAll("*", ""))}</h2>`), `${label}: section title retained`);
       if (section.id) assert(html.includes(`id="${section.id}"`), `${label}: direct history anchor retained`);
       for (const paragraph of section.paragraphs) {
         assert.equal(typeof paragraph.en, "string", `${label}: English paragraph exists`);
         assert.equal(typeof paragraph.ko, "string", `${label}: Korean paragraph exists`);
-        const expected = `<p>${projectEscape(paragraph[language])}</p>`;
-        assert.equal(html.split(expected).length - 1, 1, `${label}: complete paragraph rendered exactly once`);
+        const expected = `<p>${projectEscape(paragraph[language].replaceAll("*", ""))}</p>`;
+        assert.equal(readable.split(expected).length - 1, 1, `${label}: complete paragraph rendered exactly once`);
         checkedParagraphs += 1;
       }
     }
@@ -180,6 +181,13 @@ for (const language of ["en", "ko"]) {
       const heading = `<h2>${projectEscape(project.sections[illustration.after].title[language])}</h2>`;
       assert(account.includes(ctx.media(illustration.src)), `${label}: illustration belongs to its own account`);
       assert(account.indexOf(ctx.media(illustration.src)) < account.indexOf(heading), `${label}: its own photograph precedes the matching text`);
+    }
+    if (key === "meta-rose-play") {
+      const [published, upcoming] = accountSections.map(match => match[1]);
+      assert(published.includes("Your <em>Kibun</em> Picker") && published.includes("기분"), label + ": work title and Korean term retained");
+      assert(published.includes('datetime="2026-10-31"') && published.includes('href="https://play.minniepark.art/#play/kibun"'), label + ": public work release and direct route");
+      assert(!/<(?:a|button|time|img|video)\b/.test(upcoming), label + ": upcoming slot is a noninteractive heading");
+      assert(html.includes('href="https://play.minniepark.art/"'), label + ": collection link");
     }
     const selectedStrip = html.match(/<section class="catalogue-selected">([\s\S]*?)<\/section>/)?.[1];
     if (selectedStrip) {
@@ -218,7 +226,7 @@ for (const language of ["en", "ko"]) {
     assert(!/\b(?:fetch|XMLHttpRequest|WebSocket)\s*\(/.test(html), "No hidden enquiry transmission");
   }
 }
-assert.equal(checkedParagraphs, expectedParagraphs * 2, "Every complete source paragraph is checked in both languages across the thirteen current accounts");
+assert.equal(checkedParagraphs, expectedParagraphs * 2, "Every complete source paragraph is checked in both languages across the current accounts");
 
 // Guard the edition module against accidental raw text or attribute insertion.
 const hostile = context("en");
@@ -231,4 +239,4 @@ for (const html of [editorial.works(hostile), editorial.project(hostile, "funera
   assert(html.includes('class="acquisition-enquiry__select">minniepark.studio@gmail.com</dd>'), "Editorial enquiries retain the safe recipient fallback");
 }
 
-console.log(`PASS: ${2 * (projectKeys.length + 3)} EN/KO renders, all ${expectedParagraphs} bilingual source paragraphs, 13 common catalogue records with photograph-specific saved crops and current folder-selected heroes, linear accounts and selected native galleries, metadata/media/routes/history anchors, safe acquisition fallback and no unapproved terms. Static checks only; browser/mobile visual QA remains separate.`);
+console.log(`PASS: ${2 * (projectKeys.length + 3)} EN/KO renders, all ${expectedParagraphs} bilingual source paragraphs, ${projectKeys.length} common catalogue records with photograph-specific saved crops and current folder-selected heroes, linear accounts and selected native galleries, metadata/media/routes/history anchors, safe acquisition fallback and no unapproved terms. Static checks only; browser/mobile visual QA remains separate.`);

@@ -167,6 +167,7 @@
         </nav>
         <nav class="site-footer__resources" aria-label="${tr("Further information", "추가 정보")}">
           ${site.nav.filter(item => item.external).map(item => navLink(item, true)).join("")}
+          ${site.external.play ? navLink({ id: "play", label: "Play ↗", labelKo: "플레이 ↗", path: site.external.play, external: true }, true) : ""}
           <a href="${href(cvDownload)}" download>${tr("CV 2026 ↓", "CV 2026 다운로드 ↓")}</a>
           <a href="${site.external.instagram}" target="_blank" rel="noreferrer">Instagram ↗</a>
         </nav>
@@ -470,21 +471,24 @@
       }
       return;
     }
+    // The static detail remains readable if its optional renderer failed to load.
+    if (app.querySelector?.("article.project-detail")) return;
     const isPrimary = site.primaryWorksOrder.includes(projectKey);
     const gallery = project.gallery || [];
-    const metadata = projectField(project, "metadata") || project.metadata;
-    const paragraphs = projectField(project, "paragraphs") || project.paragraphs;
+    const metadata = projectField(project, "metadata") || [project.year];
+    const paragraphs = projectField(project, "paragraphs") || [];
+    const sisterUrl = project.sisterSite && site.external[project.sisterSite];
     app.innerHTML = `
       <article class="project-page">
         <section class="project-hero" id="top">
           <div class="project-hero__copy">
-            <p class="eyebrow">${projectField(project, "eyebrow")}</p>
-            <h1>${project.title}</h1>
-            <p class="project-subtitle">${projectField(project, "subtitle")}</p>
+            <p class="eyebrow">${projectField(project, "eyebrow") || projectField(project, "category")}</p>
+            <h1>${projectField(project, "title")}</h1>
+            ${project.subtitle ? `<p class="project-subtitle">${projectField(project, "subtitle")}</p>` : ""}
             <div class="project-meta">${metadata.map((line) => `<p>${line}</p>`).join("")}</div>
           </div>
           <figure class="project-hero__media${project.placeholder ? " is-placeholder" : ""}">
-            ${imageMarkup(project.image, project.imageAlt, true)}
+            ${imageMarkup(project.image, projectField(project, "imageAlt"), true)}
             ${project.placeholder ? `<figcaption>${tr(project.placeholder, "임시 이미지, f01로 교체 예정")}</figcaption>` : ""}
           </figure>
         </section>
@@ -492,10 +496,12 @@
         <section class="project-introduction content-section content-section--compact">
           <div>
             <p class="section-kicker">${tr("Project", "프로젝트")}</p>
-            <h2>${projectField(project, "lead")}</h2>
+            <h2>${projectField(project, "lead") || projectField(project, "card")}</h2>
           </div>
           <div class="long-copy">
             ${paragraphs.map((paragraph) => `<p>${paragraph}</p>`).join("")}
+            ${sisterUrl ? actions([{ label: tr("View all plays", "전체 플레이 보기"), path: sisterUrl, external: true }]) : ""}
+            ${project.relatedSeries ? `<a class="inline-link" href="${projectUrl(project.relatedSeries)}">${projectField(site.projects[project.relatedSeries], "title")} →</a>` : ""}
             ${project.role ? `<p class="project-role"><strong>${tr("Role", "역할")}</strong><br />${projectField(project, "role")}</p>` : ""}
           </div>
         </section>
@@ -536,7 +542,7 @@
           <section class="project-gallery content-section" aria-label="${project.title} media gallery">
             ${gallery.map((item) => `<figure>${galleryMediaMarkup(item)}</figure>`).join("")}
           </section>
-        ` : project.entries?.length ? "" : `
+        ` : project.entries?.length || sisterUrl ? "" : `
           <section class="documentation-note content-section">
             <p class="section-kicker">${tr("Documentation", "기록")}</p>
             <p>${tr("Project photography and moving-image documentation will be added here.", "프로젝트 사진과 무빙이미지 기록을 이곳에 추가할 예정입니다.")}</p>
@@ -568,9 +574,9 @@
     const next = sequence[(index + 1) % sequence.length];
     return `
       <nav class="project-nav content-section" aria-label="Project navigation">
-        <a href="${projectUrl(previous)}"><span>${tr("Previous", "이전")}</span>${site.projects[previous].shortTitle}</a>
+        <a href="${projectUrl(previous)}"><span>${tr("Previous", "이전")}</span>${projectField(site.projects[previous], "shortTitle")}</a>
         <a class="project-nav__all" href="${href("works/")}">${tr("All Works", "전체 작품")}</a>
-        <a href="${projectUrl(next)}"><span>${tr("Next", "다음")}</span>${site.projects[next].shortTitle} →</a>
+        <a href="${projectUrl(next)}"><span>${tr("Next", "다음")}</span>${projectField(site.projects[next], "shortTitle")} →</a>
       </nav>
     `;
   }

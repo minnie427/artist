@@ -34,6 +34,8 @@ body[data-page="project"] .project-hero__media > figcaption { position: static; 
 .catalogue-project .project-detail__lead { max-width: 72ch; margin: 28px 0 40px; font-size: 17px; line-height: 1.75; }
 .project-detail.catalogue-project .project-detail__section { display: block; padding: 48px 0; border-top: 1px solid var(--line); }
 .catalogue-project__section h2 { margin: 0 0 24px; }
+.catalogue-project__section .play-release { display: block; margin-bottom: 12px; color: var(--muted); }
+.catalogue-project__section .play-action { margin-top: 16px; }
 .catalogue-project__section .long-copy { max-width: 72ch; }
 .catalogue-project__section .long-copy p { font-size: 14px; font-weight: 450; line-height: 1.9; margin: 0 0 22px; }
 .catalogue-project__section .long-copy p:last-child { margin-bottom: 0; }
