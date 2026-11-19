@@ -132,6 +132,9 @@ function render(template, route, locale) {
   html = html.replace(/(edition-render|site-editorial)\.js\?v=[^"\s]+/g, `$1.js?v=${editionStamp}`);
   html = html.replace(/site-render\.js\?v=[^"\s]+/g, `site-render.js?v=${rendererStamp}`);
   html = html.replace(/(site-content|project-details)\.js\?v=[^"\s]+/g, `$1.js?v=${contentStamp}`);
+  // A new Play release must refresh its detail even for returning visitors.
+  const releases = context.window.MP_PROJECT_DETAILS[project]?.sections.map(section => section.released?.date).filter(Boolean) || [];
+  if (releases.length) html = html.replace(`project-details.js?v=${contentStamp}`, `project-details.js?v=${contentStamp}-${releases.sort().at(-1)}`);
   html = html.replace(/hero-visual\.js\?v=[^"\s]+/g, `hero-visual.js?v=${stamp}`)
     .replace(/style\.css\?v=[^"\s]+/g, "style.css?v=20260917-editorial-55");
   if (page === "home") {

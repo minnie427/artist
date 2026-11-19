@@ -33,10 +33,21 @@ window.MP_PROJECT_DETAILS = {
         action: { hash: "#play/kibun", label: { en: "Try Your *Kibun* Picker", ko: "기분 고르기 체험" } }
       },
       {
-        title: { en: "Play 02 · Coming soon", ko: "Play 02 · 공개 예정" },
-        paragraphs: []
+        id: "pac-rose",
+        title: { en: "P02S00 · Pac Rose", ko: "P02S00 · 팩 로즈" },
+        released: { date: "2026-11-20", en: "First released 20 November 2026", ko: "2026년 11월 20일 첫 공개" },
+        paragraphs: [{
+          en: "Guide a rose with your index finger. It turns at right angles to eat drifting feeling words, leaving a trail of thorns. Prickles follows the route you have taken. Move to Spit to give back the last word, or to the pink Done circle to gather today’s feelings on a card.",
+          ko: "검지를 따라 장미가 가로세로로 꺾이며 떠다니는 감정 단어를 먹는다. 지나간 자리에는 가시가 잠시 남고, 가시 볼 Prickles가 그 길을 뒤따른다. ‘뱉기’에 닿으면 마지막 단어를 돌려준다. 오늘의 기분이 모였다고 느낄 때 분홍색 ‘완료’에 닿으면 그 단어들이 카드 한 장에 담긴다."
+        }],
+        action: { hash: "#play/pac-rose", label: { en: "Play now", ko: "바로 체험" } }
       }
     ],
+    illustrations: [{
+      after: 1,
+      src: "media/meta-rose-play/pac-rose.webp",
+      caption: { en: "Pac Rose, the rose gathers “hopeful” at the end of a thorn trail.", ko: "팩 로즈, 가시 자취 끝에서 장미가 ‘hopeful’을 모으는 장면." }
+    }],
     acquisition: false
   },
   "reintervention": {

@@ -183,10 +183,11 @@ for (const language of ["en", "ko"]) {
       assert(account.indexOf(ctx.media(illustration.src)) < account.indexOf(heading), `${label}: its own photograph precedes the matching text`);
     }
     if (key === "meta-rose-play") {
-      const [published, upcoming] = accountSections.map(match => match[1]);
-      assert(published.includes("Your <em>Kibun</em> Picker") && published.includes("기분"), label + ": work title and Korean term retained");
-      assert(published.includes('datetime="2026-10-31"') && published.includes('href="https://play.minniepark.art/#play/kibun"'), label + ": public work release and direct route");
-      assert(!/<(?:a|button|time|img|video)\b/.test(upcoming), label + ": upcoming slot is a noninteractive heading");
+      const [picker, pac] = accountSections.map(match => match[1]);
+      assert(picker.includes("Your <em>Kibun</em> Picker") && picker.includes("기분"), label + ": work title and Korean term retained");
+      assert(picker.includes('datetime="2026-10-31"') && picker.includes('href="https://play.minniepark.art/#play/kibun"'), label + ": picker release and direct route");
+      assert(pac.includes('datetime="2026-11-20"') && pac.includes('href="https://play.minniepark.art/#play/pac-rose"'), label + ": Pac Rose first public release and direct route");
+      assert(pac.includes(language === "ko" ? "바로 체험" : "Play now"), label + ": localised play action");
       assert(html.includes('href="https://play.minniepark.art/"'), label + ": collection link");
     }
     const selectedStrip = html.match(/<section class="catalogue-selected">([\s\S]*?)<\/section>/)?.[1];
