@@ -167,7 +167,6 @@
         </nav>
         <nav class="site-footer__resources" aria-label="${tr("Further information", "추가 정보")}">
           ${site.nav.filter(item => item.external).map(item => navLink(item, true)).join("")}
-          ${site.external.play ? navLink({ id: "play", label: "Play ↗", labelKo: "플레이 ↗", path: site.external.play, external: true }, true) : ""}
           <a href="${href(cvDownload)}" download>${tr("CV 2026 ↓", "CV 2026 다운로드 ↓")}</a>
           <a href="${site.external.instagram}" target="_blank" rel="noreferrer">Instagram ↗</a>
         </nav>

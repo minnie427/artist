@@ -1,3 +1,4 @@
+const metaRosePlayUrl = "https://play.minniepark.art/";
 window.MP_SITE = {
   nav: [
     { id: "artist", label: "Artist", labelKo: "아티스트", path: "artist/" },
@@ -6,12 +7,13 @@ window.MP_SITE = {
     { id: "research", label: "Research", labelKo: "리서치", path: "research/" },
     { id: "editions", label: "Editions", labelKo: "에디션", path: "editions/" },
     { id: "contact", label: "Contact", labelKo: "연락", path: "contact/" },
-    { id: "commissions", label: "Commissions ↗", labelKo: "커미션 ↗", path: "https://work.minniepark.art", external: true }
+    { id: "commissions", label: "Commissions ↗", labelKo: "커미션 ↗", path: "https://work.minniepark.art", external: true },
+    { id: "play", label: "Play ↗", labelKo: "플레이 ↗", path: metaRosePlayUrl, external: true }
   ],
 
   external: {
     commercial: "https://work.minniepark.art",
-    play: "https://play.minniepark.art/",
+    play: metaRosePlayUrl,
     instagram: "https://www.instagram.com/minniepark.studio/",
     email: "mailto:minniepark.studio@gmail.com"
   },
